@@ -12,7 +12,6 @@ const NewsFeed = () => {
     const fetchNewsData = async () => {
         try {
           // const response = await axios.post('/api/news/');
-          console.log(Data);
           setNewsData(Data);
         } catch (error) {
           setError(error.message);
@@ -63,9 +62,8 @@ const NewsFeed = () => {
     fetchNewsData();
   }, []);
 
-  const loadMore = () => {
-    console.log('Load more');
-    setLimit(limit + 10);
+  const loadMore = (value) => {
+    setLimit(limit + value);
   }
   return (
     <div className="bg-gray-900 min-h-screen flex flex-col">
@@ -83,7 +81,7 @@ const NewsFeed = () => {
           <p className="text-red-500 text-center">{error}</p>
         ) : (
           <div className="space-y-8"> {/* Increased spacing between cards */}
-            {newsData && newsData.slice(0, limit).map((item, index) => (
+            {newsData && newsData.slice(limit-10, limit).map((item, index) => (
               <div
                 key={index}
                 className="bg-green-800 shadow-lg rounded-lg overflow-hidden flex flex-col md:flex-row transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-xl"
@@ -120,8 +118,9 @@ const NewsFeed = () => {
                 </div>
               </div>
             ))}
-            <div className="flex justify-center">
-              <button className="bg-green-500 text-white px-4 py-2 rounded-md" onClick={loadMore} >Load more</button>
+            <div className="flex justify-between sticky bottom-0 p-1 bg-gray-900">
+              <button className="bg-green-500 text-white px-4 py-2 rounded-md" disabled={limit === 10} onClick={()=>loadMore(-10)} >Prev</button>
+              <button className="bg-green-500 text-white px-4 py-2 rounded-md" disabled={limit >= newsData.length} onClick={()=>loadMore(10)} >Next</button>
             </div>
           </div>
         )}
