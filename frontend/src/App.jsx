@@ -55,7 +55,7 @@ export default function App() {
       {/* Toggle Button for ChatBot */}
       <button
         onClick={toggleChatBot}
-        className={`fixed bottom-4 right-4 bg-blue-500 text-white w-16 h-16 rounded-full shadow-lg flex items-center justify-center transition-transform duration-100 ${isRotating ? 'animate-rotate' : ''}`}
+        className={`fixed bottom-4 right-4 bg-blue-500 text-white w-16 h-16 rounded-full shadow-lg flex items-center justify-center transition-transform duration-1000 hover:rotate-[360deg]`}
       >
         <FiMessageSquare size={24} />
       </button>

@@ -10,7 +10,7 @@ const predefinedQuestions = [
   'How can I improve soil quality?',
   'What are the current market prices for wheat?',
   'Can you provide tips for pest control?',
-  'What are the upcoming weather conditions?',
+  'What are the upcoming weather conditions in Jaipur?',
 ];
 
 const ChatBot = ({ visible, onClose }) => {
@@ -18,20 +18,26 @@ const ChatBot = ({ visible, onClose }) => {
   const [input, setInput] = useState('');
   const [conversationStarted, setConversationStarted] = useState(false);
   const messagesEndRef = useRef(null);
-
+  const [loading, setLoading] = useState(false);
   const sendMessage = async (message) => {
     if (message.trim() !== '') {
       setMessages([...messages, { text: message, user: 'user' }]);
       setInput('');
       setConversationStarted(true); // Set conversationStarted to true when a message is sent
-
+      setLoading(true);
       // Get the bot response from the Gemini API
+      try{
       const botResponse = await getBotResponse(message);
 
       setMessages((prevMessages) => [
         ...prevMessages,
-        { text: botResponse, user: 'bot' },
-      ]);
+          { text: botResponse, user: 'bot' },
+        ]);
+      } catch (error) {
+        console.error('Error fetching bot response:', error);
+      } finally {
+        setLoading(false);
+      }
     }
   };
 
@@ -80,7 +86,9 @@ const ChatBot = ({ visible, onClose }) => {
                   msg.user === 'user' ? 'bg-blue-500 text-white' : 'bg-blue-200 text-blue-800'
                 }`}
               >
-                {msg.text}
+                {msg.user === 'user' ? msg.text : msg.text.split('*').map((text, i) => 
+                  i % 2 === 0 ? text : <strong key={i}>{text}</strong>
+                )}
               </div>
             </div>
           ))
@@ -107,7 +115,8 @@ const ChatBot = ({ visible, onClose }) => {
         <div className="flex items-center">
           <input
             type="text"
-            value={input}
+            value={loading ? 'Sending...' : input}
+            disabled={loading}
             onChange={(e) => setInput(e.target.value)}
             className="flex-1 px-4 py-2 border rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
             placeholder="Type a message..."
@@ -115,7 +124,7 @@ const ChatBot = ({ visible, onClose }) => {
           />
           <button
             onClick={() => sendMessage(input)}
-            className="ml-3 bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition-colors duration-300 animate-bounce"
+            className="ml-3 bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition-colors duration-300 "
           >
             Send
           </button>
