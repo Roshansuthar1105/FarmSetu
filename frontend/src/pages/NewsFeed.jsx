@@ -2,28 +2,71 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import MyNavbar from '../components/MyNavbar';
 import Footer from '../components/Footer';
-
+import Data from '../data/news.json';
 const NewsFeed = () => {
-  const [newsData, setNewsData] = useState([]);
+  const [newsData, setNewsData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const [limit, setLimit] = useState(10);
   useEffect(() => {
     const fetchNewsData = async () => {
-      try {
-        const response = await axios.post('/api/news/');
-        console.log(response.data);
-        setNewsData(response.data);
-      } catch (error) {
-        setError(error.message);
-      } finally {
-        setLoading(false);
-      }
+        try {
+          // const response = await axios.post('/api/news/');
+          console.log(Data);
+          setNewsData(Data);
+        } catch (error) {
+          setError(error.message);
+        } finally {
+          setLoading(false);
+        }
+      //   // const url = 'https://google-news13.p.rapidapi.com/search?keyword=agriculture&lr=en-US';
+      //   const url =`https://newsapi.org/v2/top-headlines?q=agriculture&from=2024-11-04&to=${new Date().toISOString().split('T')[0]}&sortBy=relevancy&apiKey=3bd19f3433c440e68ecaed975c5e2d4d`;
+      //   console.log(url);
+      //   const options = {
+      //     method: 'GET',
+      //   };
+
+      //   try {
+      //     const response = await fetch(url, options);
+      //     const result = await response.json();
+      //     console.log(result.articles[0]);
+      //     setNewsData(result.articles);
+      //   } catch (error) {
+      //     console.error(error);
+      //   } finally {
+      //     setLoading(false);
+      //   }
+
+      // const url = 'https://real-time-news-data.p.rapidapi.com/search?query=agriculture&time_published=anytime&country=US&lang=en';
+      // const options = {
+      //   method: 'GET',
+      //   headers: {
+      //     'x-rapidapi-key': '2cbdd8bf5cmsh714c8b4ba144e97p104dddjsn2493098c2349',
+      //     'x-rapidapi-host': 'real-time-news-data.p.rapidapi.com'
+      //   }
+      // };
+
+      // try {
+      //   const response = await fetch(url, options);
+      //   const result = await response.json();
+      //   setNewsData(result.data);
+      //   console.log(result.data);
+      // } catch (error) {
+      //   console.error(error);
+      // }
+      // finally {
+      //   setLoading(false);
+      // }
     };
+
 
     fetchNewsData();
   }, []);
 
+  const loadMore = () => {
+    console.log('Load more');
+    setLimit(limit + 10);
+  }
   return (
     <div className="bg-gray-900 min-h-screen flex flex-col">
       <MyNavbar className="fixed top-0 left-0 right-0 z-10 bg-green-900 shadow-lg" />
@@ -40,30 +83,46 @@ const NewsFeed = () => {
           <p className="text-red-500 text-center">{error}</p>
         ) : (
           <div className="space-y-8"> {/* Increased spacing between cards */}
-            {newsData.map((item, index) => (
+            {newsData && newsData.slice(0, limit).map((item, index) => (
               <div
                 key={index}
-                className="bg-green-800 shadow-lg rounded-lg overflow-hidden flex items-center transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-xl"
+                className="bg-green-800 shadow-lg rounded-lg overflow-hidden flex flex-col md:flex-row transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-xl"
               >
-                <a
-                  href={item.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-grow p-8 text-white hover:bg-green-700 transition duration-300"
-                >
-                  <h2 className="text-2xl font-semibold text-green-300"> {/* Increased font size */}
-                    {item.text}
-                  </h2>
-                </a>
-                {item.imgSrc && (
-                  <img
-                    src={item.imgSrc}
-                    alt={item.text}
-                    className="w-32 h-32 object-cover rounded-r-lg" /* Increased image size */
-                  />
-                )}
+                <div className="flex-grow w-2/5">
+                  {(
+                    <img
+                      src={item.photo_url}
+                      alt={item.title}
+                      className="w-full h-full object-cover"
+                    />
+                  )}
+                </div>
+                <div className="flex-grow p-6 w-3/5">
+                  <a
+                    href={item.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block text-white hover:text-green-300 transition duration-300"
+                  >
+                    <h2 className="text-2xl font-semibold mb-2 text-green-300">
+                      {item.title}
+                    </h2>
+                    <p className="text-gray-300 text-sm mb-2">
+                      {new Date(item.published_datetime_utc).toLocaleDateString()}
+                    </p>
+                    <p className="text-gray-100">
+                      {item.snippet}
+                    </p>
+                    <p className="text-gray-400 text-sm mt-2">
+                      Source: {item.source_name}
+                    </p>
+                  </a>
+                </div>
               </div>
             ))}
+            <div className="flex justify-center">
+              <button className="bg-green-500 text-white px-4 py-2 rounded-md" onClick={loadMore} >Load more</button>
+            </div>
           </div>
         )}
       </div>
