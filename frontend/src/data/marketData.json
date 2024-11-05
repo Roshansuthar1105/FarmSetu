@@ -1,0 +1,450 @@
+[
+    {
+      "ticker": "Wheat",
+      "market": "147 Average", 
+      "maxPrice": "2550",
+      "minPrice": "2350",
+      "date": "2024-01-10",
+      "price": "2450"
+    },
+    {
+      "ticker": "Wheat",
+      "market": "Dara",
+      "maxPrice": "2460",
+      "minPrice": "2380",
+      "date": "2024-01-10",
+      "price": "2420"
+    },
+    {
+      "ticker": "Wheat", 
+      "market": "Lok-1",
+      "maxPrice": "2800",
+      "minPrice": "2750",
+      "date": "2024-01-10",
+      "price": "2775"
+    },
+    {
+      "ticker": "Wheat",
+      "market": "Lokwan Gujrat",
+      "maxPrice": "2715",
+      "minPrice": "2305",
+      "date": "2024-01-10",
+      "price": "2510"
+    },
+    {
+      "ticker": "Wheat",
+      "market": "Sonalika",
+      "maxPrice": "3000",
+      "minPrice": "2400",
+      "date": "2024-01-10",
+      "price": "2700"
+    },
+    {
+      "ticker": "Paddy(Dhan)(Common)",
+      "market": "ADT 37",
+      "maxPrice": "2252",
+      "minPrice": "1933",
+      "date": "2024-01-10",
+      "price": "2093"
+    },
+    {
+      "ticker": "Paddy(Dhan)(Common)",
+      "market": "1001",
+      "maxPrice": "2183",
+      "minPrice": "2100",
+      "date": "2024-01-10",
+      "price": "2142"
+    },
+    {
+      "ticker": "Paddy(Dhan)(Common)",
+      "market": "MTU-1010",
+      "maxPrice": "2203",
+      "minPrice": "2203",
+      "date": "2024-01-10",
+      "price": "2203"
+    },
+    {
+      "ticker": "Paddy(Dhan)(Common)",
+      "market": "Swarna Masuri (New)",
+      "maxPrice": "2250",
+      "minPrice": "2150",
+      "date": "2024-01-10",
+      "price": "2200"
+    },
+    {
+      "ticker": "Paddy(Dhan)(Common)",
+      "market": "Common",
+      "maxPrice": "2223",
+      "minPrice": "2183",
+      "date": "2024-01-10",
+      "price": "2203"
+    },
+    {
+      "ticker": "Rice",
+      "market": "Fine",
+      "maxPrice": "4600",
+      "minPrice": "4450",
+      "date": "2024-01-10",
+      "price": "4525"
+    },
+    {
+      "ticker": "Rice",
+      "market": "Common",
+      "maxPrice": "3700",
+      "minPrice": "3350",
+      "date": "2024-01-10",
+      "price": "3525"
+    },
+    {
+      "ticker": "Maize",
+      "market": "Deshi Red",
+      "maxPrice": "4000",
+      "minPrice": "1600",
+      "date": "2024-01-10",
+      "price": "2800"
+    },
+    {
+      "ticker": "Maize",
+      "market": "Yellow",
+      "maxPrice": "2230",
+      "minPrice": "2210",
+      "date": "2024-01-10",
+      "price": "2220"
+    },
+    {
+      "ticker": "Jowar(Sorghum)",
+      "market": "Jowar (Yellow)",
+      "maxPrice": "2850",
+      "minPrice": "2500",
+      "date": "2024-01-10",
+      "price": "2675"
+    },
+    {
+      "ticker": "Bengal Gram(Gram)(Whole)",
+      "market": "Average (Whole)",
+      "maxPrice": "8800",
+      "minPrice": "6400",
+      "date": "2024-01-10",
+      "price": "7600"
+    },
+    {
+      "ticker": "Bengal Gram(Gram)(Whole)",
+      "market": "Desi (F.A.Q. Split)",
+      "maxPrice": "7000",
+      "minPrice": "6900",
+      "date": "2024-01-10",
+      "price": "6950"
+    },
+    {
+      "ticker": "Black Gram (Urd Beans)(Whole)",
+      "market": "Black Gram (Whole)",
+      "maxPrice": "13200",
+      "minPrice": "12000",
+      "date": "2024-01-10",
+      "price": "12600"
+    },
+    {
+      "ticker": "Groundnut",
+      "market": "Big (With Shell)",
+      "maxPrice": "8000",
+      "minPrice": "3300",
+      "date": "2024-01-10",
+      "price": "5650"
+    },
+    {
+      "ticker": "Groundnut",
+      "market": "Balli/Habbu",
+      "maxPrice": "5600",
+      "minPrice": "5500",
+      "date": "2024-01-10",
+      "price": "5550"
+    },
+    {
+      "ticker": "Groundnut",
+      "market": "G20",
+      "maxPrice": "6650",
+      "minPrice": "6625",
+      "date": "2024-01-10",
+      "price": "6638"
+    },
+    {
+      "ticker": "Sesamum(Sesame,Gingelly,Til)",
+      "market": "White",
+      "maxPrice": "11750",
+      "minPrice": "11500",
+      "date": "2024-01-10",
+      "price": "11625"
+    },
+    {
+      "ticker": "Mustard",
+      "market": "Mustard",
+      "maxPrice": "5800",
+      "minPrice": "5450",
+      "date": "2024-01-10",
+      "price": "5625"
+    },
+    {
+      "ticker": "Soyabean",
+      "market": "Yellow",
+      "maxPrice": "4015",
+      "minPrice": "3430",
+      "date": "2024-01-10",
+      "price": "3723"
+    },
+    {
+      "ticker": "Apple",
+      "market": "American",
+      "maxPrice": "24000",
+      "minPrice": "7000",
+      "date": "2024-01-10",
+      "price": "15500"
+    },
+    {
+      "ticker": "Apple",
+      "market": "Delicious",
+      "maxPrice": "2500",
+      "minPrice": "2400",
+      "date": "2024-01-10",
+      "price": "2450"
+    },
+    {
+      "ticker": "Apple",
+      "market": "Kasmir/Shimla - II",
+      "maxPrice": "8990",
+      "minPrice": "8900",
+      "date": "2024-01-10",
+      "price": "8945"
+    },
+    {
+      "ticker": "Apple",
+      "market": "Apple",
+      "maxPrice": "18000",
+      "minPrice": "3000",
+      "date": "2024-01-10",
+      "price": "10500"
+    },
+    {
+      "ticker": "Orange",
+      "market": "Darjeeling",
+      "maxPrice": "16000",
+      "minPrice": "6000",
+      "date": "2024-01-10",
+      "price": "11000"
+    },
+    {
+      "ticker": "Banana",
+      "market": "Besrai",
+      "maxPrice": "11000",
+      "minPrice": "1800",
+      "date": "2024-01-10",
+      "price": "6400"
+    },
+    {
+      "ticker": "Banana",
+      "market": "Medium",
+      "maxPrice": "7500",
+      "minPrice": "2100",
+      "date": "2024-01-10",
+      "price": "4800"
+    },
+    {
+      "ticker": "Banana",
+      "market": "Nendra Bale",
+      "maxPrice": "9000",
+      "minPrice": "1000",
+      "date": "2024-01-10",
+      "price": "5000"
+    },
+    {
+      "ticker": "Banana",
+      "market": "Banana - Ripe",
+      "maxPrice": "7200",
+      "minPrice": "1800",
+      "date": "2024-01-10",
+      "price": "4500"
+    },
+    {
+      "ticker": "Banana",
+      "market": "Red Banana",
+      "maxPrice": "9200",
+      "minPrice": "8800",
+      "date": "2024-01-10",
+      "price": "9000"
+    },
+    {
+      "ticker": "Banana",
+      "market": "Rasakathai",
+      "maxPrice": "6200",
+      "minPrice": "5800",
+      "date": "2024-01-10",
+      "price": "6000"
+    },
+    {
+      "ticker": "Banana",
+      "market": "Poovan",
+      "maxPrice": "8600",
+      "minPrice": "5000",
+      "date": "2024-01-10",
+      "price": "6800"
+    },
+    {
+      "ticker": "Banana",
+      "market": "Robusta",
+      "maxPrice": "5500",
+      "minPrice": "3200",
+      "date": "2024-01-10",
+      "price": "4350"
+    },
+    {
+      "ticker": "Banana",
+      "market": "Palayamthodan",
+      "maxPrice": "6000",
+      "minPrice": "1000",
+      "date": "2024-01-10",
+      "price": "3500"
+    },
+    {
+      "ticker": "Mango",
+      "market": "Safeda",
+      "maxPrice": "18000",
+      "minPrice": "4500",
+      "date": "2024-01-10",
+      "price": "11250"
+    },
+    {
+      "ticker": "Mango",
+      "market": "Dusheri",
+      "maxPrice": "5500",
+      "minPrice": "2100",
+      "date": "2024-01-10",
+      "price": "3800"
+    },
+    {
+      "ticker": "Pineapple",
+      "market": "Pine Apple",
+      "maxPrice": "8000",
+      "minPrice": "3000",
+      "date": "2024-01-10",
+      "price": "5500"
+    },
+    {
+      "ticker": "Grapes",
+      "market": "Annabesahai",
+      "maxPrice": "14000",
+      "minPrice": "7000",
+      "date": "2024-01-10",
+      "price": "10500"
+    },
+    {
+      "ticker": "Onion",
+      "market": "Bellary",
+      "maxPrice": "5500",
+      "minPrice": "3000",
+      "date": "2024-01-10",
+      "price": "4250"
+    },
+    {
+      "ticker": "Onion",
+      "market": "Nasik",
+      "maxPrice": "4000",
+      "minPrice": "3200",
+      "date": "2024-01-10",
+      "price": "3600"
+    },
+    {
+      "ticker": "Onion",
+      "market": "Red",
+      "maxPrice": "3500",
+      "minPrice": "1900",
+      "date": "2024-01-10",
+      "price": "2700"
+    },
+    {
+      "ticker": "Onion",
+      "market": "White",
+      "maxPrice": "3600",
+      "minPrice": "3400",
+      "date": "2024-01-10",
+      "price": "3500"
+    },
+    {
+      "ticker": "Onion",
+      "market": "Onion",
+      "maxPrice": "8600",
+      "minPrice": "2800",
+      "date": "2024-01-10",
+      "price": "5700"
+    },
+    {
+      "ticker": "Onion",
+      "market": "Big",
+      "maxPrice": "4700",
+      "minPrice": "3600",
+      "date": "2024-01-10",
+      "price": "4150"
+    },
+    {
+      "ticker": "Onion",
+      "market": "Medium",
+      "maxPrice": "4600",
+      "minPrice": "1000",
+      "date": "2024-01-10",
+      "price": "2800"
+    },
+    {
+      "ticker": "Potato",
+      "market": "(Red Nanital)",
+      "maxPrice": "9000",
+      "minPrice": "3000",
+      "date": "2024-01-10",
+      "price": "6000"
+    },
+    {
+      "ticker": "Potato",
+      "market": "Desi",
+      "maxPrice": "2480",
+      "minPrice": "1500",
+      "date": "2024-01-10",
+      "price": "1990"
+    },
+    {
+      "ticker": "Potato",
+      "market": "Jyoti",
+      "maxPrice": "2800",
+      "minPrice": "2300",
+      "date": "2024-01-10",
+      "price": "2550"
+    },
+    {
+      "ticker": "Potato",
+      "market": "Big",
+      "maxPrice": "2000",
+      "minPrice": "800",
+      "date": "2024-01-10",
+      "price": "1400"
+    },
+    {
+      "ticker": "Tomato",
+      "market": "Desi",
+      "maxPrice": "5000",
+      "minPrice": "2000",
+      "date": "2024-01-10",
+      "price": "3500"
+    },
+    {
+      "ticker": "Tomato",
+      "market": "Hybrid",
+      "maxPrice": "2200",
+      "minPrice": "1000",
+      "date": "2024-01-10",
+      "price": "1600"
+    },
+    {
+      "ticker": "Tomato",
+      "market": "Local",
+      "maxPrice": "2200",
+      "minPrice": "2000",
+      "date": "2024-01-10",
+      "price": "2100"
+    }
+  ]

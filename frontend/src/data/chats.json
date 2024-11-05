@@ -1,0 +1,80 @@
+{
+    "Reema Kumari": [
+      { "text": "Hello! How can I assist you with your farming needs today?", "type": "incoming" },
+      { "text": "I’m interested in buying some seeds. What varieties do you have?", "type": "outgoing" },
+      { "text": "We have corn, wheat, and soybeans. What are you looking for?", "type": "incoming" },
+      { "text": "I need corn seeds. What’s the price per bag?", "type": "outgoing" },
+      { "text": "The price is ₹150 per bag. We offer bulk discounts.", "type": "incoming" }
+    ],
+    "Parwinder Singh Bedi": [
+      { "text": "Hi there! How can I help you today?", "type": "incoming" },
+      { "text": "I’m looking for organic fertilizers. What options do you have?", "type": "outgoing" },
+      { "text": "We have several organic fertilizers available. What specific type are you interested in?", "type": "incoming" },
+      { "text": "I’m interested in compost. Can you provide details?", "type": "outgoing" },
+      { "text": "Our compost is made from natural materials and costs ₹550 per bag.", "type": "incoming" }
+    ],
+    "Fatima Sheikh": [
+      { "text": "Greetings! I specialize in soil health and fertilizers. How may I assist you?", "type": "incoming" },
+      { "text": "I need help with my soil quality. What would you recommend?", "type": "outgoing" },
+      { "text": "I can help with that. Have you done a soil test recently to check nutrient levels?", "type": "incoming" },
+      { "text": "No, I haven't. How can I get my soil tested?", "type": "outgoing" },
+      { "text": "We offer soil testing kits for ₹1200. Would you like to know more about the testing process?", "type": "incoming" }
+    ],
+    "Mahima": [
+      { "text": "Hello! What farming products are you looking for today?", "type": "incoming" },
+      { "text": "I need some irrigation systems. What do you offer?", "type": "outgoing" },
+      { "text": "We offer drip irrigation and sprinkler systems. Which one are you interested in?", "type": "incoming" },
+      { "text": "I’m interested in drip irrigation. What’s the cost?", "type": "outgoing" },
+      { "text": "Drip irrigation systems start at ₹8000. We can customize based on your needs.", "type": "incoming" }
+    ],
+    "Shila Rawat": [
+      { "text": "Welcome! How can I help with your agricultural needs today?", "type": "incoming" },
+      { "text": "I’m looking for high-quality pesticides. What do you have?", "type": "outgoing" },
+      { "text": "We have a range of pesticides. Do you have any specific pests you’re dealing with?", "type": "incoming" },
+      { "text": "I need something for aphids. What’s the price?", "type": "outgoing" },
+      { "text": "Our aphid control pesticide is ₹375 per liter.", "type": "incoming" }
+    ],
+    "Prakash Jha": [
+      { "text": "Greetings! What can I assist you with today?", "type": "incoming" },
+      { "text": "I need some farm equipment. What do you offer?", "type": "outgoing" },
+      { "text": "We offer plows, harvesters, and irrigation systems. What do you need?", "type": "incoming" },
+      { "text": "I’m interested in a new plow. Can you provide details?", "type": "outgoing" },
+      { "text": "Our plows start at ₹15000. We have different sizes and models.", "type": "incoming" }
+    ],
+    "Surariputr Iyer": [
+      { "text": "Hello! How can I help you with your farm today?", "type": "incoming" },
+      { "text": "I’m looking for crop insurance. What options do you have?", "type": "outgoing" },
+      { "text": "We provide several insurance plans. Are you interested in basic or comprehensive coverage?", "type": "incoming" },
+      { "text": "I’m interested in comprehensive coverage. What’s the cost?", "type": "outgoing" },
+      { "text": "Comprehensive coverage starts at ₹16000 per year.", "type": "incoming" }
+    ],
+    "Angadh Aujla": [
+      { "text": "Hi! How can I be of assistance today?", "type": "incoming" },
+      { "text": "I’m looking for farm-to-table produce. What do you offer?", "type": "outgoing" },
+      { "text": "We have a selection of fresh vegetables and fruits. What are you interested in?", "type": "incoming" },
+      { "text": "I need organic tomatoes. Do you have them?", "type": "outgoing" },
+      { "text": "Yes, we have organic tomatoes at ₹130 per kilogram.", "type": "incoming" }
+    ],
+    "Manish Kapoor": [
+      { "text": "Welcome! What farming products are you inquiring about today?", "type": "incoming" },
+      { "text": "I need to purchase some farm machinery. What’s available?", "type": "outgoing" },
+      { "text": "We offer tractors, combine harvesters, and seeders. What do you need?", "type": "incoming" },
+      { "text": "I’m interested in a new tractor. Can you give me details?", "type": "outgoing" },
+      { "text": "Tractors start at ₹5,00,000. We have different models available.", "type": "incoming" }
+    ],
+    "Himesh Saini": [
+      { "text": "Hello! How can I assist you with your agricultural needs?", "type": "incoming" },
+      { "text": "I’m looking for greenhouse supplies. What can you provide?", "type": "outgoing" },
+      { "text": "We have greenhouse plastic, frames, and ventilation systems. What do you need?", "type": "incoming" },
+      { "text": "I need greenhouse plastic. What’s the price?", "type": "outgoing" },
+      { "text": "Greenhouse plastic starts at ₹7000 per roll.", "type": "incoming" }
+    ],
+    "Priya Malhotra": [
+      { "text": "Hi there! How can I help you today?", "type": "incoming" },
+      { "text": "I’m interested in farm animal feed. What do you offer?", "type": "outgoing" },
+      { "text": "We offer feed for various animals including cattle, chickens, and pigs. What do you need?", "type": "incoming" },
+      { "text": "I need chicken feed. What’s the price?", "type": "outgoing" },
+      { "text": "Chicken feed is ₹80 per 5Kg bag.", "type": "incoming" }
+    ]
+  }
+  

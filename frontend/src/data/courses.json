@@ -1,0 +1,362 @@
+[
+  {
+      "id": "1",
+      "title": "Introduction to Organic Farming",
+      "description": "जैविक खेती के मूल सिद्धांतों को सीखें, जिसमें मिट्टी की सेहत, पोषक तत्वों का संतुलन और कीट प्रबंधन के कारगर तरीकों का अध्ययन शामिल है। यह कोर्स आपको एक स्थायी और पर्यावरण अनुकूल खेती पद्धति अपनाने के लिए तैयार करेगा।",
+      "content": "• जैविक खेती क्या है?\n• मिट्टी की संरचना और महत्व\n• जैविक खाद और उनका उपयोग\n• प्राकृतिक कीट प्रबंधन के तरीके\n• फसल चक्र और उसका महत्व\n• जल प्रबंधन की विधियाँ\n• जैविक प्रमाणन प्रक्रिया",
+      "videoIds": [
+          "WhOrIUlrnPo",
+          "_-hBHUTQJpg",
+          "S9-qUPvArjA"
+      ],
+      "language": "Hindi"
+  },
+  {
+      "id": "2",
+      "title": "Advanced Crop Management",
+      "description": "Dive deeper into advanced techniques for managing crops effectively. This course covers methods to optimize crop production, enhance soil quality, and implement precise farming practices to maximize yields and ensure sustainable farming.",
+      "content": "• Soil fertility management techniques\n• Precision farming practices\n• Advanced irrigation systems\n• Integrated Pest Management (IPM)\n• Crop rotation benefits\n• Use of technology in farming\n• Post-harvest management tips",
+      "videoIds": [
+          "v1DT4yvxpMw",
+          "g0wkT3mf80U",
+          "r9drn845b9o"
+      ],
+      "language": "English"
+  },
+  {
+      "id": "3",
+      "title": "Sustainable Irrigation Practices",
+      "description": "টেকসই সেচ পদ্ধতির গুরুত্ব ও এর প্রভাব সম্পর্কে জানুন। এই কোর্সটি আপনাকে জল সংরক্ষণ, দক্ষ সেচ ব্যবস্থা এবং পরিবেশ বান্ধব কৃষিকাজের জন্য প্রয়োজনীয় কৌশল শিখতে সাহায্য করবে।",
+      "content": "টেকসই সেচের প্রয়োজনীয়তা\n• ড্রিপ সেচের সুবিধা\n• স্প্রিংকলার সেচের কৌশল\n• বৃষ্টির জল সংগ্রহের পদ্ধতি\n• মাটি ও জল ব্যবস্থাপনা\n• স্থানীয় সেচ পদ্ধতির উদাহরণ",
+      "videoIds": [
+          "Q1HDGKjqhvs",
+          "4I5XHy47KZI",
+          "XJxEGREIGBI"
+      ],
+      "language": "Bengali"
+  },
+  {
+      "id": "4",
+      "title": "Soil Fertility Management",
+      "description": "मिट्टी की उर्वरता को बनाए रखने और सुधारने के लिए अत्याधुनिक तकनीकों में विशेषज्ञता हासिल करें। इस कोर्स में आप मिट्टी के प्रकार, पोषक तत्वों के प्रबंधन, और जैविक सुधारकों का सही तरीके से उपयोग करने के बारे में जानेंगे।",
+      "content": "• मिट्टी की उर्वरता के कारक\n• जैविक खाद का महत्व\n• हरी खाद और फसल चक्र\n• सूक्ष्म पोषक तत्वों का प्रबंधन\n• मिट्टी परीक्षण के तरीके\n• प्राकृतिक उर्वरता सुधार",
+      "videoIds": [
+          "uE0Xuwgc2Iw",
+          "2cMP5YQw7G8",
+          "G-l9j75d6LU"
+      ],
+      "language": "Hindi"
+  },
+  {
+      "id": "5",
+      "title": "Precision Agriculture",
+      "description": "துல்லியமான விவசாயம் குறித்த நவீன தொழில்நுட்பங்களைப் பற்றி தெரிந்து கொள்ளுங்கள். இந்தப் பாடநெறியில், ஆட்டோமேஷன், சென்சார்கள் மற்றும் தரவுகளின் பயன்படுத்துமுறைகள் மூலம் விளைச்சல் அதிகரிக்கும் முறைகள் விளக்கப்படுகின்றன",
+      "content": "• துல்லிய விவசாயம் என்றால் என்ன?\n• சென்சார் தொழில்நுட்பம்\n• நீர் மேலாண்மை முறைகள்\n• பயிர் கண்காணிப்பு\n• ஆட்டோமேஷன் நுட்பங்கள்\n• தரவுகளின் பயன்பாடு\n• உற்பத்தி அதிகரிக்கும் வழிகள்",
+      "videoIds": [
+          "WhAfZhFxHTs",
+          "xKcC_ePJfi8",
+          "nrixH9tFxoA"
+      ],
+      "language": "Tamil"
+  },
+  {
+      "id": "6",
+      "title": "Agricultural Marketing",
+      "description": "कृषि उत्पादों के सफल विपणन के लिए आवश्यक सिद्धांतों और रणनीतियों को समझें। यह कोर्स आपको विपणन चैनल, मूल्य निर्धारण रणनीति, और प्रतिस्पर्धात्मकता बढ़ाने के तरीकों में मार्गदर्शन करेगा।",
+      "content": "कृषि विपणन के मूलभूत सिद्धांत\n• मूल्य निर्धारण और बाजार विश्लेषण\n• विपणन चैनल और वितरण\n• उपभोक्ता व्यवहार का अध्ययन\n• ई-मार्केटिंग के उपकरण\n• सरकारी योजनाएं और सहायता",
+      "videoIds": [
+          "ShoD-FOlMUY",
+          "T6hMRQKX4mU",
+          "jdtP1VUGFmA"
+      ],
+      "language": "Hindi"
+  },
+  {
+      "id": "7",
+      "title": "Pest and Disease Management",
+      "description": "ನಿಮ್ಮ ಬೆಳೆಗಳನ್ನು ರಕ್ಷಿಸಲು ಪರಿಣಾಮಕಾರಿ ಕೀಟ ಮತ್ತು ರೋಗ ನಿರ್ವಹಣಾ ತಂತ್ರಗಳನ್ನು ಕಲಿಯಿರಿ. ಈ ಕೋರ್ಸ್ ನಿಮಗೆ ದೈಹಿಕ, ಜೈವಿಕ, ಮತ್ತು ರಾಸಾಯನಿಕ ನಿಯಂತ್ರಣ ವಿಧಾನಗಳನ್ನು ಬಳಸುವ ಮಾರ್ಗವನ್ನು ನೀಡುತ್ತದೆ.",
+      "content": "• ಕೀಟ ನಿರ್ವಹಣೆ ಪಾಯಿಂಟ್ಸ್\n• ದೈಹಿಕ ನಿಯಂತ್ರಣ ವಿಧಾನಗಳು\n• ಜೈವಿಕ ನಿಯಂತ್ರಣ ಮಾರ್ಗಗಳು\n• ಸಮಗ್ರ ಕೀಟ ನಿರ್ವಹಣೆ (IPM)\n• ರೋಗ ನಿರೋಧಕ ಬೆಳೆಗಳು\n• ರೈತರ ಅನುಭವಗಳು",
+      "videoIds": [
+          "CELaZ62mkfY",
+          "0D--ltYWKXI",
+          "6db7a5Hum_I"
+      ],
+      "language": "Kannada"
+  },
+  {
+      "id": "8",
+      "title": "Agroforestry Systems",
+      "description": "ਆਪਣੇ ਖੇਤਾਂ ਵਿੱਚ ਦਰੱਖਤਾਂ ਅਤੇ ਝਾੜੀਆਂ ਦੇ ਸਹੀ ਇਕਾਈਕਰਨ ਨਾਲ ਕਿਸਾਨੀ ਪਦਧਤੀਆਂ ਵਿੱਚ ਸੁਧਾਰ ਕਰੋ। ਇਸ ਕੋਰਸ ਵਿੱਚ ਤੁਸੀਂ ਅਗਰੋਫੋਰੈਸਟਰੀ ਦੇ ਲਾਭਾਂ ਅਤੇ ਇਹ ਕਿਸ ਤਰ੍ਹਾਂ ਤੁਹਾਡੀ ਫ਼ਸਲ ਅਤੇ ਮੌਸਮੀ ਤਬਾਦਲੇ ਨੂੰ ਸੁਧਾਰ ਸਕਦੀ ਹੈ, ਬਾਰੇ ਜ਼ਿਆਦਾ ਜਾਣੋਗੇ।",
+      "content": "• ਅਗਰੋਫੋਰੈਸਟਰੀ ਦਾ ਪ੍ਰਚਾਰ\n• ਖੇਤੀ ਵਿੱਚ ਦਰੱਖਤਾਂ ਦੇ ਲਾਭ\n• ਮਿੱਟੀ ਦੀ ਸੁਰੱਖਿਆ\n• ਪਾਲਣ ਅਤੇ ਪਰਾਗਣ\n• ਬਾਘਬਾਨੀ ਦੇ ਨੁਕਸੇ\n• ਸਰਕਾਰੀ ਮਦਦ",
+      "videoIds": [
+          "jLZ0KtNx354",
+          "iO0ycMkr8lo",
+          "t_RKP4n2e2o"
+      ],
+      "language": "Punjabi"
+  },
+  {
+      "id": "9",
+      "title": "Water Conservation Techniques",
+      "description": "ਆਪਣੇ ਫਾਰਮ ਦੀ ਦਿਰਘਾਈ ਅਤੇ ਲਾਭਕਾਰੀਤਾ ਨੂੰ ਬਰਕਰਾਰ ਰੱਖਣ ਲਈ ਪਾਣੀ ਦੀ ਬਚਤ ਕਰਨ ਦੇ ਤਰੀਕਿਆਂ ਦੀ ਪੜਚੋਲ ਕਰੋ। ਇਹ ਕੋਰਸ ਤੁਹਾਨੂੰ ਵਰਕਸ਼ਾਪਾਂ ਅਤੇ ਅਧਿਐਨਾਂ ਰਾਹੀਂ ਸਿਖਾਏਗਾ ਕਿ ਕਿਸ ਤਰ੍ਹਾਂ ਪਾਣੀ ਦੀ ਸੱਚੀ ਵਰਤੋਂ ਕਰਨੀ ਹੈ।",
+      "content": "• ਪਾਣੀ ਦੀ ਬਚਤ ਦੇ ਤਰੀਕੇ\n• ਡ੍ਰਿਪ ਸਿੰਚਾਈ ਦਾ ਮਹੱਤਵ\n• ਰੇਨ ਵਾਟਰ ਹਰਵੈਸਟਿੰਗ\n• ਮਿੱਟੀ ਨਾਲ ਪਾਣੀ ਸੰਭਾਲ\n• ਖੇਤਾਂ ਵਿੱਚ ਪਾਣੀ ਸਟੋਰ ਕਰਨ ਦੇ ਤਰੀਕੇ",
+      "videoIds": [
+          "tZaWSMPfXs4",
+          "gmgVDt-Uhlo",
+          "jaWy4iA0EuM"
+      ],
+      "language": "Punjabi"
+  },
+  {
+      "id": "10",
+      "title": "Farm Machinery and Equipment",
+      "description": "తాజా వ్యవసాయ యంత్రాలు మరియు పరికరాల గురించి తెలుసుకోండి, అవి ఎలా పని చేస్తాయి మరియు అవి వ్యవసాయాన్ని మరింత సమర్థవంతంగా చేయడంలో ఎలా సహాయపడతాయి అనే విషయం. ఈ కోర్సు ద్వారా మీరు మీ వ్యవసాయ ప్రక్రియలను మెరుగుపరచడానికి సమర్ధమైన పద్ధతులను నేర్చుకోగలరు.",
+      "content": "• କ୍ଲାଇମେଟ ସ୍ମାର୍ଟ କୃଷି ର ପରିଚୟ\n• ପରିବର୍ତ୍ତନ ହେଉଥିବା ପରିବେଶରେ ଖେତି\n• ସ୍ଥାୟୀ କୃଷି ପଦ୍ଧତି\n• ପରିବେଶ ର ସଂରକ୍ଷଣ ଉପକରଣ\n• ଆବହା ଓ ଖେତି ସଂକ୍ରମଣ",
+      "videoIds": [
+          "827LXFQQBSo",
+          "1-1THi0gQtg",
+          "MV60pYNQ5ME"
+      ],
+      "language": "Telugu"
+  },
+  {
+      "id": "11",
+      "title": "Climate-Smart Agriculture",
+      "description": "ପରିବର୍ତ୍ତନ ହେଉଥିବା ପରିବେଶରେ ଖେତି ପ୍ରକ୍ରିୟାକୁ ଅନୁକୁଳ କରିବା ପାଇଁ ଏକ କ୍ଲାଇମେଟ-ସ୍ମାର୍ଟ ଖେତି ବିଧି ବିକାଶ କରନ୍ତୁ। ଏହି କୋର୍ସ ଆପଣଙ୍କୁ ପରିବର୍ତ୍ତନକାରୀ ପରିବେଶରେ ଅଧିକ ସଫଳ ହେବାର ପାଇଁ ଜାଣିବାକୁ ମିଳିବ।",
+      "content": "• कटाई के बाद की प्रक्रिया\n• भंडारण के तरीके\n• फसल प्रसंस्करण\n• नुकसान को कम करने के तरीके\n• पैकेजिंग तकनीकें",
+      "videoIds": [
+          "EH4OgwOM1eY",
+          "BSFUl0vGRVU",
+          "gzPKqdnoNdg"
+      ],
+      "language": "Odia"
+  },
+  {
+      "id": "12",
+      "title": "Post-Harvest Management",
+      "description": "फसल कटाई के बाद के प्रबंधन की प्रभावी तकनीकों में महारत हासिल करें। इस कोर्स में, आप फसल के नुकसान को कम करने, गुणवत्ता बनाए रखने और विपणन के लिए बेहतर तरीके से तैयार करने के लिए सबसे अच्छे तरीकों के बारे में जानेंगे।",
+      "content": "• कटाई के बाद की प्रक्रिया\n• भंडारण के तरीके\n• फसल प्रसंस्करण\n• नुकसान को कम करने के तरीके\n• पैकेजिंग तकनीकें",
+      "videoIds": [
+          "M2znTdaAqFM",
+          "XNVOmQ-50xM",
+          "ajv0IAypGa4"
+      ],
+      "language": "Hindi"
+  },
+  {
+      "id": "13",
+      "title": "Animal Husbandry Basics",
+      "description": "पशुपालनको आधारभूत जानकारी प्राप्त गर्नुहोस्, जसमा पशु स्वास्थ्य, खुराक व्यवस्थापन, र अनुवांशिक सुधारहरू समावेश छन्। यो कोर्स तपाईलाई तपाईको पशुपालन व्यवसायलाई सुधार गर्न मद्दत गर्नेछ।",
+      "content": "• Overview of organic pest control\n• Natural pest management techniques\n• Biological control methods\n• Plant-based repellents\n• Pest-resistant crops\n• Case studies",
+      "videoIds": [
+          "3agp4U61TaQ",
+          "-9yXrea1bec",
+          "_iVxu_EpAeg"
+      ],
+      "language": "Nepali"
+  },
+  {
+      "id": "14",
+      "title": "Organic Pest Control",
+      "description": "Learn about natural and sustainable methods for controlling pests without relying on harmful chemicals. This course provides insights into using biological controls, organic sprays, and other environmentally friendly practices.",
+      "content": "• Overview of organic pest control\n• Natural pest management techniques\n• Biological control methods\n• Plant-based repellents\n• Pest-resistant crops\n• Case studies",
+      "videoIds": [
+          "fdD5EH5gWYI",
+          "bWyB3gVirXQ",
+          "hXlSicZE9jI"
+      ],
+      "language": "English"
+  },
+  {
+      "id": "15",
+      "title": "Agri-Entrepreneurship",
+      "description": "Gain the skills and knowledge necessary to start and manage a successful agriculture-based business. This course covers business planning, financial management, marketing strategies, and more, all tailored to the agricultural sector.",
+      "content": "• Introduction to agri-business\\n• Identifying market opportunities\\n• Business planning and strategy\\n• Financial management in agriculture\\n• Marketing and sales tactics\\n• Government support programs",
+      "videoIds": [
+          "Eo7tHLprVgU",
+          "v4aZJcHCa4w",
+          "v4aZJcHCa4w"
+      ],
+      "language": "English"
+  },
+  {
+      "id": "16",
+      "title": "Beekeeping Essentials",
+      "description": "মৌমাছি পালন এবং মধু উৎপাদনের মৌলিক বিষয়গুলি বুঝুন। এই কোর্সটি মৌমাছির যত্ন, মধু সংগ্রহ, এবং মৌমাছির বাসস্থান ব্যবস্থাপনা নিয়ে বিস্তারিত জ্ঞান দেবে।",
+      "content": "• মৌমাছি পালন প্রাথমিক বিষয়\n• মৌমাছির যত্ন ও স্বাস্থ্য\n• মধু সংগ্রহ পদ্ধতি\n• মৌমাছি বাসস্থান ব্যবস্থাপনা",
+      "videoIds": [
+          "4VtwcNyG9GE",
+          "ZjdBetRqETA",
+          "DqVmw_t8xgs"
+      ],
+      "language": "Bengali"
+  },
+  {
+      "id": "17",
+      "title": "Aquaculture Management",
+      "description": "માછલીઓ ઉછેર માટેની પદ્ધતિઓ અને ટકાઉ અક્વાકલ્ચરની જાણકારી મેળવો. આ કોર્સ તમને ટાંકી મેનેજમેન્ટ, માછલીઓની પસંદગી, અને પોષણ વ્યવસ્થાપન વિશે માર્ગદર્શન આપશે.",
+      "content": "• માછલી ઉછેર ની પદ્ધતિઓ\n• ટાંકી મેનેજમેન્ટ\n• માછલીઓની પસંદગી\n• પોષણ વ્યવસ્થાપન",
+      "videoIds": [
+          "vhmeVE2qzfE",
+          "GRY6FgWoNQA",
+          "c1EfP70iQlM"
+      ],
+      "language": "Gujarati"
+  },
+  {
+      "id": "18",
+      "title": "Vermicomposting Techniques",
+      "description": "மண் வளத்தை மேம்படுத்த உகந்த மண் புழுக்களைப் பயன்படுத்தி குப்பைகளை உரமாக மாற்றும் முறைகளை கற்றுக்கொள்ளுங்கள். இந்தப் பாடநெறியில், உங்களின் உரத் தகுதியை மேம்படுத்த முக்கிய வழிகள் விளக்கப்படுகின்றன.",
+      "content": "• மண் புழு உரம்\n• புழுக்களின் பங்கு\n• உற்பத்தி அதிகரிக்கும் வழிகள்\n• நச்சுநீர் பராமரிப்பு",
+      "videoIds": [
+          "LfhYXVbmWhY",
+          "6OUZ1n8TBvU",
+          "FYB23nyTJc4"
+      ],
+      "language": "Tamil"
+  },
+  {
+      "id": "19",
+      "title": "Organic Certification Process",
+      "description": "మీ వ్యవసాయాన్ని జৈవికంగా ధృవీకరించుకోవడానికి అవసరమైన అన్ని దశలను తెలుసుకోండి. ఈ కోర్సు ద్వారా మీరు ప్రమాణీకరణకు అవసరమైన పత్రాలు, నిబంధనలు, మరియు ప్రాసెస్‌ను గురించి అవగాహన పొందగలరు.",
+      "content": "• జైవిక ధృవీకరణ ప్రణాళిక\n• ధృవీకరణకు అవసరమైన పత్రాలు\n• నిబంధనలు మరియు ప్రాసెస్",
+      "videoIds": [
+          "kHcrTABmdNA",
+          "9gKZQBpQwhI",
+          "TotHDzp60uI"
+      ],
+      "language": "Telugu"
+  },
+  {
+      "id": "20",
+      "title": "Greenhouse Farming",
+      "description": "Explore the fundamentals of greenhouse farming, including climate control, crop selection, and yield optimization. This course is designed to help you maximize productivity through controlled environment agriculture.",
+      "content": "• Basics of greenhouse farming\n• Climate control techniques\n• Crop selection for greenhouses\n• Yield optimization methods",
+      "videoIds": [
+          "8APpeti82hw",
+          "vSFEi_-7E3w",
+          "lgZBlD-TCFE"
+      ],
+      "language": "English"
+  },
+  {
+      "id": "21",
+      "title": "Soil Microbiology",
+      "description": "मिट्टी में सूक्ष्मजीवों की भूमिका और उनके द्वारा फसलों की उत्पादकता पर पड़ने वाले प्रभाव को समझें। यह कोर्स आपको मिट्टी के सूक्ष्मजीव विज्ञान में विशेषज्ञता हासिल करने में मदद करेगा।",
+      "content": "• मिट्टी में सूक्ष्मजीवों की भूमिका\n• सूक्ष्मजीव और पोषक तत्व प्रबंधन\n• जैविक खाद का प्रभाव\n• मृदा जैव विविधता",
+      "videoIds": [
+          "14v3PEVoIXA",
+          "si_YGNsKzZY",
+          "swRSipRdZZ8"
+      ],
+      "language": "Hindi"
+  },
+  {
+      "id": "22",
+      "title": "Agroecology",
+      "description": "ആഗ്രോഇക്കോളജിയുടെ അടിസ്ഥാനതത്ത്വങ്ങളും സുസ്ഥിര കൃഷി രീതികളുമായുള്ള ബന്ധവും മനസിലാക്കുക. ഈ കോഴ്സ്, പ്രകൃതിയുമായി സംയോജനം നേടിയ കൃഷി രീതികളിൽ നിന്നുള്ള പാഠങ്ങൾ പഠിപ്പിക്കുന്നു.",
+      "content": "• ആഗ്രോഇക്കോളജിയുടെ തത്ത്വങ്ങൾ\n• സുസ്ഥിര കൃഷി രീതികൾ\n• പ്രകൃതിയുമായി സംയോജനം\n• ഭൂപ്രകൃതി  ഒന്നിപ്പിച്ച് കര്‍ഷകരുടെ പാഠങ്ങള്‍",
+      "videoIds": [
+          "mivnqVqgieE",
+          "6Reh7c2-ewI",
+          "5YSu7d8JD9Q"
+      ],
+      "language": "Malayalam"
+  },
+  {
+      "id": "23",
+      "title": "Dairy Farming Basics",
+      "description": "Understand the fundamentals of dairy farming, from selecting the right breeds to effective milk production and herd management techniques. This course is essential for anyone looking to start or improve a dairy farm.",
+      "content": "• Basics of dairy farming\n• Selecting the right breeds\n• Herd management techniques\n• Improving milk production",
+      "videoIds": [
+          "qXvOsfdI4Rg",
+          "N8aFJOmMz3",
+          "4cAIbtwbHS8"
+      ],
+      "language": "English"
+  },
+  {
+      "id": "24",
+      "title": "Agro-Processing Techniques",
+      "description": "Learn how to transform raw agricultural products into value-added goods. This course covers various processing techniques, equipment, and market opportunities to help you maximize profit from your farm produce.",
+      "content": "• Introduction to agro-processing\n• Techniques for value addition\n• Equipment for processing\n• Marketing processed goods",
+      "videoIds": [
+          "xx_Cu7Le3ZY",
+          "DNDipuD1Y9c",
+          "gQtXhAqe8h0"
+      ],
+      "language": "English"
+  },
+  {
+      "id": "25",
+      "title": "Hydroponics Farming",
+      "description": "Explore the science and practice of hydroponics, a method of growing plants without soil. This course provides an in-depth look at system design, nutrient management, and crop selection for hydroponic farming.",
+      "content": "• Introduction to hydroponics\n• Soil-less farming techniques\n• Nutrient management systems\n• Crop selection for hydroponics",
+      "videoIds": [
+          "tWgDqBryR30",
+          "buVwKU_mHOM",
+          "vJqtivui2CM"
+      ],
+      "language": "English"
+  },
+  {
+      "id": "26",
+      "title": "Mushroom Cultivation",
+      "description": "Master the techniques required for successful commercial mushroom cultivation. This course includes information on species selection, substrate preparation, environmental control, and post-harvest handling.",
+      "content": "• Basics of mushroom farming\n• Species selection and substrate preparation\n• Environmental control techniques\n• Harvesting and post-harvest care",
+      "videoIds": [
+          "417Qbwn9yso",
+          "CDjuk07E6rI",
+          "oiVZ2APGSNQ"
+      ],
+      "language": "English"
+  },
+  {
+      "id": "27",
+      "title": "Agri-Finance Basics",
+      "description": "कृषि वित्त के मूल सिद्धांतों को समझें, जिसमें क्रेडिट प्रबंधन, वित्तीय योजना, और निवेश रणनीतियाँ शामिल हैं। यह कोर्स आपको अपने कृषि व्यवसाय के वित्तीय पहलुओं को बेहतर ढंग से प्रबंधित करने में सहायता करेगा।",
+      "content": "• कृषि वित्त की परिभाषा\n• क्रेडिट प्रबंधन\n• वित्तीय योजना और निवेश\n• कृषि व्यवसाय के वित्तीय पहलू",
+      "videoIds": [
+          "qgLRIAEyeKA",
+          "R72gRJ7jWko",
+          "AxHyw_l-8jE"
+      ],
+      "language": "Hindi"
+  },
+  {
+      "id": "28",
+      "title": "Farm Business Planning",
+      "description": "Learn how to create a comprehensive business plan for your farm. This course covers financial forecasting, risk management, and strategic planning to help ensure your farm's profitability and sustainability",
+      "content": "• Developing a farm business plan\n• Financial forecasting methods\n• Risk management strategies\n• Strategic planning for profitability",
+      "videoIds": [
+          "heTxEsrPVdQ",
+          "JL8PpEE-gCs",
+          "_FRIhI28OpU"
+      ],
+      "language": "English"
+  },
+  {
+      "id": "29",
+      "title": "Agri-Tourism Development",
+      "description": "অ্যাগ্রিট্যুরিজমের সুযোগগুলি সম্পর্কে জানুন এবং সেগুলিকে আয়ের নতুন উৎস হিসেবে কীভাবে ব্যবহার করা যায়। এই কোর্সে আপনি পর্যটন কাঠামো, মার্কেটিং স্ট্র্যাটেজি এবং গ্রামীণ বিকাশের কৌশল শিখবেন।",
+      "content": "• অ্যাগ্রিট্যুরিজমের ধারণা\n• পর্যটনের জন্য খামার প্রস্তুতি\n• পর্যটন কাঠামো গঠন\n• মার্কেটিং স্ট্র্যাটেজি",
+      "videoIds": [
+          "vQFMBkMAv9",
+          "gjEtuJVSS_I",
+          "CL330rgHVLg"
+      ],
+      "language": "Bengali"
+  },
+  {
+      "id": "30",
+      "title": "Farm Records Management",
+      "description": "Understand the importance of accurate record-keeping for farm operations. This course teaches you how to maintain records on finances, crop yields, and farm activities to improve decision-making and compliance",
+      "content": "• Importance of record-keeping\n• Financial record management\n• Crop yield tracking\n• Tools for farm record management.",
+      "videoIds": [
+          "aAIH6yLgI68",
+          "9ACrufWH8Io",
+          "ujFaYKMLUTw"
+      ],
+      "language": "English"
+  }
+]

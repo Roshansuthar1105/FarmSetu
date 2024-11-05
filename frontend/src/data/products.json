@@ -1,0 +1,442 @@
+[
+  {
+    "id": 1,
+    "name": "Organic Fertilizer",
+    "price": "₹500",
+    "description": "High-quality organic fertilizer for healthy plant growth.",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSML_dRnCxmQL0txzCBMVevtegRXsNohJrcAA&s",
+    "category": "Fertilizers"
+  },
+  {
+    "id": 2,
+    "name": "Premium Seeds",
+    "price": "₹300",
+    "description": "High-yield seeds for a variety of crops.",
+    "image": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTGHyQY9rGcR4CXnHv2toG2HlzfBvW5__O1CPG_llqvFSSlXYw4",
+    "category": "Seeds"
+  },
+  {
+    "id": 3,
+    "name": "Irrigation System",
+    "price": "₹1500",
+    "description": "Efficient irrigation system to save water and enhance crop yield.",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYWokwOBBOm_wrlEcOTeLsC8B5XxWW96KeuQ&s",
+    "category": "Irrigation"
+  },
+  {
+    "id": 4,
+    "name": "Pesticide",
+    "price": "₹700",
+    "description": "Effective pesticide for pest control.",
+    "image": "https://5.imimg.com/data5/SELLER/Default/2023/7/329627214/ZP/RD/HY/144482378/chemical-pesticide-250x250.jpeg",
+    "category": "Pesticides"
+  },
+  {
+    "id": 5,
+    "name": "Tractor",
+    "price": "₹200000",
+    "description": "Heavy-duty tractor for large-scale farming.",
+    "image": "https://t4.ftcdn.net/jpg/02/95/83/47/240_F_295834744_u8NDU4pQFPIa3RwZ9nmwD3bHfmlJ0AHl.jpg",
+    "category": "Machinery"
+  },
+  {
+    "id": 6,
+    "name": "Plow",
+    "price": "₹15000",
+    "description": "Durable plow for soil preparation.",
+    "image": "https://cdn.britannica.com/44/102544-050-E0129825/tractor-chisel-plow.jpg",
+    "category": "Tools"
+  },
+  {
+    "id": 7,
+    "name": "Harvesting Machine",
+    "price": "₹250000",
+    "description": "Efficient harvesting machine for various crops.",
+    "image": "https://content.jdmagicbox.com/rep/b2b/mini-harvester/mini-harvester-7.jpg?impolicy=queryparam&im=Resize=(360,360),aspect=fit",
+    "category": "Machinery"
+  },
+  {
+    "id": 8,
+    "name": "Greenhouse",
+    "price": "₹80000",
+    "description": "Portable greenhouse for controlled environment farming.",
+    "image": "https://images-cdn.ubuy.co.in/633adf8f84d6fa6cb04c2249-rumah-kaca-untuk-di-luar-ruangan-dengan.jpg",
+    "category": "Greenhouses"
+  },
+  {
+    "id": 9,
+    "name": "Compost",
+    "price": "₹350",
+    "description": "Natural compost for enriching soil.",
+    "image": "https://www.bigbasket.com/media/uploads/p/xxl/40209575-3_4-natures-plus-vermi-compost-organic-manure.jpg",
+    "category": "Fertilizers"
+  },
+  {
+    "id": 10,
+    "name": "Soil Test Kit",
+    "price": "₹200",
+    "description": "Kit for testing soil quality and nutrients.",
+    "image": "https://5.imimg.com/data5/SELLER/Default/2022/11/ZG/XT/XG/2412262/soil-testing-kits.jpeg",
+    "category": "Tools"
+  },
+  {
+    "id": 11,
+    "name": "Plant Sprayer",
+    "price": "₹150",
+    "description": "Handheld sprayer for plants and crops.",
+    "image": "https://images.meesho.com/images/products/209696349/2tcp4_512.webp",
+    "category": "Tools"
+  },
+  {
+    "id": 12,
+    "name": "Garden Tools Set",
+    "price": "₹1200",
+    "description": "Comprehensive set of garden tools.",
+    "image": "https://5.imimg.com/data5/XF/HN/RT/SELLER-38951135/gardening-tools-hand-cultivator-small-trowel-garden-fork-set-of-3-.jpg",
+    "category": "Tools"
+  },
+  {
+    "id": 13,
+    "name": "Seedling Tray",
+    "price": "₹250",
+    "description": "Tray for growing seedlings.",
+    "image": "https://5.imimg.com/data5/SELLER/Default/2023/1/TU/OD/LM/106277488/sugarcane-seedling-tray-500x500.jpg",
+    "category": "Seeds"
+  },
+  {
+    "id": 14,
+    "name": "Shade Net",
+    "price": "₹500",
+    "description": "Shade net to protect plants from excessive sunlight.",
+    "image": "https://agribegri.com/productimage/8b210c952fd73db07f615e7cabe95093-04-20-21-11-17-04.webp",
+    "category": "Tools"
+  },
+  {
+    "id": 15,
+    "name": "Organic Pesticide",
+    "price": "₹600",
+    "description": "Eco-friendly pesticide for pest control.",
+    "image": "https://www.katyayaniorganics.com/wp-content/uploads/2022/06/3-in-1-resize.png",
+    "category": "Pesticides"
+  },
+  {
+    "id": 16,
+    "name": "Water Pump",
+    "price": "₹12000",
+    "description": "High-efficiency water pump for irrigation.",
+    "image": "https://5.imimg.com/data5/VG/KM/MY-2602408/water-pump.jpg",
+    "category": "Irrigation"
+  },
+  {
+    "id": 17,
+    "name": "Agricultural Drone",
+    "price": "₹400000",
+    "description": "Drone for monitoring and managing crops.",
+    "image": "https://5.imimg.com/data5/SELLER/Default/2021/12/JA/AO/QQ/72464407/nla616-16kg-crop-spraying-drone-agriculture-uav-drone-sprayer-500x500.jpg",
+    "category": "Machinery"
+  },
+  {
+    "id": 18,
+    "name": "Crop Rotation Software",
+    "price": "₹7000",
+    "description": "Software for managing crop rotation schedules.",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdnIYCEBQQfwOjOZO7aDTitD5j8zooog42Hw&s",
+    "category": "Software"
+  },
+  {
+    "id": 19,
+    "name": "Soil Moisture Sensor",
+    "price": "₹3000",
+    "description": "Sensor for monitoring soil moisture levels.",
+    "image": "https://5.imimg.com/data5/ML/TA/UY/SELLER-4167793/soil-moisture-sensor-soil-humidity-sensor-water-sensor-soil-hygrometer-for-ardunio-500x500.jpg",
+    "category": "Tools"
+  },
+  {
+    "id": 20,
+    "name": "Farm Management Software",
+    "price": "₹15000",
+    "description": "Comprehensive software for farm management.",
+    "image": "https://lh6.googleusercontent.com/JiShou5NDbsWorjtDEdBRNjTcSFADbTFzMYyu4LSOSB48bBLDvAIaUMrWKoF9x_znriPqgeiXIcNXRcn8qkDQ50CMZr55ppGBn2Q7F54keMmkUb0iliGZy76N_voqcg30NmVp7k5s4XCFHdmZ7QRi_w",
+    "category": "Software"
+  },
+  {
+    "id": 21,
+    "name": "Vegetable Seeds",
+    "price": "₹200",
+    "description": "Seeds for various vegetables.",
+    "image": "https://rukminim2.flixcart.com/image/850/1000/kgqvlow0/plant-seed/9/z/8/175-rdx-82-easy-gardening-asparagus-broccoli-lettuce-pak-choi-f1-original-imafwx4npvznzymg.jpeg?q=90&crop=false",
+    "category": "Seeds"
+  },
+  {
+    "id": 22,
+    "name": "Fruit Tree Saplings",
+    "price": "₹400",
+    "description": "Saplings for fruit trees.",
+    "image": "https://rukminim2.flixcart.com/image/250/250/l20rma80/plant-seed/g/r/i/50-dragon-fruit-seed-01-mgbn-original-imagdgb7mgcykhky.jpeg?q=90&crop=false",
+    "category": "Seeds"
+  },
+  {
+    "id": 23,
+    "name": "Bio-Fertilizer",
+    "price": "₹600",
+    "description": "Bio-based fertilizer for sustainable farming.",
+    "image": "https://img.freepik.com/free-vector/grass-fertilizer-abstract-concept-vector-illustration-gardening-services-rapid-growth-green-color-lawn-maintenance-supplement-soil-nutrients-granule-spreader-abstract-metaphor_335657-1656.jpg?ga=GA1.1.1455073514.1729348546&semt=ais_hybrid",
+    "category": "Fertilizers"
+  },
+  {
+    "id": 24,
+    "name": "Crop Protection Net",
+    "price": "₹800",
+    "description": "Net for protecting crops from pests and birds.",
+    "image": "https://m.media-amazon.com/images/I/81F4-ANYVRL._AC_UF150,150_QL80_.jpg",
+    "category": "Tools"
+  },
+  {
+    "id": 25,
+    "name": "Plant Nutrients",
+    "price": "₹350",
+    "description": "Essential nutrients for plant growth.",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEh3qHTKX7XsYTV0D4d-E3fYXVGQ8ssj3l1A&s",
+    "category": "Fertilizers"
+  },
+  {
+    "id": 26,
+    "name": "Tiller",
+    "price": "₹25000",
+    "description": "Tiller for soil cultivation.",
+    "image": "https://www.fieldking.com/blogs/wp-content/uploads/2024/01/1.jpg",
+    "category": "Machinery"
+  },
+  {
+    "id": 27,
+    "name": "Green Manure",
+    "price": "₹500",
+    "description": "Organic green manure for enriching soil.",
+    "image": "https://5.imimg.com/data5/SELLER/Default/2022/7/ZC/XW/PY/131498473/25kg-organic-manure-500x500.jpg",
+    "category": "Fertilizers"
+  },
+  {
+    "id": 28,
+    "name": "Farm Irrigation Kit",
+    "price": "₹3000",
+    "description": "Complete kit for farm irrigation.",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPP5R-1nfIq6ZnsNGBjeUjl4dV05geZedVsg&s",
+    "category": "Irrigation"
+  },
+  {
+    "id": 29,
+    "name": "Garden Sprinkler",
+    "price": "₹800",
+    "description": "Sprinkler for watering gardens.",
+    "image": "https://rukminim2.flixcart.com/image/850/1000/l3vxbbk0/garden-sprayer/a/t/m/1-automatic-360-rotating-adjustable-garden-sprinkler-1-l-original-imagewvgk3pegjph.jpeg?q=20&crop=false",
+    "category": "Irrigation"
+  },
+  {
+    "id": 30,
+    "name": "Soil Conditioner",
+    "price": "₹450",
+    "description": "Conditioner for improving soil structure.",
+    "image": "https://www.gardenhealth.com/wp-content/uploads/2018/08/the-gardeners-soil-conditioner.webp",
+    "category": "Fertilizers"
+  },
+  {
+    "id": 31,
+    "name": "Organic Herbicide",
+    "price": "₹650",
+    "description": "Herbicide for controlling weeds organically.",
+    "image": "https://www.katyayaniorganics.com/wp-content/uploads/2023/05/WEEK-KILLER-MOCK.png",
+    "category": "Pesticides"
+  },
+  {
+    "id": 32,
+    "name": "Fertilizer Spreader",
+    "price": "₹1500",
+    "description": "Spreader for evenly distributing fertilizer.",
+    "image": "https://www.agrikendra.com/wp-content/uploads/2019/07/fertilizer-spreader-600x407.jpg.webp",
+    "category": "Tools"
+  },
+  {
+    "id": 33,
+    "name": "Farm Safety Kit",
+    "price": "₹1000",
+    "description": "Safety kit for farm workers.",
+    "image": "https://5.imimg.com/data5/ECOM/Default/2024/1/379147615/JP/AC/SB/38432040/farmersafetykit.png",
+    "category": "Tools"
+  },
+  {
+    "id": 34,
+    "name": "Drip Irrigation System",
+    "price": "₹2000",
+    "description": "Drip irrigation system for efficient water use.",
+    "image": "https://5.imimg.com/data5/SELLER/Default/2021/1/WO/OS/FI/2297706/pop-up-sprinkler-500x500.jpg",
+    "category": "Irrigation"
+  },
+  {
+    "id": 35,
+    "name": "Soil PH Tester",
+    "price": "₹500",
+    "description": "Tester for measuring soil pH levels.",
+    "image": "https://5.imimg.com/data5/SELLER/Default/2022/1/JI/CF/BW/3764870/ph-soil-meter-500x500.jpeg",
+    "category": "Tools"
+  },
+  {
+    "id": 36,
+    "name": "Electric Tiller",
+    "price": "₹35000",
+    "description": "Electric tiller for easy soil cultivation.",
+    "image": "https://thumbs.dreamstime.com/b/red-tiller-over-white-22912559.jpg",
+    "category": "Machinery"
+  },
+  {
+    "id": 37,
+    "name": "Beehive Box",
+    "price": "₹5000",
+    "description": "Beehive box for honey production.",
+    "image": "https://images.unsplash.com/photo-1508432116762-1f883098ed41?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGJlZSUyMGhpdmVzfGVufDB8fDB8fHww",
+    "category": "Beehives"
+  },
+  {
+    "id": 38,
+    "name": "Solar Water Pump",
+    "price": "₹25000",
+    "description": "Solar-powered water pump for sustainable irrigation.",
+    "image": "https://www.citizensolar.com/wp-content/uploads/2024/04/solar-water-pump-1.jpg",
+    "category": "Pumps"
+  },
+  {
+    "id": 39,
+    "name": "Composter Bin",
+    "price": "₹4000",
+    "description": "Large composter bin for organic waste.",
+    "image": "https://m.media-amazon.com/images/I/71eP0SOZJdL.jpg",
+    "category": "Composters"
+  },
+  {
+    "id": 40,
+    "name": "Weather Station Kit",
+    "price": "₹12000",
+    "description": "Complete weather station kit for farm monitoring.",
+    "image": "https://5.imimg.com/data5/SELLER/Default/2022/11/XR/SW/QR/15491647/wth600-kit-wireless-weather-station-kit.png",
+    "category": "Weather Stations"
+  },
+  {
+    "id": 41,
+    "name": "Automatic Sprayer",
+    "price": "₹7500",
+    "description": "Battery-operated automatic sprayer for large farms.",
+    "image": "https://m.media-amazon.com/images/I/71BmD4djH7L._AC_UF350,350_QL80_.jpg",
+    "category": "Sprayers"
+  },
+  {
+    "id": 42,
+    "name": "Cultivator",
+    "price": "₹20000",
+    "description": "High-quality cultivator for soil tillage.",
+    "image": "https://5.imimg.com/data5/SELLER/Default/2022/8/WC/QL/PU/15645156/13-tines-tractor-cultivator.jpg",
+    "category": "Cultivators"
+  },
+  {
+    "id": 43,
+    "name": "Solar Panel Kit",
+    "price": "₹45000",
+    "description": "Solar panel kit for powering farm equipment.",
+    "image": "https://greenonenergy.in/wp-content/uploads/2022/06/800-VA.png",
+    "category": "Solar Panels"
+  },
+  {
+    "id": 44,
+    "name": "Advanced Greenhouse",
+    "price": "₹120000",
+    "description": "High-tech greenhouse with climate control.",
+    "image": "https://www.advancegreenhouses.com/wp-content/uploads/2020/01/10mm-polycarbonate-greenhouse-door-open-scaled.jpg",
+    "category": "Greenhouses"
+  },
+  {
+    "id": 45,
+    "name": "Organic Compost",
+    "price": "₹550",
+    "description": "Rich organic compost for plant growth.",
+    "image": "https://nurserylive.com/cdn/shop/products/nurserylive-g-soil-and-fertilizers-polestar-organic-food-waste-compost-1-kg-set-of-2.jpg?v=1634226541",
+    "category": "Composters"
+  },
+  {
+    "id": 46,
+    "name": "Mini Harvester",
+    "price": "₹300000",
+    "description": "Compact harvester for small-scale farms.",
+    "image": "https://5.imimg.com/data5/KI/ML/LT/SELLER-77470097/mini-combine-harvester.jpg",
+    "category": "Harvesters"
+  },
+  {
+    "id": 47,
+    "name": "Vegetable Fertilizer",
+    "price": "₹400",
+    "description": "Specialized fertilizer for vegetable crops.",
+    "image": "https://www.bigbasket.com/media/uploads/p/xxl/40209564-2_1-natures-plus-vermi-compost-organic-manure.jpg",
+    "category": "Fertilizers"
+  },
+  {
+    "id": 48,
+    "name": "Farm Pond Liner",
+    "price": "₹18000",
+    "description": "Durable liner for farm ponds.",
+    "image": "https://emmbi.com/wp-content/uploads/2019/07/Pondliner.jpg",
+    "category": "Pond Liners"
+  },
+  {
+    "id": 49,
+    "name": "Organic Soil Enhancer",
+    "price": "₹700",
+    "description": "Natural enhancer for improving soil health.",
+    "image": "https://m.media-amazon.com/images/I/81xOHlAhHgL._AC_UF150,150_QL80_.jpg",
+    "category": "Fertilizers"
+  },
+  {
+    "id": 50,
+    "name": "Multi-Crop Planter",
+    "price": "₹50000",
+    "description": "Versatile planter for different crop types.",
+    "image": "https://img3.exportersindia.com/product_images/bc-full/dir_181/5426877/multi-crop-planter-1514368372-3546179.jpg",
+    "category": "Planters"
+  },
+  {
+    "id": 51,
+    "name": "Drip Tape Irrigation",
+    "price": "₹6000",
+    "description": "Drip tape system for precision irrigation.",
+    "image": "https://growhoss.com/cdn/shop/products/Irrigation-8Mil-Kit_150x@2x.jpg?v=1691782933",
+    "category": "Drip Irrigation"
+  },
+  {
+    "id": 52,
+    "name": "Tractor Attachments",
+    "price": "₹30000",
+    "description": "Set of essential attachments for tractors.",
+    "image": "https://mlhobevaucyf.i.optimole.com/w:500/h:500/q:mauto/f:best/ig:avif/https://novo3ds.in/wp-content/uploads/2023/06/AG062_Cultivator.jpg",
+    "category": "Tractors"
+  },
+  {
+    "id": 53,
+    "name": "Automatic Seeder",
+    "price": "₹75000",
+    "description": "Automatic seeder for fast planting.",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXgBfMwyjxarUPCGHouK_GJ5xvWvGGjAkB2A&s",
+    "category": "Planters"
+  },
+  {
+    "id": 54,
+    "name": "Solar Powered Sprayer",
+    "price": "₹12000",
+    "description": "Sprayer powered by solar energy.",
+    "image": "https://5.imimg.com/data5/PI/FF/AP/SELLER-60104296/solar-all-in-one-light.jpg",
+    "category": "Sprayers"
+  },
+  {
+    "id": 55,
+    "name": "Weatherproof Seedling Tray",
+    "price": "₹500",
+    "description": "Durable seedling tray for outdoor use.",
+    "image": "https://mlhobevaucyf.i.optimole.com/w:500/h:500/q:mauto/f:best/ig:avif/https://novo3ds.in/wp-content/uploads/2023/06/AG122_Seeding-tray_3.jpg",
+    "category": "Seeds"
+  }
+]
