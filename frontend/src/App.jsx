@@ -20,6 +20,7 @@ import FileUploadPage from './pages/FileUploadPage';
 import Form from './pages/Form';
 import Result from './pages/Result';
 import Profile from './pages/Profile';
+import NotFound from './pages/NotFound';
 export default function App() {
   const { authUser } = useAuthContext();
   const [chatBotVisible, setChatBotVisible] = useState(false);
@@ -49,6 +50,7 @@ export default function App() {
         <Route path="/form" element={<Form />} />
         <Route path="/results" element={<Result/>} />
         <Route path="/profile" element={<Profile/>} />
+        <Route path="*" element={<NotFound/>} />
       </Routes>
       <Toaster />
 

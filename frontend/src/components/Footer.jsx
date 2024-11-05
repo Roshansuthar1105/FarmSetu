@@ -38,14 +38,14 @@ const Footer = () => {
         </div>
         <div className="w-full sm:w-auto mb-6 sm:mb-0">
           <h2 className="font-bold mb-2">Contact Us</h2>
-          <p>Address: 456 Farm Road, AgriTown, AG 67890, USA</p>
-          <p>Phone: +1 (345) 678-9012</p>
-          <p>Email: support@agripulse.com</p>
-          <p>Fax: +1 (345) 678-9013</p>
+          <p>Address: 456 Farm Road, AgriTown, AG 67890, India</p>
+          <p>Phone: +91 9876543210</p>
+          <p>Email: support@farmsetu.com</p>
+          <p>Fax: +91 9876543211</p>
         </div>
       </div>
       <div className="text-center mt-6">
-        <p>&copy; 2024 All rights reserved by AgroTrend</p>
+        <p>&copy; 2024 All rights reserved by FarmSetu</p>
       </div>
     </footer>
   );

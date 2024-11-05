@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { useAuthContext } from "../context/AuthContext";
 import farm from '../assets/farm.svg';
 import setu from '../assets/setu.svg';
-import { toast } from "react-hot-toast";
 
 export default function MyNavbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -24,15 +23,14 @@ export default function MyNavbar() {
   ];
 
   const links2 = [
-    { name: "Farmer Marketplace", to: "/farmermarketplace" },
+    { name: "Marketplace", to: "/farmermarketplace" },
     { name: "Chat with Experts", to: "/chat" },
     { name: "Real Time Market", to: "/realtimemarket" },
     { name: "News", to: "/news" },
-    { name: "Weather", to: "/weather" }
+    { name: "Weather", to: "/weather" },
+    { name: "Resources", to: "/resources" },
+    { name: "Community", to: "/community" },
   ];
-  const handleClick = () => {
-    toast.success("Profile clicked");
-  }
 
   return (
    <>

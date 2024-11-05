@@ -24,7 +24,9 @@ const CourseDetails = () => {
         <p className="text-gray-400 mb-4">Language: <span className="text-green-400">{course.language}</span></p>
         <div>
           <h2 className="text-2xl font-bold mb-2 text-green-300">Course Content</h2>
-          <p className="bg-gray-800 p-4 rounded-lg shadow-lg">{course.content}</p>
+          <p className="bg-gray-800 p-4 rounded-lg shadow-lg">{course.content.split('\n').map((line, index) => (
+            <p key={index}>{line}</p>
+          ))}</p>
         </div>
         <div className="mt-6">
           <h2 className="text-2xl font-bold mb-2 text-green-300">Related Videos</h2>
