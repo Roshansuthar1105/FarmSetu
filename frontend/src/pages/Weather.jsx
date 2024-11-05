@@ -10,19 +10,15 @@ const Weather = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [suggestions, setSuggestions] = useState([]);
-  const [highlightedIndex, setHighlightedIndex] = useState(-1);
-  const [showSuggestions, setShowSuggestions] = useState(false);
 
   // Fetch city suggestions from imported JSON
   const fetchCitySuggestions = () => {
     if (city.trim() === '') {
       setSuggestions([]);
-      setHighlightedIndex(-1);
       return;
     }
     const filteredSuggestions = citySuggestions.filter(c => c.toLowerCase().includes(city.toLowerCase()));
     setSuggestions(filteredSuggestions);
-    setHighlightedIndex(-1);
   };
 
   useEffect(() => {
@@ -32,7 +28,6 @@ const Weather = () => {
   const fetchWeatherData = async () => {
     setLoading(true);
     setError('');
-    setShowSuggestions(false); // Hide suggestions after button click
     try {
       const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather`, {
         params: {
@@ -49,76 +44,31 @@ const Weather = () => {
     }
   };
 
-  const handleSuggestionClick = (suggestion) => {
-    console.log("click on sufff",suggestion);
-    setCity(suggestion);
-    console.log("city",city);
-    // fetchWeatherData(); // Immediately fetch weather data when suggestion is clicked
-    setSuggestions([]);
-    setHighlightedIndex(-1);
-    setShowSuggestions(false); // Hide suggestions after selection
-  };
-
-  const handleKeyDown = (e) => {
-    if (suggestions.length === 0) return;
-
-    switch (e.key) {
-      case 'ArrowDown':
-        setHighlightedIndex((prev) => Math.min(prev + 1, suggestions.length - 1));
-        break;
-      case 'ArrowUp':
-        setHighlightedIndex((prev) => Math.max(prev - 1, 0));
-        break;
-      case 'Enter':
-        if (highlightedIndex >= 0) {
-          handleSuggestionClick(suggestions[highlightedIndex]);
-        }
-        break;
-      case 'Escape':
-        setSuggestions([]);
-        setHighlightedIndex(-1);
-        break;
-      default:
-        break;
-    }
-  };
   return (
-    <div className="bg-gray-900 min-h-screen flex flex-col">
+    <div className="bg-gray-900 min-h-screen flex flex-col ">
       <MyNavbar className="fixed top-0 left-0 right-0 z-10 bg-green-900 shadow-lg" />
-      <div className="pt-16">
+      <div className={`pt-16 ${!loading ? 'mb-48' : ''}`}>
         <div className="max-w-3xl mx-auto my-8 p-6 bg-gray-800 shadow-lg rounded-lg relative">
           <div className="mb-6 flex flex-row items-center justify-between">
             <input
               type="text"
               placeholder="Enter city name"
               value={city}
+              list="city-suggestions"
               onChange={(e) => setCity(e.target.value)}
-              onKeyDown={handleKeyDown}
-              className="p-3 border border-gray-700 rounded-lg w-3/4 bg-gray-900 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-600 transition"
-              onFocus={() => setShowSuggestions(true)} // Show suggestions when input is focused
-              onBlur={() => setTimeout(() => setShowSuggestions(false), 100)} // Hide suggestions after a slight delay on blur
+              className="p-3 border border-gray-700 rounded-lg w-3/4 sm:text-base text-xs bg-gray-900 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-600 transition"
             />
             <button
               onClick={fetchWeatherData}
-              className="w-1/4 p-3 bg-green-600 text-white rounded-lg hover:bg-green-500 transition ease-in-out duration-300"
+              className="w-1/4 p-3 bg-green-600 text-white rounded-lg sm:text-base text-xs hover:bg-green-500 transition ease-in-out duration-300"
             >
               Get Weather
             </button>
-            {showSuggestions && suggestions.length > 0 && (
-              <ul className="absolute left-0 right-0 mt-2 top-16 bg-gray-800 border border-gray-700 rounded-lg z-10">
-                {suggestions.map((suggestion, index) => (
-                  <li
-                    key={index}
-                    onClick={() =>{ handleSuggestionClick(suggestion);}}
-                    className={`p-2 cursor-pointer hover:bg-gray-700 text-white ${
-                      index === highlightedIndex ? 'bg-gray-600' : ''
-                    }`}
-                  >
-                    {suggestion}
-                  </li>
-                ))}
-              </ul>
-            )}
+            <datalist id="city-suggestions">
+              {suggestions.map((suggestion, index) => (
+                <option key={index} value={suggestion} />
+              ))}
+            </datalist>
           </div>
 
           {loading ? (
