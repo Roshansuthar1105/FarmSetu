@@ -21,6 +21,13 @@ import Form from './pages/Form';
 import Result from './pages/Result';
 import Profile from './pages/Profile';
 import NotFound from './pages/NotFound';
+import About from './pages/About';
+import Mission from './pages/Mission';
+import Pricing from './components/Pricing';
+import MyNavbar from './components/MyNavbar';
+import Footer from './components/Footer';
+import Contact from './components/Contact';
+import WorkInProgress from './components/WorkInProgress';
 export default function App() {
   const { authUser } = useAuthContext();
   const [chatBotVisible, setChatBotVisible] = useState(false);
@@ -50,6 +57,19 @@ export default function App() {
         <Route path="/form" element={<Form />} />
         <Route path="/results" element={<Result/>} />
         <Route path="/profile" element={<Profile/>} />
+        <Route path="/about" element={<About/>} />
+        <Route path="/mission" element={<Mission/>} />
+        <Route path="/contact" element={<><MyNavbar/> <Contact/> <Footer/> </>} />
+        <Route path="/pricing" element={<><MyNavbar/> <Pricing/> <Footer/> </>} />
+        <Route path="/team" element={<WorkInProgress/>} />
+        <Route path="/careers" element={<WorkInProgress/>} />
+        <Route path="/press" element={<WorkInProgress/>} />
+        <Route path="/crop-advice" element={<WorkInProgress/>} />
+        <Route path="/market-trends" element={<WorkInProgress/>} />
+        <Route path="/weather-updates" element={<WorkInProgress/>} />
+        <Route path="/expert-consultation" element={<WorkInProgress/>} />
+        <Route path="/faq" element={<WorkInProgress/>} />
+        <Route path="/privacy" element={<WorkInProgress/>} />
         <Route path="*" element={<NotFound/>} />
       </Routes>
       <Toaster />
