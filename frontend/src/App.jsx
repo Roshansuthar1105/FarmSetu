@@ -30,6 +30,7 @@ import Contact from './components/Contact';
 import WorkInProgress from './components/WorkInProgress';
 import FAQ from './components/FAQ';
 import Privacy from './components/Privacy';
+import ChatWithCommunity from './pages/ChatWithCommunity';
 export default function App() {
   const { authUser } = useAuthContext();
   const [chatBotVisible, setChatBotVisible] = useState(false);
@@ -47,6 +48,7 @@ export default function App() {
         <Route path="/farmermarketplace" element={<Marketplace  />} />
         <Route path="/product/:id" element={<ProductDetail />} />
         <Route path="/chat" element={<Chat />} />
+        <Route path="/localchat" element={<ChatWithCommunity />} />
         <Route path="/news" element={<NewsFeed />} />
         <Route path="/weather" element={<Weather />} />
         <Route path="/resources" element={<Resources />} />

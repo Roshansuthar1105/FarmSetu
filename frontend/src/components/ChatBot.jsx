@@ -115,7 +115,7 @@ const ChatBot = ({ visible, onClose }) => {
         <div className="flex items-center">
           <input
             type="text"
-            value={loading ? 'Sending...' : input}
+            value={loading ? 'Responding...' : input}
             disabled={loading}
             onChange={(e) => setInput(e.target.value)}
             className="flex-1 px-4 py-2 border rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"

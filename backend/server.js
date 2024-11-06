@@ -5,6 +5,9 @@ import connectToMongoDb from './db/connectMongo.js';
 import newsRoutes from './routes/news.routes.js';
 import marketRoutes from './routes/market.routes.js';
 import contactRoutes from './routes/contact.routes.js';
+import allusers from './routes/allusers.routes.js';
+import chats from './routes/chats.routes.js';
+
 import cookieParser from 'cookie-parser';
 import path from 'path';
 dotenv.config();
@@ -25,6 +28,8 @@ app.use('/api/auth', authRoutes);
 app.use('/api/news', newsRoutes );
 app.use('/api/marketdata', marketRoutes);
 app.use('/api/contact', contactRoutes);
+app.use('/api/users',allusers)
+app.use('/api/chats',chats)
 app.use(express.static(path.join(__dirname, '/frontend/dist')));
 app.get('*', (req, res)=>{
     res.sendFile(path.join(__dirname, '/frontend/dist/index.html'));
