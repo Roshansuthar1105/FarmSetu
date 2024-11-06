@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { useAuthContext } from "../context/AuthContext";
 import farm from '../assets/farm.svg';
 import setu from '../assets/setu.svg';
@@ -64,7 +64,7 @@ export default function MyNavbar() {
               <li key={index}>
                 <Link
                   to={link.to}
-                  className={`block text-base xl:text-lg ${link.isActive ? "text-secondary" : "text-foreground"} hover:text-blue-600`}
+                  className={`block text-base xl:text-lg ${link.isActive ? "text-secondary" : "text-foreground"} hover:text-green-700 hover:scale-105 transition-all duration-300`}
                 >
                   {link.name}
                 </Link>
@@ -86,7 +86,7 @@ export default function MyNavbar() {
                   >
                     <img
                       className="h-10 w-10 rounded-full border-2 border-secondary"
-                      src={authUser.avatarUrl || "https://cdn-icons-png.flaticon.com/128/9187/9187466.png"}
+                      src={authUser.avatarUrl || "https://cdn-icons-png.flaticon.com/128/1154/1154966.png"}
                       alt={authUser.name}
                     />
                   </button>
@@ -96,6 +96,12 @@ export default function MyNavbar() {
                         <p className="text-sm">Signed in as</p>
                         <p className="text-sm font-medium text-[#053c2f]">{authUser.email}</p>
                       </div>
+                      <Link
+                        to={'/profile'}
+                        className="block w-full text-left px-4 py-2 text-sm hover:bg-blue-100"
+                      >
+                        Profile
+                      </Link>
                       <button
                         onClick={() => {
                           localStorage.removeItem('user');

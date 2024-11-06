@@ -28,6 +28,8 @@ import MyNavbar from './components/MyNavbar';
 import Footer from './components/Footer';
 import Contact from './components/Contact';
 import WorkInProgress from './components/WorkInProgress';
+import FAQ from './components/FAQ';
+import Privacy from './components/Privacy';
 export default function App() {
   const { authUser } = useAuthContext();
   const [chatBotVisible, setChatBotVisible] = useState(false);
@@ -61,25 +63,21 @@ export default function App() {
         <Route path="/mission" element={<Mission/>} />
         <Route path="/contact" element={<><MyNavbar/> <Contact/> <Footer/> </>} />
         <Route path="/pricing" element={<><MyNavbar/> <Pricing/> <Footer/> </>} />
+        <Route path="/faq" element={<FAQ/>} />
+        <Route path="/privacy" element={<Privacy/> } />
         <Route path="/team" element={<WorkInProgress/>} />
         <Route path="/careers" element={<WorkInProgress/>} />
         <Route path="/press" element={<WorkInProgress/>} />
-        <Route path="/crop-advice" element={<WorkInProgress/>} />
-        <Route path="/market-trends" element={<WorkInProgress/>} />
-        <Route path="/weather-updates" element={<WorkInProgress/>} />
-        <Route path="/expert-consultation" element={<WorkInProgress/>} />
-        <Route path="/faq" element={<WorkInProgress/>} />
-        <Route path="/privacy" element={<WorkInProgress/>} />
         <Route path="*" element={<NotFound/>} />
       </Routes>
       <Toaster />
-
       {/* Toggle Button for ChatBot */}
       <button
         onClick={toggleChatBot}
         className={`fixed bottom-4 right-4 bg-blue-500 text-white w-16 h-16 rounded-full shadow-lg flex items-center justify-center transition-transform duration-1000 hover:rotate-[360deg]`}
       >
-        <FiMessageSquare size={24} />
+        {/* <FiMessageSquare size={24} /> */}
+        <img src="https://cdn-icons-png.flaticon.com/128/6231/6231457.png" alt="chatbot" className="w-6 h-6 inline-block ml-2" />
       </button>
 
       {/* ChatBot Component */}

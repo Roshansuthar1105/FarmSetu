@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Input, Textarea, Button, Card } from '@nextui-org/react';
-import { calcLength } from 'framer-motion';
 import { toast } from 'react-hot-toast';
 export default function Contact() {
     const userData = localStorage.getItem('user');
@@ -27,6 +26,9 @@ export default function Contact() {
   };
 
   const handleSubmit = async (e) => {
+    if(!userData){
+      toast.error('Please login to contact us');
+    }else{
     e.preventDefault();
     try {
     const response = await fetch(`${import.meta.env.VITE_API_URL}/api/contact`, {
@@ -46,7 +48,8 @@ export default function Contact() {
     }
     setIsSubmitted(true);
   } catch (error) {
-    console.error('Error submitting form:', error);
+      console.error('Error submitting form:', error);
+    }
   }
   };
 
@@ -124,16 +127,16 @@ export default function Contact() {
             <p className="mb-8">Feel free to reach out to us through any of the following methods:</p>
             <ul className="list-none pl-3 list-inside flex flex-col items-start justify-start">
               <li className="mb-2">
-                <strong className="text-green-400">Address:</strong> 456 Farm Lane, Agrocity, Rajasthan 302022, India
+                <strong className="text-green-400">Address:</strong> 456 Farm Lane, FarmCity, Rajasthan 302022, India
               </li>
               <li className="mb-2">
-                <strong className="text-green-400">Phone:</strong> +91 9826000000
+                <strong className="text-green-400">Phone:</strong> +91 9876543210
               </li>
               <li className="mb-2">
-                <strong className="text-green-400">Email:</strong> support@Farmsetu.com
+                <strong className="text-green-400">Email:</strong> support@farmsetu.com
               </li>
               <li className="mb-2">
-                <strong className="text-green-400">Fax:</strong> +91 9826000000
+                <strong className="text-green-400">Fax:</strong> +91 9876543211
               </li>
             </ul>
           </Card>

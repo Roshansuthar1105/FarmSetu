@@ -63,7 +63,7 @@ const ChatBot = ({ visible, onClose }) => {
   return (
     <div className="fixed bottom-20 right-4 w-96 bg-white shadow-2xl rounded-lg overflow-hidden animate-fadeIn z-50">
       <div className="flex justify-between items-center bg-blue-600 text-white px-4 py-3 animate-slideDown">
-        <h3 className="text-xl font-semibold">ChatBot</h3>
+        <h3 className="text-xl font-semibold">ChatBot <img src="https://cdn-icons-png.flaticon.com/128/6231/6231457.png" alt="chatbot" className="w-6 h-6 inline-block ml-2" /></h3>
         <button onClick={onClose} className="hover:bg-blue-700 rounded-full p-1 transition duration-300">
           <AiOutlineClose size={24} />
         </button>
