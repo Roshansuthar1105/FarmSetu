@@ -5,6 +5,7 @@ import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import MyNavbar from '../components/MyNavbar';
 import Footer from '../components/Footer';
+import Product from '../components/Product.jsx';
 import Categories from '../components/Categories';
 // import products from '../data/products.json';
 
@@ -21,10 +22,6 @@ const Marketplace = () => {
 
   const handleCategoryChange = (category) => {
     setSelectedCategory(category);
-  };
-
-  const handleProductClick = (id) => {
-    navigate(`/product/${id}`);
   };
   
 useEffect(()=>{
@@ -115,18 +112,19 @@ const fetchAllProducts = async ()=>{
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {filteredProducts.map((product) => (
-            <div 
-              key={product._id} 
-              className="bg-gray-700 border border-gray-600 rounded-lg shadow-lg overflow-hidden transform transition duration-500 hover:shadow-2xl hover:scale-105 cursor-pointer"
-              onClick={() => handleProductClick(product._id)}
-            >
-              <img src={product.image} alt={product.name} className="w-full h-40 object-cover transition-opacity duration-500 hover:opacity-80" />
-              <div className="p-4 transition-transform transform hover:translate-y-2 font-roboto">
-                <h2 className="text-lg font-semibold mb-2">{product.name}</h2>
-                <p className="text-gray-400 mb-2">{product.description}</p>
-                <p className="text-xl font-bold mb-2">{product.price}</p>
-              </div>
-            </div>
+            // <div 
+            //   key={product._id} 
+            //   className="bg-gray-700 border border-gray-600 rounded-lg shadow-lg overflow-hidden transform transition duration-500 hover:shadow-2xl hover:scale-105 cursor-pointer"
+            //   onClick={() => handleProductClick(product._id)}
+            // >
+            //   <img src={product.image} alt={product.name} className="w-full h-40 object-cover transition-opacity duration-500 hover:opacity-80" />
+            //   <div className="p-4 transition-transform transform hover:translate-y-2 font-roboto">
+            //     <h2 className="text-lg font-semibold mb-2">{product.name}</h2>
+            //     <p className="text-gray-400 mb-2">{product.description}</p>
+            //     <p className="text-xl font-bold mb-2">{product.price}</p>
+            //   </div>
+            // </div>
+            <Product product={product} />
           ))}
           {filteredProducts.length === 0 && (
             <div  

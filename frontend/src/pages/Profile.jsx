@@ -1,9 +1,48 @@
+import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import MyNavbar from "../components/MyNavbar";
 import { useAuthContext } from "../context/AuthContext";
+import { useEffect, useState } from "react";
+import Product from "../components/Product";
 
 const Profile = () => {
+    const navigate = useNavigate();
     const { authUser } = useAuthContext();
+    const [cart , setCart ] =useState([]);
+    const [products ,setProducts]=useState([]);
+    useEffect(()=>{
+        fetchCartItems();
+        fetchProducts();
+    },[]);
+    const fetchCartItems = async () => {
+        try {
+            const response = await fetch(`http://localhost:5000/api/profile/cart/${authUser._id}`);
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const data = await response.json();
+            setCart(data);
+            console.log(data);
+        } catch (error) {
+            console.error('There was a problem with the fetch operation:', error);
+        }
+    };
+    const fetchProducts = async () => {
+        try {
+            const response = await fetch('http://localhost:5000/api/products/');
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const data = await response.json();
+            const allCartItems = cart.map(item => item);
+            const filteredProducts = data.filter(product => allCartItems.includes(product._id));
+            setProducts(filteredProducts);
+            console.log("cart",cart)
+            console.log(filteredProducts);
+        } catch (error) {
+            console.error('There was a problem with the fetch operation:', error);
+        }
+    };
     return (
         <div className="min-h-screen bg-gray-800 pt-20">
             <MyNavbar/>
@@ -37,8 +76,8 @@ const Profile = () => {
                                         <button className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition">
                                             Edit Profile
                                         </button>
-                                        <button className="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition">
-                                            Change Password
+                                        <button onClick={() => navigate(`/profile/cart/${authUser._id}`)} className="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition">
+                                            Your cart
                                         </button>
                                         <button 
                                             onClick={() => {
@@ -51,6 +90,17 @@ const Profile = () => {
                                         </button>
                                     </div>
                                 </div>
+                            <div className="bg-gray-800 p-6 rounded-lg">
+                                <h2 className="text-xl font-semibold mb-4 text-gray-200">Cart Products</h2>
+                                <div className="space-y-3">
+                                    {products?.map((product, index) => (
+                                        <>
+                                        <p key={index}><span className="font-medium">Product {index + 1}:</span> {product._id}</p>
+                                        <Product product={product} />
+                                        </>
+                                    ))}
+                                </div>
+                            </div>
                             </div>
                         </div>
                     </div>

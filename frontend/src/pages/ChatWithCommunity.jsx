@@ -119,7 +119,7 @@ function ChatWithCommunity() {
         <div className="flex flex-1 mt-3 mb-16 mx-8 overflow-hidden sm:mx-16 lg:mx-32">
                 <div className="w-full md:w-1/4 bg-gray-700  relative text-gray-300 shadow-lg rounded-lg border border-gray-600 transition-transform duration-300 ease-in-out hover:shadow-xl overflow-x-auto" 
                     style={{ 
-                        maxHeight: 'calc(100vh - 9rem)',
+                        maxHeight: 'calc(100vh - 12rem)',
                         scrollbarColor: '#22c55e #1f2937',
                         scrollbarWidth: 'thin',
                     }}>
@@ -163,7 +163,7 @@ function ChatWithCommunity() {
                     <div
                         className="flex-1 bg-gray-800 p-4 shadow-lg rounded-lg border border-gray-700 overflow-y-auto"
                         style={{ 
-                            maxHeight: 'calc(100vh - 9rem)',
+                            maxHeight: 'calc(100vh - 16rem)',
                             scrollbarWidth: 'none'
                         }}
                         ref={chatContainerRef}
@@ -179,11 +179,12 @@ function ChatWithCommunity() {
                                             className={`p-3 rounded-lg ${chat.receiver === selectedUser ?'bg-green-600 text-white': 'bg-gray-700 text-white' }`}
                                         >
                                             {chat.message}
+                                            <p className="text-xs text-gray-300">{new Date(chat.timestamp).toLocaleString([], { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' })}</p>
                                         </div>
                                     </div>
                                 ))
                             ) : (
-                                <div className='text-center text-white'>No chats Available </div>
+                                <div className='text-center text-white text-lg font-semibold'>No chats Available</div>
                             )}
                         </div>
                     </div>

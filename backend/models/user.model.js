@@ -28,6 +28,9 @@ const userSchema = new mongoose.Schema({
         type: Date,
         default: Date.now, // Sets the default value to the current date and time
     },
+    cart: {
+        type: [String], // Array of MongoDB IDs of products
+    },
 });
 
 // Create the User model from the schema
