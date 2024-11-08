@@ -65,6 +65,7 @@ const Profile = () => {
                                     <h2 className="text-xl font-semibold mb-4 text-gray-200">Personal Information</h2>
                                     <div className="space-y-3">
                                         <p><span className="font-medium">Name:</span> {authUser?.name}</p>
+                                        <p><span className="font-medium">Role:</span> {authUser?.role}</p>
                                         <p><span className="font-medium">Email:</span> {authUser?.email}</p>
                                         <p><span className="font-medium">Member Since:</span> {new Date(authUser?.createdAt || Date.now()).toLocaleDateString()}</p>
                                     </div>
