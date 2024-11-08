@@ -1,5 +1,5 @@
 import axios from "axios";
-import  cheerio  from "cheerio";
+import  {load}  from "cheerio";
 // Function to fetch HTML data and convert to JS array
 const url = "https://agmarknet.gov.in/agnew/namticker.aspx";
 async function fetchMarketData() {
@@ -8,7 +8,7 @@ async function fetchMarketData() {
     const { data } = await axios.get(url);
 
     // Load the HTML data into Cheerio
-    const $ = cheerio.load(data);
+    const $ = load(data);
 
     // Initialize an array to hold the extracted data
     const items = [];

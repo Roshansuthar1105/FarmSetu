@@ -1,5 +1,5 @@
 import axios from 'axios';
-import cheerio from 'cheerio';
+import {load} from 'cheerio';
 
 // URL of the page you want to scrape
 const url = 'https://www.livemint.com/industry/agriculture';
@@ -12,7 +12,7 @@ const fetchData = async () => {
         // Fetch the HTML data
         const response = await axios.get(url);
         const html = response.data;
-        const $ = cheerio.load(html);
+        const $ = load(html);
 
         // Select the div with id 'listview'
         const listView = $('#listview');

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Input } from '@nextui-org/react';
 import { Carousel } from 'react-responsive-carousel';
@@ -6,11 +6,13 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import MyNavbar from '../components/MyNavbar';
 import Footer from '../components/Footer';
 import Categories from '../components/Categories';
-import products from '../data/products.json';
+// import products from '../data/products.json';
 
 const Marketplace = () => {
+
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [products ,setProducts] =useState([]);
   const navigate = useNavigate();
 
   const handleSearchChange = (e) => {
@@ -24,7 +26,24 @@ const Marketplace = () => {
   const handleProductClick = (id) => {
     navigate(`/product/${id}`);
   };
-
+  
+useEffect(()=>{
+  fetchAllProducts();
+},[]);
+const fetchAllProducts = async ()=>{
+  const url = 'http://localhost:5000/api/products/';
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    const data = await response.json();
+    setProducts(data);
+    console.log(data);
+  } catch (error) {
+    console.error('There was a problem with the fetch operation:', error);
+  }
+}
   const filteredProducts = products.filter((product) => {
     const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesCategory = selectedCategory === null || product.category === selectedCategory;
@@ -97,9 +116,9 @@ const Marketplace = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {filteredProducts.map((product) => (
             <div 
-              key={product.id} 
+              key={product._id} 
               className="bg-gray-700 border border-gray-600 rounded-lg shadow-lg overflow-hidden transform transition duration-500 hover:shadow-2xl hover:scale-105 cursor-pointer"
-              onClick={() => handleProductClick(product.id)}
+              onClick={() => handleProductClick(product._id)}
             >
               <img src={product.image} alt={product.name} className="w-full h-40 object-cover transition-opacity duration-500 hover:opacity-80" />
               <div className="p-4 transition-transform transform hover:translate-y-2 font-roboto">

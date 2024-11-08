@@ -1,6 +1,5 @@
 [
   {
-    "id": 1,
     "name": "Organic Fertilizer",
     "price": "₹500",
     "description": "High-quality organic fertilizer for healthy plant growth.",
@@ -8,7 +7,6 @@
     "category": "Fertilizers"
   },
   {
-    "id": 2,
     "name": "Premium Seeds",
     "price": "₹300",
     "description": "High-yield seeds for a variety of crops.",
@@ -16,7 +14,6 @@
     "category": "Seeds"
   },
   {
-    "id": 3,
     "name": "Irrigation System",
     "price": "₹1500",
     "description": "Efficient irrigation system to save water and enhance crop yield.",
@@ -24,7 +21,6 @@
     "category": "Irrigation"
   },
   {
-    "id": 4,
     "name": "Pesticide",
     "price": "₹700",
     "description": "Effective pesticide for pest control.",
@@ -32,7 +28,6 @@
     "category": "Pesticides"
   },
   {
-    "id": 5,
     "name": "Tractor",
     "price": "₹200000",
     "description": "Heavy-duty tractor for large-scale farming.",
@@ -40,7 +35,6 @@
     "category": "Machinery"
   },
   {
-    "id": 6,
     "name": "Plow",
     "price": "₹15000",
     "description": "Durable plow for soil preparation.",
@@ -48,7 +42,6 @@
     "category": "Tools"
   },
   {
-    "id": 7,
     "name": "Harvesting Machine",
     "price": "₹250000",
     "description": "Efficient harvesting machine for various crops.",
@@ -56,7 +49,6 @@
     "category": "Machinery"
   },
   {
-    "id": 8,
     "name": "Greenhouse",
     "price": "₹80000",
     "description": "Portable greenhouse for controlled environment farming.",
@@ -64,7 +56,6 @@
     "category": "Greenhouses"
   },
   {
-    "id": 9,
     "name": "Compost",
     "price": "₹350",
     "description": "Natural compost for enriching soil.",
@@ -72,7 +63,6 @@
     "category": "Fertilizers"
   },
   {
-    "id": 10,
     "name": "Soil Test Kit",
     "price": "₹200",
     "description": "Kit for testing soil quality and nutrients.",
@@ -80,7 +70,6 @@
     "category": "Tools"
   },
   {
-    "id": 11,
     "name": "Plant Sprayer",
     "price": "₹150",
     "description": "Handheld sprayer for plants and crops.",
@@ -88,7 +77,6 @@
     "category": "Tools"
   },
   {
-    "id": 12,
     "name": "Garden Tools Set",
     "price": "₹1200",
     "description": "Comprehensive set of garden tools.",
@@ -96,7 +84,6 @@
     "category": "Tools"
   },
   {
-    "id": 13,
     "name": "Seedling Tray",
     "price": "₹250",
     "description": "Tray for growing seedlings.",
@@ -104,7 +91,6 @@
     "category": "Seeds"
   },
   {
-    "id": 14,
     "name": "Shade Net",
     "price": "₹500",
     "description": "Shade net to protect plants from excessive sunlight.",
@@ -112,7 +98,6 @@
     "category": "Tools"
   },
   {
-    "id": 15,
     "name": "Organic Pesticide",
     "price": "₹600",
     "description": "Eco-friendly pesticide for pest control.",
@@ -120,7 +105,6 @@
     "category": "Pesticides"
   },
   {
-    "id": 16,
     "name": "Water Pump",
     "price": "₹12000",
     "description": "High-efficiency water pump for irrigation.",
@@ -128,7 +112,6 @@
     "category": "Irrigation"
   },
   {
-    "id": 17,
     "name": "Agricultural Drone",
     "price": "₹400000",
     "description": "Drone for monitoring and managing crops.",
@@ -136,7 +119,6 @@
     "category": "Machinery"
   },
   {
-    "id": 18,
     "name": "Crop Rotation Software",
     "price": "₹7000",
     "description": "Software for managing crop rotation schedules.",
@@ -144,7 +126,6 @@
     "category": "Software"
   },
   {
-    "id": 19,
     "name": "Soil Moisture Sensor",
     "price": "₹3000",
     "description": "Sensor for monitoring soil moisture levels.",
@@ -152,7 +133,6 @@
     "category": "Tools"
   },
   {
-    "id": 20,
     "name": "Farm Management Software",
     "price": "₹15000",
     "description": "Comprehensive software for farm management.",
@@ -160,7 +140,6 @@
     "category": "Software"
   },
   {
-    "id": 21,
     "name": "Vegetable Seeds",
     "price": "₹200",
     "description": "Seeds for various vegetables.",
@@ -168,7 +147,6 @@
     "category": "Seeds"
   },
   {
-    "id": 22,
     "name": "Fruit Tree Saplings",
     "price": "₹400",
     "description": "Saplings for fruit trees.",
@@ -176,7 +154,6 @@
     "category": "Seeds"
   },
   {
-    "id": 23,
     "name": "Bio-Fertilizer",
     "price": "₹600",
     "description": "Bio-based fertilizer for sustainable farming.",
@@ -184,7 +161,6 @@
     "category": "Fertilizers"
   },
   {
-    "id": 24,
     "name": "Crop Protection Net",
     "price": "₹800",
     "description": "Net for protecting crops from pests and birds.",
@@ -192,7 +168,6 @@
     "category": "Tools"
   },
   {
-    "id": 25,
     "name": "Plant Nutrients",
     "price": "₹350",
     "description": "Essential nutrients for plant growth.",
@@ -200,7 +175,6 @@
     "category": "Fertilizers"
   },
   {
-    "id": 26,
     "name": "Tiller",
     "price": "₹25000",
     "description": "Tiller for soil cultivation.",
@@ -208,7 +182,6 @@
     "category": "Machinery"
   },
   {
-    "id": 27,
     "name": "Green Manure",
     "price": "₹500",
     "description": "Organic green manure for enriching soil.",
@@ -216,7 +189,6 @@
     "category": "Fertilizers"
   },
   {
-    "id": 28,
     "name": "Farm Irrigation Kit",
     "price": "₹3000",
     "description": "Complete kit for farm irrigation.",
@@ -224,7 +196,6 @@
     "category": "Irrigation"
   },
   {
-    "id": 29,
     "name": "Garden Sprinkler",
     "price": "₹800",
     "description": "Sprinkler for watering gardens.",
@@ -232,7 +203,6 @@
     "category": "Irrigation"
   },
   {
-    "id": 30,
     "name": "Soil Conditioner",
     "price": "₹450",
     "description": "Conditioner for improving soil structure.",
@@ -240,7 +210,6 @@
     "category": "Fertilizers"
   },
   {
-    "id": 31,
     "name": "Organic Herbicide",
     "price": "₹650",
     "description": "Herbicide for controlling weeds organically.",
@@ -248,7 +217,6 @@
     "category": "Pesticides"
   },
   {
-    "id": 32,
     "name": "Fertilizer Spreader",
     "price": "₹1500",
     "description": "Spreader for evenly distributing fertilizer.",
@@ -256,7 +224,6 @@
     "category": "Tools"
   },
   {
-    "id": 33,
     "name": "Farm Safety Kit",
     "price": "₹1000",
     "description": "Safety kit for farm workers.",
@@ -264,7 +231,6 @@
     "category": "Tools"
   },
   {
-    "id": 34,
     "name": "Drip Irrigation System",
     "price": "₹2000",
     "description": "Drip irrigation system for efficient water use.",
@@ -272,7 +238,6 @@
     "category": "Irrigation"
   },
   {
-    "id": 35,
     "name": "Soil PH Tester",
     "price": "₹500",
     "description": "Tester for measuring soil pH levels.",
@@ -280,7 +245,6 @@
     "category": "Tools"
   },
   {
-    "id": 36,
     "name": "Electric Tiller",
     "price": "₹35000",
     "description": "Electric tiller for easy soil cultivation.",
@@ -288,7 +252,6 @@
     "category": "Machinery"
   },
   {
-    "id": 37,
     "name": "Beehive Box",
     "price": "₹5000",
     "description": "Beehive box for honey production.",
@@ -296,7 +259,6 @@
     "category": "Beehives"
   },
   {
-    "id": 38,
     "name": "Solar Water Pump",
     "price": "₹25000",
     "description": "Solar-powered water pump for sustainable irrigation.",
@@ -304,7 +266,6 @@
     "category": "Pumps"
   },
   {
-    "id": 39,
     "name": "Composter Bin",
     "price": "₹4000",
     "description": "Large composter bin for organic waste.",
@@ -312,7 +273,6 @@
     "category": "Composters"
   },
   {
-    "id": 40,
     "name": "Weather Station Kit",
     "price": "₹12000",
     "description": "Complete weather station kit for farm monitoring.",
@@ -320,7 +280,6 @@
     "category": "Weather Stations"
   },
   {
-    "id": 41,
     "name": "Automatic Sprayer",
     "price": "₹7500",
     "description": "Battery-operated automatic sprayer for large farms.",
@@ -328,7 +287,6 @@
     "category": "Sprayers"
   },
   {
-    "id": 42,
     "name": "Cultivator",
     "price": "₹20000",
     "description": "High-quality cultivator for soil tillage.",
@@ -336,7 +294,6 @@
     "category": "Cultivators"
   },
   {
-    "id": 43,
     "name": "Solar Panel Kit",
     "price": "₹45000",
     "description": "Solar panel kit for powering farm equipment.",
@@ -344,7 +301,6 @@
     "category": "Solar Panels"
   },
   {
-    "id": 44,
     "name": "Advanced Greenhouse",
     "price": "₹120000",
     "description": "High-tech greenhouse with climate control.",
@@ -352,7 +308,6 @@
     "category": "Greenhouses"
   },
   {
-    "id": 45,
     "name": "Organic Compost",
     "price": "₹550",
     "description": "Rich organic compost for plant growth.",
@@ -360,7 +315,6 @@
     "category": "Composters"
   },
   {
-    "id": 46,
     "name": "Mini Harvester",
     "price": "₹300000",
     "description": "Compact harvester for small-scale farms.",
@@ -368,7 +322,6 @@
     "category": "Harvesters"
   },
   {
-    "id": 47,
     "name": "Vegetable Fertilizer",
     "price": "₹400",
     "description": "Specialized fertilizer for vegetable crops.",
@@ -376,7 +329,6 @@
     "category": "Fertilizers"
   },
   {
-    "id": 48,
     "name": "Farm Pond Liner",
     "price": "₹18000",
     "description": "Durable liner for farm ponds.",
@@ -384,7 +336,6 @@
     "category": "Pond Liners"
   },
   {
-    "id": 49,
     "name": "Organic Soil Enhancer",
     "price": "₹700",
     "description": "Natural enhancer for improving soil health.",
@@ -392,7 +343,6 @@
     "category": "Fertilizers"
   },
   {
-    "id": 50,
     "name": "Multi-Crop Planter",
     "price": "₹50000",
     "description": "Versatile planter for different crop types.",
@@ -400,7 +350,6 @@
     "category": "Planters"
   },
   {
-    "id": 51,
     "name": "Drip Tape Irrigation",
     "price": "₹6000",
     "description": "Drip tape system for precision irrigation.",
@@ -408,7 +357,6 @@
     "category": "Drip Irrigation"
   },
   {
-    "id": 52,
     "name": "Tractor Attachments",
     "price": "₹30000",
     "description": "Set of essential attachments for tractors.",
@@ -416,7 +364,6 @@
     "category": "Tractors"
   },
   {
-    "id": 53,
     "name": "Automatic Seeder",
     "price": "₹75000",
     "description": "Automatic seeder for fast planting.",
@@ -424,7 +371,6 @@
     "category": "Planters"
   },
   {
-    "id": 54,
     "name": "Solar Powered Sprayer",
     "price": "₹12000",
     "description": "Sprayer powered by solar energy.",
@@ -432,7 +378,6 @@
     "category": "Sprayers"
   },
   {
-    "id": 55,
     "name": "Weatherproof Seedling Tray",
     "price": "₹500",
     "description": "Durable seedling tray for outdoor use.",

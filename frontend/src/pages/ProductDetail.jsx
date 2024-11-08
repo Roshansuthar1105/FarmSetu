@@ -1,18 +1,52 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import MyNavbar from '../components/MyNavbar';
 import Footer from '../components/Footer';
-import products from '../data/products.json';
+// import products from '../data/products.json';
 
 const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const product = products.find((p) => p.id === parseInt(id, 10));
-
+  const [product, setProduct] = useState({});
+  useEffect(() => {
+    fetchProduct();
+  })
+  const fetchProduct = async () => {
+    const url = `http://localhost:5000/api/products/${id}`;
+    try {
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await response.json();
+      setProduct(data);
+      console.log(data);
+    } catch (error) {
+      console.error('There was a problem with the fetch operation:', error);
+    }
+  }
   if (!product) {
     return <div>Product not found</div>;
   }
-
+  const addToCart = async (productId) => {
+    try {
+      const response = await fetch(`http://localhost:5000/api/cart/add/${productId}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      if (!response.ok) {
+        throw new Error('Failed to add product to cart');
+      }
+      const data = await response.json();
+      console.log(data);
+      alert('Product added to cart successfully!');
+    } catch (error) {
+      console.error('Error adding product to cart:', error);
+      alert('Failed to add product to cart. Please try again.');
+    }
+  };
   const handleChatClick = () => {
     navigate('/chat');
   };
@@ -23,13 +57,13 @@ const ProductDetail = () => {
       <div className="container mx-auto px-4 py-8 mt-16">
         <div className="bg-gray-700 rounded-lg shadow-lg overflow-hidden flex flex-col gap-8 md:flex-row">
           <div className="w-1/4 h-1/1 object-contain">
-          <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
+            <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
           </div>
           <div className="p-4">
             <h2 className="text-2xl font-bold mb-4">{product.name}</h2>
             <p className="text-gray-400 mb-4">{product.description}</p>
             <p className="text-xl font-bold mb-4">{product.price}</p>
-            
+
             {/* Additional Details */}
             <div className="mb-4">
               <h3 className="text-lg font-semibold mb-2">Additional Details:</h3>
@@ -45,6 +79,12 @@ const ProductDetail = () => {
               className="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition-colors"
             >
               Chat with the Seller
+            </button>
+            <button
+              // onClick={() => addToCart(product.id)}
+              className="bg-green-600 ml-2 text-white py-2 px-4 rounded hover:bg-green-700 transition-colors"
+            >
+              Add to Cart
             </button>
           </div>
         </div>
