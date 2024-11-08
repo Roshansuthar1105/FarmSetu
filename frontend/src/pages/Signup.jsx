@@ -6,19 +6,22 @@ import { cn } from '../lib/util';
 import MyNavbar from "../components/MyNavbar";
 import Footer from "../components/Footer";
 import { IconBrandGoogle, IconEye, IconEyeOff } from "@tabler/icons-react";
-import { Radio, RadioGroup } from "@nextui-org/react";
+import { Button, Radio, RadioGroup } from "@nextui-org/react";
 import useSignup from "../hooks/useSignup";
+import avatar from "../data/avatar.json";
 export default function Signup() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     password: '',
     confirmPassword: '',
+    selectedAvatar:'',
     role: 'farmer' // Set the default role to 'farmer'
   });
   const {loading, signup}= useSignup();
   const [error, setError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [ showAvatarContainer , setShowAvatarContainer] =useState();
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -34,7 +37,13 @@ export default function Signup() {
       role: value // Update role in form data
     }));
   };
-
+  const handleAvatar = (avatar) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      selectedAvatar: avatar // Update selectedAvatar in form data
+    }));
+    setShowAvatarContainer(!showAvatarContainer);
+  };
   const handleSubmit = async(e) => {
     e.preventDefault();
     console.log(formData);
@@ -50,11 +59,16 @@ export default function Signup() {
   return (
     <div className="bg-gray-800 pt-20 dark:bg-black">
       <MyNavbar />
-      <div className="max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-gray-100 dark:bg-black my-20">
+      <div className="max-w-md w-full relative mx-auto overflow-hidden rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-gray-100 dark:bg-black my-20">
         <h2 className="font-bold text-xl text-green-800 dark:text-neutral-200">
           Welcome to FarmSetu
         </h2>
-        <form className="my-8" onSubmit={handleSubmit}>
+        { 
+          formData.selectedAvatar && (
+            <img className="absolute top-3 right-3 h-12 w-12 rounded-full border-3 border-green-700 " src={formData.selectedAvatar} alt="Selected Avatar" onClick={()=>setShowAvatarContainer(true)} />
+          )
+        }
+        <form className="my-8 " onSubmit={handleSubmit}>
           <LabelInputContainer className="mb-4">
             <Label htmlFor="name">Name</Label>
             <Input
@@ -91,7 +105,26 @@ export default function Signup() {
               <Radio value="cooperative">Cooperative</Radio>
             </RadioGroup>
           </LabelInputContainer>
-
+          <LabelInputContainer className="mb-4">
+            {/* <Button onClick={() => setShowAvatarContainer(true)} >Select Avatar</Button> */}
+          
+                <h3 className="text-lg font-bold mb-4">Select Your Avatar</h3>
+                <div className="grid grid-cols-5 gap-4">
+                  {avatar.map((avatar) => (
+                    <div className={`rounded-full overflow-hidden ${formData.selectedAvatar===avatar.avatar ? 'border-green-700 border-3':'border-slate-0' }  border-3 h-12 w-12`} >
+                    <img
+                      key={avatar.id}
+                      src={avatar.avatar}
+                      alt={`Avatar ${avatar.id}`}
+                      className="w-full h-auto rounded-lg cursor-pointer"
+                      onClick={() => handleAvatar(avatar.avatar)}
+                      style={{height:"50px",width:"50px"}}
+                      />
+                      </div>
+                  ))}
+                </div>
+            
+          </LabelInputContainer>
           <LabelInputContainer className="mb-4 relative">
             <Label htmlFor="password">Password</Label>
             <Input

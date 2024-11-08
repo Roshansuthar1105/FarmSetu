@@ -86,7 +86,7 @@ export default function MyNavbar() {
                   >
                     <img
                       className="h-10 w-10 rounded-full border-2 border-secondary"
-                      src={authUser.avatarUrl || "https://cdn-icons-png.flaticon.com/128/1154/1154966.png"}
+                      src={authUser.avatar || "https://cdn-icons-png.flaticon.com/128/1154/1154966.png"}
                       alt={authUser.name}
                     />
                   </button>

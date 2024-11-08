@@ -18,6 +18,7 @@ export const login= async(req, res)=>{
             _id:user._id,
             name:user.name,
             email:user.email,
+            avatar:user.avatar,
         });
 
     }
@@ -28,7 +29,7 @@ export const login= async(req, res)=>{
 }
 export const signup= async(req, res)=>{
     try{
-        const { name, email, password, role, confirmPassword} = req.body;
+        const { name, email, password, role, confirmPassword,avatar} = req.body;
         if(password !=confirmPassword){
             return res.status(400).json({error:`Passwords don't match`});
         }
@@ -45,12 +46,13 @@ export const signup= async(req, res)=>{
             name,
             email,
             password:hashedPassword,
-            role
+            role,
+            avatar
         });
         if(newUser){
             generateTokenAndSetCookie(newUser._id, res);
             await newUser.save();
-        res.status(201).json({_id:newUser._id, name:name, email:email, role:role});
+        res.status(201).json({_id:newUser._id, name:name, email:email, role:role,avatar:avatar});
         }
         else{
             res.status(400).json({error:'Invalid user data'});

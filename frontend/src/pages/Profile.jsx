@@ -50,7 +50,7 @@ const Profile = () => {
                 <div className="bg-gray-700 rounded-lg shadow-lg p-8 max-w-4xl mx-auto">
                     <div className="flex flex-col items-center">
                         <img 
-                            src={authUser?.avatarUrl || "https://cdn-icons-png.flaticon.com/128/9187/9187466.png"}
+                            src={authUser?.avatar || "https://cdn-icons-png.flaticon.com/128/9187/9187466.png"}
                             alt="Profile"
                             className="w-32 h-32 rounded-full border-4 border-blue-500"
                         />

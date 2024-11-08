@@ -28,6 +28,11 @@ const userSchema = new mongoose.Schema({
         type: Date,
         default: Date.now, // Sets the default value to the current date and time
     },
+    avatar:{
+        type :String,
+        required:true,
+        default:'https://avataaars.io/?avatarStyle=Transparent&topType=Turban&accessoriesType=Round&hatColor=Blue01&facialHairType=BeardMajestic&facialHairColor=Blonde&clotheType=ShirtVNeck&clotheColor=PastelRed&eyeType=Squint&eyebrowType=RaisedExcitedNatural&mouthType=Smile&skinColor=Brown'
+    },
     cart: {
         type: [String], // Array of MongoDB IDs of products
     },

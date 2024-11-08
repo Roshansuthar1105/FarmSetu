@@ -6,8 +6,9 @@ import { useAuthContext } from '../context/AuthContext';
 const useSignup = () => {
   const [loading, setLoading] = useState(false);
   const {setAuthUser}= useAuthContext();
-  const signup = async ({ name, email, password, confirmPassword, role }) => {
-    const success = handleInputErrors({ name, email, password, confirmPassword, role });
+  const signup = async ({ name, email, password, confirmPassword, role ,selectedAvatar }) => {
+    const avatar = selectedAvatar;
+    const success = handleInputErrors({ name, email, password, confirmPassword, role,avatar });
     if (!success) {
       return;
     }
@@ -20,6 +21,7 @@ const useSignup = () => {
         password,
         confirmPassword,
         role,
+        avatar,
       });
 
       if (response.status === 201) {
@@ -44,8 +46,8 @@ const useSignup = () => {
 
 export default useSignup;
 
-function handleInputErrors({ name, email, password, confirmPassword, role }) {
-  if (!name || !email || !password || !confirmPassword || !role) {
+function handleInputErrors({ name, email, password, confirmPassword, role,avatar }) {
+  if (!name || !email || !password || !confirmPassword || !role ) {
     toast.error('Please fill in all the fields');
     return false;
   }
@@ -55,6 +57,10 @@ function handleInputErrors({ name, email, password, confirmPassword, role }) {
   }
   if (password.length < 6) {
     toast.error('Password must be at least 6 characters');
+    return false;
+  }
+  if(!avatar){
+    toast.error("Please Select Avatar");
     return false;
   }
   return true;
