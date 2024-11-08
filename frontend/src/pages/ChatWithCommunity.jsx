@@ -44,6 +44,10 @@ function ChatWithCommunity() {
         fetchCurrentChats();
     },[selectedUser])
     useEffect(() => {
+        const interval = setInterval(fetchCurrentChats, 10000);
+        return () => clearInterval(interval);
+    }, [selectedUser]);
+    useEffect(() => {
         if (chatContainerRef.current) {
             chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
         }
@@ -110,8 +114,8 @@ function ChatWithCommunity() {
 
     <div className='bg-gray-800 mx-auto w-full min-w-full text-white' >
         <MyNavbar/>
-        <div>
-        <h1 className="text-3xl font-bold text-center text-gray-200 mt-20">Chat With Community</h1>
+        <div className='pt-20'>
+        <h1 className="text-3xl font-bold text-center text-gray-200 my-4">Chat With Community</h1>
         <div className="flex flex-1 mt-3 mb-16 mx-8 overflow-hidden sm:mx-16 lg:mx-32">
                 <div className="w-full md:w-1/4 bg-gray-700  relative text-gray-300 shadow-lg rounded-lg border border-gray-600 transition-transform duration-300 ease-in-out hover:shadow-xl overflow-x-auto" 
                     style={{ 
