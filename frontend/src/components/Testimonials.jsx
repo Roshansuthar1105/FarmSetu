@@ -5,13 +5,13 @@ const testimonials = [
   {
     name: 'Raj Patel',
     handle: '@rajpatel',
-    text: "🌱 AgriPulse has revolutionized the way I manage my farm. The real-time market information is invaluable. I can quickly access price trends, making informed decisions about when to sell my crops. The negotiation tools have also helped me secure better deals. Highly recommended!",
-    link: 'www.agripulse.com',
+    text: "🌱 FarmSetu has revolutionized the way I manage my farm. The real-time market information is invaluable. I can quickly access price trends, making informed decisions about when to sell my crops. The negotiation tools have also helped me secure better deals. Highly recommended!",
+    link: 'www.FarmSetu.com',
   },
   {
     name: 'Ananya Singh',
     handle: '@ananyasingh',
-    text: 'AgriPulse is a game-changer for farmers. The price negotiation tools are superb, and the market trend analysis is spot-on. I’ve been able to adjust my strategies based on the latest data, which has improved my farm’s profitability significantly.',
+    text: 'FarmSetu is a game-changer for farmers. The price negotiation tools are superb, and the market trend analysis is spot-on. I’ve been able to adjust my strategies based on the latest data, which has improved my farm’s profitability significantly.',
   },
   {
     name: 'Vikram Yadav',
@@ -21,18 +21,18 @@ const testimonials = [
   {
     name: 'Neha Sharma',
     handle: '@neha_sharma',
-    text: 'I’ve been using AgriPulse for a few months, and it’s been extremely helpful in tracking market trends. The app’s real-time updates and historical data analysis have made a huge difference in how I plan my farming activities.',
+    text: 'I’ve been using FarmSetu for a few months, and it’s been extremely helpful in tracking market trends. The app’s real-time updates and historical data analysis have made a huge difference in how I plan my farming activities.',
   },
   {
     name: 'Amit Kumar',
     handle: '@amitkumar',
-    text: 'AgriPulse is a must-have for every farmer. The price discovery features are top-notch! The app provides a comprehensive view of market conditions and price fluctuations, which has been invaluable for my farm management.',
+    text: 'FarmSetu is a must-have for every farmer. The price discovery features are top-notch! The app provides a comprehensive view of market conditions and price fluctuations, which has been invaluable for my farm management.',
   },
   {
     name: 'Ravi Gupta',
     handle: '@ravigupta',
-    text: 'The best agricultural app I’ve come across. It’s packed with features that really help with farm management. From real-time price updates to trend analysis, AgriPulse covers it all. It has become an essential tool for my farming operations.',
-    link: 'www.agripulse.com',
+    text: 'The best agricultural app I’ve come across. It’s packed with features that really help with farm management. From real-time price updates to trend analysis, FarmSetu covers it all. It has become an essential tool for my farming operations.',
+    link: 'www.FarmSetu.com',
   },
   {
     name: 'Sita Devi',
@@ -42,7 +42,7 @@ const testimonials = [
   {
     name: 'Arjun Verma',
     handle: '@arjun_verma',
-    text: 'AgriPulse has made it so much easier to get accurate market information. The app’s analytics tools help me understand market trends better and make data-driven decisions that improve my farm’s profitability.',
+    text: 'FarmSetu has made it so much easier to get accurate market information. The app’s analytics tools help me understand market trends better and make data-driven decisions that improve my farm’s profitability.',
   },
   {
     name: 'Maya Rao',
@@ -52,7 +52,7 @@ const testimonials = [
   {
     name: 'Deepak Singh',
     handle: '@deepaksingh',
-    text: 'AgriPulse is a brilliant resource for farmers. It’s user-friendly and provides valuable market data. I especially like the price comparison features that help me find the best prices for my produce.',
+    text: 'FarmSetu is a brilliant resource for farmers. It’s user-friendly and provides valuable market data. I especially like the price comparison features that help me find the best prices for my produce.',
   },
   {
     name: 'Kiran Patel',
@@ -62,7 +62,7 @@ const testimonials = [
   {
     name: 'Priya Reddy',
     handle: '@priyareddy',
-    text: 'AgriPulse has transformed how we approach farming. The app is packed with features that genuinely help. The real-time price updates and market insights have made a significant impact on our farming strategy.',
+    text: 'FarmSetu has transformed how we approach farming. The app is packed with features that genuinely help. The real-time price updates and market insights have made a significant impact on our farming strategy.',
   },
   {
     name: 'Mohammed Ali',
@@ -72,12 +72,12 @@ const testimonials = [
   {
     name: 'Sunita Rao',
     handle: '@sunitarao',
-    text: 'The market information and price tools are exactly what we needed. Highly recommend AgriPulse! The app provides detailed insights into market trends and price changes, helping us make better decisions for our farm.',
+    text: 'The market information and price tools are exactly what we needed. Highly recommend FarmSetu! The app provides detailed insights into market trends and price changes, helping us make better decisions for our farm.',
   },
   {
     name: 'Rajesh Kumar',
     handle: '@rajeshkumar',
-    text: 'AgriPulse is a reliable source for market trends and price updates. It has become an essential tool for us. The app’s user-friendly interface and accurate data have made managing our farm much easier.',
+    text: 'FarmSetu is a reliable source for market trends and price updates. It has become an essential tool for us. The app’s user-friendly interface and accurate data have made managing our farm much easier.',
   },
   {
     name: 'Anil Sharma',
@@ -87,7 +87,7 @@ const testimonials = [
   {
     name: 'Manisha Patel',
     handle: '@manishapatel',
-    text: 'AgriPulse has been a valuable asset for my farm. The insights and tools are excellent! The app’s real-time updates and detailed market information have greatly improved our productivity and decision-making.',
+    text: 'FarmSetu has been a valuable asset for my farm. The insights and tools are excellent! The app’s real-time updates and detailed market information have greatly improved our productivity and decision-making.',
   },
   {
     name: 'Rohit Singh',
@@ -102,7 +102,7 @@ const testimonials = [
   {
     name: 'Nitin Gupta',
     handle: '@nitingupta',
-    text: 'AgriPulse provides all the information I need to manage my farm effectively. Fantastic app! The app’s detailed market insights and price discovery tools have made a significant difference in our farming operations.',
+    text: 'FarmSetu provides all the information I need to manage my farm effectively. Fantastic app! The app’s detailed market insights and price discovery tools have made a significant difference in our farming operations.',
   },
   {
     name: 'Sanjay Sharma',
@@ -112,7 +112,7 @@ const testimonials = [
   {
     name: 'Seema Patel',
     handle: '@seemapatel',
-    text: 'AgriPulse has made it so much easier to manage farm activities and get market data in real time. The app’s user-friendly interface and accurate price updates are essential for making informed farming decisions.',
+    text: 'FarmSetu has made it so much easier to manage farm activities and get market data in real time. The app’s user-friendly interface and accurate price updates are essential for making informed farming decisions.',
   },
   {
     name: 'Ajay Singh',
@@ -127,12 +127,12 @@ const testimonials = [
   {
     name: 'Vijay Kumar',
     handle: '@vijaykumar',
-    text: 'AgriPulse is a fantastic tool for modern farmers. The real-time updates and features are very helpful. The app’s comprehensive market analysis and price forecasting tools have greatly enhanced our farming efficiency.',
+    text: 'FarmSetu is a fantastic tool for modern farmers. The real-time updates and features are very helpful. The app’s comprehensive market analysis and price forecasting tools have greatly enhanced our farming efficiency.',
   },
   {
     name: 'Pooja Sharma',
     handle: '@poojasharma',
-    text: 'I love using AgriPulse. It provides valuable insights and is very easy to use. The app’s real-time data and market analysis tools have been essential for making informed decisions and improving our farm’s productivity.',
+    text: 'I love using FarmSetu. It provides valuable insights and is very easy to use. The app’s real-time data and market analysis tools have been essential for making informed decisions and improving our farm’s productivity.',
   },
   {
     name: 'Gaurav Patel',
@@ -142,7 +142,7 @@ const testimonials = [
   {
     name: 'Divya Reddy',
     handle: '@divyareddy',
-    text: 'AgriPulse has been a great addition to our farming toolkit. The features are very useful. The app’s real-time updates and comprehensive market analysis have greatly improved our decision-making and farm management.',
+    text: 'FarmSetu has been a great addition to our farming toolkit. The features are very useful. The app’s real-time updates and comprehensive market analysis have greatly improved our decision-making and farm management.',
   },
   {
     name: 'Manoj Yadav',
@@ -152,7 +152,7 @@ const testimonials = [
   {
     name: 'Sonia Singh',
     handle: '@soniasingh',
-    text: 'AgriPulse is an amazing app with valuable features for farm management. Highly recommended! The app’s detailed market analysis and price tracking tools have significantly improved our farming operations.',
+    text: 'FarmSetu is an amazing app with valuable features for farm management. Highly recommended! The app’s detailed market analysis and price tracking tools have significantly improved our farming operations.',
   },
   {
     name: 'Amit Sharma',
@@ -167,17 +167,17 @@ const testimonials = [
   {
     name: 'Ashok Gupta',
     handle: '@ashokgupta',
-    text: 'AgriPulse is an excellent resource for farmers. The features are very helpful for managing farm activities. The app’s comprehensive market data and real-time price updates have been crucial for making informed decisions.',
+    text: 'FarmSetu is an excellent resource for farmers. The features are very helpful for managing farm activities. The app’s comprehensive market data and real-time price updates have been crucial for making informed decisions.',
   },
   {
     name: 'Preeti Rao',
     handle: '@preetirao',
-    text: 'The app’s market insights and tools are incredibly useful. I highly recommend AgriPulse! The real-time updates and detailed analysis have greatly improved our farm management and decision-making processes.',
+    text: 'The app’s market insights and tools are incredibly useful. I highly recommend FarmSetu! The real-time updates and detailed analysis have greatly improved our farm management and decision-making processes.',
   },
   {
     name: 'Harish Kumar',
     handle: '@harishkumar',
-    text: 'AgriPulse has made farming much easier with its real-time data and user-friendly features. The app’s comprehensive market analysis and price tracking tools have been essential for optimizing our farming strategies.',
+    text: 'FarmSetu has made farming much easier with its real-time data and user-friendly features. The app’s comprehensive market analysis and price tracking tools have been essential for optimizing our farming strategies.',
   },
   {
     name: 'Neelam Singh',
@@ -187,12 +187,12 @@ const testimonials = [
   {
     name: 'Deepika Patel',
     handle: '@deepikapatel',
-    text: 'I am very impressed with AgriPulse. It’s a great tool for farm management and market information. The app’s real-time price updates and comprehensive market analysis have been invaluable for improving our farming operations.',
+    text: 'I am very impressed with FarmSetu. It’s a great tool for farm management and market information. The app’s real-time price updates and comprehensive market analysis have been invaluable for improving our farming operations.',
   },
   {
     name: 'Rajiv Sharma',
     handle: '@rajivsharma',
-    text: 'AgriPulse provides all the tools and information I need to manage my farm effectively. The real-time updates and detailed market insights have significantly improved our farm management and decision-making.',
+    text: 'FarmSetu provides all the tools and information I need to manage my farm effectively. The real-time updates and detailed market insights have significantly improved our farm management and decision-making.',
   },
 ];
 
@@ -208,7 +208,7 @@ const Testimonials = () => {
   return (
     <div className="bg-gray-800 text-white p-8 relative overflow-hidden">
       <h2 className="text-3xl font-bold mb-4 text-center text-green-300">Loved by thousands of farmers</h2>
-      <p className="text-center mb-8 text-gray-300">Here's what some of our users have to say about AgriPulse.</p>
+      <p className="text-center mb-8 text-gray-300">Here's what some of our users have to say about FarmSetu.</p>
       <div className="relative overflow-hidden h-[500px]"> {/* Adjust height as needed */}
         <motion.div
           className="absolute top-0 left-0 right-0 grid grid-cols-1 md:grid-cols-3 gap-6"
