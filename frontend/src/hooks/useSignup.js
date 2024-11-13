@@ -15,7 +15,7 @@ const useSignup = () => {
 
     setLoading(true);
     try {
-      const response = await axios.post('/api/auth/signup', {
+      const response = await axios.post('https://hotel-oryv.onrender.com/api/auth/signup', {
         name,
         email,
         password,
@@ -27,7 +27,6 @@ const useSignup = () => {
       if (response.status === 201) {
         toast.success('Signup successful!');
         // You can redirect the user or handle success as needed
-        // console.log(response.data);
         const data= response.data;
         localStorage.setItem('user', JSON.stringify(data));
         setAuthUser(data);

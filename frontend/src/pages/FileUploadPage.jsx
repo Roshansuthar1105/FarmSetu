@@ -9,7 +9,7 @@ export default function FileUploadPage() {
 
   const handleFileUpload = (uploadedFiles) => {
     setFiles(uploadedFiles);
-    console.log(uploadedFiles);
+    // console.log(uploadedFiles);
   };
 
   return (

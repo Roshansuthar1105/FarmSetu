@@ -10,7 +10,7 @@ const ProductDetail = () => {
   const [product, setProduct] = useState({});
   useEffect(() => {
     fetchProduct();
-  })
+  },[])
   const fetchProduct = async () => {
     const url = `https://hotel-oryv.onrender.com/api/products/${id}`;
     try {
@@ -20,7 +20,6 @@ const ProductDetail = () => {
       }
       const data = await response.json();
       setProduct(data);
-      console.log(data);
     } catch (error) {
       console.error('There was a problem with the fetch operation:', error);
     }
@@ -40,7 +39,6 @@ const ProductDetail = () => {
         throw new Error('Failed to add product to cart');
       }
       const data = await response.json();
-      console.log(data);
       alert('Product added to cart successfully!');
     } catch (error) {
       console.error('Error adding product to cart:', error);
@@ -80,12 +78,12 @@ const ProductDetail = () => {
             >
               Chat with the Seller
             </button>
-            <button
+            {/* <button
               // onClick={() => addToCart(product.id)}
               className="bg-green-600 ml-2 text-white py-2 px-4 rounded hover:bg-green-700 transition-colors"
             >
               Add to Cart
-            </button>
+            </button> */}
           </div>
         </div>
       </div>

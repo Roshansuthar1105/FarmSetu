@@ -1,11 +1,11 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 const pricingPlans = [
   {
     title: 'Basic Plan',
     price: '₹1500/month',
     features: [
-      'Access to Crop Management Tools',
+      'Access to Agriculture Tools',
       'Market Insights & Trends',
       'Weekly Weather Updates',
       'Email Support',
@@ -28,7 +28,7 @@ const pricingPlans = [
   },
   {
     title: 'Enterprise Plan',
-    price: 'Contact Us',
+    price: '₹5000/month',
     features: [
       'All Pro Plan Features',
       'Custom Solutions & Integrations',
@@ -41,8 +41,14 @@ const pricingPlans = [
   },
 ];
 
-export default function Pricing() {
+export default function Payment() {
+  const [selectedPlan, setSelectedPlan] = useState(pricingPlans[0]);
   const navigate = useNavigate();
+
+  const handlePlanSelect = (plan) => {
+    setSelectedPlan(plan);
+  };
+
   return (
     <section className="pricing py-12 px-6 md:py-24 md:px-12 bg-green-950 text-white">
       <div className="container mx-auto text-center">
@@ -55,6 +61,7 @@ export default function Pricing() {
                 index === 1 ? 'transform scale-110' : 'transform scale-95'
               }`}
               style={{ minHeight: '400px' }}
+              onClick={() => handlePlanSelect(plan)}
             >
               {/* Enhanced Animated Gradient Border for the middle card */}
               {index === 1 && (
@@ -100,7 +107,7 @@ export default function Pricing() {
                 <div className="flex justify-center mt-auto">
                   <button
                     className={`w-full py-3 px-6 rounded-lg text-white ${plan.buttonColor} transform hover:scale-105 transition-transform duration-300`}
-                    onClick={() => navigate('/payment')}
+                    onClick={()=>setSelectedPlan(plan)}
                   >
                     {plan.buttonText}
                   </button>
@@ -110,6 +117,23 @@ export default function Pricing() {
           ))}
         </div>
       </div>
+      {selectedPlan && (
+        <div className="selected-plan-section py-12 px-6 md:py-24 md:px-12 bg-green-950 text-white">
+          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-green-200">Selected Plan: {selectedPlan.title}</h2>
+          <div className="flex flex-col items-center space-y-4">
+            <div className="text-center">
+              <h3 className="text-2xl font-semibold mb-2 text-green-200">Selected Plan: {selectedPlan.title}</h3>
+              <p className="text-xl font-semibold mb-4 text-green-100">Price: {selectedPlan.price}</p>
+            </div>
+            <button
+              className="w-full py-3 px-6 rounded-lg text-white bg-green-600 hover:bg-green-900 transform hover:scale-105 transition-transform duration-300"
+              onClick={() => navigate('/payment-processing')}
+            >
+              Make Payment
+            </button>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

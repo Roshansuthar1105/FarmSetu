@@ -49,18 +49,12 @@ const CommunityForum = () => {
     })
     .then(response => response.json())
     .then(data => {
-      console.log('Success:', data);
+      // console.log('Success:', data);
       setNewPost(prevState => ({...prevState, title: '', message: ''}));
     })
     .catch((error) => {
       console.error('Error:', error);
     });
-    // const postId = posts.length + 1;
-    // const date = new Date().toISOString().split('T')[0];
-    // const post = { ...newPost, id: postId, date };
-    // setPosts([...posts, post]);
-    // console.log("your post",post);
-    // setNewPost({ title: '', message: '', author: '' });
     setIsModalOpen(false); // Close the modal after submission
   };
 

@@ -32,6 +32,7 @@ import FAQ from './components/FAQ';
 import Privacy from './components/Privacy';
 import ChatWithCommunity from './pages/ChatWithCommunity';
 import UserPosts from './pages/UserPosts.jsx';
+import Payment from './pages/Payment.jsx';
 export default function App() {
   const { authUser } = useAuthContext();
   const [chatBotVisible, setChatBotVisible] = useState(false);
@@ -51,6 +52,7 @@ export default function App() {
         <Route path="/chat" element={<Chat />} />
         <Route path="/localchat" element={<ChatWithCommunity />} />
         <Route path="/news" element={<NewsFeed />} />
+        <Route path="/payment" element={<> <MyNavbar/> <Payment /> <Footer/> </> } />
         <Route path="/weather" element={<Weather />} />
         <Route path="/resources" element={<Resources />} />
         <Route path="/courses/:id" element={<CourseDetails />} />
@@ -72,6 +74,7 @@ export default function App() {
         <Route path="/team" element={<WorkInProgress/>} />
         <Route path="/careers" element={<WorkInProgress/>} />
         <Route path="/press" element={<WorkInProgress/>} />
+        <Route path="/payment-processing" element={<WorkInProgress/>} />
         <Route path="*" element={<NotFound/>} />
       </Routes>
       <Toaster />

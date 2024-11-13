@@ -9,7 +9,7 @@ const useLogout= ()=>{
     const logout= async ()=>{
         setLoading(false);
         try{
-            const res= await axios.post('/api/auth/logout');
+            const res= await axios.post('https://hotel-oryv.onrender.com/api/auth/logout');
             const data= res.data;
             if(data.error){
                 throw new Error(data.error);

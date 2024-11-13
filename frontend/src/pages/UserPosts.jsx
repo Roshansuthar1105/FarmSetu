@@ -13,9 +13,8 @@ function UserPosts() {
     const navigate = useNavigate();
     useEffect(() => {
         const fetchPosts = async () => {
-            console.log("email", authUser.email);
             try {
-                const response = await fetch(`/api/community/posts`);
+                const response = await fetch(`https://hotel-oryv.onrender.com/api/community/posts`);
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -31,7 +30,6 @@ function UserPosts() {
         fetchPosts();
     }, []);
     const deletePost = async (postId) => {
-        console.log("post" ,postId)
         try {
             const response = await fetch(`https://hotel-oryv.onrender.com/api/community/posts/${postId}`, {
                 method: 'DELETE',
