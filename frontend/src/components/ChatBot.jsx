@@ -6,7 +6,7 @@ const genAI = new GoogleGenerativeAI('AIzaSyC6tmEypaRp_iI3qR605anTGNOzoxD7erQ');
 const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
 
 const predefinedQuestions = [
-  'What are the best crops to grow in this season?',
+  'What are the best crops to grow in summer season?',
   'How can I improve soil quality?',
   'What are the current market prices for wheat?',
   'Can you provide tips for pest control?',

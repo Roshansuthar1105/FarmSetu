@@ -12,7 +12,7 @@ function ChatWithCommunity() {
     const [selectedUser ,setSelectedUser]=useState(`${currentUserId}`);
     const [filteredUser,setFilteredUser]=useState([]);
     const fetchUsers = async ()=>{
-        const API = "http://localhost:5000";
+        const API = "https://hotel-oryv.onrender.com";
         try {
             fetch(`${API}/api/users/all`, {
                 method: 'GET',
@@ -63,7 +63,7 @@ function ChatWithCommunity() {
         }
     };
     const fetchCurrentChats = async ()=>{
-    const API = "http://localhost:5000";
+    const API = "https://hotel-oryv.onrender.com";
     try {
         const response = await fetch(`${API}/api/chats/${selectedUser}`, {
             method: 'POST',
@@ -91,7 +91,7 @@ function ChatWithCommunity() {
             };
     
             try {
-                const response = await fetch('http://localhost:5000/api/chats', {
+                const response = await fetch('https://hotel-oryv.onrender.com/api/chats', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

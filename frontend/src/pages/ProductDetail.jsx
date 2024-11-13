@@ -12,7 +12,7 @@ const ProductDetail = () => {
     fetchProduct();
   })
   const fetchProduct = async () => {
-    const url = `http://localhost:5000/api/products/${id}`;
+    const url = `https://hotel-oryv.onrender.com/api/products/${id}`;
     try {
       const response = await fetch(url);
       if (!response.ok) {
@@ -30,7 +30,7 @@ const ProductDetail = () => {
   }
   const addToCart = async (productId) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/cart/add/${productId}`, {
+      const response = await fetch(`https://hotel-oryv.onrender.com/api/cart/add/${productId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

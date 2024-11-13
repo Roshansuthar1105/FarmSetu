@@ -33,7 +33,7 @@ function UserPosts() {
     const deletePost = async (postId) => {
         console.log("post" ,postId)
         try {
-            const response = await fetch(`http://localhost:5000/api/community/posts/${postId}`, {
+            const response = await fetch(`https://hotel-oryv.onrender.com/api/community/posts/${postId}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',

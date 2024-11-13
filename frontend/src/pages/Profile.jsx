@@ -17,7 +17,7 @@ const Profile = () => {
     },[]);
     const fetchCartItems = async () => {
         try {
-            const response = await fetch(`http://localhost:5000/api/profile/cart/${authUser._id}`);
+            const response = await fetch(`https://hotel-oryv.onrender.com/api/profile/cart/${authUser._id}`);
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
@@ -30,7 +30,7 @@ const Profile = () => {
     };
     const fetchProducts = async () => {
         try {
-            const response = await fetch('http://localhost:5000/api/products/');
+            const response = await fetch('https://hotel-oryv.onrender.com/api/products/');
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }

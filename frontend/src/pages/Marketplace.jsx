@@ -28,7 +28,7 @@ useEffect(()=>{
   fetchAllProducts();
 },[]);
 const fetchAllProducts = async ()=>{
-  const url = 'http://localhost:5000/api/products/';
+  const url = 'https://hotel-oryv.onrender.com/api/products/';
   try {
     const response = await fetch(url);
     if (!response.ok) {

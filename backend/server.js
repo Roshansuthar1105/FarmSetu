@@ -15,7 +15,7 @@ import cookieParser from 'cookie-parser';
 import path from 'path';
 dotenv.config();
 const app= express();
-const __dirname = path.resolve();
+// const __dirname = path.resolve();
 // Enable CORS for all routes
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -36,10 +36,10 @@ app.use('/api/chats',chats)
 app.use('/api/products',productRoutes)
 app.use('/api/profile/cart',userCartRoute);
 app.use('/api/community',communityRoute);
-app.use(express.static(path.join(__dirname, '/frontend/dist')));
-app.get('*', (req, res)=>{
-    res.sendFile(path.join(__dirname, '/frontend/dist/index.html'));
-});
+// app.use(express.static(path.join(__dirname, '/frontend/dist')));
+// app.get('*', (req, res)=>{
+//     res.sendFile(path.join(__dirname, '/frontend/dist/index.html'));
+// });
 app.listen(PORT, ()=>{
     connectToMongoDb();
     console.log(`Server is running on port ${PORT}`);

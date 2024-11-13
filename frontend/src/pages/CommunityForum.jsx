@@ -20,7 +20,7 @@ const CommunityForum = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/community/posts');
+        const response = await fetch('https://hotel-oryv.onrender.com/api/community/posts');
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
@@ -39,7 +39,7 @@ const CommunityForum = () => {
     const postId = posts.length + 1;
     const date = new Date().toISOString().split('T')[0];
     // const post = { ...newPost, id: postId, date };
-    const url = "http://localhost:5000/api/community/";
+    const url = "https://hotel-oryv.onrender.com/api/community/";
     fetch(url, {
       method: 'POST',
       headers: {
