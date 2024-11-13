@@ -3,7 +3,6 @@ import MyNavbar from '../components/MyNavbar'
 import { FaPaperPlane } from 'react-icons/fa';
 import Footer from '../components/Footer'
 function ChatWithCommunity() {
-    const [users , setUsers] =useState([]);
     const [chats ,setChats] = useState([]);
     const [message, setMessage] = useState('');
     const [searchQuery ,setSearchQuery]=useState("");

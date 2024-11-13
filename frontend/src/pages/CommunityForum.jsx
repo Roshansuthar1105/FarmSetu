@@ -3,10 +3,12 @@ import MyNavbar from '../components/MyNavbar';
 import Footer from '../components/Footer';
 import postsData from '../data/posts.json'; // Import the posts JSON file
 import { Card, CardBody } from '@nextui-org/react';
+import { useAuthContext } from '../context/AuthContext';
 
 const CommunityForum = () => {
+  const { authUser } = useAuthContext();
   const [posts, setPosts] = useState(postsData); // Use the imported JSON data
-  const [newPost, setNewPost] = useState({ title: '', content: '', author: '' });
+  const [newPost, setNewPost] = useState({ name:authUser.name,email:authUser.email , message: '', title: '' });
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const modalRef = useRef(null);
@@ -14,14 +16,51 @@ const CommunityForum = () => {
   const handleInputChange = (e) => {
     setNewPost({ ...newPost, [e.target.name]: e.target.value });
   };
+  // useEffect(()=>{
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/api/community/posts');
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        setPosts(data);
+      } catch (error) {
+        console.error('There was a problem with the fetch operation:', error);
+      }
+    };
 
+    fetchData();
+  }, []);
+  // },[])
   const handleSubmit = (e) => {
     e.preventDefault();
     const postId = posts.length + 1;
     const date = new Date().toISOString().split('T')[0];
-    const post = { ...newPost, id: postId, date };
-    setPosts([...posts, post]);
-    setNewPost({ title: '', content: '', author: '' });
+    // const post = { ...newPost, id: postId, date };
+    const url = "http://localhost:5000/api/community/";
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newPost),
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Success:', data);
+      setNewPost(prevState => ({...prevState, title: '', message: ''}));
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+    // const postId = posts.length + 1;
+    // const date = new Date().toISOString().split('T')[0];
+    // const post = { ...newPost, id: postId, date };
+    // setPosts([...posts, post]);
+    // console.log("your post",post);
+    // setNewPost({ title: '', message: '', author: '' });
     setIsModalOpen(false); // Close the modal after submission
   };
 
@@ -57,13 +96,13 @@ const CommunityForum = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
           {posts.map((post) => (
-            <div key={post.id} className="w-full max-w-sm mx-auto">
+            <div key={`${post.message}+1`} className="w-full max-w-sm mx-auto">
               <Card  className="w-full bg-gray-900 border border-gray-700">
                 <CardBody>
                   <h2 className="text-xl font-bold mb-2 text-green-400">{post.title}</h2>
-                  <p className="text-gray-300 mb-2">{post.content}</p>
+                  <p className="text-gray-300 mb-2">{post.message}</p>
                   <div className="text-sm text-gray-500">
-                    <span>By {post.author}</span> | <span>{post.date}</span>
+                    <span>By {post.name}</span> | <span>{new Date(post.createdAt).toLocaleDateString()}</span>
                   </div>
                 </CardBody>
               </Card>
@@ -90,15 +129,15 @@ const CommunityForum = () => {
                   required
                 />
                 <textarea
-                  name="content"
-                  value={newPost.content}
+                  name="message"
+                  value={newPost.message}
                   onChange={handleInputChange}
                   placeholder="Write your experience..."
                   className="w-full p-2 mb-4 border border-gray-600 rounded-lg bg-gray-700 text-gray-100"
                   rows="6"
                   required
                 />
-                <input
+                {/* <input
                   type="text"
                   name="author"
                   value={newPost.author}
@@ -106,7 +145,7 @@ const CommunityForum = () => {
                   placeholder="Your Name"
                   className="w-full p-2 mb-4 border border-gray-600 rounded-lg bg-gray-700 text-gray-100"
                   required
-                />
+                /> */}
                 <button
                   type="submit"
                   className="bg-green-600 text-gray-100 px-4 py-2 rounded-lg hover:bg-green-500 transition duration-300"

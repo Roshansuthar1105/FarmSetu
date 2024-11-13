@@ -22,5 +22,30 @@ router.post('/',async (req, res) => {
         res.status(500).json({ error: 'Error in creating post' }); 
     }
 });
+// Get all posts
+router.get('/posts', async (req, res) => {
+    try {
+        const posts = await Post.find();
+        res.status(200).json(posts);
+    } catch (error) {
+        console.error('Error in fetching posts:', error);
+        res.status(500).json({ error: 'Error in fetching posts' });
+    }
+});
+router.delete('/posts/:id', async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.id);
+        console.log("post ",post,"id is ",req.params.id);
+        if (!post) {
+            return res.status(404).json({ error: 'Post not found' });
+        }
+        await Post.deleteOne({_id : req.params.id});
+        res.status(200).json({ message: 'Post deleted successfully' });
+    } catch (error) {
+        console.error('Error in deleting post:', error);
+        res.status(500).json({ error: 'Error in deleting post' });
+    }
+});
+
 
 export default router;

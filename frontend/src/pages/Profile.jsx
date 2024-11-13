@@ -11,6 +11,7 @@ const Profile = () => {
     const [cart , setCart ] =useState([]);
     const [products ,setProducts]=useState([]);
     useEffect(()=>{
+        console.log(authUser,"hello user");
         fetchCartItems();
         fetchProducts();
     },[]);
@@ -79,6 +80,9 @@ const Profile = () => {
                                         </button>
                                         <button onClick={() => navigate(`/profile/cart/${authUser._id}`)} className="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition">
                                             Your cart
+                                        </button>
+                                        <button onClick={() => navigate(`/profile/posts/${authUser._id}`)} className="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition">
+                                            Your Posts
                                         </button>
                                         <button 
                                             onClick={() => {

@@ -31,11 +31,12 @@ import WorkInProgress from './components/WorkInProgress';
 import FAQ from './components/FAQ';
 import Privacy from './components/Privacy';
 import ChatWithCommunity from './pages/ChatWithCommunity';
+import UserPosts from './pages/UserPosts.jsx';
 export default function App() {
   const { authUser } = useAuthContext();
   const [chatBotVisible, setChatBotVisible] = useState(false);
   const [isRotating, setIsRotating] = useState(false);
-
+  // const [currentUser , setCurrentUser ] = useState({});
   const toggleChatBot = () => {
     setIsRotating(true);
     setTimeout(() => setIsRotating(false), 500); // Reset rotation after 1s
@@ -61,6 +62,7 @@ export default function App() {
         <Route path="/form" element={<Form />} />
         <Route path="/results" element={<Result/>} />
         <Route path="/profile" element={<Profile/>} />
+        <Route path="/profile/posts/:id" element={<UserPosts/>} />
         <Route path="/about" element={<About/>} />
         <Route path="/mission" element={<Mission/>} />
         <Route path="/contact" element={<><MyNavbar/> <Contact/> <Footer/> </>} />
