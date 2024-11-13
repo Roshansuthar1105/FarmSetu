@@ -25,6 +25,7 @@ export default function MyNavbar() {
   const links2 = [
     { name: "Marketplace", to: "/farmermarketplace" },
     { name: "Chat with Experts", to: "/chat" },
+    { name: "Chat with Community", to: "/localchat" },
     { name: "Real Time Market", to: "/realtimemarket" },
     { name: "News", to: "/news" },
     { name: "Weather", to: "/weather" },
@@ -59,12 +60,13 @@ export default function MyNavbar() {
           </button>
 
           {/* Navigation Links */}
-          <ul className={`${isMenuOpen ? 'flex flex-col absolute top-full left-0 right-0 bg-white shadow-md' : 'hidden'} lg:flex lg:flex-row lg:static lg:shadow-none gap-6 xl:gap-8 p-4 lg:p-0`}>
+          <ul className={`${isMenuOpen ? 'flex flex-col absolute top-full left-0 right-0 bg-white shadow-md' : 'hidden'} lg:flex lg:flex-row lg:static lg:shadow-none gap-4 xl:gap-4  p-4 lg:p-0`}>
             {links2.map((link, index) => (
               <li key={index}>
                 <Link
                   to={link.to}
-                  className={`block text-base xl:text-lg ${link.isActive ? "text-secondary" : "text-foreground"} hover:text-green-700 hover:scale-105 transition-all duration-300`}
+                  
+                  className={`${index===0 ? '':'border-l-2 pl-2 border-green-400'} block text-base xl:text-sm ${link.isActive ? "text-secondary" : "text-foreground"} hover:text-green-700 hover:scale-105 transition-all duration-300`}
                 >
                   {link.name}
                 </Link>

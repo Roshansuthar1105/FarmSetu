@@ -1,6 +1,6 @@
 import express from 'express'; 
 // const Contact = require('../models/Contact.model.js');
-import Contact from '../models/Contac t.model.js';
+import Contact from '../models/Contact.model.js';
 // const contactController = require('../controllers/contact.controller.js');
 const router = express.Router();
 

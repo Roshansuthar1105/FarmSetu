@@ -3,6 +3,7 @@ import MyNavbar from '../components/MyNavbar'
 import { FaPaperPlane } from 'react-icons/fa';
 import Footer from '../components/Footer'
 function ChatWithCommunity() {
+    const [users , setUsers]=useState([]);
     const [chats ,setChats] = useState([]);
     const [message, setMessage] = useState('');
     const [searchQuery ,setSearchQuery]=useState("");
@@ -150,9 +151,14 @@ function ChatWithCommunity() {
                             >
                                 <img src={user.avatar ? user.avatar : 'https://avataaars.io/?avatarStyle=Transparent&topType=LongHairStraight&accessoriesType=Blank&hairColor=BrownDark&facialHairType=Blank&clotheType=BlazerShirt&eyeType=Default&eyebrowType=Default&mouthType=Default&skinColor=Light'} alt={user.avatar} className="w-12 h-12 rounded-full mr-3 border-2 border-green-400" />
                                 <div>
-                                    <p className="font-semibold">{user.name.charAt(0).toUpperCase() + user.name.slice(1)}</p>
+                                    <p className="font-semibold">
+                                        {user.name.charAt(0).toUpperCase() + user.name.slice(1)}
+                                        {/* {user.name} */}
+                                        {/* {user.avatar} */}
+                                        </p>
                                     <p className={`text-sm ${user.role === 'farmer' ? 'text-green-400' : user.role === 'seller' ? 'text-blue-400' : 'text-orange-300'}`}>
                                         {user.role.charAt(0).toUpperCase() + user.role.slice(1)}
+                                        {/* {user.role} */}
                                     </p>
                                 </div>
                             </li>
