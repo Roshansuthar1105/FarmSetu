@@ -8,8 +8,8 @@ export const useAuthContext= ()=>{
 
 export const AuthContextProvider= ({children})=>{
     const [authUser, setAuthUser]= useState(JSON.parse(localStorage.getItem('user') )|| null);
-
-    return <AuthContext.Provider value={{authUser, setAuthUser}}>
+    const BACKEND_URL = "https://hotel-oryv.onrender.com";
+    return <AuthContext.Provider value={{authUser, setAuthUser, BACKEND_URL}}>
         {children}
     </AuthContext.Provider>
 }

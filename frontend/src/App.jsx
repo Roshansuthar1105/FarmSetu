@@ -32,6 +32,7 @@ import FAQ from './components/FAQ';
 import Privacy from './components/Privacy';
 import ChatWithCommunity from './pages/ChatWithCommunity';
 import UserPosts from './pages/UserPosts.jsx';
+import UserCart from './pages/UserCart.jsx';
 import Payment from './pages/Payment.jsx';
 export default function App() {
   const { authUser } = useAuthContext();
@@ -65,6 +66,13 @@ export default function App() {
         <Route path="/results" element={<Result/>} />
         <Route path="/profile" element={<Profile/>} />
         <Route path="/profile/posts/:id" element={<UserPosts/>} />
+        <Route path="/profile/cart/:userId" element={
+          <>
+          <MyNavbar/>
+          <UserCart/>
+          <Footer/> 
+          </>
+          } />
         <Route path="/about" element={<About/>} />
         <Route path="/mission" element={<Mission/>} />
         <Route path="/contact" element={<><MyNavbar/> <Contact/> <Footer/> </>} />

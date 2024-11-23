@@ -45,8 +45,8 @@ const ProductDetail = () => {
       alert('Failed to add product to cart. Please try again.');
     }
   };
-  const handleChatClick = () => {
-    navigate('/chat');
+  const handleChatClick = (seller,name) => {
+    navigate(`/localchat?seller=${seller}&productname=${name.split( ).join("+")}`);
   };
 
   return (
@@ -73,7 +73,7 @@ const ProductDetail = () => {
             </div>
 
             <button
-              onClick={handleChatClick}
+              onClick={()=>{handleChatClick(product.seller,product.name)}}
               className="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition-colors"
             >
               Chat with the Seller

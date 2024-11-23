@@ -9,7 +9,7 @@ function ChatWithCommunity() {
     const [searchQuery ,setSearchQuery]=useState("");
     const chatContainerRef = useRef(null);
     const currentUserId = JSON.parse(localStorage.getItem('user'))._id;
-    const [selectedUser ,setSelectedUser]=useState(`${currentUserId}`);
+    const [selectedUser, setSelectedUser] = useState(`${currentUserId}`);
     const [filteredUser,setFilteredUser]=useState([]);
     const fetchUsers = async ()=>{
         const API = "https://hotel-oryv.onrender.com";
@@ -40,6 +40,23 @@ function ChatWithCommunity() {
     }
     useEffect(()=>{
         fetchUsers();
+        const url = new URL(window.location.href);
+        console.log("url",url);
+        const seller = url.searchParams.get('seller');
+        const productName = url.searchParams.get('productname');
+        if (seller) {
+            setSelectedUser(seller);
+        }
+        if(productName){
+            setMessage(`I have query about the product "${productName}"`);
+        }
+    const removeSellerFromUrl = () => {
+        const newUrl = new URL(window.location.href);
+        newUrl.searchParams.delete('seller');
+        newUrl.searchParams.delete('productname');
+        window.history.pushState({}, '', newUrl.href);
+    };
+    removeSellerFromUrl();
     },[])
     useEffect(()=>{
         fetchCurrentChats();
