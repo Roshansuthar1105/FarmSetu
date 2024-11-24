@@ -32,13 +32,12 @@ router.get('/:productId', async (req, res) => {
 
 router.post('/addproduct', async (req, res) => {
     try {
-        const { name, price, description, image, category } = req.body;
-
-        if (!name || !price || !description || !image || !category) {
+        const { name, price, description, image, category ,seller } = req.body;
+        if (!name || !price || !description || !image || !category || !seller) {
             return res.status(400).json({ error: 'All fields are required' });
         }
 
-        const newProduct = new Product({ name, price, description, image, category });
+        const newProduct = new Product({ name, price, description, image, category ,seller });
         await newProduct.save();
         
         res.status(201).json({ message: 'Product added successfully' });

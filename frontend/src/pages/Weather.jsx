@@ -3,6 +3,7 @@ import axios from 'axios';
 import MyNavbar from '../components/MyNavbar';
 import Footer from '../components/Footer';
 import citySuggestions from '../data/cities.json';
+import toast from 'react-hot-toast';
 
 const Weather = () => {
   const [city, setCity] = useState('');
@@ -28,6 +29,11 @@ const Weather = () => {
   const fetchWeatherData = async () => {
     setLoading(true);
     setError('');
+    if (city.trim() === '') {
+      toast.error("Enter some value");
+      setLoading(false);
+      return;
+    }
     try {
       const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather`, {
         params: {
@@ -60,7 +66,7 @@ const Weather = () => {
             />
             <button
               onClick={fetchWeatherData}
-              className="w-1/4 p-3 bg-green-600 text-white rounded-lg sm:text-base text-xs hover:bg-green-500 transition ease-in-out duration-300"
+              className="w-1/4 p-3 bg-green-600 ml-2 text-white rounded-lg sm:text-base text-xs hover:bg-green-500 transition ease-in-out duration-300"
             >
               Get Weather
             </button>
