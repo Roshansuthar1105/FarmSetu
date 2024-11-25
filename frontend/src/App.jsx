@@ -36,6 +36,7 @@ import UserCart from './pages/UserCart.jsx';
 import Payment from './pages/Payment.jsx';
 import GovernmentSchemes from './pages/GovernmentSchemes.jsx';
 import InsuranceSchema from './pages/InsuranceSchema.jsx';
+import ProfileEdit from './pages/ProfileEdit.jsx';
 export default function App() {
   const { authUser } = useAuthContext();
   const [chatBotVisible, setChatBotVisible] = useState(false);
@@ -67,6 +68,7 @@ export default function App() {
         <Route path="/form" element={<Form />} />
         <Route path="/results" element={<Result/>} />
         <Route path="/profile" element={<Profile/>} />
+        <Route path="/profile/edit/:id" element={<><MyNavbar/><ProfileEdit/><Footer/></>} />
         <Route path="/profile/posts/:id" element={<UserPosts/>} />
         <Route path="/profile/cart/:userId" element={<><MyNavbar/><UserCart/><Footer/></>} />
         <Route path="/GovernmentSchemes" element={<><MyNavbar/><GovernmentSchemes/><Footer/> </>} />
