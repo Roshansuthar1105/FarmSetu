@@ -13,15 +13,6 @@ export default function MyNavbar() {
 
   const { authUser } = useAuthContext();
 
-  const links1 = [
-    { name: "Market Insights", to: "/market-insights" },
-    { name: "Crop Recommendations", to: "/crop-recommendations" },
-    { name: "Weather Updates", to: "/weather" },
-    { name: "Help & Support", to: "/help" },
-    { name: "Activity", to: "/activity" },
-    { name: "Logout", to: "/logout" },
-  ];
-
   const links2 = [
     { name: "Marketplace", to: "/farmermarketplace" },
     { name: "Chat with Experts", to: "/chat" },
@@ -31,6 +22,7 @@ export default function MyNavbar() {
     { name: "Weather", to: "/weather" },
     { name: "Resources", to: "/resources" },
     { name: "Community", to: "/community" },
+    { name: "Government Schemes", to: "/GovernmentSchemes" },
   ];
 
   return (

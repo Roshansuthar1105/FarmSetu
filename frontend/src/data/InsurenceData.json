@@ -1,0 +1,147 @@
+[
+    {
+      "policyName": "Pradhan Mantri Fasal Bima Yojana (PMFBY)",
+      "coverage": "Crop Insurance",
+      "beneficiaries": "Farmers engaged in seasonal crop production",
+      "sumAssured": "Varies by crop and location",
+      "premiumRate": {
+        "kharifCrops": "2%",
+        "rabiCrops": "1.5%",
+        "commercialHorticulturalCrops": "5%"
+      },
+      "features": [
+        "Coverage against natural calamities, pests, and diseases",
+        "Encourages farmers to adopt innovative agricultural practices",
+        "Government provides subsidies on premium rates"
+      ],
+      "contactInfo": "Visit nearest Krishi Vigyan Kendra or district agricultural office"
+    },
+    {
+      "policyName": "Weather Based Crop Insurance Scheme (WBCIS)",
+      "coverage": "Weather-related risks",
+      "beneficiaries": "Farmers growing weather-sensitive crops",
+      "sumAssured": "Depends on historical weather data",
+      "premiumRate": {
+        "kharifCrops": "2%",
+        "rabiCrops": "1.5%",
+        "commercialHorticulturalCrops": "5%"
+      },
+      "features": [
+        "Compensates for adverse weather conditions",
+        "Scientific assessment of crop loss",
+        "Premium subsidies provided by the government"
+      ],
+      "contactInfo": "Contact your bank or local agricultural office"
+    },
+    {
+      "policyName": "Restructured Weather-Based Crop Insurance Scheme (RWBCIS)",
+      "coverage": "Weather and yield-based losses",
+      "beneficiaries": "Farmers cultivating high-risk crops",
+      "sumAssured": "Varies based on yield data",
+      "premiumRate": {
+        "kharifCrops": "2%",
+        "rabiCrops": "1.5%"
+      },
+      "features": [
+        "Mitigates financial losses from poor weather conditions",
+        "Covers sowing, mid-season, and harvest stages",
+        "Uses technology for fast claim settlement"
+      ],
+      "contactInfo": "Visit your bank or local agricultural office for enrollment"
+    },
+    {
+      "policyName": "National Agricultural Insurance Scheme (NAIS)",
+      "coverage": "Yield-based crop insurance",
+      "beneficiaries": "Farmers growing notified crops",
+      "sumAssured": "Calculated based on the insured area and yield",
+      "premiumRate": {
+        "foodCrops": "Low premium rates",
+        "horticultureCrops": "Higher premium rates"
+      },
+      "features": [
+        "Coverage for post-harvest losses",
+        "Insurance against natural calamities and pests",
+        "Covers risks from sowing to harvesting"
+      ],
+      "contactInfo": "Enroll through authorized banks or cooperative societies"
+    },
+    {
+      "policyName": "Kisan Credit Card (KCC) - Insurance Add-on",
+      "coverage": "Comprehensive insurance",
+      "beneficiaries": "KCC holders",
+      "sumAssured": "Varies by policy",
+      "premiumRate": "Affordable premiums for KCC holders",
+      "features": [
+        "Coverage for personal accidents, crops, and livestock",
+        "Streamlined application process",
+        "Flexible premium payment options"
+      ],
+      "contactInfo": "Available at participating banks offering KCCs"
+    },
+    {
+      "policyName": "Livestock Insurance Scheme",
+      "coverage": "Livestock Insurance",
+      "beneficiaries": "Farmers and cattle rearers",
+      "sumAssured": "Market value of the insured animal",
+      "premiumRate": "50% subsidy for general farmers, 70% for SC/ST farmers",
+      "features": [
+        "Covers death of animals due to diseases or accidents",
+        "Cattle, buffaloes, goats, sheep, and other livestock covered",
+        "Hassle-free claim settlement process"
+      ],
+      "contactInfo": "Contact veterinary hospital or agricultural office"
+    },
+    {
+      "policyName": "Pashudhan Bima Yojana",
+      "coverage": "Livestock Insurance",
+      "beneficiaries": "Farmers and animal rearers",
+      "sumAssured": "Varies depending on livestock category",
+      "premiumRate": "Subsidized rates for all beneficiaries",
+      "features": [
+        "Insurance coverage for cattle, goats, sheep, and camels",
+        "Covers diseases, accidents, and natural calamities",
+        "Promotes financial stability for livestock rearers"
+      ],
+      "contactInfo": "Enroll through animal husbandry department or local cooperative"
+    },
+    {
+      "policyName": "Prime Minister's Crop Insurance for Organic Farmers",
+      "coverage": "Organic Farming Risks",
+      "beneficiaries": "Certified organic farmers",
+      "sumAssured": "Based on crop and market value",
+      "premiumRate": "Special rates for organic crops",
+      "features": [
+        "Coverage for natural disasters, pest outbreaks, and weather risks",
+        "Encourages adoption of organic farming methods",
+        "Government subsidies for organic farmers"
+      ],
+      "contactInfo": "Contact your district agricultural officer"
+    },
+    {
+      "policyName": "Farm Machinery Insurance",
+      "coverage": "Machinery Damage",
+      "beneficiaries": "Farmers using machinery",
+      "sumAssured": "Varies based on machinery type and value",
+      "premiumRate": "Affordable rates with government subsidies",
+      "features": [
+        "Covers accidental damage and breakdown",
+        "Includes tractors, harvesters, and irrigation equipment",
+        "Protects investment in modern farming techniques"
+      ],
+      "contactInfo": "Contact agricultural equipment dealers or insurance companies"
+    },
+    {
+      "policyName": "Horticulture Crop Insurance Scheme",
+      "coverage": "Horticulture Crop Insurance",
+      "beneficiaries": "Horticulture farmers",
+      "sumAssured": "Varies by crop and district",
+      "premiumRate": "Subsidized premium for horticulture crops",
+      "features": [
+        "Coverage for fruit, vegetable, and flower crops",
+        "Protection against climate risks and pest attacks",
+        "Encourages diversification into high-value crops"
+      ],
+      "contactInfo": "Visit nearest Krishi Bhavan or horticulture department"
+    }
+  ]
+  

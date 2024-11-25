@@ -1,0 +1,90 @@
+[
+    {
+        "schemeName": "Pradhan Mantri Kisan Samman Nidhi (PM-KISAN)",
+        "description": "Provides income support of ₹6,000 per year to all farmer families, paid in three equal installments of ₹2,000.",
+        "beneficiaries": "All small and marginal farmers with land ownership.",
+        "keyFeatures": [
+            "Direct Benefit Transfer (DBT) to farmers' bank accounts",
+            "Financial assistance to improve agricultural productivity"
+        ],
+        "eligibility": "Farmers with cultivable land in their name.",
+        "website": "https://pmkisan.gov.in"
+    },
+    {
+        "schemeName": "Pradhan Mantri Fasal Bima Yojana (PMFBY)",
+        "description": "Provides crop insurance to farmers to protect them against losses due to natural calamities, pests, and diseases.",
+        "beneficiaries": "All farmers growing notified crops in notified areas.",
+        "keyFeatures": [
+            "Low premium rates for farmers",
+            "Covers pre-sowing to post-harvest losses"
+        ],
+        "eligibility": "Farmers growing notified crops and registered under the scheme.",
+        "website": "https://pmfby.gov.in"
+    },
+    {
+        "schemeName": "Kisan Credit Card (KCC)",
+        "description": "Offers credit to farmers for crop production and allied agricultural activities at concessional interest rates.",
+        "beneficiaries": "Farmers engaged in agriculture, animal husbandry, fisheries, and other allied activities.",
+        "keyFeatures": [
+            "Simplified credit delivery system",
+            "Coverage for crop loans, working capital, and personal consumption needs"
+        ],
+        "eligibility": "All farmers, including tenant farmers and sharecroppers.",
+        "website": "https://www.pmkisan.gov.in/KCC"
+    },
+    {
+        "schemeName": "Soil Health Card Scheme",
+        "description": "Provides farmers with soil health cards containing crop-specific recommendations for nutrient and fertilizer use.",
+        "beneficiaries": "All farmers across India.",
+        "keyFeatures": [
+            "Promotes balanced use of fertilizers",
+            "Improves soil health and productivity"
+        ],
+        "eligibility": "Open to all farmers.",
+        "website": "https://soilhealth.dac.gov.in"
+    },
+    {
+        "schemeName": "National Agriculture Market (e-NAM)",
+        "description": "Creates a unified online market platform to connect agricultural markets across the country.",
+        "beneficiaries": "Farmers, traders, and buyers.",
+        "keyFeatures": [
+            "Transparent auction process",
+            "Better price discovery for farmers"
+        ],
+        "eligibility": "Farmers with agricultural produce to sell.",
+        "website": "https://enam.gov.in"
+    },
+    {
+        "schemeName": "Paramparagat Krishi Vikas Yojana (PKVY)",
+        "description": "Promotes organic farming practices to reduce dependency on chemical fertilizers and pesticides.",
+        "beneficiaries": "Farmers interested in adopting organic farming.",
+        "keyFeatures": [
+            "Financial assistance for organic certification",
+            "Training and capacity building for organic farming"
+        ],
+        "eligibility": "Groups of farmers or clusters practicing organic farming.",
+        "website": "https://pgsindia-ncof.gov.in"
+    },
+    {
+        "schemeName": "Rashtriya Krishi Vikas Yojana (RKVY)",
+        "description": "Supports state governments in developing agriculture and allied sectors.",
+        "beneficiaries": "Farmers through state-implemented programs.",
+        "keyFeatures": [
+            "Focus on holistic agricultural development",
+            "Funding for state-level agricultural projects"
+        ],
+        "eligibility": "Determined by state-level guidelines.",
+        "website": "https://rkvy.nic.in"
+    },
+    {
+        "schemeName": "Pradhan Mantri Krishi Sinchayee Yojana (PMKSY)",
+        "description": "Aims to improve water use efficiency in agriculture and ensure access to water for irrigation.",
+        "beneficiaries": "Farmers needing irrigation support.",
+        "keyFeatures": [
+            "Promotes micro-irrigation methods like drip and sprinkler systems",
+            "Ensures 'Har Khet Ko Pani' (water for every field)"
+        ],
+        "eligibility": "Farmers practicing agriculture in water-scarce regions.",
+        "website": "https://pmksy.gov.in"
+    }
+]

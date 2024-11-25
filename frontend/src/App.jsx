@@ -34,6 +34,8 @@ import ChatWithCommunity from './pages/ChatWithCommunity';
 import UserPosts from './pages/UserPosts.jsx';
 import UserCart from './pages/UserCart.jsx';
 import Payment from './pages/Payment.jsx';
+import GovernmentSchemes from './pages/GovernmentSchemes.jsx';
+import InsuranceSchema from './pages/InsuranceSchema.jsx';
 export default function App() {
   const { authUser } = useAuthContext();
   const [chatBotVisible, setChatBotVisible] = useState(false);
@@ -66,13 +68,9 @@ export default function App() {
         <Route path="/results" element={<Result/>} />
         <Route path="/profile" element={<Profile/>} />
         <Route path="/profile/posts/:id" element={<UserPosts/>} />
-        <Route path="/profile/cart/:userId" element={
-          <>
-          <MyNavbar/>
-          <UserCart/>
-          <Footer/> 
-          </>
-          } />
+        <Route path="/profile/cart/:userId" element={<><MyNavbar/><UserCart/><Footer/></>} />
+        <Route path="/GovernmentSchemes" element={<><MyNavbar/><GovernmentSchemes/><Footer/> </>} />
+        <Route path="/InsuranceSchema" element={<><MyNavbar/><InsuranceSchema/><Footer/> </>} />
         <Route path="/about" element={<About/>} />
         <Route path="/mission" element={<Mission/>} />
         <Route path="/contact" element={<><MyNavbar/> <Contact/> <Footer/> </>} />
