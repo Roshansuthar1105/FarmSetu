@@ -6,7 +6,7 @@ import farm from '../assets/farm.svg';
 import setu from '../assets/setu.svg';
 
 export default function MyNavbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(true);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isprofileOpen, setIsProfileOpen] = useState(false);
   const [navbarStyle, setNavbarStyle] = useState({
     backgroundColor: "rgba(255, 255, 255, 1)",
@@ -46,7 +46,9 @@ export default function MyNavbar() {
           {/* Navigation Links */}
           <ul 
           // className={`${!isMenuOpen ? 'flex flex-col absolute top-full left-0 right-0 bg-white shadow-md' : 'hidden'} lg:flex lg:flex-row lg:static lg:shadow-none gap-4 xl:gap-4  p-4 lg:p-0`}>
-          className={`${!isMenuOpen ? 'hidden':'flex flex-col absolute top-full left-0 right-0 bg-white shadow-md'} gap-2 `}>
+          className={`${!isMenuOpen ? 'hidden':'flex flex-col absolute top-full left-0 right-0 bg-white shadow-md'} gap-2 `}
+          onClick={()=>setIsMenuOpen(!isMenuOpen)}
+          >
             {links2.map((link, index) => (
               <li key={index}>
                 <Link
@@ -65,7 +67,7 @@ export default function MyNavbar() {
 
           <button 
             onClick={() => {console.log("switch",isMenuOpen); setIsMenuOpen(!isMenuOpen)}}
-            className="border-2 border-purple-600 rounded-lg p-1"
+            className="border-2 border-green-600 rounded-lg p-1"
           >
             {isMenuOpen ? (
               <XMarkIcon className="h-6 w-6 text-black" />
@@ -91,7 +93,7 @@ export default function MyNavbar() {
                     />
                   </button>
                   {isprofileOpen && (
-                    <div className="absolute right-0 mt-2 w-48 bg-white text-black rounded-lg shadow-lg py-1 cursor-default" onClick={()=>{setIsMenuOpen(false); }}>
+                    <div className="absolute right-0 mt-2 w-48 bg-white text-black rounded-lg shadow-lg py-1 cursor-default" onClick={()=>{setIsMenuOpen(!isMenuOpen); }}>
                       <div className="px-4 py-3">
                         <p className="text-sm">Signed in as</p>
                         <p className="text-sm font-medium text-[#053c2f]">{authUser.email}</p>
