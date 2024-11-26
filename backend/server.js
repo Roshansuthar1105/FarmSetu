@@ -6,6 +6,7 @@ import newsRoutes from './routes/news.routes.js';
 import marketRoutes from './routes/market.routes.js';
 import contactRoutes from './routes/contact.routes.js';
 import allusers from './routes/allusers.routes.js';
+import userRoute from './routes/userRoute.routes.js';
 import chats from './routes/chats.routes.js';
 import productRoutes from './routes/products.routes.js';
 import userCartRoute from './routes/userCartRoute.routes.js';
@@ -32,6 +33,7 @@ app.use('/api/news', newsRoutes );
 app.use('/api/marketdata', marketRoutes);
 app.use('/api/contact', contactRoutes);
 app.use('/api/users',allusers)
+app.use('/api/user',userRoute)
 app.use('/api/chats',chats)
 app.use('/api/products',productRoutes)
 app.use('/api/profile/cart',userCartRoute);

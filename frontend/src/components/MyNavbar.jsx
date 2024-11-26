@@ -24,8 +24,8 @@ export default function MyNavbar() {
     { name: "Resources", to: "/resources" },
     { name: "Community", to: "/community" },
     { name: "Government Schemes", to: "/GovernmentSchemes" },
+    { name: "Insurence Schemes", to: "/InsuranceSchema" },
   ];
-
   return (
    <>
     <div className="relative">      
@@ -67,7 +67,7 @@ export default function MyNavbar() {
 
           <button 
             onClick={() => {console.log("switch",isMenuOpen); setIsMenuOpen(!isMenuOpen)}}
-            className="border-2 border-green-600 rounded-lg p-1"
+            className=" border-green-700 rounded-full p-1 hover:scale-110"
           >
             {isMenuOpen ? (
               <XMarkIcon className="h-6 w-6 text-black" />
@@ -87,7 +87,7 @@ export default function MyNavbar() {
                     className="flex items-center"
                   >
                     <img
-                      className="h-10 w-10 rounded-full border-2 border-secondary"
+                      className="h-10 w-10 rounded-full border-2 border-green-700"
                       src={authUser.avatar || "https://cdn-icons-png.flaticon.com/128/1154/1154966.png"}
                       alt={authUser.name}
                     />
