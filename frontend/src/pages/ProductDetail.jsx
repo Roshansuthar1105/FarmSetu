@@ -2,17 +2,26 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import MyNavbar from '../components/MyNavbar';
 import Footer from '../components/Footer';
+import toast from 'react-hot-toast';
+import { useAuthContext } from '../context/AuthContext';
 // import products from '../data/products.json';
 
 const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [product, setProduct] = useState({});
+  const {BACKEND_URL,authUser}= useAuthContext();
   useEffect(() => {
-    fetchProduct();
-  },[])
+    if (id) {
+      fetchProduct();
+    }
+  }, [id])
   const fetchProduct = async () => {
-    const url = `https://hotel-oryv.onrender.com/api/products/${id}`;
+    if (!id) {
+      console.error('Product ID is undefined');
+      return;
+    }
+    const url = `${BACKEND_URL}/api/products/${id}`;
     try {
       const response = await fetch(url);
       if (!response.ok) {
@@ -27,19 +36,20 @@ const ProductDetail = () => {
   if (!product) {
     return <div>Product not found</div>;
   }
-  const addToCart = async (productId) => {
+  const addToCart = async (product) => {
     try {
-      const response = await fetch(`https://hotel-oryv.onrender.com/api/cart/add/${productId}`, {
+      const response = await fetch(`${BACKEND_URL}/api/profile/cart/${authUser._id}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
+        body:JSON.stringify(product)
       });
       if (!response.ok) {
         throw new Error('Failed to add product to cart');
       }
       const data = await response.json();
-      alert('Product added to cart successfully!');
+      toast.success('Product added successfully!');
     } catch (error) {
       console.error('Error adding product to cart:', error);
       alert('Failed to add product to cart. Please try again.');
@@ -78,12 +88,12 @@ const ProductDetail = () => {
             >
               Chat with the Seller
             </button>
-            {/* <button
-              // onClick={() => addToCart(product.id)}
+            <button
+              onClick={() => addToCart(product)}
               className="bg-green-600 ml-2 text-white py-2 px-4 rounded hover:bg-green-700 transition-colors"
             >
               Add to Cart
-            </button> */}
+            </button>
           </div>
         </div>
       </div>

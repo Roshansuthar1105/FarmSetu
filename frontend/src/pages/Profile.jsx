@@ -112,9 +112,7 @@ const Profile = () => {
             seller: authUser._id,
         });
     }
-const handleEditProfile = async ()=>{
-    navigate(`edit/${authUser._id}`)
-}
+
     return (
         <div className="min-h-screen bg-gray-800 pt-20">
             <MyNavbar />
@@ -146,16 +144,16 @@ const handleEditProfile = async ()=>{
                                 <div className="bg-gray-800 p-6 rounded-lg">
                                     <h2 className="text-xl font-semibold mb-4 text-gray-200">Account Settings</h2>
                                     <div className="space-y-4">
-                                        <button className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition"
-                                        onClick={()=>handleEditProfile()}
-                                        >
-                                            Edit Profile
-                                        </button>
                                         <button onClick={() => navigate(`/profile/cart/${authUser._id}`)} className="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition">
                                             Your cart
                                         </button>
                                         <button onClick={() => navigate(`/profile/posts/${authUser._id}`)} className="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition">
                                             Your Posts
+                                        </button>
+                                        <button className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition"
+                                        onClick={()=>handleEditProfile()}
+                                        >
+                                            Edit Profile
                                         </button>
                                         {authUser?.role === 'seller' && (
                                             <button

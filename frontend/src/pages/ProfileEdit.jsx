@@ -42,22 +42,12 @@ function ProfileEdit() {
     role: '' // Set the default role to 'farmer'
   });
   useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const response = await fetch(`${BACKEND_URL}/api/user/${authUser._id}`);
-        const data = await response.json();
-        setFormData(data[0]);
-        // console.log("form data", formData)
-      } catch (error) {
-        console.error('Error fetching user data:', error);
-      }
-    };
-    fetchUserData();
-  }, [])
+    setFormData(authUser);
+  }, [authUser])
   return (
     <>
       <div className='w-full min-h-screen bg-gray-800 py-20'>
-        <h2 className='text-green-800 text-4xl text-center font-semibold'>Edit Your profile </h2>
+        <h2 className='text-white text-4xl text-center font-semibold'>Edit Your profile </h2>
         <form onSubmit={(e) => handleSubmit(e)} className="max-w-4xl mx-auto m-10 bg-white p-4 rounded-md ">
           <div className="mb-4">
             <Label htmlFor="name">Name</Label>

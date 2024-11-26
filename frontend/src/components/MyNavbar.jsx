@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useAuthContext } from "../context/AuthContext";
 import farm from '../assets/farm.svg';
 import setu from '../assets/setu.svg';
-
+import { IoPerson } from "react-icons/io5";
+import { FaShoppingCart } from "react-icons/fa";
+import { FaMessage } from "react-icons/fa6";
+import { IoLogOut } from "react-icons/io5";
+import { BiSolidMessageSquareEdit } from "react-icons/bi";
+import { MdEmail } from "react-icons/md";
 export default function MyNavbar() {
+  const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isprofileOpen, setIsProfileOpen] = useState(false);
   const [navbarStyle, setNavbarStyle] = useState({
@@ -26,6 +32,15 @@ export default function MyNavbar() {
     { name: "Government Schemes", to: "/GovernmentSchemes" },
     { name: "Insurence Schemes", to: "/InsuranceSchema" },
   ];
+  const handleEditProfile = async ()=>{
+    navigate(`/profile/edit/${authUser._id}`)
+  }
+  const handleViewCart = async ()=>{
+    navigate(`/profile/cart/${authUser._id}`)
+  }
+  const handleViewPosts = async ()=>{
+    navigate(`/profile/posts/${authUser._id}`)
+  }
   return (
    <>
     <div className="relative">      
@@ -66,7 +81,7 @@ export default function MyNavbar() {
           <div className="flex flex-row-reverse gap-3" >
 
           <button 
-            onClick={() => {console.log("switch",isMenuOpen); setIsMenuOpen(!isMenuOpen)}}
+            onClick={() => {setIsMenuOpen(!isMenuOpen)}}
             className=" border-green-700 rounded-full p-1 hover:scale-110"
           >
             {isMenuOpen ? (
@@ -95,23 +110,37 @@ export default function MyNavbar() {
                   {isprofileOpen && (
                     <div className="absolute right-0 mt-2 w-48 bg-white text-black rounded-lg shadow-lg py-1 cursor-default" onClick={()=>{setIsMenuOpen(!isMenuOpen); }}>
                       <div className="px-4 py-3">
-                        <p className="text-sm">Signed in as</p>
+                        <p className="text-sm flex flex-row gap-2 align-text-top "><MdEmail className="text-green-700 size-4" /> <span>Signed in as</span> </p>
                         <p className="text-sm font-medium text-[#053c2f]">{authUser.email}</p>
                       </div>
                       <Link
                         to={'/profile'}
-                        className="block w-full text-left px-4 py-2 text-sm hover:bg-blue-100"
-                      >
-                        Profile
+                        className="flex flex-row gap-3 w-full text-left px-4 py-2 text-sm hover:bg-blue-100"
+                      > <IoPerson className="text-green-700 size-5" /><span>Profile</span>
                       </Link>
+                      <button
+                        onClick={() => { handleViewCart() }}
+                        className="flex flex-row gap-3 align-middle w-full text-left px-4 py-2 text-sm hover:bg-blue-100"
+                      ><FaShoppingCart className="text-green-700 size-5" /> <span  >View Cart</span>
+                      </button>
+                      <button
+                        onClick={handleViewPosts}
+                        className="flex flex-row gap-3 align-middle w-full text-left px-4 py-2 text-sm hover:bg-blue-100"
+                      ><FaMessage className="text-green-700 size-5" /> <span  >View Posts</span>
+                      </button>
+                      <button
+                        onClick={() => { handleEditProfile() }}
+                        className="flex flex-row gap-3 align-middle w-full text-left px-4 py-2 text-sm hover:bg-blue-100"
+                      ><BiSolidMessageSquareEdit className="text-green-700 size-5" /><span  >Edit profile</span>
+                      </button>
                       <button
                         onClick={() => {
                           localStorage.removeItem('user');
                           window.location.href = '/';
                         }}
-                        className="block w-full text-left px-4 py-2 text-sm hover:bg-red-100"
-                      >
-                        Log Out
+                        className="flex flex-row gap-3 align-middle w-full text-left px-4 py-2 text-sm hover:bg-red-100"
+                      ><IoLogOut className="text-green-700 size-5" />
+                        <span  >Log Out</span>
                       </button>
                     </div>
                   )}
