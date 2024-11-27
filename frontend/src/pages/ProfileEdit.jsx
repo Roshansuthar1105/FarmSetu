@@ -38,8 +38,7 @@ function ProfileEdit() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    avatar: '',
-    role: '' // Set the default role to 'farmer'
+    avatar: ''
   });
   useEffect(() => {
     setFormData(authUser);
@@ -76,30 +75,16 @@ function ProfileEdit() {
             <Label htmlFor="selectedAvatar">Avatar</Label>
             <div className="flex flex-wrap">
               {avatar.map((avatar, index) => (
-                <div key={index} className="m-2 h-10 w-10 ">
+                <div key={index} className="m-2 size-14 ">
                   <img
                     src={avatar.avatar}
                     alt={`Avatar ${index + 1}`}
-                    className={`w-10 h-10 rounded-full cursor-pointer border-2 ${formData.avatar === avatar.avatar ? ' border-green-500 bg-green-300 ' : ''} `}
+                    className={`rounded-full cursor-pointer border-2 ${formData.avatar === avatar.avatar ? ' border-green-500 bg-green-300 ' : ''} `}
                     onClick={() => setFormData({ ...formData, avatar: avatar.avatar })}
                   />
                 </div>
               ))}
             </div>
-          </div>
-          <div className="mb-4">
-            <Label htmlFor="role">Role</Label>
-            <RadioGroup
-              id="role"
-              value={formData.role}
-              onChange={(e) => setFormData({ ...formData, role: e.target.value })}
-              orientation="horizontal"
-              defaultValue="farmer"
-            >
-              <Radio value="farmer">Farmer</Radio>
-              <Radio value="seller">seller</Radio>
-              <Radio value="cooperative">Cooperative</Radio>
-            </RadioGroup>
           </div>
           <Button type="submit" color="primary">
             Save Changes

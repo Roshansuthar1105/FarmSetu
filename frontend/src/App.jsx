@@ -37,6 +37,9 @@ import Payment from './pages/Payment.jsx';
 import GovernmentSchemes from './pages/GovernmentSchemes.jsx';
 import InsuranceSchema from './pages/InsuranceSchema.jsx';
 import ProfileEdit from './pages/ProfileEdit.jsx';
+import ProductEdit from './pages/ProductEdit.jsx';
+import SellerProduct from './pages/SellerProduct.jsx';
+import SellerProductEdit from './pages/SellerProductEdit.jsx';
 export default function App() {
   const { authUser } = useAuthContext();
   const [chatBotVisible, setChatBotVisible] = useState(false);
@@ -53,6 +56,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/farmermarketplace" element={<Marketplace  />} />
         <Route path="/product/:id" element={<ProductDetail />} />
+        <Route path="/product/edit/:id" element={<ProductEdit />} />
         <Route path="/chat" element={<Chat />} />
         <Route path="/localchat" element={<ChatWithCommunity />} />
         <Route path="/news" element={<NewsFeed />} />
@@ -71,6 +75,8 @@ export default function App() {
         <Route path="/profile/edit/:id" element={<><MyNavbar/><ProfileEdit/><Footer/></>} />
         <Route path="/profile/posts/:id" element={<UserPosts/>} />
         <Route path="/profile/cart/:userId" element={<><MyNavbar/><UserCart/><Footer/></>} />
+        <Route path="/profile/products/:userId" element={<><MyNavbar/><SellerProduct/><Footer/></>} />
+        <Route path="/profile/products/add" element={<><MyNavbar/><SellerProductEdit/><Footer/></>} />
         <Route path="/GovernmentSchemes" element={<><MyNavbar/><GovernmentSchemes/><Footer/> </>} />
         <Route path="/InsuranceSchema" element={<><MyNavbar/><InsuranceSchema/><Footer/> </>} />
         <Route path="/about" element={<About/>} />
