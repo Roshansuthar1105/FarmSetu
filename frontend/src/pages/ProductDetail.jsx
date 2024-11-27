@@ -4,7 +4,6 @@ import MyNavbar from '../components/MyNavbar';
 import Footer from '../components/Footer';
 import toast from 'react-hot-toast';
 import { useAuthContext } from '../context/AuthContext';
-// import products from '../data/products.json';
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -21,7 +20,7 @@ const ProductDetail = () => {
       console.error('Product ID is undefined');
       return;
     }
-    const url = `${BACKEND_URL}/api/products/${id}`;
+    const url = `${BACKEND_URL}/api/products/get/${id}`;
     try {
       const response = await fetch(url);
       if (!response.ok) {

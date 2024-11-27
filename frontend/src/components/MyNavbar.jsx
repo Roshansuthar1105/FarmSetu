@@ -10,6 +10,7 @@ import { FaMessage } from "react-icons/fa6";
 import { IoLogOut } from "react-icons/io5";
 import { BiSolidMessageSquareEdit } from "react-icons/bi";
 import { MdEmail } from "react-icons/md";
+import { HiViewGrid } from "react-icons/hi";
 export default function MyNavbar() {
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -133,6 +134,11 @@ export default function MyNavbar() {
                         className="flex flex-row gap-3 align-middle w-full text-left px-4 py-2 text-sm hover:bg-blue-100"
                       ><BiSolidMessageSquareEdit className="text-green-700 size-5" /><span  >Edit profile</span>
                       </button>
+                      {authUser.role==='seller' && <button
+                        onClick={() => { navigate(`/profile/products/${authUser._id}`) }}
+                        className="flex flex-row gap-3 align-middle w-full text-left px-4 py-2 text-sm hover:bg-blue-100"
+                      ><HiViewGrid className="text-green-700 size-5" /><span  >View Products</span>
+                      </button>}
                       <button
                         onClick={() => {
                           localStorage.removeItem('user');

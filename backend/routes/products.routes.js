@@ -26,7 +26,7 @@ router.get('/:seller', async (req, res) => {
         res.status(500).json({ error: 'Error getting products' }); 
     }
 });
-router.get('/:productId', async (req, res) => {
+router.get('/get/:productId', async (req, res) => {
     try {
         const {productId} = req.params;
         const product = await Product.findById(productId);

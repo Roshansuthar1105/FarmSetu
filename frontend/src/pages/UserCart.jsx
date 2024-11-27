@@ -2,9 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { useAuthContext } from '../context/AuthContext';
 import Product from '../components/Product';
 import toast from 'react-hot-toast';
-import { BiCartAlt, BiCartDownload } from 'react-icons/bi';
-import { FaShoppingBasket, FaShoppingCart } from 'react-icons/fa';
-import { FaCartShopping } from 'react-icons/fa6';
 import { IoCartOutline } from 'react-icons/io5';
 
 function UserCart() {
