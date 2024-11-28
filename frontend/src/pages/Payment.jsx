@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import CheckOut from "./CheckOut";
 const pricingPlans = [
   {
     title: 'Basic Plan',
     price: '₹1500/month',
+    pricepermonth:1500,
     features: [
       'Access to Agriculture Tools',
       'Market Insights & Trends',
@@ -16,6 +18,7 @@ const pricingPlans = [
   {
     title: 'Pro Plan',
     price: '₹3000/month',
+    pricepermonth: 3000,
     features: [
       'All Basic Plan Features',
       'Advanced Crop Analytics',
@@ -29,6 +32,7 @@ const pricingPlans = [
   {
     title: 'Enterprise Plan',
     price: '₹5000/month',
+    pricepermonth: 5000,
     features: [
       'All Pro Plan Features',
       'Custom Solutions & Integrations',
@@ -117,7 +121,10 @@ export default function Payment() {
           ))}
         </div>
       </div>
-      {selectedPlan && (
+      <div className="mt-24" >
+      <CheckOut plan={selectedPlan} />
+      </div>
+      {/* {selectedPlan && (
         <div className="selected-plan-section py-12 px-6 md:py-24 md:px-12 bg-green-950 text-white">
           <h2 className="text-3xl md:text-4xl font-bold mb-12 text-green-200">Selected Plan: {selectedPlan.title}</h2>
           <div className="flex flex-col items-center space-y-4">
@@ -133,7 +140,7 @@ export default function Payment() {
             </button>
           </div>
         </div>
-      )}
+      )} */}
     </section>
   );
 }
