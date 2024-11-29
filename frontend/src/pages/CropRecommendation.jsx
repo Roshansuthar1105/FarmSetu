@@ -42,9 +42,9 @@ function CropRecommendation() {
                 <button onClick={handleSubmit} className='px-4 py-2 bg-green-600 text-white text-lg rounded-md border border-green-300 w-80 selection:border-blue-300 placeholder:text-gray-300 ' >Get Data</button>
             </div>
             <div className='max-w-[1200px] w-screen bg-green-700 mx-auto min-h-[65dvh] p-3 rounded-lg text-white' >
+                        <h3 className='text-xl bg-green-600 text-white my-2 mx-auto rounded-md p-2 font-bold text-center'>Recommended Data for <span className='text-slate-700' >{data.city_name}</span></h3>
                 <div className='flex flex-row gap-4 flex-wrap sm:flex-nowrap '>
                     <div className='p-4 bg-green-600 w-full rounded-lg shadow-md text-white'>
-                        <h3 className='text-xl  font-bold text-gray-800'>City Name: {data.city_name}</h3>
                         <p>State: {data.state}</p>
                         <p>Climate Type: {data.climate_type}</p>
                         <p>Soil Type: {data.soil_type}</p>
