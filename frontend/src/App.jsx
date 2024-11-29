@@ -40,6 +40,7 @@ import ProfileEdit from './pages/ProfileEdit.jsx';
 import ProductEdit from './pages/ProductEdit.jsx';
 import SellerProduct from './pages/SellerProduct.jsx';
 import SellerProductEdit from './pages/SellerProductEdit.jsx';
+import CropRecommendation from './pages/CropRecommendation.jsx';
 export default function App() {
   const { authUser } = useAuthContext();
   const [chatBotVisible, setChatBotVisible] = useState(false);
@@ -79,6 +80,7 @@ export default function App() {
         <Route path="/profile/products/add" element={<><MyNavbar/><SellerProductEdit/><Footer/></>} />
         <Route path="/GovernmentSchemes" element={<><MyNavbar/><GovernmentSchemes/><Footer/> </>} />
         <Route path="/InsuranceSchema" element={<><MyNavbar/><InsuranceSchema/><Footer/> </>} />
+        <Route path="/crops" element={<><MyNavbar/><CropRecommendation/><Footer/> </>} />
         <Route path="/about" element={<About/>} />
         <Route path="/mission" element={<Mission/>} />
         <Route path="/contact" element={<><MyNavbar/> <Contact/> <Footer/> </>} />
@@ -93,6 +95,7 @@ export default function App() {
       </Routes>
       <Toaster />
       {/* Toggle Button for ChatBot */}
+      
       <button
         onClick={toggleChatBot}
         className={`fixed bottom-4 right-4 bg-blue-500 text-white w-16 h-16 rounded-full shadow-lg flex items-center justify-center transition-transform duration-1000 hover:rotate-[360deg]`}

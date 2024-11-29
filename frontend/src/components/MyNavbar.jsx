@@ -32,6 +32,7 @@ export default function MyNavbar() {
     { name: "Community", to: "/community" },
     { name: "Government Schemes", to: "/GovernmentSchemes" },
     { name: "Insurence Schemes", to: "/InsuranceSchema" },
+    { name: "Crop Recommendation", to: "/crops" },
   ];
   const handleEditProfile = async ()=>{
     navigate(`/profile/edit/${authUser._id}`)

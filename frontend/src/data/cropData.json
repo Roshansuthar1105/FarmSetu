@@ -1,0 +1,80 @@
+[
+    {
+      "city_name": "Jaipur",
+      "state": "Rajasthan",
+      "recommended_crops": "Wheat, Mustard, Barley, Pulses",
+      "recommended_trees": "Neem, Peepal, Khejri, Amla",
+      "climate_type": "Semi-arid",
+      "soil_type": "Sandy loam",
+      "average_rainfall": 650.0,
+      "average_temperature": 25.1,
+      "suitable_season": "Rabi",
+      "water_availability": "Medium",
+      "additional_notes": "Moderate water resources, suitable for Rabi crops."
+    },
+    {
+      "city_name": "Jodhpur",
+      "state": "Rajasthan",
+      "recommended_crops": "Bajra, Moong, Guar, Sesame",
+      "recommended_trees": "Khejri, Babool, Neem, Ber",
+      "climate_type": "Arid",
+      "soil_type": "Sandy",
+      "average_rainfall": 360.0,
+      "average_temperature": 26.5,
+      "suitable_season": "Kharif",
+      "water_availability": "Low",
+      "additional_notes": "Focus on drought-resistant crops due to water scarcity."
+    },
+    {
+      "city_name": "Udaipur",
+      "state": "Rajasthan",
+      "recommended_crops": "Maize, Soybean, Wheat, Mustard",
+      "recommended_trees": "Mango, Guava, Neem, Banyan",
+      "climate_type": "Semi-arid",
+      "soil_type": "Loamy",
+      "average_rainfall": 720.0,
+      "average_temperature": 24.0,
+      "suitable_season": "Both Rabi and Kharif",
+      "water_availability": "High",
+      "additional_notes": "Good rainfall and fertile soil."
+    },
+    {
+      "city_name": "Bikaner",
+      "state": "Rajasthan",
+      "recommended_crops": "Bajra, Moth, Guar, Mustard",
+      "recommended_trees": "Khejri, Acacia, Babool, Neem",
+      "climate_type": "Arid",
+      "soil_type": "Sandy",
+      "average_rainfall": 260.0,
+      "average_temperature": 27.8,
+      "suitable_season": "Kharif",
+      "water_availability": "Low",
+      "additional_notes": "Desert region, focus on hardy crops."
+    },
+    {
+      "city_name": "Kota",
+      "state": "Rajasthan",
+      "recommended_crops": "Rice, Wheat, Soybean, Mustard",
+      "recommended_trees": "Neem, Mango, Amla, Peepal",
+      "climate_type": "Semi-arid",
+      "soil_type": "Clay loam",
+      "average_rainfall": 760.0,
+      "average_temperature": 26.0,
+      "suitable_season": "Rabi",
+      "water_availability": "High",
+      "additional_notes": "Rich agricultural zone with ample water."
+    },
+    {
+      "city_name": "Ajmer",
+      "state": "Rajasthan",
+      "recommended_crops": "Wheat, Barley, Pulses, Mustard",
+      "recommended_trees": "Neem, Khejri, Guava, Amla",
+      "climate_type": "Semi-arid",
+      "soil_type": "Sandy loam",
+      "average_rainfall": 550.0,
+      "average_temperature": 24.8,
+      "suitable_season": "Rabi",
+      "water_availability": "Medium",
+      "additional_notes": "Moderate rainfall, good for Rabi crops."
+    }
+  ]
