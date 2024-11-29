@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import MyNavbar from '../components/MyNavbar';
-import Footer from '../components/Footer';
 import citySuggestions from '../data/cities.json';
 import toast from 'react-hot-toast';
 
@@ -129,7 +128,7 @@ const Weather = () => {
           ) : null}
         </div>
       </div>
-      <Footer />
+      
     </div>
   );
 };

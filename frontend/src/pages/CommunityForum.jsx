@@ -1,6 +1,4 @@
 import React, { useState, useRef, useEffect } from 'react';
-import MyNavbar from '../components/MyNavbar';
-import Footer from '../components/Footer';
 import postsData from '../data/posts.json'; // Import the posts JSON file
 import { Card, CardBody } from '@nextui-org/react';
 import { useAuthContext } from '../context/AuthContext';
@@ -74,7 +72,7 @@ const CommunityForum = () => {
 
   return (
     <div className="bg-gray-800 text-gray-100 min-h-screen">
-      <MyNavbar />
+      
       <div className="max-w-4xl mx-auto p-4 pt-24">
         <div className="flex justify-between items-center">
 
@@ -158,7 +156,7 @@ const CommunityForum = () => {
           </div>
         )}
       </div>
-      <Footer />
+      
     </div>
   );
 };

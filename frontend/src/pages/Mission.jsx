@@ -1,11 +1,8 @@
 import React from 'react';
-import MyNavbar from '../components/MyNavbar';
-import Footer from '../components/Footer';
 
 const Mission = () => {
   return (
     <div className="bg-gray-800 min-h-screen">
-        <MyNavbar/>
       <div className="container mx-auto px-4 py-16">
         <h1 className="text-4xl font-bold text-center text-green-600 mb-8">Our Mission</h1>
         
@@ -49,7 +46,6 @@ const Mission = () => {
           </p>
         </div>
       </div>
-      <Footer/>
     </div>
   );
 };

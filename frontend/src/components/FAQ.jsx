@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import MyNavbar from './MyNavbar';
-import Footer from './Footer';
 
 const FAQ = () => {
   const [openIndex, setOpenIndex] = useState(null);
@@ -34,7 +32,7 @@ const FAQ = () => {
 
   return (
     <div className="min-h-screen bg-gray-800 dark:bg-black">
-      <MyNavbar />
+      
       <div className="container mx-auto px-4 py-20">
         <h1 className="text-3xl font-bold text-green-500 dark:text-green-400 mb-10 text-center">
           Frequently Asked Questions
@@ -69,7 +67,7 @@ const FAQ = () => {
           ))}
         </div>
       </div>
-      <Footer />
+      
     </div>
   );
 };

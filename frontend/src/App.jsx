@@ -53,6 +53,7 @@ export default function App() {
   };
   return (
     <Router>
+      <MyNavbar/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/farmermarketplace" element={<Marketplace  />} />
@@ -61,7 +62,7 @@ export default function App() {
         <Route path="/chat" element={<Chat />} />
         <Route path="/localchat" element={<ChatWithCommunity />} />
         <Route path="/news" element={<NewsFeed />} />
-        <Route path="/payment" element={<> <MyNavbar/> <Payment /> <Footer/> </> } />
+        <Route path="/payment" element={<Payment />} />
         <Route path="/weather" element={<Weather />} />
         <Route path="/resources" element={<Resources />} />
         <Route path="/courses/:id" element={<CourseDetails />} />
@@ -73,18 +74,18 @@ export default function App() {
         <Route path="/form" element={<Form />} />
         <Route path="/results" element={<Result/>} />
         <Route path="/profile" element={<Profile/>} />
-        <Route path="/profile/edit/:id" element={<><MyNavbar/><ProfileEdit/><Footer/></>} />
+        <Route path="/profile/edit/:id" element={<ProfileEdit/>} />
         <Route path="/profile/posts/:id" element={<UserPosts/>} />
-        <Route path="/profile/cart/:userId" element={<><MyNavbar/><UserCart/><Footer/></>} />
-        <Route path="/profile/products/:userId" element={<><MyNavbar/><SellerProduct/><Footer/></>} />
-        <Route path="/profile/products/add" element={<><MyNavbar/><SellerProductEdit/><Footer/></>} />
-        <Route path="/GovernmentSchemes" element={<><MyNavbar/><GovernmentSchemes/><Footer/> </>} />
-        <Route path="/InsuranceSchema" element={<><MyNavbar/><InsuranceSchema/><Footer/> </>} />
-        <Route path="/crops" element={<><MyNavbar/><CropRecommendation/><Footer/> </>} />
+        <Route path="/profile/cart/:userId" element={<UserCart/>} />
+        <Route path="/profile/products/:userId" element={<SellerProduct/>} />
+        <Route path="/profile/products/add" element={<SellerProductEdit/>} />
+        <Route path="/GovernmentSchemes" element={<GovernmentSchemes/> } />
+        <Route path="/InsuranceSchema" element={<InsuranceSchema/> } />
+        <Route path="/crops" element={<CropRecommendation/> } />
         <Route path="/about" element={<About/>} />
         <Route path="/mission" element={<Mission/>} />
-        <Route path="/contact" element={<><MyNavbar/> <Contact/> <Footer/> </>} />
-        <Route path="/pricing" element={<><MyNavbar/> <Pricing/> <Footer/> </>} />
+        <Route path="/contact" element={ <Contact/>  } />
+        <Route path="/pricing" element={ <Pricing/>  } />
         <Route path="/faq" element={<FAQ/>} />
         <Route path="/privacy" element={<Privacy/> } />
         <Route path="/team" element={<WorkInProgress/>} />
@@ -106,6 +107,7 @@ export default function App() {
 
       {/* ChatBot Component */}
       <ChatBot visible={chatBotVisible} onClose={toggleChatBot} />
+      <Footer/>
     </Router>
   );
 }

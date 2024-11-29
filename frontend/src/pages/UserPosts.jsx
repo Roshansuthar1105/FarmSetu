@@ -2,8 +2,6 @@ import React, { useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAuthContext } from '../context/AuthContext';
 import { Card, CardBody, Navbar, useNavbar } from '@nextui-org/react';
-import MyNavbar from '../components/MyNavbar';
-import Footer from '../components/Footer';
 import { FaTrashAlt } from 'react-icons/fa';
 
 
@@ -49,7 +47,7 @@ function UserPosts() {
     };
     return (
         <div className="bg-gray-800 text-gray-100 min-h-screen">
-            <MyNavbar />
+            
             <div className="max-w-4xl mx-auto p-4 pt-24 min-h-[80dvh] ">
                 <div className="flex justify-between items-center">
                     <h1 className="text-4xl font-bold mb-6 text-green-300">Your Posts</h1>
@@ -92,7 +90,7 @@ function UserPosts() {
                     ))}
                 </div>
         </div>
-            <Footer />
+            
         </div>
 
     )

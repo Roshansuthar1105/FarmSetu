@@ -1,11 +1,8 @@
 "use client";
 import React, { useState } from "react";
-import MyNavbar from "../components/MyNavbar";
-import Footer from "../components/Footer";
 import { Label } from '../components/ui/Label';
 import { Input } from '../components/ui/Input';
 import { cn } from '../lib/util';
-import { IconBrandGoogle } from "@tabler/icons-react";
 import { Link } from "react-router-dom";
 import { IconEye, IconEyeOff } from "@tabler/icons-react"; // Import eye icons
 import useLogin from "../hooks/useLogin";
@@ -29,7 +26,7 @@ export default function Login() {
 
     return (
         <div className="bg-gray-800 pt-20 dark:bg-black">
-            <MyNavbar />
+            
             <div className=" max-w-md w-full mx-auto my-20 rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-gray-100 dark:bg-black">
                 <h2 className="font-bold text-xl text-green-800 dark:text-neutral-200">
                     Welcome to FarmSetu
@@ -121,7 +118,7 @@ export default function Login() {
                     </Link>
                 </div>
             </div>
-            <Footer />
+            
         </div>
     );
 }

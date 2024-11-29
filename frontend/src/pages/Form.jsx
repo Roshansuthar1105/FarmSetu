@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
-import MyNavbar from '../components/MyNavbar';
-import Footer from '../components/Footer';
 
 export default function Form() {
   const [formData, setFormData] = useState({
@@ -29,7 +27,7 @@ export default function Form() {
   return (
     <div className="flex flex-col min-h-screen bg-neutral-900 text-neutral-200">
       {/* Navbar at the top */}
-      <MyNavbar />
+      
 
       {/* Main content */}
       <main className="flex-grow flex items-center justify-center py-8 mt-16"> {/* Added mt-16 */}
@@ -183,9 +181,6 @@ export default function Form() {
           </button>
         </form>
       </main>
-
-      {/* Footer at the bottom */}
-      <Footer />
     </div>
   );
 }

@@ -2,12 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { Label } from '../components/ui/Label';
 import { Input } from '../components/ui/Input';
-import { cn } from '../lib/util';
-import MyNavbar from "../components/MyNavbar";
-import Footer from "../components/Footer";
-import { IconBrandGoogle, IconEye, IconEyeOff } from "@tabler/icons-react";
-import { Button, Radio, RadioGroup } from "@nextui-org/react";
-import useSignup from "../hooks/useSignup";
+import { Button } from "@nextui-org/react";
 import avatar from "../data/avatar.json";
 import { useAuthContext } from "../context/AuthContext";
 import toast from "react-hot-toast";

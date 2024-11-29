@@ -1,7 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { FaPaperPlane } from 'react-icons/fa';
-import MyNavbar from '../components/MyNavbar';
-import Footer from '../components/Footer';
 import chatsData from '../data/chats.json';
 import usersData from '../data/users.json';
 
@@ -50,8 +48,8 @@ const Chat = () => {
     };
 
     return (
-        <div className="flex flex-col h-full bg-gradient-to-b from-gray-800 via-gray-900 to-black">
-            <MyNavbar />
+        <div className="flex flex-col h-full bg-gradient-to-b from-gray-800 via-gray-900 to-gray-950">
+            
             <h1 className="text-3xl font-bold text-center text-gray-200 mt-20">Our Experts</h1>
             <div className="flex flex-1 mt-3 mb-16 mx-8 overflow-hidden sm:mx-16 lg:mx-32">
                 <div className="w-full md:w-1/4 bg-gray-700  relative text-gray-300 shadow-lg rounded-lg border border-gray-600 transition-transform duration-300 ease-in-out hover:shadow-xl overflow-x-auto" 
@@ -142,7 +140,7 @@ const Chat = () => {
                     </div>
                 </div>
             </div>
-            <Footer />
+            
         </div>
     );
 };

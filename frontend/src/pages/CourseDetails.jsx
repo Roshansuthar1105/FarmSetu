@@ -2,8 +2,6 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { Accordion, AccordionItem } from '@nextui-org/react'; // Importing NextUI's Accordion component
 import courses from '../data/courses.json'; // Adjust the path as needed
-import MyNavbar from '../components/MyNavbar'; // Import the Navbar component
-import Footer from '../components/Footer'; // Import the Footer component
 
 const CourseDetails = () => {
   const { id } = useParams();
@@ -15,7 +13,7 @@ const CourseDetails = () => {
 
   return (
     <div className="bg-gray-900 text-gray-100 min-h-screen">
-      <MyNavbar /> {/* Add the Navbar */}
+       {/* Add the Navbar */}
       <div className="max-w-3xl mx-auto my-8 p-4 pt-24">
         <h1 className="text-4xl font-bold mb-4 text-green-400 transition-transform duration-300 ease-in-out transform hover:scale-105">
           {course.title}
@@ -50,7 +48,6 @@ const CourseDetails = () => {
           </Accordion>
         </div>
       </div>
-      <Footer /> {/* Add the Footer */}
     </div>
   );
 };

@@ -1,9 +1,6 @@
-import Footer from '../components/Footer';
-import MyNavbar from '../components/MyNavbar';
 const About = () => {
     return (
         <div className="bg-gray-800 min-h-screen">
-            <MyNavbar/>
             <div className="container mx-auto px-4 py-16">
                 <h1 className="text-4xl font-bold text-green-600 text-center mb-12">About FarmSetu</h1>
                 
@@ -55,7 +52,6 @@ const About = () => {
                     </div>
                 </div>
             </div>
-            <Footer/>
         </div>
     );
 }

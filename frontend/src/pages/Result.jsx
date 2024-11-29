@@ -1,6 +1,4 @@
 import React from 'react';
-import MyNavbar from '../components/MyNavbar';
-import Footer from '../components/Footer';
 import { Bar, Pie } from 'react-chartjs-2';
 import { Chart, registerables } from 'chart.js';
 import { FaLeaf, FaFlask, FaSeedling, FaInfoCircle } from 'react-icons/fa';
@@ -94,7 +92,7 @@ const cropRecommendations = [
 const Result = () => {
   return (
     <div className="flex flex-col min-h-screen bg-neutral-900 text-neutral-200">
-      <MyNavbar /> {/* Add Navbar here */}
+       {/* Add Navbar here */}
 
       <header className="bg-neutral-800 py-4 shadow-md pt-24">
         <div className="container mx-auto text-center">
@@ -187,8 +185,6 @@ const Result = () => {
           </div>
         </section>
       </main>
-
-      <Footer /> {/* Add Footer here */}
     </div>
   );
 };

@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import MyNavbar from '../components/MyNavbar';
-import Footer from '../components/Footer';
 import Data from '../data/news.json';
 const NewsFeed = () => {
   const [newsData, setNewsData] = useState(null);
@@ -67,7 +65,6 @@ const NewsFeed = () => {
   }
   return (
     <div className="bg-gray-900 min-h-screen flex flex-col">
-      <MyNavbar className="fixed top-0 left-0 right-0 z-10 bg-green-900 shadow-lg" />
       <div className="pt-20 max-w-3xl mx-auto my-8 px-4">
         <h1 className="text-4xl font-bold mb-6 text-center text-green-500 transition duration-500 ease-in-out transform hover:scale-105">
           Agriculture News Feed
@@ -118,14 +115,14 @@ const NewsFeed = () => {
                 </div>
               </div>
             ))}
-            <div className="flex justify-between sticky bottom-0 p-1 bg-gray-900">
+            <div className="flex justify-between sticky bottom-0 p-1 backdrop-blur-sm bg-[#ffffff29] border-t-3 border-gray-900 ">
               <button className="bg-green-500 text-white px-4 py-2 rounded-md" disabled={limit === 10} onClick={()=>loadMore(-10)} >Prev</button>
               <button className="bg-green-500 text-white px-4 py-2 rounded-md" disabled={limit >= newsData.length} onClick={()=>loadMore(10)} >Next</button>
             </div>
           </div>
         )}
       </div>
-      <Footer />
+      
     </div>
   );
 };

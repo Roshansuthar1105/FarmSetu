@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import marketData from '../data/marketData.json';
-import MyNavbar from '../components/MyNavbar';
-import Footer from '../components/Footer';
 import { Bar, Pie, Line } from 'react-chartjs-2';
 import { Chart, registerables } from 'chart.js';
 import 'chartjs-adapter-date-fns';
@@ -114,10 +112,9 @@ const RealTimeMarket = () => {
 
   return (
     <div className="bg-gray-900 min-h-screen flex flex-col text-white">
-      <MyNavbar />
       <div className="flex-grow p-8 mt-16">
-        <div className='flex flex-row mx-auto items-center justify-between w-full mb-4'>
-        <h1 className="text-3xl font-bold cursor-default  transition duration-500 ease-in-out transform hover:scale-105">
+        <div className='flex flex-col mx-auto items-center justify-between w-full mb-4'>
+        <h1 className="text-4xl my-4 font-bold cursor-default  transition duration-500 ease-in-out transform hover:scale-105">
           Real-Time Market Prices
         </h1>
         <form onSubmit={handleSubmit} className="my-2  flex flex-row items-center justify-between">
@@ -266,7 +263,7 @@ const RealTimeMarket = () => {
           </div>
         )}
       </div>
-      <Footer />
+      
     </div>
   );
 };

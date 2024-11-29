@@ -1,10 +1,8 @@
-import MyNavbar from "./MyNavbar";
-import Footer from "./Footer";
-
+import React from "react";
 const WorkInProgress = () => {
     return (
         <div className="min-h-screen bg-gray-800">
-            <MyNavbar />
+            
             <div className="flex flex-col items-center justify-center min-h-[80vh]">
                 <div className="text-center p-8">
                     <h1 className="text-4xl font-bold text-gray-200 mb-4">
@@ -25,7 +23,7 @@ const WorkInProgress = () => {
                     </a>
                 </div>
             </div>
-            <Footer />
+            
         </div>
     );
 };

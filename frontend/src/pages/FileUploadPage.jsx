@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { FileUpload } from '../components/ui/FileUpload';
-import MyNavbar from "../components/MyNavbar";
-import Footer from "../components/Footer";
 import { Link } from 'react-router-dom';
 
 export default function FileUploadPage() {
@@ -15,7 +13,7 @@ export default function FileUploadPage() {
   return (
     <div className="flex flex-col min-h-screen bg-neutral-900 text-neutral-200">
       {/* Navbar at the top */}
-      <MyNavbar />
+      
 
       {/* Main content */}
       <main className="flex-grow w-full max-w-4xl mx-auto py-8 mt-16 flex flex-col items-center justify-center">
@@ -41,10 +39,7 @@ export default function FileUploadPage() {
             </svg>
           </button>
         </Link>
-      </main>
-
-      {/* Footer at the bottom */}
-      <Footer />
+      </main>      
     </div>
   );
 }

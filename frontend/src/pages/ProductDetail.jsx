@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import MyNavbar from '../components/MyNavbar';
-import Footer from '../components/Footer';
 import toast from 'react-hot-toast';
 import { useAuthContext } from '../context/AuthContext';
 
@@ -60,7 +58,7 @@ const ProductDetail = () => {
 
   return (
     <div className="bg-gray-800 text-gray-100 min-h-screen">
-      <MyNavbar />
+      
       <div className="container mx-auto px-4 py-8 mt-16">
         <div className="bg-gray-700 rounded-lg shadow-lg overflow-hidden flex flex-col gap-8 md:flex-row">
           <div className="w-1/4 h-1/1 object-contain">
@@ -96,7 +94,7 @@ const ProductDetail = () => {
           </div>
         </div>
       </div>
-      <Footer />
+      
     </div>
   );
 };

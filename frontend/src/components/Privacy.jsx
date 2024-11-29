@@ -1,11 +1,9 @@
 import React from 'react';
-import MyNavbar from './MyNavbar';
-import Footer from './Footer';
 
 const Privacy = () => {
   return (
     <div className="min-h-screen bg-gray-800 dark:bg-black">
-      <MyNavbar />
+      
       <div className="container mx-auto px-4 py-20">
         <h1 className="text-3xl font-bold text-green-500 dark:text-green-400 mb-10 text-center">
           Privacy Policy
@@ -55,7 +53,7 @@ const Privacy = () => {
           </section>
         </div>
       </div>
-      <Footer />
+      
     </div>
   );
 };

@@ -1,7 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import MyNavbar from '../components/MyNavbar'
 import { FaPaperPlane } from 'react-icons/fa';
-import Footer from '../components/Footer'
 function ChatWithCommunity() {
     const [users, setUsers] = useState([]);
     const [chats, setChats] = useState([]);
@@ -140,8 +138,8 @@ function ChatWithCommunity() {
     };
     return (
 
-        <div className='bg-gray-800 mx-auto w-full min-w-full text-white' >
-            <MyNavbar />
+        <div className='mx-auto w-full min-w-full text-white bg-gradient-to-b from-gray-800 via-gray-900 to-gray-950' >
+            
             <div className='py-20'>
                 <h1 className="text-3xl font-bold text-center text-gray-200 my-4">Chat With {selectedUserName ? selectedUserName : 'Community'} </h1>
                 <div className="flex flex-1 mt-3 mb-16 mx-8 overflow-hidden sm:mx-16 lg:mx-32">
@@ -240,7 +238,7 @@ function ChatWithCommunity() {
                     </div>
                 </div>
             </div>
-            <Footer />
+            
         </div>
     )
 }

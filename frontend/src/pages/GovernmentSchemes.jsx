@@ -6,7 +6,7 @@ function GovernmentSchemes() {
     return (
         <>
             <div className='bg-gray-800 mx-auto w-full min-h-screen min-w-full text-white pt-20 pb-2' >
-                <h2 className='text-green-700 text-4xl text-center font-semibold w-full my-4' >Government Schemes</h2>
+                <h2 className='text-white text-4xl text-center font-semibold w-full my-4' >Government Schemes</h2>
                 {govData.map((scheme, index) => (
                     <div key={index} className='bg-gray-700 p-4 rounded-lg m-2 sm:mx-2 md:mx-24'>
                         <h3 className='text-2xl font-semibold'>{scheme.schemeName}</h3>

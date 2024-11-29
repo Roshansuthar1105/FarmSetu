@@ -3,8 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { Input } from '@nextui-org/react';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import MyNavbar from '../components/MyNavbar';
-import Footer from '../components/Footer';
 import Product from '../components/Product.jsx';
 import Categories from '../components/Categories';
 // import products from '../data/products.json';
@@ -71,7 +69,6 @@ const fetchAllProducts = async ()=>{
 
   return (
     <div className="bg-gray-800 text-gray-100 min-h-screen">
-      <MyNavbar />
       <div className="container mx-auto px-4 py-8 mt-16">
         <Carousel
           showThumbs={false}
@@ -139,7 +136,6 @@ const fetchAllProducts = async ()=>{
           )}
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

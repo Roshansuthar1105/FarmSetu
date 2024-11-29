@@ -1,6 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import Footer from "../components/Footer";
-import MyNavbar from "../components/MyNavbar";
 import { useAuthContext } from "../context/AuthContext";
 
 const Profile = () => {
@@ -8,7 +6,7 @@ const Profile = () => {
     const { authUser } = useAuthContext();
     return (
         <div className="min-h-screen bg-gray-800 pt-20">
-            <MyNavbar />
+            
             <div className="container mx-auto px-4 my-10">
                 <div className="bg-gray-700 rounded-lg shadow-lg p-8 max-w-4xl mx-auto">
                     <div className="flex flex-col items-center">
@@ -72,7 +70,7 @@ const Profile = () => {
                     </div>
                 </div>
             </div>
-            <Footer />
+            
         </div>
     );
 }
