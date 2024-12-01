@@ -1,46 +1,58 @@
-import React, { useState } from 'react';
+import React, { useState, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import Home from './pages/Home';
-import Marketplace from './pages/Marketplace';
-import ProductDetail from './pages/ProductDetail';
-import Chat from './pages/Chat';
-import NewsFeed from './pages/NewsFeed';
-import Weather from './pages/Weather';
-import Resources from './pages/Resources';
-import CourseDetails from './pages/CourseDetails';
-import CommunityForum from './pages/CommunityForum';
-import RealTimeMarket from './pages/RealTimeMarket';
-import Login from './pages/Login';
-import Signup from './pages/Signup';
 import { Toaster } from 'react-hot-toast';
 import { useAuthContext } from './context/AuthContext';
-import ChatBot from './components/ChatBot';
 import { FiMessageSquare } from 'react-icons/fi';
-import FileUploadPage from './pages/FileUploadPage';
-import Form from './pages/Form';
-import Result from './pages/Result';
-import Profile from './pages/Profile';
-import NotFound from './pages/NotFound';
-import About from './pages/About';
-import Mission from './pages/Mission';
-import Pricing from './components/Pricing';
-import MyNavbar from './components/MyNavbar';
-import Footer from './components/Footer';
-import Contact from './components/Contact';
-import WorkInProgress from './components/WorkInProgress';
-import FAQ from './components/FAQ';
-import Privacy from './components/Privacy';
-import ChatWithCommunity from './pages/ChatWithCommunity';
-import UserPosts from './pages/UserPosts.jsx';
-import UserCart from './pages/UserCart.jsx';
-import Payment from './pages/Payment.jsx';
-import GovernmentSchemes from './pages/GovernmentSchemes.jsx';
-import InsuranceSchema from './pages/InsuranceSchema.jsx';
-import ProfileEdit from './pages/ProfileEdit.jsx';
-import ProductEdit from './pages/ProductEdit.jsx';
-import SellerProduct from './pages/SellerProduct.jsx';
-import SellerProductEdit from './pages/SellerProductEdit.jsx';
-import CropRecommendation from './pages/CropRecommendation.jsx';
+
+const LazyHome = React.lazy(() => import('./pages/Home'));
+const LazyMarketplace = React.lazy(() => import('./pages/Marketplace'));
+const LazyProductDetail = React.lazy(() => import('./pages/ProductDetail'));
+const LazyChat = React.lazy(() => import('./pages/Chat'));
+const LazyNewsFeed = React.lazy(() => import('./pages/NewsFeed'));
+const LazyWeather = React.lazy(() => import('./pages/Weather'));
+const LazyResources = React.lazy(() => import('./pages/Resources'));
+const LazyCourseDetails = React.lazy(() => import('./pages/CourseDetails'));
+const LazyCommunityForum = React.lazy(() => import('./pages/CommunityForum'));
+const LazyRealTimeMarket = React.lazy(() => import('./pages/RealTimeMarket'));
+const LazyLogin = React.lazy(() => import('./pages/Login'));
+const LazySignup = React.lazy(() => import('./pages/Signup'));
+const LazyFileUploadPage = React.lazy(() => import('./pages/FileUploadPage'));
+const LazyForm = React.lazy(() => import('./pages/Form'));
+const LazyResult = React.lazy(() => import('./pages/Result'));
+const LazyProfile = React.lazy(() => import('./pages/Profile'));
+const LazyNotFound = React.lazy(() => import('./pages/NotFound'));
+const LazyAbout = React.lazy(() => import('./pages/About'));
+const LazyMission = React.lazy(() => import('./pages/Mission'));
+const LazyPricing = React.lazy(() => import('./components/Pricing'));
+const LazyMyNavbar = React.lazy(() => import('./components/MyNavbar'));
+const LazyFooter = React.lazy(() => import('./components/Footer'));
+const LazyContact = React.lazy(() => import('./components/Contact'));
+const LazyWorkInProgress = React.lazy(() => import('./components/WorkInProgress'));
+const LazyFAQ = React.lazy(() => import('./components/FAQ'));
+const LazyPrivacy = React.lazy(() => import('./components/Privacy'));
+const LazyChatWithCommunity = React.lazy(() => import('./pages/ChatWithCommunity'));
+const LazyUserPosts = React.lazy(() => import('./pages/UserPosts.jsx'));
+const LazyUserCart = React.lazy(() => import('./pages/UserCart.jsx'));
+const LazyPayment = React.lazy(() => import('./pages/Payment.jsx'));
+const LazyGovernmentSchemes = React.lazy(() => import('./pages/GovernmentSchemes.jsx'));
+const LazyInsuranceSchema = React.lazy(() => import('./pages/InsuranceSchema.jsx'));
+const LazyProfileEdit = React.lazy(() => import('./pages/ProfileEdit.jsx'));
+const LazyProductEdit = React.lazy(() => import('./pages/ProductEdit.jsx'));
+const LazySellerProduct = React.lazy(() => import('./pages/SellerProduct.jsx'));
+const LazySellerProductEdit = React.lazy(() => import('./pages/SellerProductEdit.jsx'));
+const LazyCropRecommendation = React.lazy(() => import('./pages/CropRecommendation.jsx'));
+const LazyChatBot = React.lazy(() => import('./components/ChatBot'));
+
+const LoadingComponent = () => {
+  return (
+    <div className="flex justify-center items-center h-screen">
+      <div className="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full text-gray-500" role="status">
+        <span className="sr-only">Loading...</span>
+      </div>
+    </div>
+  );
+};
+
 export default function App() {
   const { authUser } = useAuthContext();
   const [chatBotVisible, setChatBotVisible] = useState(false);
@@ -53,46 +65,48 @@ export default function App() {
   };
   return (
     <Router>
-      <MyNavbar/>
+      <Suspense fallback={<LoadingComponent />}>
+        <LazyMyNavbar/>
+      </Suspense>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/farmermarketplace" element={<Marketplace  />} />
-        <Route path="/product/:id" element={<ProductDetail />} />
-        <Route path="/product/edit/:id" element={<ProductEdit />} />
-        <Route path="/chat" element={<Chat />} />
-        <Route path="/localchat" element={<ChatWithCommunity />} />
-        <Route path="/news" element={<NewsFeed />} />
-        <Route path="/payment" element={<Payment />} />
-        <Route path="/weather" element={<Weather />} />
-        <Route path="/resources" element={<Resources />} />
-        <Route path="/courses/:id" element={<CourseDetails />} />
-        <Route path="/community" element={<CommunityForum />} />
-        <Route path="/realtimemarket" element={<RealTimeMarket />} />
-        <Route path="/login" element={authUser ? <Navigate to='/' /> : <Login />} />
-        <Route path="/signup" element={authUser ? <Navigate to='/' /> : <Signup />} />
-        <Route path="/fileupload" element={<FileUploadPage />} />
-        <Route path="/form" element={<Form />} />
-        <Route path="/results" element={<Result/>} />
-        <Route path="/profile" element={<Profile/>} />
-        <Route path="/profile/edit/:id" element={<ProfileEdit/>} />
-        <Route path="/profile/posts/:id" element={<UserPosts/>} />
-        <Route path="/profile/cart/:userId" element={<UserCart/>} />
-        <Route path="/profile/products/:userId" element={<SellerProduct/>} />
-        <Route path="/profile/products/add" element={<SellerProductEdit/>} />
-        <Route path="/GovernmentSchemes" element={<GovernmentSchemes/> } />
-        <Route path="/InsuranceSchema" element={<InsuranceSchema/> } />
-        <Route path="/crops" element={<CropRecommendation/> } />
-        <Route path="/about" element={<About/>} />
-        <Route path="/mission" element={<Mission/>} />
-        <Route path="/contact" element={ <Contact/>  } />
-        <Route path="/pricing" element={ <Pricing/>  } />
-        <Route path="/faq" element={<FAQ/>} />
-        <Route path="/privacy" element={<Privacy/> } />
-        <Route path="/team" element={<WorkInProgress/>} />
-        <Route path="/careers" element={<WorkInProgress/>} />
-        <Route path="/press" element={<WorkInProgress/>} />
-        <Route path="/payment-processing" element={<WorkInProgress/>} />
-        <Route path="*" element={<NotFound/>} />
+        <Route path="/" element={<Suspense fallback={<LoadingComponent />}><LazyHome /></Suspense>} />
+        <Route path="/farmermarketplace" element={<Suspense fallback={<LoadingComponent />}><LazyMarketplace /></Suspense>} />
+        <Route path="/product/:id" element={<Suspense fallback={<LoadingComponent />}><LazyProductDetail /></Suspense>} />
+        <Route path="/product/edit/:id" element={<Suspense fallback={<LoadingComponent />}><LazyProductEdit /></Suspense>} />
+        <Route path="/chat" element={<Suspense fallback={<LoadingComponent />}><LazyChat /></Suspense>} />
+        <Route path="/localchat" element={<Suspense fallback={<LoadingComponent />}><LazyChatWithCommunity /></Suspense>} />
+        <Route path="/news" element={<Suspense fallback={<LoadingComponent />}><LazyNewsFeed /></Suspense>} />
+        <Route path="/payment" element={<Suspense fallback={<LoadingComponent />}><LazyPayment /></Suspense>} />
+        <Route path="/weather" element={<Suspense fallback={<LoadingComponent />}><LazyWeather /></Suspense>} />
+        <Route path="/resources" element={<Suspense fallback={<LoadingComponent />}><LazyResources /></Suspense>} />
+        <Route path="/courses/:id" element={<Suspense fallback={<LoadingComponent />}><LazyCourseDetails /></Suspense>} />
+        <Route path="/community" element={<Suspense fallback={<LoadingComponent />}><LazyCommunityForum /></Suspense>} />
+        <Route path="/realtimemarket" element={<Suspense fallback={<LoadingComponent />}><LazyRealTimeMarket /></Suspense>} />
+        <Route path="/login" element={authUser ? <Navigate to='/' /> : <Suspense fallback={<LoadingComponent />}><LazyLogin /></Suspense>} />
+        <Route path="/signup" element={authUser ? <Navigate to='/' /> : <Suspense fallback={<LoadingComponent />}><LazySignup /></Suspense>} />
+        <Route path="/fileupload" element={<Suspense fallback={<LoadingComponent />}><LazyFileUploadPage /></Suspense>} />
+        <Route path="/form" element={<Suspense fallback={<LoadingComponent />}><LazyForm /></Suspense>} />
+        <Route path="/results" element={<Suspense fallback={<LoadingComponent />}><LazyResult/></Suspense>} />
+        <Route path="/profile" element={<Suspense fallback={<LoadingComponent />}><LazyProfile/></Suspense>} />
+        <Route path="/profile/edit/:id" element={<Suspense fallback={<LoadingComponent />}><LazyProfileEdit/></Suspense>} />
+        <Route path="/profile/posts/:id" element={<Suspense fallback={<LoadingComponent />}><LazyUserPosts/></Suspense>} />
+        <Route path="/profile/cart/:userId" element={<Suspense fallback={<LoadingComponent />}><LazyUserCart/></Suspense>} />
+        <Route path="/profile/products/:userId" element={<Suspense fallback={<LoadingComponent />}><LazySellerProduct/></Suspense>} />
+        <Route path="/profile/products/add" element={<Suspense fallback={<LoadingComponent />}><LazySellerProductEdit/></Suspense>} />
+        <Route path="/GovernmentSchemes" element={<Suspense fallback={<LoadingComponent />}><LazyGovernmentSchemes/> </Suspense>} />
+        <Route path="/InsuranceSchema" element={<Suspense fallback={<LoadingComponent />}><LazyInsuranceSchema/> </Suspense>} />
+        <Route path="/crops" element={<Suspense fallback={<LoadingComponent />}><LazyCropRecommendation/> </Suspense>} />
+        <Route path="/about" element={<Suspense fallback={<LoadingComponent />}><LazyAbout/> </Suspense>} />
+        <Route path="/mission" element={<Suspense fallback={<LoadingComponent />}><LazyMission/> </Suspense>} />
+        <Route path="/contact" element={<Suspense fallback={<LoadingComponent />}><LazyContact/> </Suspense>} />
+        <Route path="/pricing" element={<Suspense fallback={<LoadingComponent />}><LazyPricing/> </Suspense>} />
+        <Route path="/faq" element={<Suspense fallback={<LoadingComponent />}><LazyFAQ/> </Suspense>} />
+        <Route path="/privacy" element={<Suspense fallback={<LoadingComponent />}><LazyPrivacy/> </Suspense>} />
+        <Route path="/team" element={<Suspense fallback={<LoadingComponent />}><LazyWorkInProgress/> </Suspense>} />
+        <Route path="/careers" element={<Suspense fallback={<LoadingComponent />}><LazyWorkInProgress/> </Suspense>} />
+        <Route path="/press" element={<Suspense fallback={<LoadingComponent />}><LazyWorkInProgress/> </Suspense>} />
+        <Route path="/payment-processing" element={<Suspense fallback={<LoadingComponent />}><LazyWorkInProgress/> </Suspense>} />
+        <Route path="*" element={<Suspense fallback={<LoadingComponent />}><LazyNotFound/> </Suspense>} />
       </Routes>
       <Toaster />
       {/* Toggle Button for ChatBot */}
@@ -106,8 +120,12 @@ export default function App() {
       </button>
 
       {/* ChatBot Component */}
-      <ChatBot visible={chatBotVisible} onClose={toggleChatBot} />
-      <Footer/>
+      <Suspense fallback={<LoadingComponent />}>
+        <LazyChatBot visible={chatBotVisible} onClose={toggleChatBot} />
+      </Suspense>
+      <Suspense fallback={<LoadingComponent />}>
+        <LazyFooter/>
+      </Suspense>
     </Router>
   );
 }
