@@ -110,7 +110,7 @@ export default function MyNavbar() {
                     />
                   </button>
                   {isprofileOpen && (
-                    <div className="absolute right-0 mt-2 w-48 bg-white text-black rounded-lg shadow-lg py-1 cursor-default" onClick={()=>{setIsMenuOpen(!isMenuOpen); }}>
+                    <div className="absolute right-0 mt-2 w-48 bg-white text-black rounded-lg shadow-lg py-1 cursor-default" onClick={()=>{setIsMenuOpen(false); }}>
                       <div className="px-4 py-3">
                         <p className="text-sm flex flex-row gap-2 align-text-top "><MdEmail className="text-green-700 size-4" /> <span>Signed in as</span> </p>
                         <p className="text-sm font-medium text-[#053c2f]">{authUser.email}</p>
