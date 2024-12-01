@@ -63,7 +63,7 @@ export default function MyNavbar() {
           {/* Navigation Links */}
           <ul 
           // className={`${!isMenuOpen ? 'flex flex-col absolute top-full left-0 right-0 bg-white shadow-md' : 'hidden'} lg:flex lg:flex-row lg:static lg:shadow-none gap-4 xl:gap-4  p-4 lg:p-0`}>
-          className={`${!isMenuOpen ? 'hidden':'flex flex-col absolute top-full left-0 right-0 bg-white shadow-md'} gap-2 `}
+          className={`${!isMenuOpen ? 'hidden':'flex flex-col absolute top-full left-0 right-0 bg-white shadow-md'} gap-1 py-2 items-center justify-center `}
           onClick={()=>setIsMenuOpen(!isMenuOpen)}
           >
             {links2.map((link, index) => (
@@ -71,7 +71,7 @@ export default function MyNavbar() {
                 <Link
                   to={link.to}
                   
-                  className={`ml-4 my-1 block text-base xl:text-sm ${link.isActive ? "text-secondary" : "text-foreground"} hover:text-green-700  transition-all duration-300`}
+                  className={`w-[90dvw] max-w-[1300px] block rounded-lg border-2 hover:border-green-700 p-2 text-lg pl-6 mx-3 ${link.isActive ? "text-secondary" : "text-foreground"} hover:text-green-700 hover:bg-green-100  transition-all duration-300`}
                 >
                   {link.name}
                 </Link>

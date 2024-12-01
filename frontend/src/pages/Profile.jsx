@@ -1,6 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../context/AuthContext";
-
+import { FaBriefcase, FaEnvelope, FaShoppingCart, FaUser } from "react-icons/fa";
+import { FaCalendarDays, FaMessage } from "react-icons/fa6";
+import { BiSolidMessageSquareEdit } from "react-icons/bi";
+import { HiViewGrid } from "react-icons/hi";
+import { IoLogOut } from "react-icons/io5";
+import { GrContactInfo } from "react-icons/gr";
 const Profile = () => {
     const navigate = useNavigate();
     const { authUser } = useAuthContext();
@@ -13,7 +18,7 @@ const Profile = () => {
                         <img
                             src={authUser?.avatar || "https://cdn-icons-png.flaticon.com/128/1154/1154966.png"}
                             alt="Profile"
-                            className="w-32 h-32 rounded-full border-4 border-blue-500"
+                            className="w-32 h-32 rounded-full border-4 border-green-600"
                         />
                         <h1 className="mt-4 text-3xl font-bold text-gray-200">
                             {authUser?.name?.charAt(0).toUpperCase() + authUser?.name?.slice(1)}
@@ -23,35 +28,38 @@ const Profile = () => {
                         <div className="mt-8 w-full text-gray-300">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div className="bg-gray-800 p-6 rounded-lg">
-                                    <h2 className="text-xl font-semibold mb-4 text-gray-200">Personal Information</h2>
+                                    <div className="flex items-center mb-4">
+                                        <GrContactInfo className="mr-2 text-3xl text-green-600" />
+                                        <h2 className="text-2xl font-semibold text-gray-200">Personal Information</h2>
+                                    </div>
                                     <div className="space-y-3">
-                                        <p><span className="font-medium">Name:</span> {authUser?.name}</p>
-                                        <p><span className="font-medium">Role:</span> {authUser?.role}</p>
-                                        <p><span className="font-medium">Email:</span> {authUser?.email}</p>
-                                        <p><span className="font-medium">Member Since:</span> {new Date(authUser?.createdAt || Date.now()).toLocaleDateString()}</p>
+                                        <p className="flex items-center"><FaUser className="mr-2 text-green-600 " /><span className="font-medium">Name : {authUser?.name}</span></p>
+                                        <p className="flex items-center"><FaBriefcase className="mr-2 text-green-600 " /><span className="font-medium">Role : {authUser?.role}</span></p>
+                                        <p className="flex items-center"><FaEnvelope className="mr-2 text-green-600 " /><span className="font-medium">Email : {authUser?.email}</span></p>
+                                        <p className="flex items-center"><FaCalendarDays className="mr-2 text-green-600 " /><span className="font-medium">Member Since : {new Date(authUser?.createdAt || Date.now()).toLocaleDateString()}</span></p>
                                     </div>
                                 </div>
 
                                 <div className="bg-gray-800 p-6 rounded-lg">
-                                    <h2 className="text-xl font-semibold mb-4 text-gray-200">Account Settings</h2>
+                                    <h2 className="text-2xl font-semibold mb-4 text-gray-200">Account Settings</h2>
                                     <div className="space-y-4">
-                                        <button onClick={() => navigate(`/profile/cart/${authUser._id}`)} className="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition">
-                                            Your cart
+                                        <button onClick={() => navigate(`/profile/cart/${authUser._id}`)} className="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition flex items-center justify-center">
+                                            <FaShoppingCart className="mr-2" /> Your cart
                                         </button>
-                                        <button onClick={() => navigate(`/profile/posts/${authUser._id}`)} className="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition">
-                                            Your Posts
+                                        <button onClick={() => navigate(`/profile/posts/${authUser._id}`)} className="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition flex items-center justify-center">
+                                            <FaMessage className="mr-2" /> Your Posts
                                         </button>
-                                        <button className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition"
+                                        <button className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition flex items-center justify-center"
                                         onClick={()=>navigate(`/profile/edit/${authUser._id}`)}
                                         >
-                                            Edit Profile
+                                            <BiSolidMessageSquareEdit className="mr-2" /> Edit Profile
                                         </button>
                                         {authUser?.role === 'seller' && (
                                             <button
                                                 onClick={() => navigate("/profile/products/add")}
-                                                className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition"
+                                                className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition flex items-center justify-center"
                                             >
-                                                Add New Product
+                                                <HiViewGrid className="mr-2" /> Add New Product
                                             </button>
                                         )}
                                         <button
@@ -59,9 +67,9 @@ const Profile = () => {
                                                 localStorage.removeItem('user');
                                                 window.location.href = '/';
                                             }}
-                                            className="w-full bg-red-500 text-white py-2 rounded-lg hover:bg-red-600 transition"
+                                            className="w-full bg-red-500 text-white py-2 rounded-lg hover:bg-red-600 transition flex items-center justify-center"
                                         >
-                                            Logout
+                                            <IoLogOut className="mr-2" /> Logout
                                         </button>
                                     </div>
                                 </div>
