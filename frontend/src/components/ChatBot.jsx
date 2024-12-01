@@ -19,11 +19,16 @@ const ChatBot = ({ visible, onClose }) => {
   const [conversationStarted, setConversationStarted] = useState(false);
   const messagesEndRef = useRef(null);
   const [loading, setLoading] = useState(false);
+  const saveMessagesToLocalStorage = (messages) => {
+    localStorage.setItem('chatHistory', JSON.stringify(messages));
+  };
   const sendMessage = async (message) => {
     if (message.trim() !== '') {
-      setMessages([...messages, { text: message, user: 'user' }]);
+      const newMessages = [...messages, { text: message, user: 'user' }];
+      setMessages(newMessages);
+      saveMessagesToLocalStorage(newMessages); // Save messages to local storage
       setInput('');
-      setConversationStarted(true); // Set conversationStarted to true when a message is sent
+      setConversationStarted(true);
       setLoading(true);
       // Get the bot response from the Gemini API
       try{
@@ -41,9 +46,23 @@ const ChatBot = ({ visible, onClose }) => {
     }
   };
 
+  // const getBotResponse = async (prompt) => {
+  //   try {
+  //     const result = await model.generateContent(prompt);
+  //     const response = await result.response;
+  //     return response.text();
+  //   } catch (error) {
+  //     console.error('Error fetching bot response:', error);
+  //     return 'Sorry, I am unable to respond at the moment.';
+  //   }
+  // };
   const getBotResponse = async (prompt) => {
     try {
-      const result = await model.generateContent(prompt);
+      // Concatenate previous messages into a single prompt
+      const conversationHistory = messages.map(msg => `${msg.user}: ${msg.text}`).join('\n');
+      const fullPrompt = `${conversationHistory}\nUser: ${prompt}`; // Add the new user prompt
+  
+      const result = await model.generateContent(fullPrompt);
       const response = await result.response;
       return response.text();
     } catch (error) {
@@ -51,13 +70,20 @@ const ChatBot = ({ visible, onClose }) => {
       return 'Sorry, I am unable to respond at the moment.';
     }
   };
-
   useEffect(() => {
     if (messagesEndRef.current) {
       messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
     }
   }, [messages]);
-
+  useEffect(() => {
+    // Load chat history from local storage
+    const savedMessages = JSON.parse(localStorage.getItem('chatHistory')) || [];
+    setMessages(savedMessages);
+    
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, []);
   if (!visible) return null;
 
   return (
