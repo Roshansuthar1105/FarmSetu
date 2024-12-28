@@ -8,8 +8,7 @@ export const useAuthContext= ()=>{
 
 export const AuthContextProvider= ({children})=>{
     const [authUser, setAuthUser]= useState(JSON.parse(localStorage.getItem('user') )|| null);
-    const BACKEND_URL = "https://farmsetu-6bga.onrender.com";
-    // const BACKEND_URL = "http://localhost:5000";
+    const BACKEND_URL = import.meta.env.VITE_API_URL;
     return <AuthContext.Provider value={{authUser, setAuthUser, BACKEND_URL}}>
         {children}
     </AuthContext.Provider>

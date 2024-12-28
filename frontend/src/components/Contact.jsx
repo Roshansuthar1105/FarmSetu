@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Input, Textarea, Button, Card } from '@nextui-org/react';
 import { toast } from 'react-hot-toast';
+import { useAuthContext } from '../context/AuthContext';
 export default function Contact() {
+    const {BACKEND_URL} = useAuthContext();
     const userData = localStorage.getItem('user');
     let userName = '';
     let userEmail = '';
@@ -31,7 +33,7 @@ export default function Contact() {
     }else{
     e.preventDefault();
     try {
-    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/contact`, {
+    const response = await fetch(`${BACKEND_URL}/api/contact`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
