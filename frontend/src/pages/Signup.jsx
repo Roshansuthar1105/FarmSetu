@@ -7,6 +7,7 @@ import { IconBrandGoogle, IconEye, IconEyeOff } from "@tabler/icons-react";
 import { Button, Radio, RadioGroup } from "@nextui-org/react";
 import useSignup from "../hooks/useSignup";
 import avatar from "../data/avatar.json";
+import { FaLocationArrow } from "react-icons/fa";
 export default function Signup() {
   const [formData, setFormData] = useState({
     name: '',
@@ -54,9 +55,10 @@ export default function Signup() {
   };
 
   return (
-    <div className="bg-gray-800 pt-20 dark:bg-black">
-      
-      <div className="max-w-md w-full relative mx-auto overflow-hidden rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-gray-100 dark:bg-black my-20">
+    <div className="bg-gradient-to-b from-gray-800 via-gray-900 to-gray-950 py-20">
+    <h1 className="font-bold text-green-500 text-3xl text-center my-10 " > Welcome to Farmsetu</h1>
+   
+      <div className="max-w-md w-full relative mx-auto overflow-hidden rounded-md md:rounded-2xl p-4 md:p-8 shadow-input bg-gray-100 dark:bg-black">
         <h2 className="font-bold text-xl text-green-800 dark:text-neutral-200">
           Welcome to FarmSetu
         </h2>
@@ -105,22 +107,21 @@ export default function Signup() {
           <LabelInputContainer className="mb-4">
             {/* <Button onClick={() => setShowAvatarContainer(true)} >Select Avatar</Button> */}
           
-                <h3 className="text-lg font-bold mb-4">Select Your Avatar</h3>
-                <div className="grid grid-cols-5 gap-4">
+                <Label>Select Your Avatar</Label>
+                <div className="grid grid-cols-5 gap-4 h-16 overflow-y-scroll">
                   {avatar.map((avatar) => (
                     <div className={`rounded-full overflow-hidden ${formData.selectedAvatar===avatar.avatar ? 'border-green-700 border-3':'border-slate-0' }  border-3 h-12 w-12`} >
                     <img
                       key={avatar.id}
                       src={avatar.avatar}
                       alt={`Avatar ${avatar.id}`}
-                      className="w-full h-auto rounded-lg cursor-pointer"
+                      className={`w-full h-auto rounded-lg cursor-pointer ${formData.selectedAvatar===avatar.avatar ? 'bg-green-200':'' } `}
                       onClick={() => handleAvatar(avatar.avatar)}
                       style={{height:"50px",width:"50px"}}
                       />
                       </div>
                   ))}
                 </div>
-            
           </LabelInputContainer>
           <LabelInputContainer className="mb-4 relative">
             <Label htmlFor="password">Password</Label>
@@ -133,6 +134,7 @@ export default function Signup() {
             />
             <TogglePasswordButton
               isVisible={showPassword}
+              
               onClick={() => setShowPassword(!showPassword)}
             />
           </LabelInputContainer>
@@ -154,12 +156,27 @@ export default function Signup() {
           {error && <p className="text-red-500 mb-4">{error}</p>}
 
           <button
-            className="bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
+            className="bg-gradient-to-br relative group/btn from-green-500 dark:from-zinc-900 dark:to-zinc-900 to-green-900 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
             type="submit"
             disabled={loading}
-          >
-            {loading? <span className="loading loading-spinner"></span> : 'Sign up'}
-            {/* Sign up &rarr; */}
+          >{loading ? (
+            <span className="flex justify-center items-center">
+                {/* Spinner SVG or other spinner */}
+                <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 1 1 16 0A8 8 0 0 1 4 12z"></path>
+                </svg>
+            </span>
+        ) : (
+            <>
+            <span className="flex gap-2 justify-center items-center ">
+                <span>
+                Sign Up
+                </span>
+                <FaLocationArrow />
+            </span>
+            </>
+        )}
             <BottomGradient />
           </button>
 
@@ -190,9 +207,9 @@ const TogglePasswordButton = ({ isVisible, onClick }) => (
     className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
   >
     {isVisible ? (
-      <IconEyeOff className="h-5 w-5 text-neutral-500 dark:text-neutral-400" />
+      <IconEyeOff className="h-5 w-5 text-green-500 dark:text-green-400" />
     ) : (
-      <IconEye className="h-5 w-5 text-neutral-500 dark:text-neutral-400" />
+      <IconEye className="h-5 w-5 text-green-500 dark:text-green-400" />
     )}
   </span>
 );

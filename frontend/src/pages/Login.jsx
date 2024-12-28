@@ -4,8 +4,9 @@ import { Label } from '../components/ui/Label';
 import { Input } from '../components/ui/Input';
 import { cn } from '../lib/util';
 import { Link } from "react-router-dom";
-import { IconEye, IconEyeOff } from "@tabler/icons-react"; // Import eye icons
+import { IconBrandGoogle, IconEye, IconEyeOff } from "@tabler/icons-react"; // Import eye icons
 import useLogin from "../hooks/useLogin";
+import { FaLocationArrow } from "react-icons/fa";
 
 export default function Login() {
     const [passwordVisible, setPasswordVisible] = useState(false); // State to toggle password visibility
@@ -25,9 +26,9 @@ export default function Login() {
     };
 
     return (
-        <div className="bg-gray-800 pt-20 dark:bg-black">
-            
-            <div className=" max-w-md w-full mx-auto my-20 rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-gray-100 dark:bg-black">
+        <div className="bg-gradient-to-b from-gray-800 via-gray-900 to-gray-950 py-20">
+            <h1 className="font-bold text-green-500 text-3xl text-center my-10 " > Welcome to Farmsetu</h1>
+            <div className=" max-w-md w-full mx-auto  rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-gray-100 dark:bg-black">
                 <h2 className="font-bold text-xl text-green-800 dark:text-neutral-200">
                     Welcome to FarmSetu
                 </h2>
@@ -54,7 +55,7 @@ export default function Login() {
                         <button
                             type="button"
                             onClick={togglePasswordVisibility}
-                            className="absolute right-2 top-1/2 transform -translate-y-1/2 text-neutral-600 dark:text-neutral-400"
+                            className="absolute right-2 top-1/2 transform -translate-y-1/2 text-green-600 dark:text-neutral-400"
                         >
                             {passwordVisible ? <IconEyeOff /> : <IconEye />}
                         </button>
@@ -69,7 +70,7 @@ export default function Login() {
             <BottomGradient />
           </button> */}
                     <button
-                        className="bg-gradient-to-br relative group/btn from-green-600 dark:from-green-700 dark:to-green-900 to-green-800 block dark:bg-green-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--green-800)_inset,0px_-1px_0px_0px_var(--green-800)_inset] hover:from-green-700 hover:to-green-900 dark:hover:from-green-800 dark:hover:to-green-950 transition-all duration-200"
+                        className="bg-gradient-to-br  relative group/btn from-green-600 dark:from-green-700 dark:to-green-900 to-green-800 block dark:bg-green-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--green-800)_inset,0px_-1px_0px_0px_var(--green-800)_inset] hover:from-green-700 hover:to-green-900 dark:hover:from-green-800 dark:hover:to-green-950 transition-all duration-200"
                         type="submit"
                         disabled={loading}
                     >
@@ -83,7 +84,12 @@ export default function Login() {
                             </span>
                         ) : (
                             <>
-                                Login <span dangerouslySetInnerHTML={{ __html: '&rarr;' }} />
+                            <span className="flex gap-2 justify-center items-center ">
+                                <span>
+                                Login 
+                                </span>
+                                <FaLocationArrow />
+                            </span>
                             </>
                         )}
                         <BottomGradient />
