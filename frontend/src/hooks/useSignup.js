@@ -5,7 +5,7 @@ import { useAuthContext } from '../context/AuthContext';
 
 const useSignup = () => {
   const [loading, setLoading] = useState(false);
-  const {setAuthUser}= useAuthContext();
+  const {setAuthUser,BACKEND_URL}= useAuthContext();
   const signup = async ({ name, email, password, confirmPassword, role ,selectedAvatar }) => {
     const avatar = selectedAvatar;
     const success = handleInputErrors({ name, email, password, confirmPassword, role,avatar });
@@ -15,7 +15,7 @@ const useSignup = () => {
 
     setLoading(true);
     try {
-      const response = await axios.post('https://hotel-oryv.onrender.com/api/auth/signup', {
+      const response = await axios.post(`${BACKEND_URL}/api/auth/signup`, {
         name,
         email,
         password,

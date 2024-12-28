@@ -6,13 +6,13 @@ import { FaTrashAlt } from 'react-icons/fa';
 
 
 function UserPosts() {
-    const { authUser } = useAuthContext();
+    const { authUser ,BACKEND_URL} = useAuthContext();
     const [posts, setPosts] = React.useState([]);
     const navigate = useNavigate();
     useEffect(() => {
         const fetchPosts = async () => {
             try {
-                const response = await fetch(`https://hotel-oryv.onrender.com/api/community/posts`);
+                const response = await fetch(`${BACKEND_URL}/api/community/posts`);
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -29,7 +29,7 @@ function UserPosts() {
     }, []);
     const deletePost = async (postId) => {
         try {
-            const response = await fetch(`https://hotel-oryv.onrender.com/api/community/posts/${postId}`, {
+            const response = await fetch(`${BACKEND_URL}/api/community/posts/${postId}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',

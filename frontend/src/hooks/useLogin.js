@@ -5,11 +5,11 @@ import { useAuthContext } from "../context/AuthContext";
 
 const useLogin = () => {
     const [loading, setLoading] = useState(false);
-    const {setAuthUser}= useAuthContext();
+    const {setAuthUser , BACKEND_URL}= useAuthContext();
     const login = async (email, password) => {
         setLoading(true);
         try {
-            const response = await axios.post("https://hotel-oryv.onrender.com/api/auth/login", { email, password });
+            const response = await axios.post(`${BACKEND_URL}/api/auth/login`, { email, password });
             const data= response.data;
             if(response.status!=201 || data.error){
                 throw new Error(data.error || 'Error has occured');

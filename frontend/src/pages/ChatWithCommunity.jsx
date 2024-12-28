@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import toast from 'react-hot-toast';
 import { FaPaperPlane } from 'react-icons/fa';
 function ChatWithCommunity() {
+    const {BACKEND_URL}= useAuthContext();
     const [users, setUsers] = useState([]);
     const [chats, setChats] = useState([]);
     const [selectedUserName, setSelectedUserName] = useState('');
@@ -17,9 +18,8 @@ function ChatWithCommunity() {
     const [selectedUser, setSelectedUser] = useState(`${currentUserId}`);
     const [filteredUser, setFilteredUser] = useState([]);
     const fetchUsers = async () => {
-        const API = "https://hotel-oryv.onrender.com";
         try {
-            fetch(`${API}/api/users/all`, {
+            fetch(`${BACKEND_URL}/api/users/all`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -96,9 +96,8 @@ function ChatWithCommunity() {
         }
     };
     const fetchCurrentChats = async () => {
-        const API = "https://hotel-oryv.onrender.com";
         try {
-            const response = await fetch(`${API}/api/chats/${selectedUser}`, {
+            const response = await fetch(`${BACKEND_URL}/api/chats/${selectedUser}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -124,7 +123,7 @@ function ChatWithCommunity() {
             };
 
             try {
-                const response = await fetch('https://hotel-oryv.onrender.com/api/chats', {
+                const response = await fetch(`${BACKEND_URL}/api/chats`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

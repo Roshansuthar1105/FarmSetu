@@ -5,6 +5,7 @@ import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import Product from '../components/Product.jsx';
 import Categories from '../components/Categories';
+import { useAuthContext } from '../context/AuthContext.jsx';
 // import products from '../data/products.json';
 
 const Marketplace = () => {
@@ -12,6 +13,7 @@ const Marketplace = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [products ,setProducts] =useState([]);
+  const {BACKEND_URL} = useAuthContext();
   const navigate = useNavigate();
 
   const handleSearchChange = (e) => {
@@ -26,9 +28,8 @@ useEffect(()=>{
   fetchAllProducts();
 },[]);
 const fetchAllProducts = async ()=>{
-  const url = 'https://hotel-oryv.onrender.com/api/products/';
   try {
-    const response = await fetch(url);
+    const response = await fetch(`${BACKEND_URL}/api/products/`);
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }

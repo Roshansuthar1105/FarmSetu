@@ -8,7 +8,7 @@ export default defineConfig({
     port:3000,
     proxy:{
       '/api':{
-        target:'https://hotel-oryv.onrender.com',
+        target:'https://farmsetu-6bga.onrender.com',
         changeOrigin: true,
       }
     }

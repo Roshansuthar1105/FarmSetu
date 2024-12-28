@@ -4,7 +4,7 @@ import { Card, CardBody } from '@nextui-org/react';
 import { useAuthContext } from '../context/AuthContext';
 
 const CommunityForum = () => {
-  const { authUser } = useAuthContext();
+  const { authUser,BACKEND_URL } = useAuthContext();
   const [posts, setPosts] = useState(postsData); // Use the imported JSON data
   const [newPost, setNewPost] = useState({ name:authUser.name,email:authUser.email , message: '', title: '' });
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -18,7 +18,7 @@ const CommunityForum = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('https://hotel-oryv.onrender.com/api/community/posts');
+        const response = await fetch(`${BACKEND_URL}/api/community/posts`);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
@@ -36,9 +36,7 @@ const CommunityForum = () => {
     e.preventDefault();
     const postId = posts.length + 1;
     const date = new Date().toISOString().split('T')[0];
-    // const post = { ...newPost, id: postId, date };
-    const url = "https://hotel-oryv.onrender.com/api/community/";
-    fetch(url, {
+    fetch(`${BACKEND_URL}/api/community/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
