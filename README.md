@@ -12,6 +12,12 @@ Farmers worldwide face common challenges: limited information, high costs, and s
 Key features include a **Marketplace**, **Community Forum**, **Expert Consultations**, and **Local Chats**, fostering a robust network of shared knowledge and resources.
 
 ---
+## 📺 **Live Preview**
+
+- **Backend**: [https://farmsetu-6bga.onrender.com](https://farmsetu-6bga.onrender.com)
+- **Frontend**: [https://farmsetu.netlify.app](https://farmsetu.netlify.app)
+
+
 
 ## 🌟 **Features**
 

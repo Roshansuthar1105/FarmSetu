@@ -11,7 +11,7 @@ import chats from './routes/chats.routes.js';
 import productRoutes from './routes/products.routes.js';
 import userCartRoute from './routes/userCartRoute.routes.js';
 import communityRoute from './routes/communityRoute.routes.js';
-
+import homeRoute from './routes/home.routes.js';
 import cookieParser from 'cookie-parser';
 import path from 'path';
 dotenv.config();
@@ -28,6 +28,7 @@ app.use((req, res, next) => {
 const PORT= process.env.PORT || 5000;
 app.use(express.json());
 app.use(cookieParser());
+app.use('/',homeRoute);
 app.use('/api/auth', authRoutes);
 app.use('/api/news', newsRoutes );
 app.use('/api/marketdata', marketRoutes);
