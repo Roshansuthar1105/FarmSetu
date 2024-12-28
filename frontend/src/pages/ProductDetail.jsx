@@ -35,6 +35,10 @@ const ProductDetail = () => {
   }
   const addToCart = async (product) => {
     try {
+      if(localStorage.getItem("user")==null){
+        toast.error("Please Login to add product in cart");
+        return;
+      }
       const response = await fetch(`${BACKEND_URL}/api/profile/cart/${authUser._id}`, {
         method: 'POST',
         headers: {
@@ -49,10 +53,15 @@ const ProductDetail = () => {
       toast.success('Product added successfully!');
     } catch (error) {
       console.error('Error adding product to cart:', error);
-      alert('Failed to add product to cart. Please try again.');
+      toast.error('Failed to add product to cart. Please try again.');
     }
   };
   const handleChatClick = (seller,name) => {
+    // const a = localStorage.ge
+    if(localStorage.getItem("user")==null){
+      toast.error("Please Login to chat with seller");
+      return;
+    }
     navigate(`/localchat?seller=${seller}&productname=${name.split( ).join("+")}`);
   };
 

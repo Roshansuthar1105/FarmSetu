@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
+import toast from 'react-hot-toast';
 import { FaPaperPlane } from 'react-icons/fa';
 function ChatWithCommunity() {
     const [users, setUsers] = useState([]);
@@ -7,7 +8,12 @@ function ChatWithCommunity() {
     const [message, setMessage] = useState('');
     const [searchQuery, setSearchQuery] = useState("");
     const chatContainerRef = useRef(null);
-    const currentUserId = JSON.parse(localStorage.getItem('user'))._id;
+    if(localStorage.length === 0){
+        window.location.replace('/login');
+    }
+        const currentUserId = JSON.parse(localStorage.getItem('user'))._id;
+
+    console.log(localStorage.length)
     const [selectedUser, setSelectedUser] = useState(`${currentUserId}`);
     const [filteredUser, setFilteredUser] = useState([]);
     const fetchUsers = async () => {
@@ -41,8 +47,10 @@ function ChatWithCommunity() {
         const url = new URL(window.location.href);
         const seller = url.searchParams.get('seller');
         const productName = url.searchParams.get('productname');
+        
         if (seller) {
             setSelectedUser(seller);
+            console.log("seller is", seller);
         }
         if (productName) {
             setMessage(`I have query about the product "${productName}"`);
@@ -136,6 +144,12 @@ function ChatWithCommunity() {
             }
         }
     };
+    if(!selectedUser || !currentUserId){
+        console.log("s ",selectedUser , "curer",currentUserId)
+        return(<>
+        no user forfnskdjvns
+        </>)
+    }
     return (
 
         <div className='mx-auto w-full min-w-full min-h-screen text-white bg-gradient-to-b from-gray-800 via-gray-900 to-gray-950' >
