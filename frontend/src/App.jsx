@@ -45,10 +45,8 @@ const LazyChatBot = React.lazy(() => import('./components/ChatBot'));
 
 const LoadingComponent = () => {
   return (
-    <div className="flex justify-center items-center h-screen">
-      <div className="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full text-gray-500" role="status">
-        <span className="sr-only">Loading...</span>
-      </div>
+    <div className="flex justify-center items-center h-screen bg-gray-200 ">
+      <div className="w-16 h-16 border-8 border-t-8 border-green-800 border-t-transparent rounded-full animate-spin"></div>
     </div>
   );
 };
@@ -57,7 +55,6 @@ export default function App() {
   const { authUser } = useAuthContext();
   const [chatBotVisible, setChatBotVisible] = useState(false);
   const [isRotating, setIsRotating] = useState(false);
-  // const [currentUser , setCurrentUser ] = useState({});
   const toggleChatBot = () => {
     setIsRotating(true);
     setTimeout(() => setIsRotating(false), 500); // Reset rotation after 1s
@@ -66,7 +63,7 @@ export default function App() {
   return (
     <Router>
       <Suspense fallback={<LoadingComponent />}>
-        <LazyMyNavbar/>
+        <LazyMyNavbar />
       </Suspense>
       <Routes>
         <Route path="/" element={<Suspense fallback={<LoadingComponent />}><LazyHome /></Suspense>} />
@@ -86,31 +83,31 @@ export default function App() {
         <Route path="/signup" element={authUser ? <Navigate to='/' /> : <Suspense fallback={<LoadingComponent />}><LazySignup /></Suspense>} />
         <Route path="/fileupload" element={<Suspense fallback={<LoadingComponent />}><LazyFileUploadPage /></Suspense>} />
         <Route path="/form" element={<Suspense fallback={<LoadingComponent />}><LazyForm /></Suspense>} />
-        <Route path="/results" element={<Suspense fallback={<LoadingComponent />}><LazyResult/></Suspense>} />
-        <Route path="/profile" element={<Suspense fallback={<LoadingComponent />}><LazyProfile/></Suspense>} />
-        <Route path="/profile/edit/:id" element={<Suspense fallback={<LoadingComponent />}><LazyProfileEdit/></Suspense>} />
-        <Route path="/profile/posts/:id" element={<Suspense fallback={<LoadingComponent />}><LazyUserPosts/></Suspense>} />
-        <Route path="/profile/cart/:userId" element={<Suspense fallback={<LoadingComponent />}><LazyUserCart/></Suspense>} />
-        <Route path="/profile/products/:userId" element={<Suspense fallback={<LoadingComponent />}><LazySellerProduct/></Suspense>} />
-        <Route path="/profile/products/add" element={<Suspense fallback={<LoadingComponent />}><LazySellerProductEdit/></Suspense>} />
-        <Route path="/GovernmentSchemes" element={<Suspense fallback={<LoadingComponent />}><LazyGovernmentSchemes/> </Suspense>} />
-        <Route path="/InsuranceSchema" element={<Suspense fallback={<LoadingComponent />}><LazyInsuranceSchema/> </Suspense>} />
-        <Route path="/crops" element={<Suspense fallback={<LoadingComponent />}><LazyCropRecommendation/> </Suspense>} />
-        <Route path="/about" element={<Suspense fallback={<LoadingComponent />}><LazyAbout/> </Suspense>} />
-        <Route path="/mission" element={<Suspense fallback={<LoadingComponent />}><LazyMission/> </Suspense>} />
-        <Route path="/contact" element={<Suspense fallback={<LoadingComponent />}><LazyContact/> </Suspense>} />
-        <Route path="/pricing" element={<Suspense fallback={<LoadingComponent />}><LazyPricing/> </Suspense>} />
-        <Route path="/faq" element={<Suspense fallback={<LoadingComponent />}><LazyFAQ/> </Suspense>} />
-        <Route path="/privacy" element={<Suspense fallback={<LoadingComponent />}><LazyPrivacy/> </Suspense>} />
-        <Route path="/team" element={<Suspense fallback={<LoadingComponent />}><LazyWorkInProgress/> </Suspense>} />
-        <Route path="/careers" element={<Suspense fallback={<LoadingComponent />}><LazyWorkInProgress/> </Suspense>} />
-        <Route path="/press" element={<Suspense fallback={<LoadingComponent />}><LazyWorkInProgress/> </Suspense>} />
-        <Route path="/payment-processing" element={<Suspense fallback={<LoadingComponent />}><LazyWorkInProgress/> </Suspense>} />
-        <Route path="*" element={<Suspense fallback={<LoadingComponent />}><LazyNotFound/> </Suspense>} />
+        <Route path="/results" element={<Suspense fallback={<LoadingComponent />}><LazyResult /></Suspense>} />
+        <Route path="/profile" element={<Suspense fallback={<LoadingComponent />}><LazyProfile /></Suspense>} />
+        <Route path="/profile/edit/:id" element={<Suspense fallback={<LoadingComponent />}><LazyProfileEdit /></Suspense>} />
+        <Route path="/profile/posts/:id" element={<Suspense fallback={<LoadingComponent />}><LazyUserPosts /></Suspense>} />
+        <Route path="/profile/cart/:userId" element={<Suspense fallback={<LoadingComponent />}><LazyUserCart /></Suspense>} />
+        <Route path="/profile/products/:userId" element={<Suspense fallback={<LoadingComponent />}><LazySellerProduct /></Suspense>} />
+        <Route path="/profile/products/add" element={<Suspense fallback={<LoadingComponent />}><LazySellerProductEdit /></Suspense>} />
+        <Route path="/GovernmentSchemes" element={<Suspense fallback={<LoadingComponent />}><LazyGovernmentSchemes /> </Suspense>} />
+        <Route path="/InsuranceSchema" element={<Suspense fallback={<LoadingComponent />}><LazyInsuranceSchema /> </Suspense>} />
+        <Route path="/crops" element={<Suspense fallback={<LoadingComponent />}><LazyCropRecommendation /> </Suspense>} />
+        <Route path="/about" element={<Suspense fallback={<LoadingComponent />}><LazyAbout /> </Suspense>} />
+        <Route path="/mission" element={<Suspense fallback={<LoadingComponent />}><LazyMission /> </Suspense>} />
+        <Route path="/contact" element={<Suspense fallback={<LoadingComponent />}><LazyContact /> </Suspense>} />
+        <Route path="/pricing" element={<Suspense fallback={<LoadingComponent />}><LazyPricing /> </Suspense>} />
+        <Route path="/faq" element={<Suspense fallback={<LoadingComponent />}><LazyFAQ /> </Suspense>} />
+        <Route path="/privacy" element={<Suspense fallback={<LoadingComponent />}><LazyPrivacy /> </Suspense>} />
+        <Route path="/team" element={<Suspense fallback={<LoadingComponent />}><LazyWorkInProgress /> </Suspense>} />
+        <Route path="/careers" element={<Suspense fallback={<LoadingComponent />}><LazyWorkInProgress /> </Suspense>} />
+        <Route path="/press" element={<Suspense fallback={<LoadingComponent />}><LazyWorkInProgress /> </Suspense>} />
+        <Route path="/payment-processing" element={<Suspense fallback={<LoadingComponent />}><LazyWorkInProgress /> </Suspense>} />
+        <Route path="*" element={<Suspense fallback={<LoadingComponent />}><LazyNotFound /> </Suspense>} />
       </Routes>
       <Toaster />
       {/* Toggle Button for ChatBot */}
-      
+
       <button
         onClick={toggleChatBot}
         className={`fixed bottom-4 right-4 bg-blue-500 text-white w-16 h-16 rounded-full shadow-lg flex items-center justify-center transition-transform duration-1000 hover:rotate-[360deg]`}
@@ -124,7 +121,7 @@ export default function App() {
         <LazyChatBot visible={chatBotVisible} onClose={toggleChatBot} />
       </Suspense>
       <Suspense fallback={<LoadingComponent />}>
-        <LazyFooter/>
+        <LazyFooter />
       </Suspense>
     </Router>
   );

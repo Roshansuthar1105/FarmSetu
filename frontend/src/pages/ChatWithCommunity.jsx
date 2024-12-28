@@ -138,8 +138,7 @@ function ChatWithCommunity() {
     };
     return (
 
-        <div className='mx-auto w-full min-w-full text-white bg-gradient-to-b from-gray-800 via-gray-900 to-gray-950' >
-            
+        <div className='mx-auto w-full min-w-full min-h-screen text-white bg-gradient-to-b from-gray-800 via-gray-900 to-gray-950' >
             <div className='py-20'>
                 <h1 className="text-3xl font-bold text-center text-gray-200 my-4">Chat With {selectedUserName ? selectedUserName : 'Community'} </h1>
                 <div className="flex flex-1 mt-3 mb-16 mx-8 overflow-hidden sm:mx-16 lg:mx-32">
