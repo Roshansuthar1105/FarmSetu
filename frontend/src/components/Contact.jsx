@@ -42,7 +42,6 @@ export default function Contact() {
     });
     if (response.ok) {
       setIsSubmitted(true);
-      // console.log('Form submitted:', formData);
       toast.success('Message sent successfully');
     } else {
       console.error('Failed to submit form');

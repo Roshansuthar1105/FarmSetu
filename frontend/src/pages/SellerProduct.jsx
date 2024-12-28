@@ -30,7 +30,6 @@ function SellerProduct() {
   }
   const deleteProduct = async (productId) => {
     const url = `${BACKEND_URL}/api/products/delete/${productId}`;
-    // console.log(url)
     try {
       const response = await fetch(url, {
         method: 'DELETE',

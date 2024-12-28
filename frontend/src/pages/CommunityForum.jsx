@@ -45,7 +45,6 @@ const CommunityForum = () => {
     })
     .then(response => response.json())
     .then(data => {
-      // console.log('Success:', data);
       setNewPost(prevState => ({...prevState, title: '', message: ''}));
     })
     .catch((error) => {

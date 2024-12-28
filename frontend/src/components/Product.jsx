@@ -16,7 +16,6 @@ function Product({ product, removeproduct, removebtn,editbtn ,deletebtn }) {
     };
     const deleteProduct = async (productId) => {
         const url = `${BACKEND_URL}/api/products/delete/${productId}`;
-        // console.log(url)
         try {
           const response = await fetch(url, {
             method: 'DELETE',
@@ -24,8 +23,6 @@ function Product({ product, removeproduct, removebtn,editbtn ,deletebtn }) {
           if (!response.ok) {
             throw new Error('Failed to delete product');
           }
-          const data = await response.json();
-          console.log(data);
           toast.success("Product Deleted !");
           // Optionally, update the local state to remove the deleted product
         //   setProducts(prevProducts => prevProducts.filter(product => product._id !== productId));

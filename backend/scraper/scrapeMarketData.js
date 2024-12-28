@@ -37,7 +37,6 @@ async function fetchMarketData() {
       });
     });
 
-    // console.log(items);
     return items;
   } catch (error) {
     console.error(`Error fetching the HTML: ${error.message}`);

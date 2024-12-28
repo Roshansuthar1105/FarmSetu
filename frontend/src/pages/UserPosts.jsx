@@ -40,7 +40,6 @@ function UserPosts() {
             }
             const data = await response.json();
             setPosts(posts.filter(post => post._id !== postId));
-            console.log('Post deleted successfully:', data);
         } catch (error) {
             console.error('There was a problem with the fetch operation:', error);
         }

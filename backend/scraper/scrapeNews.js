@@ -36,8 +36,6 @@ const fetchData = async () => {
             dataArray.push({ href: fullUrl, text, imgSrc });
         });
 
-        // Log the array containing hrefs and texts
-        // console.log(dataArray);
         return dataArray;
     } catch (error) {
         console.error('Error fetching the page:', error);

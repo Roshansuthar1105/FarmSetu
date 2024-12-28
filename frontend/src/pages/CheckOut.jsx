@@ -29,7 +29,6 @@ function CheckOut({ plan }) {
     ];
     const handlePaymentMethodChange = (name) => {
         setFormData({ ...formData, paymentMethod: name })
-        console.log(formData)
     }
     useEffect(() => {
         const d1 = deliveryMethods.filter((p) => {
@@ -40,18 +39,13 @@ function CheckOut({ plan }) {
     }, [formData.deliveryMethod])
     const handleDeliveryMethodsChange = (name) => {
         setFormData({ ...formData, deliveryMethod: name })
-        console.log(formData)
-        // console.log(name)
     }
     const handleFormChange = (e) => {
         const { id, value } = e.target;
-        console.log("id", id, "value", value)
         setFormData({ ...formData, [id]: value })
-        console.log(formData)
     }
     const handleFormSubmit = async ()=>{
         e.preventDefault()
-        console.log(formData);
     }
     return (
         <>

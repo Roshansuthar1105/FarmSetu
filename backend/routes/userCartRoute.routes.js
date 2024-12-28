@@ -27,7 +27,6 @@ router.post("/:userId", async (req, res) => {
     }
     user.cart.push(req.body);
     await user.save();
-    console.log(user.cart)
     res.status(200).json({"message":"producet added","cart":user.cart});
   } catch (error) {
     res.status(500).json({ message: error.message });

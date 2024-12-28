@@ -14,7 +14,6 @@ function ChatWithCommunity() {
     }
         const currentUserId = JSON.parse(localStorage.getItem('user'))._id;
 
-    console.log(localStorage.length)
     const [selectedUser, setSelectedUser] = useState(`${currentUserId}`);
     const [filteredUser, setFilteredUser] = useState([]);
     const fetchUsers = async () => {
@@ -50,7 +49,6 @@ function ChatWithCommunity() {
         
         if (seller) {
             setSelectedUser(seller);
-            console.log("seller is", seller);
         }
         if (productName) {
             setMessage(`I have query about the product "${productName}"`);
@@ -67,10 +65,8 @@ function ChatWithCommunity() {
         fetchCurrentChats();
     }, [selectedUser])
     const findUsername = () => {
-        console.log("selected is", selectedUser)
         const user = users.find(user => user._id === selectedUser);
         if (user) {
-            console.log(user.name, "usaer name", users);
             setSelectedUserName(user.name.charAt(0).toUpperCase() + user.name.slice(1));
         }
     };
@@ -144,9 +140,8 @@ function ChatWithCommunity() {
         }
     };
     if(!selectedUser || !currentUserId){
-        console.log("s ",selectedUser , "curer",currentUserId)
         return(<>
-        no user forfnskdjvns
+        no user found
         </>)
     }
     return (

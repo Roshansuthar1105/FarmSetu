@@ -19,7 +19,6 @@ function UserCart() {
         // const url = `${BACKEND_URL}/api/profile/cart/delete/${}`;
         try {
             const bodyDemo = JSON.stringify({ id });
-            console.log(bodyDemo)
             const response = await fetch(url, {
                 method: 'POST',
                 headers: {
@@ -32,7 +31,6 @@ function UserCart() {
             }
             const data = await response.json();
             toast.success("Product Removed !")
-            console.log("data ", data)
             setCart(data.cart)
             fetchCart();
         } catch (error) {
@@ -50,7 +48,6 @@ function UserCart() {
             }
             const data = await response.json();
             setProducts(data);
-            // console.log("pdata ",data);
         } catch (error) {
             console.error('There was a problem with the fetch operation:', error);
         }
@@ -88,7 +85,6 @@ function UserCart() {
     useEffect(() => {
         fetchProduct();
         fetchCart();
-        console.log(cart)
     }, [])
     return (
         <div className='flex flex-wrap gap-4 bg-gray-800 py-24 justify-center align-middle min-h-[80dvh] '>

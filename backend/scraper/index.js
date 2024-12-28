@@ -36,7 +36,6 @@ async function fetchAndConvertToArray(url) {
       });
     });
 
-    console.log(items);
   } catch (error) {
     console.error(`Error fetching the HTML: ${error.message}`);
   }
