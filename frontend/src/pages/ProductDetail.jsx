@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { useAuthContext } from '../context/AuthContext';
+import { use } from 'react';
 
 const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [product, setProduct] = useState({});
   const {BACKEND_URL,authUser}= useAuthContext();
+  const [loading , setloading]=useState(true);
   useEffect(() => {
     if (id) {
       fetchProduct();
@@ -20,6 +22,7 @@ const ProductDetail = () => {
     }
     const url = `${BACKEND_URL}/api/products/get/${id}`;
     try {
+      setloading(true);
       const response = await fetch(url);
       if (!response.ok) {
         throw new Error('Network response was not ok');
@@ -28,6 +31,9 @@ const ProductDetail = () => {
       setProduct(data);
     } catch (error) {
       console.error('There was a problem with the fetch operation:', error);
+    }finally{
+      // setloading(false);
+      console.log(loading)
     }
   }
   if (!product) {
@@ -64,10 +70,41 @@ const ProductDetail = () => {
     }
     navigate(`/localchat?seller=${seller}&productname=${name.split( ).join("+")}`);
   };
+  if(loading){
+    return (
+      <div class="bg-gray-800 text-gray-100 min-h-screen">
 
+  <div class="container mx-auto w-3/4 py-8 mt-16 animate-pulse">
+    <div class="bg-gray-700 rounded-lg shadow-lg overflow-hidden flex flex-col gap-8 md:flex-row">
+      <div class="w-2/4 h-1/1 object-contain">
+        <div class="w-full h-full bg-gray-200"></div>
+      </div>
+      <div class="w-1/2 p-4">
+        <div class="h-8 bg-gray-200 rounded w-1/2 mb-4"></div>
+        <div class="h-6 bg-gray-200 rounded w-full mb-4"></div>
+        <div class="h-8 bg-gray-200 rounded w-1/4 mb-4"></div>
+
+        <div class="mb-4">
+          <div class="h-6 bg-gray-200 rounded w-1/3 mb-2"></div>
+          <div class="h-6 bg-gray-200 rounded w-full mb-2"></div>
+          <div class="h-6 bg-gray-200 rounded w-1/2 mb-2"></div>
+          <div class="h-6 bg-gray-200 rounded w-3/4 mb-2"></div>
+          <div class="h-6 bg-gray-200 rounded w-full mb-2"></div>
+          <div class="h-6 bg-gray-200 rounded w-1/3 mb-2"></div>
+        </div>
+
+        <div class="h-10 my-2 bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition-colors"></div>
+        <div class="h-10 bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 transition-colors"></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+    );
+  }
   return (
+    
     <div className="bg-gray-800 text-gray-100 min-h-screen">
-      
       <div className="container mx-auto px-4 py-8 mt-16">
         <div className="bg-gray-700 rounded-lg shadow-lg overflow-hidden flex flex-col gap-8 md:flex-row">
           <div className="w-1/4 h-1/1 object-contain">
