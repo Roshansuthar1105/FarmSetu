@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import toast from 'react-hot-toast';
 import { FaPaperPlane } from 'react-icons/fa';
+import { useAuthContext } from '../context/AuthContext';
 function ChatWithCommunity() {
     const {BACKEND_URL}= useAuthContext();
     const [users, setUsers] = useState([]);
@@ -172,13 +173,13 @@ function ChatWithCommunity() {
                                 className="bg-gray-600 text-gray-300 border border-gray-500 rounded-full px-4 py-2 w-full transition-shadow duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-green-500"
                             />
                         </div>
-                        <ul className="space-y-2 pt-[75px] relative ">
+                       <ul className="space-y-2 pt-[75px] relative ">
                             {filteredUser.map((user) => (
                                 <li
                                     key={user._id}
                                     onClick={() => handleUserClick(user._id)}
                                     className={`flex items-center p-2 rounded-lg cursor-pointer hover:bg-gray-600 transition-colors duration-200 ${selectedUser === user._id ? 'bg-gray-500 absolute top-0 left-0 w-full ' : ''
-                                    }`}
+                                        }`}
                                 >
                                     <img src={user.avatar ? user.avatar : 'https://avataaars.io/?avatarStyle=Transparent&topType=LongHairStraight&accessoriesType=Blank&hairColor=BrownDark&facialHairType=Blank&clotheType=BlazerShirt&eyeType=Default&eyebrowType=Default&mouthType=Default&skinColor=Light'} alt={user.avatar} className="w-12 h-12 rounded-full mr-3 border-2 border-green-400" />
                                     <div>
@@ -250,4 +251,27 @@ function ChatWithCommunity() {
     )
 }
 
-export default ChatWithCommunity
+export default ChatWithCommunity;
+{/* <ul class="space-y-2 pt-[75px] relative animate-pulse">
+<li class="flex items-center p-2 rounded-lg cursor-pointer bg-gray-500 absolute top-0 left-0 w-full">
+  <div class="w-12 h-12 rounded-full mr-3 border-2 border-green-400 bg-gray-200"></div>
+  <div>
+    <div class="h-4 bg-gray-200 rounded w-1/2"></div>
+    <div class="mt-1 h-3 bg-gray-200 rounded w-1/3"></div>
+  </div>
+</li>
+<li class="flex items-center p-2 rounded-lg cursor-pointer bg-gray-200">
+  <div class="w-12 h-12 rounded-full mr-3 border-2 border-green-400 bg-gray-200"></div>
+  <div>
+    <div class="h-4 bg-gray-200 rounded w-1/2"></div>
+    <div class="mt-1 h-3 bg-gray-200 rounded w-1/3"></div>
+  </div>
+</li>
+<li class="flex items-center p-2 rounded-lg cursor-pointer bg-gray-200">
+  <div class="w-12 h-12 rounded-full mr-3 border-2 border-green-400 bg-gray-200"></div>
+  <div>
+    <div class="h-4 bg-gray-200 rounded w-1/2"></div>
+    <div class="mt-1 h-3 bg-gray-200 rounded w-1/3"></div>
+  </div>
+</li>
+</ul> */}
