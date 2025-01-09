@@ -78,7 +78,7 @@ const Categories = ({ onCategoryChange }) => {
       </div>
       <div className="flex justify-center mt-6">
         <Button
-          color="primary"
+          color="success"
           auto
           shadow
           onClick={handleViewMoreClick}
