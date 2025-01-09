@@ -5,7 +5,7 @@ const pricingPlans = [
     title: 'Basic Plan',
     price: '₹1500/month',
     features: [
-      'Access to Crop Management Tools',
+      'Access to Crop Tools',
       'Market Insights & Trends',
       'Weekly Weather Updates',
       'Email Support',
@@ -24,7 +24,7 @@ const pricingPlans = [
       'Expert Consultation Sessions',
     ],
     buttonText: 'Upgrade Now',
-    buttonColor: 'bg-black hover:bg-gray-900',
+    buttonColor: 'bg-gray-900 hover:bg-gray-700',
   },
   {
     title: 'Enterprise Plan',
@@ -61,7 +61,7 @@ export default function Pricing() {
                 <div className="absolute inset-0 rounded-lg p-1 animate-gradient-border">
                   <div
                     className="bg-gradient-to-r from-blue-400 via-purple-500 to-blue-700 h-full rounded-lg"
-                    style={{ padding: '6px', margin: '-6px', boxShadow: '0 0 20px rgba(0, 0, 0, 0.5)' }}
+                    style={{ padding: '3px', margin: '-3px', boxShadow: '0 0 20px rgba(0, 0, 0, 0.5)' }}
                   >
                     <div className="bg-black h-full rounded-lg"></div>
                   </div>

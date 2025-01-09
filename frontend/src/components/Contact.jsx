@@ -14,7 +14,7 @@ export default function Contact() {
   const [formData, setFormData] = useState({
     name: userName ? userName : '',
     email: userEmail ? userEmail : '',
-    message: '',
+    message: 'Loving your service :)',
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -80,7 +80,7 @@ export default function Contact() {
                     placeholder="Your Name"
                     required
                     size="lg"
-                    className="bg-green-700 text-black border-green-600"
+                    className="rounded-md text-black border-green-600"
                   />
                 </div>
                 <div className="mb-4">
@@ -94,7 +94,7 @@ export default function Contact() {
                     placeholder="Your Email"
                     required
                     size="lg"
-                    className="bg-green-700 text-black border-green-600"
+                    className="rounded-md text-black border-green-600"
                   />
                 </div>
                 <div className="mb-4">
@@ -108,7 +108,7 @@ export default function Contact() {
                     required
                     rows={4}
                     size="lg"
-                    className="bg-green-700 text-black border-green-600"
+                    className="rounded-md text-black border-green-600"
                   />
                 </div>
                 <Button
