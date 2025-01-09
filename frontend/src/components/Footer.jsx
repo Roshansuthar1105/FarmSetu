@@ -7,6 +7,8 @@ const Footer = () => {
     { to: '/team', label: 'Meet the Team' },
     { to: '/careers', label: 'Careers' },
     { to: '/press', label: 'Press & Media' },
+    { to: '/privacy', label: 'Privacy Policy' },
+    { to: '/faq', label: 'FAQs' },
   ];
   const servicesLinks = [
     { to: '/form', label: 'Crop Advice' },
@@ -23,36 +25,34 @@ const Footer = () => {
     { to: '/news', label: 'News' },
   ];
   return (
-    <footer className="bg-green-600 text-white py-8">
-      <div className="container mx-auto flex flex-wrap justify-between">
+    <footer className="bg-green-600 text-white py-8 border-t-2 border-green-800">
+      <div className="container mx-auto flex flex-wrap justify-between p-2">
         <div className="w-full sm:w-auto mb-6 sm:mb-0">
-          <h2 className="font-bold mb-2">About Us</h2>
-          <ul>
+          <h2 className="font-bold mb-2 text-center">About Us</h2>
+          <ul className='list-image-[url(logo.svg)] list-inside' >
             {aboutLinks.map(({ to, label }) => (
               <li className="mb-2" key={to}><Link to={to} className="hover:underline">{label}</Link></li>
             ))}
-            <li className="mb-2"><Link to="/privacy" className="hover:underline">Privacy Policy</Link></li>
-            <li className="mb-2"><Link to="/faq" className="hover:underline">FAQs</Link></li>
-          </ul>
+           </ul>
         </div>
         <div className="w-full sm:w-auto mb-6 sm:mb-0">
-          <h2 className="font-bold mb-2">Services</h2>
-          <ul>
+          <h2 className="font-bold mb-2 text-center">Services</h2>
+          <ul className='list-image-[url(logo.svg)] list-inside'>
             {servicesLinks.map(({ to, label }) => (
               <li className="mb-2" key={to}><Link to={to} className="hover:underline">{label}</Link></li>
             ))}
           </ul>
         </div>
         <div className="w-full sm:w-auto mb-6 sm:mb-0">
-          <h2 className="font-bold mb-2">Useful Links</h2>
-          <ul>
+          <h2 className="font-bold mb-2 text-center">Quick Links</h2>
+          <ul className='list-image-[url(logo.svg)] list-inside'>
             {usefulLinks.map(({ to, label }) => (
               <li className="mb-2" key={to} ><Link to={to} className="hover:underline">{label}</Link></li>
             ))}
           </ul>
         </div>
         <div className="w-full sm:w-auto mb-6 sm:mb-0">
-          <h2 className="font-bold mb-2">Contact Us</h2>
+          <h2 className="font-bold mb-2 text-center">Contact Us</h2>
           <p>Address: 456 Farm Road, FarmCity, AG 67890, India</p>
           <p>Phone: +91 9876543210</p>
           <p>Email: support@farmsetu.com</p>
