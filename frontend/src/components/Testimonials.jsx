@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 const testimonials = [
   {
@@ -205,11 +206,15 @@ const Testimonials = () => {
     testimonials.slice(index * testimonialsPerColumn, index * testimonialsPerColumn + testimonialsPerColumn)
   );
 
+  const { t } = useTranslation();
   return (
     <div className="bg-gray-800 text-white p-8 relative overflow-hidden">
-      <h2 className="text-3xl font-bold mb-4 text-center text-green-300">Loved by thousands of farmers</h2>
-      <p className="text-center mb-8 text-gray-300">Here's what some of our users have to say about FarmSetu.</p>
-      <div className="relative overflow-hidden h-[500px]"> {/* Adjust height as needed */}
+    <h2 className="text-3xl font-bold mb-4 text-center text-green-300">
+      {t('testimonials_heading')}
+    </h2>
+    <p className="text-center mb-8 text-gray-300">
+      {t('testimonials_subheading')}
+    </p><div className="relative overflow-hidden h-[500px]"> {/* Adjust height as needed */}
         <motion.div
           className="absolute top-0 left-0 right-0 grid grid-cols-1 md:grid-cols-3 gap-6"
           animate={{ y: ['0%', '-100%'] }}

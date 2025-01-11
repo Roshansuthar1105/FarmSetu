@@ -8,7 +8,9 @@ import { Button, Radio, RadioGroup } from "@nextui-org/react";
 import useSignup from "../hooks/useSignup";
 import avatar from "../data/avatar.json";
 import { FaLocationArrow } from "react-icons/fa";
+import { useTranslation } from 'react-i18next'; // Import useTranslation hook
 export default function Signup() {
+  const { t } = useTranslation(); // Initialize useTranslation hook
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -46,7 +48,7 @@ export default function Signup() {
   const handleSubmit = async(e) => {
     e.preventDefault();
     if (formData.password !== formData.confirmPassword) {
-      setError("Passwords do not match");
+      setError(t('password_mismatch')); // Use t function for error message
       return;
     }
     setError("");
@@ -56,23 +58,23 @@ export default function Signup() {
 
   return (
     <div className="bg-gradient-to-b from-gray-800 via-gray-900 to-gray-950 py-20">
-    <h1 className="font-bold text-green-500 text-3xl text-center my-10 " > Welcome to Farmsetu</h1>
+    <h1 className="font-bold text-green-500 text-3xl text-center my-10 " > {t('welcome_farmsetu')}</h1>
    
       <div className="max-w-md w-full relative mx-auto overflow-hidden rounded-md md:rounded-2xl p-4 md:p-8 shadow-input bg-gray-100 dark:bg-black">
         <h2 className="font-bold text-xl text-green-800 dark:text-neutral-200">
-          Welcome to FarmSetu
+          {t('welcome_farmsetu')}
         </h2>
         { 
           formData.selectedAvatar && (
-            <img className="absolute top-3 right-3 h-12 w-12 rounded-full border-3 border-green-700 " src={formData.selectedAvatar} alt="Selected Avatar" onClick={()=>setShowAvatarContainer(true)} />
+            <img className="absolute top-3 right-3 h-12 w-12 rounded-full border-3 border-green-700 " src={formData.selectedAvatar} alt={t('selected_avatar')} onClick={()=>setShowAvatarContainer(true)} />
           )
         }
         <form className="my-8 " onSubmit={handleSubmit}>
           <LabelInputContainer className="mb-4">
-            <Label htmlFor="name">Name</Label>
+            <Label htmlFor="name">{t('name')}</Label>
             <Input
               id="name"
-              placeholder="Tyler Durden"
+              placeholder={t('name_placeholder')}
               type="text"
               value={formData.name}
               onChange={handleChange}
@@ -80,10 +82,10 @@ export default function Signup() {
           </LabelInputContainer>
 
           <LabelInputContainer className="mb-4">
-            <Label htmlFor="email">Email Address</Label>
+            <Label htmlFor="email">{t('email_address')}</Label>
             <Input
               id="email"
-              placeholder="projectmayhem@fc.com"
+              placeholder={t('email_placeholder')}
               type="email"
               value={formData.email}
               onChange={handleChange}
@@ -92,22 +94,22 @@ export default function Signup() {
 
           {/* Radio Group for Role Selection */}
           <LabelInputContainer className="mb-4">
-            <Label>Role</Label>
+            <Label>{t('role')}</Label>
             <RadioGroup
               orientation="horizontal" // Change to vertical if preferred
-              aria-label="Role"
+              aria-label={t('role')}
               value={formData.role}
               onValueChange={handleRoleChange} // Use onValueChange for NextUI's RadioGroup
             >
-              <Radio value="farmer">Farmer</Radio>
-              <Radio value="seller">Seller</Radio>
-              <Radio value="cooperative">Cooperative</Radio>
+              <Radio value="farmer">{t('farmer')}</Radio>
+              <Radio value="seller">{t('seller')}</Radio>
+              <Radio value="cooperative">{t('cooperative')}</Radio>
             </RadioGroup>
           </LabelInputContainer>
           <LabelInputContainer className="mb-4">
             {/* <Button onClick={() => setShowAvatarContainer(true)} >Select Avatar</Button> */}
           
-                <Label>Select Your Avatar</Label>
+                <Label>{t('select_avatar')}</Label>
                 <div className="grid grid-cols-5 gap-4 h-16 overflow-y-scroll">
                   {avatar.map((avatar) => (
                     <div className={`rounded-full overflow-hidden ${formData.selectedAvatar===avatar.avatar ? 'border-green-700 border-3':'border-slate-0' }  border-3 h-12 w-12`} >
@@ -124,7 +126,7 @@ export default function Signup() {
                 </div>
           </LabelInputContainer>
           <LabelInputContainer className="mb-4 relative">
-            <Label htmlFor="password">Password</Label>
+            <Label htmlFor="password">{t('password')}</Label>
             <Input
               id="password"
               placeholder="••••••••"
@@ -139,7 +141,7 @@ export default function Signup() {
             />
           </LabelInputContainer>
           <LabelInputContainer className="mb-8 relative">
-            <Label htmlFor="confirmPassword">Confirm Password</Label>
+            <Label htmlFor="confirmPassword">{t('confirm_password')}</Label>
             <Input
               id="confirmPassword"
               placeholder="••••••••"
@@ -171,7 +173,7 @@ export default function Signup() {
             <>
             <span className="flex gap-2 justify-center items-center ">
                 <span>
-                Sign Up
+                {t('sign_up')}
                 </span>
                 <FaLocationArrow />
             </span>

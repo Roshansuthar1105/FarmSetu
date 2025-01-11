@@ -2,8 +2,10 @@ import React, { useEffect, useRef, useState } from 'react'
 import toast from 'react-hot-toast';
 import { FaPaperPlane } from 'react-icons/fa';
 import { useAuthContext } from '../context/AuthContext';
+import { useTranslation } from 'react-i18next';
 function ChatWithCommunity() {
     const {BACKEND_URL}= useAuthContext();
+    const { t } = useTranslation();
     const [users, setUsers] = useState([]);
     const [chats, setChats] = useState([]);
     const [selectedUserName, setSelectedUserName] = useState('');
@@ -135,8 +137,9 @@ function ChatWithCommunity() {
                 const savedMessage = await response.json();
                 setChats(prevChats => [...prevChats, savedMessage]);
                 setMessage('');
+                toast.success(t('message_sent_success'));
             } catch (error) {
-                console.error('Error saving chat message:', error);
+                console.error(t('sending_message_error'), error);
             }
         }
     };
@@ -149,7 +152,7 @@ function ChatWithCommunity() {
 
         <div className='mx-auto w-full min-w-full min-h-screen text-white bg-gradient-to-b from-gray-800 via-gray-900 to-gray-950' >
             <div className='py-20'>
-                <h1 className="text-3xl font-bold text-center text-gray-200 my-4">Chat With {selectedUserName ? selectedUserName : 'Community'} </h1>
+                <h1 className="text-3xl font-bold text-center text-gray-200 my-4">{t('chat_title')} {selectedUserName ? selectedUserName : t('role_community')} </h1>
                 <div className="flex flex-1 mt-3 mb-16 mx-8 overflow-hidden sm:mx-16 lg:mx-32">
                     <div className="w-full md:w-1/4 bg-gray-700  relative text-gray-300 shadow-lg rounded-lg border border-gray-600 transition-transform duration-300 ease-in-out hover:shadow-xl overflow-x-auto"
                         style={{
@@ -160,7 +163,7 @@ function ChatWithCommunity() {
                         <div className="flex items-center py-4 z-10 justify-center w-full px-2 sticky top-0 left-0 bg-gray-700">
                             <input
                                 type="text"
-                                placeholder="Search..."
+                                placeholder={t('search_placeholder')}
                                 value={searchQuery}
                                 onChange={(e) => {
                                     const query = e.target.value.toLowerCase();
@@ -221,7 +224,7 @@ function ChatWithCommunity() {
                                         </div>
                                     ))
                                 ) : (
-                                    <div className='text-center text-white text-lg font-semibold'>No chats Available{' with ' + selectedUserName} </div>
+                                    <div className='text-center text-white text-lg font-semibold'>{t('no_chats_available')} {selectedUserName}</div>
                                 )}
                             </div>
                         </div>
@@ -233,7 +236,7 @@ function ChatWithCommunity() {
                                     onChange={(e) => setMessage(e.target.value)}
                                     onKeyDown={handleKeyDown}
                                     className="flex-1 bg-gray-600 text-gray-300 border border-gray-500 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
-                                    placeholder="Type a message..."
+                                    placeholder={t('type_message')}
                                 />
                                 <button
                                     onClick={handleSendMessage}

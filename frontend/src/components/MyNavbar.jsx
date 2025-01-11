@@ -11,6 +11,7 @@ import { IoLogOut } from "react-icons/io5";
 import { BiSolidMessageSquareEdit } from "react-icons/bi";
 import { MdEmail } from "react-icons/md";
 import { HiViewGrid } from "react-icons/hi";
+import { useTranslation } from "react-i18next";
 export default function MyNavbar() {
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -20,19 +21,19 @@ export default function MyNavbar() {
   });
 
   const { authUser } = useAuthContext();
-
+  const {t}=useTranslation();
   const links2 = [
-    { name: "Marketplace", to: "/farmermarketplace" },
-    { name: "Chat with Experts", to: "/chat" },
-    { name: "Chat with Community", to: "/localchat" },
-    { name: "Real Time Market", to: "/realtimemarket" },
-    { name: "News", to: "/news" },
-    { name: "Weather", to: "/weather" },
-    { name: "Resources", to: "/resources" },
-    { name: "Community", to: "/community" },
-    { name: "Government Schemes", to: "/GovernmentSchemes" },
-    { name: "Insurence Schemes", to: "/InsuranceSchema" },
-    { name: "Crop Recommendation", to: "/crops" },
+    { name: t('marketPlace'), to: "/farmermarketplace" },
+    { name: t('chat_with_experts'), to: "/chat" },
+    { name: t('chat_with_community'), to: "/localchat" },
+    { name: t('real_time_market'), to: "/realtimemarket" },
+    { name: t('news'), to: "/news" },
+    { name: t('weather'), to: "/weather" },
+    { name: t('resources'), to: "/resources" },
+    { name: t('community'), to: "/community" },
+    { name: t('government_schemes'), to: "/GovernmentSchemes" },
+    { name: t('insurance_schemes'), to: "/InsuranceSchema" },
+    { name: t('crop_recommendation'), to: "/crops" },
   ];
   const handleEditProfile = async ()=>{
     navigate(`/profile/edit/${authUser._id}`)
@@ -112,33 +113,33 @@ export default function MyNavbar() {
                   {isprofileOpen && (
                     <div className="absolute right-0 mt-2 w-48 bg-white text-black rounded-lg shadow-lg py-1 cursor-default" onClick={()=>{setIsMenuOpen(false); }}>
                       <div className="px-4 py-3">
-                        <p className="text-sm flex flex-row gap-2 align-text-top "><MdEmail className="text-green-700 size-4" /> <span>Signed in as</span> </p>
+                        <p className="text-sm flex flex-row gap-2 align-text-top "><MdEmail className="text-green-700 size-4" /> <span>{t('signed_in_as')}</span> </p>
                         <p className="text-sm font-medium text-[#053c2f]">{authUser.email}</p>
                       </div>
                       <Link
                         to={'/profile'}
                         className="flex flex-row gap-3 w-full text-left px-4 py-2 text-sm hover:bg-blue-100"
-                      > <IoPerson className="text-green-700 size-5" /><span>Profile</span>
+                      > <IoPerson className="text-green-700 size-5" /><span>{t('profile')}</span>
                       </Link>
                       <button
                         onClick={() => { handleViewCart() }}
                         className="flex flex-row gap-3 align-middle w-full text-left px-4 py-2 text-sm hover:bg-blue-100"
-                      ><FaShoppingCart className="text-green-700 size-5" /> <span  >View Cart</span>
+                      ><FaShoppingCart className="text-green-700 size-5" /> <span  >{t('view_cart')}</span>
                       </button>
                       <button
                         onClick={handleViewPosts}
                         className="flex flex-row gap-3 align-middle w-full text-left px-4 py-2 text-sm hover:bg-blue-100"
-                      ><FaMessage className="text-green-700 size-5" /> <span  >View Posts</span>
+                      ><FaMessage className="text-green-700 size-5" /> <span  >{t('view_posts')}</span>
                       </button>
                       <button
                         onClick={() => { handleEditProfile() }}
                         className="flex flex-row gap-3 align-middle w-full text-left px-4 py-2 text-sm hover:bg-blue-100"
-                      ><BiSolidMessageSquareEdit className="text-green-700 size-5" /><span  >Edit profile</span>
+                      ><BiSolidMessageSquareEdit className="text-green-700 size-5" /><span  >{t('edit_profile')}</span>
                       </button>
                       {authUser.role==='seller' && <button
                         onClick={() => { navigate(`/profile/products/${authUser._id}`) }}
                         className="flex flex-row gap-3 align-middle w-full text-left px-4 py-2 text-sm hover:bg-blue-100"
-                      ><HiViewGrid className="text-green-700 size-5" /><span  >View Products</span>
+                      ><HiViewGrid className="text-green-700 size-5" /><span  >{t('view_products')}</span>
                       </button>}
                       <button
                         onClick={() => {
@@ -147,7 +148,7 @@ export default function MyNavbar() {
                         }}
                         className="flex flex-row gap-3 align-middle w-full text-left px-4 py-2 text-sm hover:bg-red-100"
                       ><IoLogOut className="text-green-700 size-5" />
-                        <span  >Log Out</span>
+                        <span  >{t('log_out')}</span>
                       </button>
                     </div>
                   )}
@@ -157,12 +158,12 @@ export default function MyNavbar() {
               <div className="flex space-x-2 sm:space-x-4">
                 <Link to="/login">
                   <button className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm sm:text-base">
-                    Login
+                    {t('login')}
                   </button>
                 </Link>
                 <Link to="/signup">
                   <button className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 text-sm sm:text-base">
-                    Sign Up
+                    {t('sign_up')}
                   </button>
                 </Link>
               </div>

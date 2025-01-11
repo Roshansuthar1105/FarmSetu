@@ -7,8 +7,10 @@ import { Link } from "react-router-dom";
 import { IconBrandGoogle, IconEye, IconEyeOff } from "@tabler/icons-react"; // Import eye icons
 import useLogin from "../hooks/useLogin";
 import { FaLocationArrow } from "react-icons/fa";
+import { useTranslation } from 'react-i18next';
 
 export default function Login() {
+    const { t } = useTranslation();
     const [passwordVisible, setPasswordVisible] = useState(false); // State to toggle password visibility
     const [email, setEmail] = useState(""); // State to store email
     const [password, setPassword] = useState(""); // State to store password
@@ -24,24 +26,24 @@ export default function Login() {
 
     return (
         <div className="bg-gradient-to-b from-gray-800 via-gray-900 to-gray-950 py-20">
-            <h1 className="font-bold text-green-500 text-3xl text-center my-10 " > Welcome to Farmsetu</h1>
+            <h1 className="font-bold text-green-500 text-3xl text-center my-10 " > {t('welcome_farmsetu')} </h1>
             <div className=" max-w-md w-full mx-auto  rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-gray-100 dark:bg-black">
                 <h2 className="font-bold text-xl text-green-800 dark:text-neutral-200">
-                    Welcome to FarmSetu
+                    {t('welcome_farmsetu')}
                 </h2>
                 <form className="my-8" onSubmit={handleSubmit}>
                     <LabelInputContainer className="mb-4">
-                        <Label htmlFor="email">Email Address</Label>
+                        <Label htmlFor="email">{t('email_address')}</Label>
                         <Input
                             id="email"
-                            placeholder="yourname@example.com"
+                            placeholder={t('your_email')}
                             type="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)} // Update email state
                         />
                     </LabelInputContainer>
                     <LabelInputContainer className="mb-8 relative">
-                        <Label htmlFor="password">Password</Label>
+                        <Label htmlFor="password">{t('password')}</Label>
                         <Input
                             id="password"
                             placeholder="••••••••"
@@ -83,7 +85,7 @@ export default function Login() {
                             <>
                             <span className="flex gap-2 justify-center items-center ">
                                 <span>
-                                Login 
+                                {t('login')} 
                                 </span>
                                 <FaLocationArrow />
                             </span>
@@ -111,13 +113,13 @@ export default function Login() {
 
                 <div className="text-center mt-4">
                     <span className="text-neutral-600 dark:text-neutral-400">
-                        Don't have an account?{" "}
+                        {t('dont_have_account')} 
                     </span>
                     <Link
                         to="/signup"
                         className="text-blue-500 hover:underline hover:text-green-700 dark:text-blue-400"
                     >
-                        Sign Up
+                        {t('sign_up')}
                     </Link>
                 </div>
             </div>

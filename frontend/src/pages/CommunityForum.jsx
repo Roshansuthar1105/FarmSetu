@@ -2,8 +2,10 @@ import React, { useState, useRef, useEffect } from 'react';
 import postsData from '../data/posts.json'; // Import the posts JSON file
 import { Card, CardBody } from '@nextui-org/react';
 import { useAuthContext } from '../context/AuthContext';
+import { useTranslation } from 'react-i18next';
 
 const CommunityForum = () => {
+  const {t}=useTranslation();
   const { authUser,BACKEND_URL } = useAuthContext();
   const [posts, setPosts] = useState(postsData); // Use the imported JSON data
   const [newPost, setNewPost] = useState({ name:authUser.name,email:authUser.email , message: '', title: '' });
@@ -73,13 +75,13 @@ const CommunityForum = () => {
       <div className="max-w-4xl mx-auto p-4 pt-24">
         <div className="flex justify-between items-center">
 
-        <h1 className="text-4xl font-bold mb-6 text-green-300">Community Forum</h1>
+        <h1 className="text-4xl font-bold mb-6 text-green-300">{t('communityForumTitle')}</h1>
 
         <button
           onClick={() => setIsModalOpen(true)}
           className="bg-green-600 text-gray-100 px-4 py-2 rounded-lg mb-6 hover:bg-green-500 transition duration-300"
           >
-          Write Post
+          {t('writePostButton')}
         </button>
           </div>
 
@@ -91,7 +93,7 @@ const CommunityForum = () => {
                   <h2 className="text-xl font-bold mb-2 text-green-400">{post.title}</h2>
                   <p className="text-gray-300 mb-2">{post.message}</p>
                   <div className="text-sm text-gray-500">
-                    <span>By {post.name}</span> | <span>{new Date(post.createdAt).toLocaleDateString()}</span>
+                    <span>{t('postedBy')}{''} {post.name}</span> | <span>{new Date(post.createdAt).toLocaleDateString()}</span>
                   </div>
                 </CardBody>
               </Card>
@@ -106,14 +108,14 @@ const CommunityForum = () => {
               ref={modalRef}
               className="bg-gray-800 shadow-lg rounded-lg p-6 max-w-md mx-auto"
             >
-              <h2 className="text-2xl font-bold mb-4 text-green-300">Share Your Experience</h2>
+              <h2 className="text-2xl font-bold mb-4 text-green-300">{t('shareYourExperience')}</h2>
               <form onSubmit={handleSubmit}>
                 <input
                   type="text"
                   name="title"
                   value={newPost.title}
                   onChange={handleInputChange}
-                  placeholder="Post Title"
+                  placeholder={t('postTitlePlaceholder')}
                   className="w-full p-2 mb-4 border border-gray-600 rounded-lg bg-gray-700 text-gray-100"
                   required
                 />
@@ -121,7 +123,7 @@ const CommunityForum = () => {
                   name="message"
                   value={newPost.message}
                   onChange={handleInputChange}
-                  placeholder="Write your experience..."
+                  placeholder={t('writeYourExperiencePlaceholder')}
                   className="w-full p-2 mb-4 border border-gray-600 rounded-lg bg-gray-700 text-gray-100"
                   rows="6"
                   required
@@ -139,14 +141,14 @@ const CommunityForum = () => {
                   type="submit"
                   className="bg-green-600 text-gray-100 px-4 py-2 rounded-lg hover:bg-green-500 transition duration-300"
                 >
-                  Post
+                  {t('postButton')}
                 </button>
                 <button
                   type="button"
                   onClick={() => setIsModalOpen(false)}
                   className="bg-red-600 text-gray-100 px-4 py-2 rounded-lg ml-4 hover:bg-red-500 transition duration-300"
                 >
-                  Close
+                  {t('closeButton')}
                 </button>
               </form>
             </div>

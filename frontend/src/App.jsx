@@ -2,7 +2,6 @@ import React, { useState, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { useAuthContext } from './context/AuthContext';
-import { FiMessageSquare } from 'react-icons/fi';
 
 const LazyHome = React.lazy(() => import('./pages/Home'));
 const LazyMarketplace = React.lazy(() => import('./pages/Marketplace'));
@@ -43,7 +42,6 @@ const LazySellerProductEdit = React.lazy(() => import('./pages/SellerProductEdit
 const LazyCropRecommendation = React.lazy(() => import('./pages/CropRecommendation.jsx'));
 const LazyChatBot = React.lazy(() => import('./components/ChatBot'));
 import './i18.js';
-// frontend/src/App.jsx
 import { useTranslation } from 'react-i18next';
 import i18n from './i18.js';
 const LoadingComponent = () => {

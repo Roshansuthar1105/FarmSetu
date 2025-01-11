@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 import { GoogleGenerativeAI } from '@google/generative-ai';
+import { useTranslation } from 'react-i18next';
 
 const genAI = new GoogleGenerativeAI('AIzaSyC6tmEypaRp_iI3qR605anTGNOzoxD7erQ');
 const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
@@ -14,6 +15,7 @@ const predefinedQuestions = [
 ];
 
 const ChatBot = ({ visible, onClose }) => {
+  const { t } = useTranslation();
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [conversationStarted, setConversationStarted] = useState(false);
@@ -46,16 +48,6 @@ const ChatBot = ({ visible, onClose }) => {
     }
   };
 
-  // const getBotResponse = async (prompt) => {
-  //   try {
-  //     const result = await model.generateContent(prompt);
-  //     const response = await result.response;
-  //     return response.text();
-  //   } catch (error) {
-  //     console.error('Error fetching bot response:', error);
-  //     return 'Sorry, I am unable to respond at the moment.';
-  //   }
-  // };
   const getBotResponse = async (prompt) => {
     try {
       // Concatenate previous messages into a single prompt
@@ -67,7 +59,7 @@ const ChatBot = ({ visible, onClose }) => {
       return response.text();
     } catch (error) {
       console.error('Error fetching bot response:', error);
-      return 'Sorry, I am unable to respond at the moment.';
+      return t('error_fetching_response');
     }
   };
   useEffect(() => {
@@ -89,7 +81,7 @@ const ChatBot = ({ visible, onClose }) => {
   return (
     <div className="fixed bottom-20 right-4 w-96 h-[80vh] overflow-y-auto bg-white shadow-2xl rounded-lg overflow-hidden scrollbar-hide animate-fadeIn z-50">
       <div className="sticky top-0 z-50 bg-blue-600 text-white px-4 py-3 animate-slideDown flex flex-row items-center justify-between">
-        <h3 className="text-xl font-semibold">ChatBot <img src="https://cdn-icons-png.flaticon.com/128/6231/6231457.png" alt="chatbot" className="w-6 h-6 inline-block ml-2" /></h3>
+        <h3 className="text-xl font-semibold">{t('chatbot')} <img src="https://cdn-icons-png.flaticon.com/128/6231/6231457.png" alt="chatbot" className="w-6 h-6 inline-block ml-2" /></h3>
         <button onClick={onClose} className="hover:bg-blue-700 rounded-full p-1 transition duration-300">
           <AiOutlineClose size={24} />
         </button>
@@ -97,7 +89,7 @@ const ChatBot = ({ visible, onClose }) => {
       <div className="p-4 max-h-96 min-h-[200px] overflow-y-auto bg-blue-50">
         {messages.length === 0 ? (
           <div className="text-center text-blue-500 animate-pulse">
-            Start a conversation...
+            {t('start_a_conversation')}
           </div>
         ) : (
           messages.map((msg, index) => (
@@ -124,7 +116,7 @@ const ChatBot = ({ visible, onClose }) => {
       <div className="flex flex-col p-3 border-t bg-blue-100">
         {!conversationStarted && (
           <div className="mb-3">
-            <p className="text-blue-600 font-semibold mb-2">Quick Questions:</p>
+            <p className="text-blue-600 font-semibold mb-2">{t('quick_questions')}:</p>
             <div className="grid grid-cols-2 gap-2">
               {predefinedQuestions.map((question, index) => (
                 <button
@@ -141,18 +133,18 @@ const ChatBot = ({ visible, onClose }) => {
         <div className="flex items-center">
           <input
             type="text"
-            value={loading ? 'Responding...' : input}
+            value={loading ? t('responding') : input}
             disabled={loading}
             onChange={(e) => setInput(e.target.value)}
             className="flex-1 px-4 py-2 border rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
-            placeholder="Type a message..."
+            placeholder={t('type_a_message')}
             onKeyPress={(e) => e.key === 'Enter' && sendMessage(input)}
           />
           <button
             onClick={() => sendMessage(input)}
             className="ml-3 bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition-colors duration-300 "
           >
-            Send
+            {t('send')}
           </button>
         </div>
       </div>

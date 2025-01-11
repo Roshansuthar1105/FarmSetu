@@ -8,6 +8,7 @@ import { FaFolderClosed } from 'react-icons/fa6';
 import { IoClose } from 'react-icons/io5';
 import { EyeIcon } from '@heroicons/react/24/outline';
 import { FiEye } from 'react-icons/fi';
+import { useTranslation } from 'react-i18next';
 
 function ProductEdit() {
     const { BACKEND_URL } = useAuthContext()
@@ -78,7 +79,7 @@ function ProductEdit() {
             if (!response.ok) {
                 throw new Error('Failed to update product');
             }
-            toast.success("product updated");
+            toast.success(t('product_updated'));
             const data = await response.json();
             // Optionally, update the local state with the updated product
             // setProducts(prevProducts => prevProducts.map(product => product._id === productId ? { ...product, ...updates } : product));
@@ -93,24 +94,25 @@ function ProductEdit() {
         e.preventDefault();
         patchProduct(id, product);
     }
+    const { t } = useTranslation();
     return (
         <div className="max-w-md mx-auto mt-10 p-6 bg-gray-200 rounded-lg shadow-md relative">
-            <h2 className="text-2xl font-bold mb-4">Product Edit</h2>
+            <h2 className="text-2xl font-bold mb-4">{t('product_edit')}</h2>
             <form onSubmit={(e) => handleSubmit(e)} className="space-y-4">
                 <div className="mb-3">
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700">Product Name</label>
+                    <label htmlFor="name" className="block text-sm font-medium text-gray-700">{t('product_name')}</label>
                     <input type="text" className="block w-full p-2 border border-gray-300 rounded-lg" id="name" value={product.name} onChange={(e) => setProduct({ ...product, name: e.target.value })} />
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="price" className="block text-sm font-medium text-gray-700">Price</label>
+                    <label htmlFor="price" className="block text-sm font-medium text-gray-700">{t('price')}</label>
                     <input type="text" className="block w-full p-2 border border-gray-300 rounded-lg" id="price" value={product.price} onChange={(e) => setProduct({ ...product, price: e.target.value })} />
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="description" className="block text-sm font-medium text-gray-700">Description</label>
+                    <label htmlFor="description" className="block text-sm font-medium text-gray-700">{t('description')}</label>
                     <textarea className="block w-full p-2 border border-gray-300 rounded-lg" id="description" rows="3" value={product.description} onChange={(e) => setProduct({ ...product, description: e.target.value })} />
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="image" className="block text-sm font-medium text-gray-700">Image URL</label>
+                    <label htmlFor="image" className="block text-sm font-medium text-gray-700">{t('image_url')}</label>
                     <div className='flex flex-row gap-2' >
 
                         <input type="text" className="block w-full p-2 border border-gray-300 rounded-lg" id="image" value={product.image} onChange={(e) => setProduct({ ...product, image: e.target.value })} />
@@ -126,16 +128,16 @@ function ProductEdit() {
                     </div>
                 )}
                 <div className="mb-3">
-                    <label htmlFor="category" className="block text-sm font-medium text-gray-700">Category</label>
+                    <label htmlFor="category" className="block text-sm font-medium text-gray-700">{t('category')}</label>
                     <select id="category" value={product.category} onChange={(e) => setProduct({ ...product, category: e.target.value })} className="block w-full p-2 border border-gray-300 rounded-lg">
-                        <option value="">Select Category</option>
+                        <option value="">{t('select_category')}</option>
                         {categories.map((category) => (
                             <option key={category} value={category}>{category}</option>
                         ))}
                         {/* <option value="other">Other</option> */}
                     </select>
                 </div>
-                <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Update Product</button>
+                <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">{t('update_product')}</button>
             </form>
         </div>
 

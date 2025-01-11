@@ -3,11 +3,13 @@ import marketData from '../data/marketData.json';
 import { Bar, Pie, Line } from 'react-chartjs-2';
 import { Chart, registerables } from 'chart.js';
 import 'chartjs-adapter-date-fns';
+import { useTranslation } from 'react-i18next';
 
 // Register Chart.js components
 Chart.register(...registerables);
 
 const RealTimeMarket = () => {
+  const { t } = useTranslation();
   const [selectedTicker, setSelectedTicker] = useState('');
   const [filteredData, setFilteredData] = useState([]);
 
@@ -36,14 +38,14 @@ const RealTimeMarket = () => {
     labels: pricesData.map(item => item.market),
     datasets: [
       {
-        label: 'Max Price',
+        label: t('maxPrice'),
         data: pricesData.map(item => item.maxPrice),
         backgroundColor: 'rgba(34, 197, 94, 0.6)',
         borderColor: 'rgba(34, 197, 94, 1)',
         borderWidth: 1,
       },
       {
-        label: 'Min Price',
+        label: t('minPrice'),
         data: pricesData.map(item => item.minPrice),
         backgroundColor: 'rgba(129, 199, 132, 0.6)',
         borderColor: 'rgba(129, 199, 132, 1)',
@@ -57,7 +59,7 @@ const RealTimeMarket = () => {
     labels: pricesData.map(item => item.market),
     datasets: [
       {
-        label: 'Market Share',
+        label: t('marketShare'),
         data: pricesData.map(item => item.maxPrice), // Example data
         backgroundColor: [
           'rgba(34, 197, 94, 0.6)',
@@ -83,7 +85,7 @@ const RealTimeMarket = () => {
     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'], // Example months
     datasets: [
       {
-        label: 'Historical Price',
+        label: t('historicalPriceTrends'),
         data: [120, 135, 125, 145, 155, 160, 150], // Example data
         borderColor: 'rgba(34, 197, 94, 1)',
         backgroundColor: 'rgba(34, 197, 94, 0.2)',
@@ -95,11 +97,11 @@ const RealTimeMarket = () => {
 
   // Data Table Columns
   const columns = [
-    { header: 'Market', accessor: 'market' },
-    { header: 'Date', accessor: 'date' },
-    { header: 'Max Price (₹)', accessor: 'maxPrice' },
-    { header: 'Min Price (₹)', accessor: 'minPrice' },
-    { header: 'Price (₹)', accessor: 'price' },
+    { header: t('market'), accessor: 'market' },
+    { header: t('date'), accessor: 'date' },
+    { header: t('maxPrice'), accessor: 'maxPrice' },
+    { header: t('minPrice'), accessor: 'minPrice' },
+    { header: t('price'), accessor: 'price' },
   ];
 
   // Function to format data values
@@ -115,16 +117,16 @@ const RealTimeMarket = () => {
       <div className="flex-grow p-8 mt-16">
         <div className='flex flex-col mx-auto items-center justify-between w-full mb-4'>
         <h1 className="text-4xl my-4 font-bold cursor-default  transition duration-500 ease-in-out transform hover:scale-105">
-          Real-Time Market Prices
+          {t('realTimeMarket')}
         </h1>
         <form onSubmit={handleSubmit} className="my-2  flex flex-row items-center justify-between">
-          {/* <label className="block mb-2 text-lg font-medium">Select Ticker:</label> */}
+          {/* <label className="block mb-2 text-lg font-medium">{t('selectTicker')}:</label> */}
           <select
             value={selectedTicker}
             onChange={handleTickerChange}
             className="w-full p-3 border border-gray-700 rounded-md bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-green-500 transition duration-300 ease-in-out"
           >
-            <option value="" disabled>Select a ticker</option>
+            <option value="" disabled>{t('selectTicker')}</option>
             {uniqueTickers.map((ticker, index) => (
               <option key={index} value={ticker}>
                 {ticker}
@@ -135,7 +137,7 @@ const RealTimeMarket = () => {
             type="submit"
             className=" ml-2 w-full bg-green-600 text-white p-3 rounded-md hover:bg-green-500 transition duration-300 ease-in-out transform hover:scale-105"
           >
-            Submit
+            {t('submit')}
           </button>
         </form>
         </div>
@@ -144,7 +146,7 @@ const RealTimeMarket = () => {
             {/* Bar Chart */}
             <div className="bg-gray-800 p-6 rounded-md shadow-lg transition duration-500 ease-in-out transform hover:scale-105">
               <h2 className="text-2xl font-semibold text-green-400 mb-4 text-center">
-                Price Comparison
+                {t('priceComparison')}
               </h2>
               <Bar
                 data={barChartData}
@@ -176,7 +178,7 @@ const RealTimeMarket = () => {
             {/* Historical Price Trends (Fake Data) */}
             <div className="bg-gray-800 p-6 rounded-md shadow-lg transition duration-500 ease-in-out transform hover:scale-105">
               <h2 className="text-2xl font-semibold text-green-400 mb-4 text-center">
-                Historical Price Trends
+                {t('historicalPriceTrends')}
               </h2>
               <Line
                 data={lineChartData}
@@ -207,7 +209,7 @@ const RealTimeMarket = () => {
             {/* Pie Chart */}
             <div className="bg-gray-800 p-6 rounded-md shadow-lg transition duration-500 ease-in-out transform hover:scale-105">
               <h2 className="text-2xl font-semibold text-green-400 mb-4 text-center">
-                Market Share
+                {t('marketShare')}
               </h2>
               <Pie
                 data={pieChartData}
@@ -230,7 +232,7 @@ const RealTimeMarket = () => {
             {/* Data Table */}
             <div className="bg-gray-800 p-6 rounded-md shadow-lg transition duration-500 ease-in-out transform hover:scale-105">
               <h2 className="text-2xl font-semibold text-green-400 mb-4 text-center">
-                Data Table
+                {t('dataTable')}
               </h2>
               <table className="w-full border-collapse border border-gray-600">
                 <thead>

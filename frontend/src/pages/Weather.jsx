@@ -3,8 +3,10 @@ import axios from 'axios';
 import MyNavbar from '../components/MyNavbar';
 import citySuggestions from '../data/cities.json';
 import toast from 'react-hot-toast';
+import { useTranslation } from 'react-i18next'; // Import the useTranslation hook
 
 const Weather = () => {
+  const { t } = useTranslation(); // Initialize translation hook
   const [city, setCity] = useState('');
   const [weatherData, setWeatherData] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -29,7 +31,7 @@ const Weather = () => {
     setLoading(true);
     setError('');
     if (city.trim() === '') {
-      toast.error("Enter some value");
+      toast.error(t('enter_city')); // Translated error message
       setLoading(false);
       return;
     }
@@ -43,7 +45,7 @@ const Weather = () => {
       });
       setWeatherData(response.data);
     } catch (err) {
-      setError('Failed to fetch weather data. Please try again.');
+      setError(t('weather_fetch_error')); // Translated error message
     } finally {
       setLoading(false);
     }
@@ -57,7 +59,7 @@ const Weather = () => {
           <div className="mb-6 flex flex-row items-center justify-between">
             <input
               type="text"
-              placeholder="Enter city name"
+              placeholder={t('enter_city_placeholder')}
               value={city}
               list="city-suggestions"
               onChange={(e) => setCity(e.target.value)}
@@ -67,7 +69,7 @@ const Weather = () => {
               onClick={fetchWeatherData}
               className="w-1/4 p-3 bg-green-600 ml-2 text-white rounded-lg sm:text-base text-xs hover:bg-green-500 transition ease-in-out duration-300"
             >
-              Get Weather
+              {t('get_weather')} {/* Translation key */}
             </button>
             <datalist id="city-suggestions">
               {suggestions.map((suggestion, index) => (
@@ -98,37 +100,36 @@ const Weather = () => {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="p-6 bg-gray-700 rounded-lg shadow-lg transition-transform transform hover:scale-105">
-                  <h3 className="text-xl font-semibold mb-2 text-green-400">Temperature</h3>
-                  <p className="text-white">Feels Like: {weatherData.main.feels_like}°C</p>
-                  <p className="text-white">Min Temp: {weatherData.main.temp_min}°C</p>
-                  <p className="text-white">Max Temp: {weatherData.main.temp_max}°C</p>
+                  <h3 className="text-xl font-semibold mb-2 text-green-400">{t('temperature')}</h3> {/* Translation key */}
+                  <p className="text-white">{t('feels_like')}: {weatherData.main.feels_like}°C</p> {/* Translation key */}
+                  <p className="text-white">{t('min_temp')}: {weatherData.main.temp_min}°C</p> {/* Translation key */}
+                  <p className="text-white">{t('max_temp')}: {weatherData.main.temp_max}°C</p> {/* Translation key */}
                 </div>
                 <div className="p-6 bg-gray-700 rounded-lg shadow-lg transition-transform transform hover:scale-105">
-                  <h3 className="text-xl font-semibold mb-2 text-green-400">Weather Details</h3>
-                  <p className="text-white">Humidity: {weatherData.main.humidity}%</p>
-                  <p className="text-white">Pressure: {weatherData.main.pressure} hPa</p>
-                  <p className="text-white">Visibility: {weatherData.visibility / 1000} km</p>
+                  <h3 className="text-xl font-semibold mb-2 text-green-400">{t('weather_details')}</h3> {/* Translation key */}
+                  <p className="text-white">{t('humidity')}: {weatherData.main.humidity}%</p> {/* Translation key */}
+                  <p className="text-white">{t('pressure')}: {weatherData.main.pressure} hPa</p> {/* Translation key */}
+                  <p className="text-white">{t('visibility')}: {weatherData.visibility / 1000} km</p> {/* Translation key */}
                 </div>
                 <div className="p-6 bg-gray-700 rounded-lg shadow-lg transition-transform transform hover:scale-105">
-                  <h3 className="text-xl font-semibold mb-2 text-green-400">Wind</h3>
-                  <p className="text-white">Speed: {weatherData.wind.speed} m/s</p>
-                  <p className="text-white">Direction: {weatherData.wind.deg}°</p>
+                  <h3 className="text-xl font-semibold mb-2 text-green-400">{t('wind')}</h3> {/* Translation key */}
+                  <p className="text-white">{t('wind_speed')}: {weatherData.wind.speed} m/s</p> {/* Translation key */}
+                  <p className="text-white">{t('wind_direction')}: {weatherData.wind.deg}°</p> {/* Translation key */}
                 </div>
                 <div className="p-6 bg-gray-700 rounded-lg shadow-lg transition-transform transform hover:scale-105">
-                  <h3 className="text-xl font-semibold mb-2 text-green-400">Clouds</h3>
-                  <p className="text-white">Coverage: {weatherData.clouds.all}%</p>
+                  <h3 className="text-xl font-semibold mb-2 text-green-400">{t('clouds')}</h3> {/* Translation key */}
+                  <p className="text-white">{t('cloud_coverage')}: {weatherData.clouds.all}%</p> {/* Translation key */}
                 </div>
                 <div className="p-6 bg-gray-700 rounded-lg shadow-lg transition-transform transform hover:scale-105">
-                  <h3 className="text-xl font-semibold mb-2 text-green-400">Sunrise/Sunset</h3>
-                  <p className="text-white">Sunrise: {new Date(weatherData.sys.sunrise * 1000).toLocaleTimeString()}</p>
-                  <p className="text-white">Sunset: {new Date(weatherData.sys.sunset * 1000).toLocaleTimeString()}</p>
+                  <h3 className="text-xl font-semibold mb-2 text-green-400">{t('sunrise_sunset')}</h3> {/* Translation key */}
+                  <p className="text-white">{t('sunrise')}: {new Date(weatherData.sys.sunrise * 1000).toLocaleTimeString()}</p> {/* Translation key */}
+                  <p className="text-white">{t('sunset')}: {new Date(weatherData.sys.sunset * 1000).toLocaleTimeString()}</p> {/* Translation key */}
                 </div>
               </div>
             </div>
           ) : null}
         </div>
       </div>
-      
     </div>
   );
 };

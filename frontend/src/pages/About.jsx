@@ -1,53 +1,49 @@
+import { useTranslation } from "react-i18next";
+
 const About = () => {
+    const { t } = useTranslation();
     return (
         <div className="bg-gray-800 min-h-screen">
             <div className="container mx-auto px-4 py-16">
-                <h1 className="text-4xl font-bold text-green-600 text-center mb-12">About FarmSetu</h1>
+                <h1 className="text-4xl font-bold text-green-600 text-center mb-12">{t('about_farmsetu')}</h1>
                 
                 <div className="grid md:grid-cols-2 gap-12">
                     <div className="space-y-6">
-                        <h2 className="text-2xl font-semibold text-gray-100">Our Mission</h2>
+                        <h2 className="text-2xl font-semibold text-gray-100">{t('our_mission')}</h2>
                         <p className="text-gray-300">
-                            At FarmSetu, we are dedicated to revolutionizing agriculture through technology and innovation. 
-                            Our mission is to empower farmers with modern tools, knowledge, and resources to enhance their 
-                            productivity and sustainability.
+                            {t('mission_description')}
                         </p>
                         
-                        <h2 className="text-2xl font-semibold text-gray-200">What We Do</h2>
+                        <h2 className="text-2xl font-semibold text-gray-200">{t('what_we_do')}</h2>
                         <p className="text-gray-300">
-                            We provide a comprehensive platform that connects farmers with quality agricultural products, 
-                            expert advice, and innovative farming solutions. From premium seeds to advanced machinery, 
-                            we ensure farmers have access to everything they need for successful farming.
+                            {t('what_we_do_description')}
                         </p>
                     </div>
                     
                     <div className="space-y-6">
-                        <h2 className="text-2xl font-semibold text-gray-200">Our Values</h2>
+                        <h2 className="text-2xl font-semibold text-gray-200">{t('our_values')}</h2>
                         <ul className="space-y-4 text-gray-300">
                             <li className="flex items-center">
                                 <span className="w-2 h-2 bg-green-600 rounded-full mr-3"></span>
-                                <span>Sustainability in farming practices</span>
+                                <span>{t('value_sustainability')}</span>
                             </li>
                             <li className="flex items-center">
                                 <span className="w-2 h-2 bg-green-600 rounded-full mr-3"></span>
-                                <span>Innovation in agricultural technology</span>
+                                <span>{t('value_innovation')}</span>
                             </li>
                             <li className="flex items-center">
                                 <span className="w-2 h-2 bg-green-600 rounded-full mr-3"></span>
-                                <span>Quality and reliability in products</span>
+                                <span>{t('value_quality')}</span>
                             </li>
                             <li className="flex items-center">
                                 <span className="w-2 h-2 bg-green-600 rounded-full mr-3"></span>
-                                <span>Farmer-centric approach</span>
+                                <span>{t('value_farmer_centric')}</span>
                             </li>
                         </ul>
                         
-                        <h2 className="text-2xl font-semibold text-gray-200">Our Impact</h2>
+                        <h2 className="text-2xl font-semibold text-gray-200">{t('our_impact')}</h2>
                             <p className="text-gray-300">
-                            We have helped thousands of farmers across India modernize their farming practices, 
-                            increase their yields, and achieve better market prices for their produce. Our 
-                            commitment to agricultural excellence continues to drive positive change in the 
-                            farming community.
+                            {t('impact_description')}
                         </p>
                     </div>
                 </div>

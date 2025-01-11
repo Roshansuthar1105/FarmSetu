@@ -3,14 +3,16 @@ import { useAuthContext } from '../context/AuthContext';
 import Product from '../components/Product';
 import toast from 'react-hot-toast';
 import { IoCartOutline } from 'react-icons/io5';
+import { useTranslation } from 'react-i18next';
 
 function UserCart() {
+    const { t } = useTranslation();
     const [products, setProducts] = useState([]);
     const removebtn = true;
     const emptyProduct = {
         category:"No product Found",
         date: Date.now().toLocaleString(),
-        description:"Add some products to access saved products",
+        description:t('empty_cart_message'),
         image:"https://images.pexels.com/photos/953862/pexels-photo-953862.jpeg?auto=compress&cs=tinysrgb&w=800",
         name:"No product !"
     }
@@ -30,7 +32,7 @@ function UserCart() {
                 throw new Error('Failed to remove product from cart');
             }
             const data = await response.json();
-            toast.success("Product Removed !")
+            toast.success(t('product_removed'))
             setCart(data.cart)
             fetchCart();
         } catch (error) {
@@ -66,7 +68,7 @@ function UserCart() {
         }
     }
     const clearCart = async () => {
-        if (!window.confirm('Are you sure you want to clear your cart?')) {
+        if (!window.confirm(t('clear_cart_confirmation'))) {
             return;
         }
         const url = `${BACKEND_URL}/api/profile/cart/clearcart/${authUser._id}`;
@@ -89,8 +91,8 @@ function UserCart() {
     return (
         <div className='flex flex-wrap gap-4 bg-gray-800 py-24 justify-center align-middle min-h-[80dvh] '>
             <div className='w-full mx-10 flex flex-row justify-between items-center' >
-                <h2 className="text-4xl font-bold text-white mb-4"> Your Cart </h2>
-                <button className='bg-green-600 text-white px-4 py-2 rounded-md text-md flex flex-row gap-2 items-center '  onClick={clearCart}><IoCartOutline/> <span>Clear Cart</span></button>
+                <h2 className="text-4xl font-bold text-white mb-4"> {t('your_cart')} </h2>
+                <button className='bg-green-600 text-white px-4 py-2 rounded-md text-md flex flex-row gap-2 items-center '  onClick={clearCart}><IoCartOutline/> <span>{t('clear_cart')}</span></button>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 px-4 max-w-[1200px] bg-red-00 ">
                 {

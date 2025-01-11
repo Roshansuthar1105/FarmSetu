@@ -1,28 +1,30 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const FAQ = () => {
+  const { t } = useTranslation();
   const [openIndex, setOpenIndex] = useState(null);
 
   const faqs = [
     {
-      question: "What is FarmSetu?",
-      answer: "FarmSetu is a comprehensive agricultural platform that connects farmers with resources, markets, and expert knowledge to improve farming practices and profitability."
+      question: t('faq_1_question'),
+      answer: t('faq_1_answer')
     },
     {
-      question: "How do I create an account?",
-      answer: "You can create an account by clicking the 'Sign Up' button and filling out the registration form with your details. You'll need to provide your name, email, and create a password."
+      question: t('faq_2_question'),
+      answer: t('faq_2_answer')
     },
     {
-      question: "What services do you offer?",
-      answer: "We offer a range of services including marketplace access, weather updates, crop advisory, real-time market prices, expert consultation, and community forums for knowledge sharing."
+      question: t('faq_3_question'),
+      answer: t('faq_3_answer')
     },
     {
-      question: "Is FarmSetu available in my region?",
-      answer: "FarmSetu is currently expanding its services across various regions. Please check our coverage area page or contact our support team to confirm availability in your specific location."
+      question: t('faq_4_question'),
+      answer: t('faq_4_answer')
     },
     {
-      question: "How can I sell my products?",
-      answer: "After creating a seller account, you can list your products by providing details like product description, pricing, and images. Our team will review and approve your listings."
+      question: t('faq_5_question'),
+      answer: t('faq_5_answer')
     }
   ];
 
@@ -35,7 +37,7 @@ const FAQ = () => {
       
       <div className="container mx-auto px-4 py-20">
         <h1 className="text-3xl font-bold text-green-500 dark:text-green-400 mb-10 text-center">
-          Frequently Asked Questions
+          {t('faq_title')}
         </h1>
         <div className="max-w-3xl mx-auto space-y-4">
           {faqs.map((faq, index) => (
