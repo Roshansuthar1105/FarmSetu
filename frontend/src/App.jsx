@@ -42,7 +42,10 @@ const LazySellerProduct = React.lazy(() => import('./pages/SellerProduct.jsx'));
 const LazySellerProductEdit = React.lazy(() => import('./pages/SellerProductEdit.jsx'));
 const LazyCropRecommendation = React.lazy(() => import('./pages/CropRecommendation.jsx'));
 const LazyChatBot = React.lazy(() => import('./components/ChatBot'));
-
+import './i18.js';
+// frontend/src/App.jsx
+import { useTranslation } from 'react-i18next';
+import i18n from './i18.js';
 const LoadingComponent = () => {
   return (
     <div className="flex justify-center items-center h-screen bg-gray-200 ">
@@ -52,6 +55,10 @@ const LoadingComponent = () => {
 };
 
 export default function App() {
+  const { t } = useTranslation(); // Add this line
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
   const { authUser } = useAuthContext();
   const [chatBotVisible, setChatBotVisible] = useState(false);
   const [isRotating, setIsRotating] = useState(false);
@@ -115,7 +122,29 @@ export default function App() {
         {/* <FiMessageSquare size={24} /> */}
         <img src="https://cdn-icons-png.flaticon.com/128/6231/6231457.png" alt="chatbot" className="w-6 h-6 inline-block ml-2" />
       </button>
-
+      <div className='z-50 fixed bottom-10 left-10 bg-blue-500 p-2 rounded shadow-md'>
+        <select onChange={(e) => changeLanguage(e.target.value)}>
+          <option value="as">Assamese</option>
+          <option value="bn">Bengali</option>
+          <option value="doi">Dogri</option>
+          <option value="en">English</option>
+          <option value="gu">Gujarati</option>
+          <option value="hi">Hindi</option>
+          <option value="kn">Kannada</option>
+          <option value="ks">Kashmiri</option>
+          <option value="ml">Malayalam</option>
+          <option value="mai">Maithili</option>
+          <option value="mr">Marathi</option>
+          <option value="mni">Manipuri</option>
+          <option value="or">Odia</option>
+          <option value="pa">Punjabi</option>
+          <option value="sd">Sindhi</option>
+          <option value="sat">Santali</option>
+          <option value="ta">Tamil</option>
+          <option value="te">Telugu</option>
+          <option value="ur">Urdu</option>
+        </select>
+      </div>
       {/* ChatBot Component */}
       <Suspense fallback={<LoadingComponent />}>
         <LazyChatBot visible={chatBotVisible} onClose={toggleChatBot} />

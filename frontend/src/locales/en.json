@@ -1,0 +1,15 @@
+{
+    "welcome":"Welcome",
+    "home":"Home",
+    "about_us":"About Us",
+    "contact":"Contact",
+    "services":"Services",
+    "heroTitle": "Empowering Farmers with",
+    "heroSubtitles": ["Real-Time Market Insights", "Accurate Price Trends", "Up-to-Date Information"],
+    "heroDescription": "Get access to up-to-date market information, price trends, and tools to negotiate better deals.",
+    "freeVirtualSoilCheck": "Free Virtual Soil Check",
+    "resources": "Resources",
+    "community": "Community",
+    "joinThousands": "Join thousands of farmers who have transformed their business with real-time insights.",
+    "makingAgricultureSmarter": "Making agriculture smarter, one insight at a time."
+  }
