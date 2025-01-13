@@ -55,7 +55,8 @@ const LoadingComponent = () => {
 export default function App() {
   const { t } = useTranslation(); // Add this line
   const changeLanguage = (lng) => {
-    i18n.changeLanguage(lng);
+    // i18n.changeLanguage(lng);
+    console.log(i18n.changeLanguage(lng))
   };
   const { authUser } = useAuthContext();
   const [chatBotVisible, setChatBotVisible] = useState(false);
@@ -121,7 +122,7 @@ export default function App() {
         <img src="https://cdn-icons-png.flaticon.com/128/6231/6231457.png" alt="chatbot" className="w-6 h-6 inline-block ml-2" />
       </button>
       <div className='z-50 fixed bottom-10 left-10 bg-blue-500 p-2 rounded shadow-md'>
-        <select onChange={(e) => changeLanguage(e.target.value)}>
+        <select onChange={(e) => {changeLanguage(e.target.value);console.log(e.target.value);}}>
           <option value="en">English</option>
           <option value="as">Assamese</option>
           <option value="bn">Bengali</option>
