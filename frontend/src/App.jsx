@@ -1,4 +1,4 @@
-import React, { useState, Suspense } from 'react';
+import React, { useState, Suspense, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { useAuthContext } from './context/AuthContext';
@@ -55,9 +55,16 @@ const LoadingComponent = () => {
 export default function App() {
   const { t } = useTranslation(); // Add this line
   const changeLanguage = (lng) => {
-    // i18n.changeLanguage(lng);
-    console.log(i18n.changeLanguage(lng))
+    i18n.changeLanguage(lng);
+    localStorage.setItem('language',lng);
   };
+  useEffect(()=>{
+    if(localStorage.getItem('language')){
+    localStorage.setItem('language',i18n.language);
+    }else{
+      localStorage.setItem('language','en');
+    }
+  },[])
   const { authUser } = useAuthContext();
   const [chatBotVisible, setChatBotVisible] = useState(false);
   const [isRotating, setIsRotating] = useState(false);
@@ -122,7 +129,7 @@ export default function App() {
         <img src="https://cdn-icons-png.flaticon.com/128/6231/6231457.png" alt="chatbot" className="w-6 h-6 inline-block ml-2" />
       </button>
       <div className='z-50 fixed bottom-10 left-10 bg-blue-500 p-2 rounded shadow-md'>
-        <select onChange={(e) => {changeLanguage(e.target.value);console.log(e.target.value);}}>
+        <select onChange={(e) => changeLanguage(e.target.value)}>
           <option value="en">English</option>
           <option value="as">Assamese</option>
           <option value="bn">Bengali</option>
