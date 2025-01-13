@@ -122,10 +122,10 @@ export default function App() {
       </button>
       <div className='z-50 fixed bottom-10 left-10 bg-blue-500 p-2 rounded shadow-md'>
         <select onChange={(e) => changeLanguage(e.target.value)}>
+          <option value="en">English</option>
           <option value="as">Assamese</option>
           <option value="bn">Bengali</option>
           <option value="doi">Dogri</option>
-          <option value="en">English</option>
           <option value="gu">Gujarati</option>
           <option value="hi">Hindi</option>
           <option value="kn">Kannada</option>
