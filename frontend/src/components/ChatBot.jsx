@@ -86,7 +86,7 @@ const ChatBot = ({ visible, onClose }) => {
           <AiOutlineClose size={24} />
         </button>
       </div>
-      <div className="p-4 max-h-96 min-h-[200px] overflow-y-auto bg-blue-50">
+      <div className="p-4 max-h-[64vh] min-h-[200px] overflow-y-auto bg-blue-50">
         {messages.length === 0 ? (
           <div className="text-center text-blue-500 animate-pulse">
             {t('start_a_conversation')}
