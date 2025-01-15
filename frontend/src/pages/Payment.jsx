@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CheckOut from "./CheckOut";
+import PaymentCard from "../components/PaymentCard";
 const pricingPlans = [
   {
     title: 'Basic Plan',
@@ -122,7 +123,9 @@ export default function Payment() {
         </div>
       </div>
       <div className="mt-24" >
-      <CheckOut plan={selectedPlan} />
+      {/* <CheckOut plan={selectedPlan} /> */}
+      {/* {} */}
+      <PaymentCard/>
       </div>
       {/* {selectedPlan && (
         <div className="selected-plan-section py-12 px-6 md:py-24 md:px-12 bg-green-950 text-white">

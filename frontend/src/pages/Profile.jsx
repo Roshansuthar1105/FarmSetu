@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../context/AuthContext";
 import { FaBriefcase, FaEnvelope, FaShoppingCart, FaUser } from "react-icons/fa";
 import { FaCalendarDays, FaMessage } from "react-icons/fa6";
-import { BiSolidMessageSquareEdit } from "react-icons/bi";
+import { BiEdit, BiSolidMessageSquareEdit } from "react-icons/bi";
 import { HiViewGrid } from "react-icons/hi";
 import { IoLogOut } from "react-icons/io5";
 import { GrContactInfo } from "react-icons/gr";
@@ -13,15 +13,19 @@ const Profile = () => {
     const { t } = useTranslation(); // Initialize useTranslation hook
     return (
         <div className="min-h-screen bg-gray-800 pt-20">
-            
-            <div className="container mx-auto px-4 my-10">
+            <div className="container mx-auto px-4 py-10">
                 <div className="bg-gray-700 rounded-lg shadow-lg p-8 max-w-4xl mx-auto">
                     <div className="flex flex-col items-center">
-                        <img
-                            src={authUser?.avatar || "https://cdn-icons-png.flaticon.com/128/1154/1154966.png"}
-                            alt="Profile"
-                            className="w-32 h-32 rounded-full border-4 border-green-600"
-                        />
+                        <div className="relative group">
+                            <img
+                                src={authUser?.avatar || "https://cdn-icons-png.flaticon.com/128/1154/1154966.png"}
+                                alt="Profile"
+                                className="w-32 h-32 rounded-full border-4 border-green-600"
+                            />
+                            <button className="bg-green-600 text-white p-2 rounded-full absolute bottom-0 right-0 hidden group-hover:block"
+                            onClick={()=>navigate(`/profile/edit/${authUser._id}`)}
+                            ><BiEdit/></button>
+                        </div>
                         <h1 className="mt-4 text-3xl font-bold text-gray-200">
                             {authUser?.name?.charAt(0).toUpperCase() + authUser?.name?.slice(1)}
                         </h1>
