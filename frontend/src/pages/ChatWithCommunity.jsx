@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import toast from 'react-hot-toast';
-import { FaPaperPlane } from 'react-icons/fa';
+import { FaArrowLeft, FaPaperPlane } from 'react-icons/fa';
 import { useAuthContext } from '../context/AuthContext';
 import { useTranslation } from 'react-i18next';
 function ChatWithCommunity() {
@@ -15,9 +15,9 @@ function ChatWithCommunity() {
     if(localStorage.length === 0){
         window.location.replace('/login');
     }
-        const currentUserId = JSON.parse(localStorage.getItem('user'))._id;
-
-    const [selectedUser, setSelectedUser] = useState(`${currentUserId}`);
+    const currentUserId = JSON.parse(localStorage.getItem('user'))._id;
+    const [selectedUser, setSelectedUser] = useState(currentUserId);
+    const [displayUser, setDisplayUser] = useState({});
     const [filteredUser, setFilteredUser] = useState([]);
     const fetchUsers = async () => {
         try {
@@ -44,6 +44,15 @@ function ChatWithCommunity() {
 
         }
     }
+    const findUser =(id) =>{
+        const url = `${BACKEND_URL}/api/user/${id}`;
+        console.log(url)
+        const user = fetch(url).then(resp=>resp.json()).then(user=>setDisplayUser(user[0]));
+        console.log(displayUser,"by backend");
+    }
+    useEffect(()=>{
+        findUser(selectedUser);
+    },[selectedUser])
     useEffect(() => {
         fetchUsers();
         const url = new URL(window.location.href);
@@ -153,8 +162,8 @@ function ChatWithCommunity() {
         <div className='mx-auto w-full min-w-full min-h-screen text-white bg-gradient-to-b from-gray-800 via-gray-900 to-gray-950' >
             <div className='py-20'>
                 <h1 className="text-3xl font-bold text-center text-gray-200 my-4">{t('chat_title')} {selectedUserName ? selectedUserName : t('role_community')} </h1>
-                <div className="flex flex-1 mt-3 mb-16 mx-8 overflow-hidden sm:mx-16 lg:mx-32">
-                    <div className="w-full md:w-1/4 bg-gray-700  relative text-gray-300 shadow-lg rounded-lg border border-gray-600 transition-transform duration-300 ease-in-out hover:shadow-xl overflow-x-auto"
+                <div className="flex flex-1 mt-3 mx-4 overflow-hidden sm:mx-4 lg:mx-16 flex-wrap" >
+                    <div className={`w-full md:w-1/4 min-w-[250px] bg-gray-700  relative text-gray-300 shadow-lg rounded-lg border border-gray-600 transition-transform duration-300 ease-in-out hover:shadow-xl overflow-x-auto `}
                         style={{
                             maxHeight: 'calc(100vh - 12rem)',
                             scrollbarColor: '#22c55e #1f2937',
@@ -176,11 +185,11 @@ function ChatWithCommunity() {
                                 className="bg-gray-600 text-gray-300 border border-gray-500 rounded-full px-4 py-2 w-full transition-shadow duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-green-500"
                             />
                         </div>
-                       <ul className="space-y-2 pt-[75px] relative ">
+                       <ul className="space-y-2 pt-[75px] relative">
                             {filteredUser.map((user) => (
                                 <li
                                     key={user._id}
-                                    onClick={() => handleUserClick(user._id)}
+                                    onClick={() => {handleUserClick(user._id)}}
                                     className={`flex items-center p-2 rounded-lg cursor-pointer hover:bg-gray-600 transition-colors duration-200 ${selectedUser === user._id ? 'bg-gray-500 absolute top-0 left-0 w-full ' : ''
                                         }`}
                                 >
@@ -199,16 +208,36 @@ function ChatWithCommunity() {
                             ))}
                         </ul>
                     </div>
-                    <div className="flex-1 flex flex-col ml-4">
+                    <div className={`flex-1 flex flex-col md:ml-4 md:my-0 my-2 `}>
                         <div
-                            className="flex-1 bg-gray-800 p-4 shadow-lg rounded-lg border border-gray-700 overflow-y-auto"
+                            className="flex-1 bg-gray-800 shadow-lg rounded-lg border border-gray-700 overflow-y-auto"
                             style={{
                                 maxHeight: 'calc(100vh - 16rem)',
                                 scrollbarWidth: 'none'
                             }}
                             ref={chatContainerRef}
                         >
-                            <div className="space-y-4">
+                                <div className='flex flex-row w-full border-b-1 sticky top-0 left-0 items-center px-4 gap-4' >
+                                <button  >
+                                    <FaArrowLeft />
+                                </button>
+                                <li
+                                    className={`flex items-center p-2 transition-colors duration-200 w-full`}
+                                >
+                                    <img src={displayUser.avatar ? displayUser.avatar : 'https://avataaars.io/?avatarStyle=Transparent&topType=LongHairStraight&accessoriesType=Blank&hairColor=BrownDark&facialHairType=Blank&clotheType=BlazerShirt&eyeType=Default&eyebrowType=Default&mouthType=Default&skinColor=Light'} alt={displayUser.avatar} className="w-12 h-12 rounded-full mr-3 border-2 border-green-400" />
+                                    <div>
+                                        <p className="font-semibold">
+                                            {/* {displayUser.name.charAt(0).toUpperCase() + displayUser.name.slice(1)} */}
+                                            {displayUser.name}
+                                        </p>
+                                        <p className={`text-sm ${displayUser.role === 'farmer' ? 'text-green-400' : displayUser.role === 'seller' ? 'text-blue-400' : 'text-orange-300'}`}>
+                                            {/* {displayUser.role.charAt(0).toUpperCase() + displayUser.role.slice(1)} */}
+                                            {displayUser.role}
+                                        </p>
+                                    </div>
+                                </li>
+                                </div>
+                            <div className="space-y-4 p-4">
                                 {Array.isArray(chats) && chats.length > 0 ? (
                                     chats.map((chat, index) => (
                                         <div
