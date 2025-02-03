@@ -57,7 +57,6 @@ export default function Contact() {
       }
     }
   };
-  console.log(t('contact.form.messagePlaceholder'),"dsfs")
   return (
     <section className="contact py-12 px-6 md:py-24 md:px-12 bg-gray-900">
       <div className="container mx-auto text-center">

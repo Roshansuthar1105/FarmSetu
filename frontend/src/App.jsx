@@ -45,6 +45,7 @@ const LazyLanguage = React.lazy(() => import('./components/LanguageButton.jsx'))
 import './i18.js';
 import { useTranslation } from 'react-i18next';
 import i18n from './i18.js';
+import Navbar from './components/Navbar';
 const LoadingComponent = () => {
   return (
     <div className="flex justify-center items-center h-screen bg-gray-200 ">
@@ -77,7 +78,8 @@ export default function App() {
   return (
     <Router>
       <Suspense fallback={<LoadingComponent />}>
-        <LazyMyNavbar />
+        {/* <LazyMyNavbar /> */}
+        <Navbar/>
       </Suspense>
       <Routes>
         <Route path="/" element={<Suspense fallback={<LoadingComponent />}><LazyHome /></Suspense>} />

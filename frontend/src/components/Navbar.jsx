@@ -1,196 +1,176 @@
 import React, { useState, useEffect } from "react";
-import {
-  Navbar,
-  NavbarBrand,
-  NavbarContent,
-  NavbarItem,
-  DropdownItem,
-  DropdownTrigger,
-  Dropdown,
-  DropdownMenu,
-  Avatar,
-  Button,
-} from "@nextui-org/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useAuthContext } from "../context/AuthContext";
-import Title from '../assets/Title.svg';
 import farm from '../assets/farm.svg';
 import setu from '../assets/setu.svg';
-import { toast } from "react-hot-toast";
-export default function MyNavbar() {
+import { IoPerson } from "react-icons/io5";
+import { FaShoppingCart } from "react-icons/fa";
+import { FaMessage } from "react-icons/fa6";
+import { IoLogOut } from "react-icons/io5";
+import { BiSolidMessageSquareEdit } from "react-icons/bi";
+import { MdEmail } from "react-icons/md";
+import { HiViewGrid } from "react-icons/hi";
+import { useTranslation } from "react-i18next";
+export default function Navbar() {
+  const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isprofileOpen, setIsProfileOpen] = useState(false);
   const [navbarStyle, setNavbarStyle] = useState({
     backgroundColor: "rgba(255, 255, 255, 1)",
   });
-
   const { authUser } = useAuthContext();
-
-  const links1 = [
-    { name: "Market Insights", to: "/market-insights" },
-    { name: "Crop Recommendations", to: "/crop-recommendations" },
-    { name: "Weather Updates", to: "/weather" },
-    { name: "Help & Support", to: "/help" },
-    { name: "Activity", to: "/activity" },
-    { name: "Logout", to: "/logout" },
-  ];
-
+  const { t } = useTranslation();
   const links2 = [
-    { name: "Farmer Marketplace", to: "/farmermarketplace" },
-    { name: "Chat with Experts", to: "/chat" },
-    { name: "Real Time Market", to: "/realtimemarket" },
-    { name: "News", to: "/news" },
-    { name: "Weather", to: "/weather" }
+    { name: t('home'), to: "/" },
+    { name: t('marketPlace'), to: "/farmermarketplace" },
+    { name: t('chat_with_experts'), to: "/chat" },
+    { name: t('chat_with_community'), to: "/localchat" },
+    { name: t('real_time_market'), to: "/realtimemarket" },
+    { name: t('news'), to: "/news" },
+    { name: t('weather'), to: "/weather" },
+    { name: t('resources'), to: "/resources" },
+    { name: t('community'), to: "/community" },
+    { name: t('government_schemes'), to: "/GovernmentSchemes" },
+    { name: t('insurance_schemes'), to: "/InsuranceSchema" },
+    { name: t('crop_recommendation'), to: "/crops" },
   ];
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      const opacity = Math.max(0.6, 1 - scrollTop / 200);
-      setNavbarStyle({
-        backgroundColor: `rgba(255, 255, 255, ${opacity})`,
-      });
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-  const handleClick = () => {
-    toast.success("Profile clicked");
+  const handleEditProfile = async () => {
+    navigate(`/profile/edit/${authUser._id}`)
   }
-  return (
-    
-    <div className="relative">      
-      <Navbar
-        className="fixed top-0 left-0 right-0 z-50 shadow-md"
-        css={navbarStyle}
-      >
-       <NavbarBrand className="flex flex-row gap-2">
-          {/* Replace text with SVG logo */}
-          <Link to="/">
-            <img src={farm} alt="Farmsetu Logo" style={{display: 'inline-block',height: '100px', width: '100px'}}  />
-            <img src={setu} alt="Farmsetu Logo" style={{display: 'inline-block',height: '60px', width: '60px'}} />
-          </Link>
-        </NavbarBrand>
-        
+  const handleViewCart = async () => {
+    navigate(`/profile/cart/${authUser._id}`)
+  }
+  const handleViewPosts = async () => {
+    navigate(`/profile/posts/${authUser._id}`)
+  }
+  return (<div className="nav-menu">
+    <nav
+      className="fixed top-0 left-0 right-0 z-50 shadow-md px-4 py-2 border-b-[5px] border-[#053c2f] bg-blue-900"
+      style={navbarStyle}
+    >
+      <div className="max-w-7xl mx-auto flex justify-between items-center" >
+        <Link to="/" className="flex items-center justify-center gap-2">
+          <img src={farm} alt="Farmsetu Logo" height={60} width={100} />
+          <img src={setu} alt="Farmsetu Logo" height={60} width={100} style={{ marginLeft: "-10px", height: "45px" }} />
+        </Link>
+        <div className="flex items-center gap-3" >
+          {/* Profile button */}
+          <div className="lg:flex items-center space-x-4">
+            {authUser ? (
+              <div className="flex items-center space-x-2 cursor-pointer" onClick={() => setIsProfileOpen(!isprofileOpen)}>
+                <p className="text-base text-[#053c2f] xl:text-lg font-semibold">
+                  {authUser.name.charAt(0).toUpperCase() + authUser.name.slice(1)}
+                </p>
+                <div className="relative">
+                  <button
 
-        {/* Desktop Menu */}
-        
-        <NavbarContent className="hidden lg:flex gap-6 xl:gap-8" justify="center">
-          {links2.map((link, index) => (
-            <NavbarItem key={index} isActive={link.isActive}>
-              <Link
-                to={link.to}
-                aria-current={link.isActive ? "page" : undefined}
-                className={`text-base xl:text-lg ${link.isActive ? "text-secondary" : "text-foreground"} hover:text-blue-600`}
-              >
-                {link.name}
-              </Link>
-            </NavbarItem>
-          ))}
-        </NavbarContent>
-
-        {/* Mobile Menu Button */}
-        <NavbarContent className="lg:hidden" justify="end">
-          <Button auto light onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                    className="flex items-center"
+                  >
+                    <img
+                      className="h-10 w-10 rounded-full border-2 border-green-700"
+                      src={authUser.avatar || "https://cdn-icons-png.flaticon.com/128/1154/1154966.png"}
+                      alt={authUser.name}
+                    />
+                  </button>
+                  {isprofileOpen && (
+                    <div className="absolute right-0 mt-2 w-48 bg-white text-black rounded-lg shadow-lg py-1 cursor-default" onClick={() => { setIsMenuOpen(false); }}>
+                      <div className="px-4 py-3">
+                        <p className="text-sm flex flex-row gap-2 align-text-top "><MdEmail className="text-green-700 size-4" /> <span>{t('signed_in_as')}</span> </p>
+                        <p className="text-sm font-medium text-[#053c2f]">{authUser.email}</p>
+                      </div>
+                      <Link
+                        to={'/profile'}
+                        className="flex flex-row gap-3 w-full text-left px-4 py-2 text-sm hover:bg-blue-100"
+                      > <IoPerson className="text-green-700 size-5" /><span>{t('profile')}</span>
+                      </Link>
+                      <button
+                        onClick={() => { handleViewCart() }}
+                        className="flex flex-row gap-3 align-middle w-full text-left px-4 py-2 text-sm hover:bg-blue-100"
+                      ><FaShoppingCart className="text-green-700 size-5" /> <span  >{t('view_cart')}</span>
+                      </button>
+                      <button
+                        onClick={handleViewPosts}
+                        className="flex flex-row gap-3 align-middle w-full text-left px-4 py-2 text-sm hover:bg-blue-100"
+                      ><FaMessage className="text-green-700 size-5" /> <span  >{t('view_posts')}</span>
+                      </button>
+                      <button
+                        onClick={() => { handleEditProfile() }}
+                        className="flex flex-row gap-3 align-middle w-full text-left px-4 py-2 text-sm hover:bg-blue-100"
+                      ><BiSolidMessageSquareEdit className="text-green-700 size-5" /><span  >{t('edit_profile')}</span>
+                      </button>
+                      {authUser.role === 'seller' && <button
+                        onClick={() => { navigate(`/profile/products/${authUser._id}`) }}
+                        className="flex flex-row gap-3 align-middle w-full text-left px-4 py-2 text-sm hover:bg-blue-100"
+                      ><HiViewGrid className="text-green-700 size-5" /><span  >{t('view_products')}</span>
+                      </button>}
+                      <button
+                        onClick={() => {
+                          localStorage.removeItem('user');
+                          window.location.href = '/';
+                        }}
+                        className="flex flex-row gap-3 align-middle w-full text-left px-4 py-2 text-sm hover:bg-red-100"
+                      ><IoLogOut className="text-green-700 size-5" />
+                        <span  >{t('log_out')}</span>
+                      </button>
+                    </div>
+                  )}
+                </div>
+              </div>
+            ) : (
+              <div className="flex space-x-2 sm:space-x-4">
+                <Link to="/login">
+                  <button className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm sm:text-base">
+                    {t('login')}
+                  </button>
+                </Link>
+                <Link to="/signup">
+                  <button className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 text-sm sm:text-base">
+                    {t('sign_up')}
+                  </button>
+                </Link>
+              </div>
+            )}</div>
+          {/*  menu button  */}
+          <button
+            onClick={() => { setIsMenuOpen(!isMenuOpen) }}
+            className=" border-green-700 rounded-full p-1 hover:scale-110"
+          >
             {isMenuOpen ? (
               <XMarkIcon className="h-6 w-6 text-black" />
             ) : (
               <Bars3Icon className="h-6 w-6 text-black" />
             )}
-          </Button>
-        </NavbarContent>
-
-        {/* Mobile Menu */}
-        {isMenuOpen && (
-          <div className="lg:hidden absolute top-16 right-0 bg-white shadow-md p-4 w-56 rounded-lg z-50">
-            <NavbarContent as="div" className="flex flex-col space-y-4">
-              {links1.map((link, index) => (
-                <NavbarItem key={index} isActive={link.isActive}>
-                  <Link
-                    to={link.to}
-                    aria-current={link.isActive ? "page" : undefined}
-                    className={`text-base ${link.isActive ? "text-secondary" : "text-foreground"} hover:text-blue-600`}
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {link.name}
-                  </Link>
-                </NavbarItem>
-              ))}
-            </NavbarContent>
-          </div>
-        )}
-
-        {/* User Avatar and Dropdown Menu */}
-        <NavbarContent as="div" justify="end" className="hidden lg:flex items-center space-x-4">
-          {authUser ? (
-            <div className="flex items-center space-x-2">
-              <p className="text-base text-[#053c2f] xl:text-lg font-semibold">{authUser.name.charAt(0).toUpperCase() + authUser.name.slice(1)}</p>
-              <Dropdown placement="bottom-end">
-                <DropdownTrigger>
-                  <Avatar
-                    isBordered
-                    as="button"
-                    className="transition-transform"
-                    color="secondary"
-                    name={authUser.name}
-                    size="md"
-                    src={authUser.avatarUrl || "https://cdn-icons-png.flaticon.com/128/9187/9187466.png"}
-                  />
-                </DropdownTrigger>
-                <DropdownMenu aria-label="Profile Actions" variant="flat" >
-                  <DropdownItem key="profile" className="h-14 gap-2 text-base xl:text-lg">
-                    <p className="font-semibold">Signed in as</p>
-                    <p className="font-semibold text-[#053c2f]">{authUser.email}</p>
-                  </DropdownItem>
-                  {/* <DropdownItem key="settings" className="text-base xl:text-lg">
-                    My Settings
-                  </DropdownItem>
-                  <DropdownItem key="team_settings" className="text-base xl:text-lg">
-                    Team Settings
-                  </DropdownItem>
-                  <DropdownItem key="analytics" className="text-base xl:text-lg">
-                    Analytics
-                  </DropdownItem>
-                  <DropdownItem key="system" className="text-base xl:text-lg">
-                    System
-                  </DropdownItem>
-                  <DropdownItem key="configurations" className="text-base xl:text-lg">
-                    Configurations
-                  </DropdownItem>
-                  <DropdownItem key="help_and_feedback" className="text-base xl:text-lg">
-                    Help & Feedback
-                  </DropdownItem> */}
-                  <DropdownItem key="logout" color="" className="text-base xl:text-lg">
-                    <div onClick={() => {
-                      localStorage.removeItem('user');
-                      window.location.href = '/';
-                    }}>
-                      Log Out
-                    </div>
-                  </DropdownItem>
-                </DropdownMenu>
-              </Dropdown>
-            </div>
-          ) : (
-            <div className="flex space-x-2 sm:space-x-4">
-              <Link to="/login">
-                <Button auto className="bg-blue-600 text-white hover:bg-blue-700 text-sm sm:text-base">
-                  Login
-                </Button>
-              </Link>
-              <Link to="/signup">
-                <Button auto className="bg-green-600 text-white hover:bg-green-700 text-sm sm:text-base">
-                  Sign Up
-                </Button>
-              </Link>
-            </div>
-          )}
-        </NavbarContent>
-      </Navbar>
+          </button>
+        </div>
+      </div>
+    </nav>
+    {/* menu  */}
+    <div className={`fixed top-16 right-0 z-50 border-l-3 border-green-800 backdrop-blur-md shadow-md px-4 pl-10 py-2 md:w-96 w-screen ${isMenuOpen ? "translate-x-0" : "translate-x-full"} transition-transform duration-300 overflow-y-auto h-full scrollbar-hide `} style={{ background: 'rgba(0, 0, 0, 0.3)' }}>
+      <div className="flex flex-col gap-2">
+        {links2.map((link, index) => (
+          <Link
+            key={index}
+            to={link.to}
+            onClick={() => setIsMenuOpen(false)}
+            className="text-white text-lg hover:text-green-300 px-2 py-2 rounded"
+          >
+            {link.name}
+          </Link>
+        ))}
+        <button
+          onClick={() => {
+            localStorage.removeItem('user');
+            window.location.href = '/';
+          }}
+          className="text-white text-lg hover:bg-red-600 px-2 py-2 rounded flex items-baseline bg-red-500 justify-center gap-2"
+        >
+          {/* <IoLogOut className="text-white" /> */}
+          <span  >{t('log_out')}</span>
+        </button>
+      </div>
+      <XMarkIcon onClick={() => setIsMenuOpen(false)} className="size-8 cursor-pointer  absolute top-4 right-5 bg-green-500 rounded-full p-2" />
     </div>
-  );
+  </div>
+  )
 }
