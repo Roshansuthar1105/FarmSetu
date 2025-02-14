@@ -31,9 +31,10 @@ function LanguageButton() {
 
     ]
     return (
-        <div className='z-50 fixed bottom-4 left-4 bg-green-500 p-4 rounded-full shadow-md'>
+        <div className='z-50 fixed bottom-4 left-4 bg-green-500 p-2 rounded-full shadow-md'>
             <button onClick={() => setLanguageSwitch(!languageSwitch)} className={`${!languageSwitch ?"rounded-full  text-white p-2":"hidden"}`}>
-                <IoLanguage />
+                {/* <IoLanguage /> */}
+                <img src="lang.png" className='size-8' alt="Language button" />
             </button>
             <select onChange={(e) => { changeLanguage(e.target.value);setLanguageSwitch(!languageSwitch) }} className={`${!languageSwitch ? "hidden" : "bg-green-500 text-white outline-none"}`}>
                 {
