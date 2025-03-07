@@ -27,7 +27,8 @@ function Hero() {
                     {t('heroDescription')}
                 </p>
                 <div className="flex flex-col items-center space-y-4 mt-8">
-                    <Link to="/form">
+                    <Link to="https://crop-mitra.onrender.com" target='_blank'>
+                    {/* <Link to="/form"> */}
                         <Button
                             color="primary"
                             size="lg"
