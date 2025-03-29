@@ -1,6 +1,5 @@
 import React, { useState, Suspense, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
-import ReactGA from "react-ga4";
 import { Toaster } from 'react-hot-toast';
 import { useAuthContext } from './context/AuthContext';
 
@@ -82,15 +81,12 @@ export default function App() {
   const [chatBotVisible, setChatBotVisible] = useState(false);
   const [isRotating, setIsRotating] = useState(false);
   const toggleChatBot = () => {
-    ReactGA.event({ category: 'User', action: 'Clicked ChatBot Button' });
     setIsRotating(true);
     setTimeout(() => setIsRotating(false), 500); // Reset rotation after 1s
     setChatBotVisible(!chatBotVisible);
   };
   return (
     <>
-      {/* ✅ Track Route Changes */}
-      <RouteTracker/>
     <Router>
       <Suspense fallback={<LoadingComponent />}>
         {/* <LazyMyNavbar /> */}
