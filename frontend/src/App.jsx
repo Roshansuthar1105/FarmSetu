@@ -90,7 +90,7 @@ export default function App() {
   return (
     <>
       {/* ✅ Track Route Changes */}
-      <ReactGA.RouteTracker/>
+      <RouteTracker/>
     <Router>
       <Suspense fallback={<LoadingComponent />}>
         {/* <LazyMyNavbar /> */}
