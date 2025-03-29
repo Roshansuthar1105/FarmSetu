@@ -81,7 +81,6 @@ export default function App() {
   const [chatBotVisible, setChatBotVisible] = useState(false);
   const [isRotating, setIsRotating] = useState(false);
   const toggleChatBot = () => {
-    ReactGA.event({ category: 'User', action: 'Clicked ChatBot Button' });
     setIsRotating(true);
     setTimeout(() => setIsRotating(false), 500); // Reset rotation after 1s
     setChatBotVisible(!chatBotVisible);
