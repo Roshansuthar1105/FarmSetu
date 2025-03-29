@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://farmsetu.netlify.app/sitemap.xml
