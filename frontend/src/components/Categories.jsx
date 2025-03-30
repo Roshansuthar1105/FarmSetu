@@ -51,17 +51,17 @@ const Categories = ({ onCategoryChange }) => {
   return (
     <div className="my-8">
       <h2 className="text-2xl font-bold mb-6">Categories</h2>
-      <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-6">
-        {displayedCategories.map((category, index) => (
+      <div className="flex overflow-x-scroll overflow-y-hidden" style={{ scrollbarWidth: 'thin', scrollbarColor: '#166534 transparent' }}>
+        {categories.map((category, index) => (
           <div
             key={index}
-            className="flex flex-col items-center cursor-pointer hover:scale-105 transition-transform duration-300"
+            className="flex flex-col items-center cursor-pointer hover:scale-105 transition-transform duration-300 mx-4"
             onClick={() => handleCategoryClick(category.name)}
           >
             <div
-              className={`w-24 h-24 rounded-full overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 ${
+              className={`w-10 h-10 sm:w-24 sm:h-24 rounded-full overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 ${
                 selectedCategory === category.name ? 'relative' : ''
-              }`}
+              } sm:w-16 sm:h-16`}
             >
               <img
                 src={category.image}
@@ -69,28 +69,12 @@ const Categories = ({ onCategoryChange }) => {
                 className="w-full h-full object-cover"
               />
               {selectedCategory === category.name && (
-                <div className="absolute inset-0 rounded-full border-4 border-green-500 pointer-events-none z-10"  />
+                <div className="absolute inset-0 rounded-full sm:border-4 border-2 border-green-500 pointer-events-none z-10"  />
               )}
             </div>
-            <p className="text-center mt-2 text-lg font-semibold">{category.name}</p>
+            <p className="text-center mt-2 sm:text-lg font-semibold text-sm">{category.name}</p>
           </div>
         ))}
-      </div>
-      <div className="flex justify-center mt-6">
-        <Button
-          color="success"
-          auto
-          shadow
-          onClick={handleViewMoreClick}
-          css={{
-            backgroundColor: '#1E3A8A', // Dark blue color
-            '&:hover': {
-              backgroundColor: '#2563EB', // Slightly lighter blue
-            },
-          }}
-        >
-          {showAll ? 'View Less' : 'View More'}
-        </Button>
       </div>
     </div>
   );
