@@ -19,6 +19,17 @@ export default function Navbar() {
   const [navbarStyle, setNavbarStyle] = useState({
     backgroundColor: "rgba(255, 255, 255, 1)",
   });
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  
+    return () => {
+      document.body.style.overflow = 'auto'; // Reset on unmount
+    };
+  }, [isMenuOpen]);
   const { authUser } = useAuthContext();
   const { t } = useTranslation();
   const links2 = [

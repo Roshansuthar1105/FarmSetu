@@ -54,19 +54,22 @@ const Weather = () => {
   return (
     <div className="bg-gray-900 min-h-screen flex flex-col ">
       <div className={`pt-16 ${!loading ? 'mb-48' : ''}`}>
-        <div className="max-w-3xl mx-auto my-8 p-6 bg-gray-800 shadow-lg rounded-lg relative">
-          <div className="mb-6 flex flex-row items-center justify-between">
+      <h1 className="text-4xl font-bold my-6 text-center text-green-500 transition duration-500 ease-in-out transform hover:scale-105">
+          Weather
+        </h1>
+        <div className="max-w-3xl  my-8 p-6 bg-gray-800 shadow-lg rounded-lg relative mx-4 md:mx-auto ">
+          <div className=" flex flex-row items-center justify-between">
             <input
               type="text"
               placeholder={t('enter_city_placeholder')}
               value={city}
               list="city-suggestions"
               onChange={(e) => setCity(e.target.value)}
-              className="p-3 border border-gray-700 rounded-lg w-3/4 sm:w-7/8 sm:text-base text-xs bg-gray-900 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-600 transition"
+              className="p-3 border border-gray-700 rounded-lg w-3/5 sm:w-7/8 sm:text-base text-xs bg-gray-900 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-600 transition"
             />
             <button
               onClick={fetchWeatherData}
-              className="w-1/4 sm:w-3/8 p-3 bg-green-600 ml-2 text-white rounded-lg sm:text-base text-xs hover:bg-green-500 transition ease-in-out duration-300"
+              className="w-2/5 sm:w-3/8 p-3 bg-green-600 ml-2 text-white rounded-lg sm:text-base text-xs hover:bg-green-500 transition ease-in-out duration-300"
             >
               {t('get_weather')} {/* Translation key */}
             </button>
@@ -84,7 +87,7 @@ const Weather = () => {
           ) : error ? (
             <p className="text-red-500 text-center">{error}</p>
           ) : weatherData ? (
-            <div className="space-y-6">
+            <div className="space-y-6 mt-5">
               <h1 className="text-4xl font-bold mb-4 text-center text-green-300">{weatherData.name}</h1>
               <div className="flex items-center justify-center mb-6">
                 <img
@@ -99,30 +102,30 @@ const Weather = () => {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="p-6 bg-gray-700 rounded-lg shadow-lg transition-transform transform hover:scale-105">
-                  <h3 className="text-xl font-semibold mb-2 text-green-400">{t('temperature')}</h3> {/* Translation key */}
-                  <p className="text-white">{t('feels_like')}: {weatherData.main.feels_like}°C</p> {/* Translation key */}
-                  <p className="text-white">{t('min_temp')}: {weatherData.main.temp_min}°C</p> {/* Translation key */}
-                  <p className="text-white">{t('max_temp')}: {weatherData.main.temp_max}°C</p> {/* Translation key */}
+                  <h3 className="text-xl font-semibold mb-2 text-green-400">{t('temperature')} 🌡️</h3> {/* Translation key */}
+                  <p className="text-white">{t('feels_like')}: {weatherData.main.feels_like}°C ❄️</p> {/* Translation key */}
+                  <p className="text-white">{t('min_temp')}: {weatherData.main.temp_min}°C 🥶</p> {/* Translation key */}
+                  <p className="text-white">{t('max_temp')}: {weatherData.main.temp_max}°C ☀️</p> {/* Translation key */}
                 </div>
                 <div className="p-6 bg-gray-700 rounded-lg shadow-lg transition-transform transform hover:scale-105">
-                  <h3 className="text-xl font-semibold mb-2 text-green-400">{t('weather_details')}</h3> {/* Translation key */}
-                  <p className="text-white">{t('humidity')}: {weatherData.main.humidity}%</p> {/* Translation key */}
-                  <p className="text-white">{t('pressure')}: {weatherData.main.pressure} hPa</p> {/* Translation key */}
-                  <p className="text-white">{t('visibility')}: {weatherData.visibility / 1000} km</p> {/* Translation key */}
+                  <h3 className="text-xl font-semibold mb-2 text-green-400">{t('weather_details')} 🌪️</h3> {/* Translation key */}
+                  <p className="text-white">{t('humidity')}: {weatherData.main.humidity}% 💧</p> {/* Translation key */}
+                  <p className="text-white">{t('pressure')}: {weatherData.main.pressure} hPa ⚖️</p> {/* Translation key */}
+                  <p className="text-white">{t('visibility')}: {weatherData.visibility / 1000} km 🌆</p> {/* Translation key */}
                 </div>
                 <div className="p-6 bg-gray-700 rounded-lg shadow-lg transition-transform transform hover:scale-105">
-                  <h3 className="text-xl font-semibold mb-2 text-green-400">{t('wind')}</h3> {/* Translation key */}
-                  <p className="text-white">{t('wind_speed')}: {weatherData.wind.speed} m/s</p> {/* Translation key */}
-                  <p className="text-white">{t('wind_direction')}: {weatherData.wind.deg}°</p> {/* Translation key */}
+                  <h3 className="text-xl font-semibold mb-2 text-green-400">{t('wind')} 💨</h3> {/* Translation key */}
+                  <p className="text-white">{t('wind_speed')}: {weatherData.wind.speed} m/s 🚀</p> {/* Translation key */}
+                  <p className="text-white">{t('wind_direction')}: {weatherData.wind.deg}° 🔄</p> {/* Translation key */}
                 </div>
                 <div className="p-6 bg-gray-700 rounded-lg shadow-lg transition-transform transform hover:scale-105">
-                  <h3 className="text-xl font-semibold mb-2 text-green-400">{t('clouds')}</h3> {/* Translation key */}
-                  <p className="text-white">{t('cloud_coverage')}: {weatherData.clouds.all}%</p> {/* Translation key */}
+                  <h3 className="text-xl font-semibold mb-2 text-green-400">{t('clouds')} ☁️</h3> {/* Translation key */}
+                  <p className="text-white">{t('cloud_coverage')}: {weatherData.clouds.all}% 🌫️</p> {/* Translation key */}
                 </div>
                 <div className="p-6 bg-gray-700 rounded-lg shadow-lg transition-transform transform hover:scale-105">
-                  <h3 className="text-xl font-semibold mb-2 text-green-400">{t('sunrise_sunset')}</h3> {/* Translation key */}
-                  <p className="text-white">{t('sunrise')}: {new Date(weatherData.sys.sunrise * 1000).toLocaleTimeString()}</p> {/* Translation key */}
-                  <p className="text-white">{t('sunset')}: {new Date(weatherData.sys.sunset * 1000).toLocaleTimeString()}</p> {/* Translation key */}
+                  <h3 className="text-xl font-semibold mb-2 text-green-400">{t('sunrise_sunset')} 🌅</h3> {/* Translation key */}
+                  <p className="text-white">{t('sunrise')}: {new Date(weatherData.sys.sunrise * 1000).toLocaleTimeString()} ☀️</p> {/* Translation key */}
+                  <p className="text-white">{t('sunset')}: {new Date(weatherData.sys.sunset * 1000).toLocaleTimeString()} 🌇</p> {/* Translation key */}
                 </div>
               </div>
             </div>

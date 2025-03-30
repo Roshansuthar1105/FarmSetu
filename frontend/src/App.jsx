@@ -24,6 +24,9 @@ const LazyAbout = React.lazy(() => import('./pages/About'));
 const LazyMission = React.lazy(() => import('./pages/Mission'));
 const LazyPricing = React.lazy(() => import('./components/Pricing'));
 const LazyMyNavbar = React.lazy(() => import('./components/MyNavbar'));
+const Navbar = React.lazy(() => import('./components/Navbar'));
+// import Navbar from './components/Navbar';
+
 const LazyFooter = React.lazy(() => import('./components/Footer'));
 const LazyContact = React.lazy(() => import('./components/Contact'));
 const LazyWorkInProgress = React.lazy(() => import('./components/WorkInProgress'));
@@ -45,7 +48,6 @@ const LazyLanguage = React.lazy(() => import('./components/LanguageButton.jsx'))
 import './i18.js';
 import { useTranslation } from 'react-i18next';
 import i18n from './i18.js';
-import Navbar from './components/Navbar';
 
 const LoadingComponent = () => {
   return (
@@ -133,20 +135,16 @@ export default function App() {
             <Route path="*" element={<Suspense fallback={<LoadingComponent />}><LazyNotFound /> </Suspense>} />
           </Routes>
           <Toaster />
-          {/* Toggle Button for ChatBot */}
-
-          <button
+          {/* <button
             onClick={toggleChatBot}
             className={`z-40 fixed bottom-4 right-4 bg-blue-500 text-white w-16 h-16 rounded-full shadow-lg flex items-center justify-center transition-transform duration-1000 hover:rotate-[360deg]`}
           >
-            {/* <FiMessageSquare size={24} /> */}
             <img src="https://cdn-icons-png.flaticon.com/128/6231/6231457.png" alt="chatbot" className="w-6 h-6 inline-block ml-2" />
           </button>
           <LazyLanguage />
-          {/* ChatBot Component */}
           <Suspense fallback={<LoadingComponent />}>
             <LazyChatBot visible={chatBotVisible} onClose={toggleChatBot} />
-          </Suspense>
+          </Suspense> */}
           <Suspense fallback={<LoadingComponent />}>
             <LazyFooter />
           </Suspense>

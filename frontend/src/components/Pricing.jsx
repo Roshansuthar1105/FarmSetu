@@ -36,12 +36,12 @@ export default function Pricing() {
         <h2 className="text-3xl md:text-4xl font-bold mb-12 text-green-200">
           {t('pricingPlans.title')}
         </h2>
-        <div className="flex flex-wrap justify-center gap-2">
+        <div className="flex flex-wrap justify-center gap-2 px-10">
           {pricingPlans.map((plan, index) => (
             <div
               key={index}
-              className={`relative rounded-lg shadow-lg flex flex-col justify-between sm:w-80 sm:px-5 w-full overflow-hidden mx-auto transition-transform duration-300 my-2 ${
-                index === 1 ? 'transform scale-110 order-3 md:order-2 lg:order-1' : 'transform scale-95 order-3 md:order-1'
+              className={`relative rounded-lg shadow-lg flex flex-col justify-between sm:w-80 sm:px-5 w-full overflow-hidden mx-auto transition-transform duration-300 m-2 ${
+                index === 1 ? 'transform scale-105 order-3 md:order-2 lg:order-1' : 'transform scale-95 order-3 md:order-1'
               }`}
               style={{ minHeight: '200px'}}
             >

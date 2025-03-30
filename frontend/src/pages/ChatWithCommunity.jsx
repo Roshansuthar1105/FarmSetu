@@ -46,9 +46,7 @@ function ChatWithCommunity() {
     }
     const findUser =(id) =>{
         const url = `${BACKEND_URL}/api/user/${id}`;
-        console.log(url)
         const user = fetch(url).then(resp=>resp.json()).then(user=>setDisplayUser(user[0]));
-        console.log(displayUser,"by backend");
     }
     useEffect(()=>{
         findUser(selectedUser);
