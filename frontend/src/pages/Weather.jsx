@@ -53,7 +53,6 @@ const Weather = () => {
 
   return (
     <div className="bg-gray-900 min-h-screen flex flex-col ">
-      <MyNavbar className="fixed top-0 left-0 right-0 z-10 bg-green-900 shadow-lg" />
       <div className={`pt-16 ${!loading ? 'mb-48' : ''}`}>
         <div className="max-w-3xl mx-auto my-8 p-6 bg-gray-800 shadow-lg rounded-lg relative">
           <div className="mb-6 flex flex-row items-center justify-between">
@@ -63,11 +62,11 @@ const Weather = () => {
               value={city}
               list="city-suggestions"
               onChange={(e) => setCity(e.target.value)}
-              className="p-3 border border-gray-700 rounded-lg w-3/4 sm:text-base text-xs bg-gray-900 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-600 transition"
+              className="p-3 border border-gray-700 rounded-lg w-3/4 sm:w-7/8 sm:text-base text-xs bg-gray-900 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-600 transition"
             />
             <button
               onClick={fetchWeatherData}
-              className="w-1/4 p-3 bg-green-600 ml-2 text-white rounded-lg sm:text-base text-xs hover:bg-green-500 transition ease-in-out duration-300"
+              className="w-1/4 sm:w-3/8 p-3 bg-green-600 ml-2 text-white rounded-lg sm:text-base text-xs hover:bg-green-500 transition ease-in-out duration-300"
             >
               {t('get_weather')} {/* Translation key */}
             </button>

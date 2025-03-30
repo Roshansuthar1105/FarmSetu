@@ -46,16 +46,7 @@ import './i18.js';
 import { useTranslation } from 'react-i18next';
 import i18n from './i18.js';
 import Navbar from './components/Navbar';
-// ✅ Component to log route changes
-const RouteTracker = () => {
-  const location = useLocation();
 
-  useEffect(() => {
-    ReactGA.send({ hitType: 'pageview', page: location.pathname });
-  }, [location]);
-
-  return null;
-};
 const LoadingComponent = () => {
   return (
     <div className="flex justify-center items-center h-screen bg-gray-200 ">

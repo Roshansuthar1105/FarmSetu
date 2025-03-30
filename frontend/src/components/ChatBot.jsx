@@ -3,9 +3,8 @@ import { AiOutlineClose } from 'react-icons/ai';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { useTranslation } from 'react-i18next';
 
-const genAI = new GoogleGenerativeAI('AIzaSyC6tmEypaRp_iI3qR605anTGNOzoxD7erQ');
+const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_KEY );
 const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
-
 const predefinedQuestions = [
   'What are the best crops to grow in summer season?',
   'How can I improve soil quality?',
@@ -35,7 +34,6 @@ const ChatBot = ({ visible, onClose }) => {
       // Get the bot response from the Gemini API
       try{
       const botResponse = await getBotResponse(message);
-
       setMessages((prevMessages) => [
         ...prevMessages,
           { text: botResponse, user: 'bot' },
@@ -79,14 +77,15 @@ const ChatBot = ({ visible, onClose }) => {
   if (!visible) return null;
 
   return (
-    <div className="fixed bottom-20 right-4 w-96 h-[80vh] overflow-y-auto bg-white shadow-2xl rounded-lg overflow-hidden scrollbar-hide animate-fadeIn z-50">
+    <div className="fixed bottom-20 right-4 w-96 h-[80vh] overflow-y-auto bg-white shadow-2xl rounded-lg overflow-hidden scrollbar-hide animate-fadeIn z-50 flex flex-col justify-between">
       <div className="sticky top-0 z-50 bg-blue-600 text-white px-4 py-3 animate-slideDown flex flex-row items-center justify-between">
         <h3 className="text-xl font-semibold">{t('chatbot')} <img src="https://cdn-icons-png.flaticon.com/128/6231/6231457.png" alt="chatbot" className="w-6 h-6 inline-block ml-2" /></h3>
         <button onClick={onClose} className="hover:bg-blue-700 rounded-full p-1 transition duration-300">
           <AiOutlineClose size={24} />
         </button>
       </div>
-      <div className="p-4 max-h-[64vh] min-h-[200px] overflow-y-auto bg-blue-50">
+      <div className=' flex flex-col h-[70vh] justify-between ' >
+      <div className="p-4 max-h-[64vh] overflow-y-auto bg-blue-50">
         {messages.length === 0 ? (
           <div className="text-center text-blue-500 animate-pulse">
             {t('start_a_conversation')}
@@ -110,10 +109,11 @@ const ChatBot = ({ visible, onClose }) => {
               </div>
             </div>
           ))
-        )}
+        )
+        }
         <div ref={messagesEndRef} />
       </div>
-      <div className="flex flex-col p-3 border-t bg-blue-100">
+      <div className={`w-full flex flex-col p-3 border-t bg-blue-100  `}>
         {!conversationStarted && (
           <div className="mb-3">
             <p className="text-blue-600 font-semibold mb-2">{t('quick_questions')}:</p>
@@ -130,7 +130,7 @@ const ChatBot = ({ visible, onClose }) => {
             </div>
           </div>
         )}
-        <div className="flex items-center">
+        <div className="flex items-center w-full">
           <input
             type="text"
             value={loading ? t('responding') : input}
@@ -147,6 +147,7 @@ const ChatBot = ({ visible, onClose }) => {
             {t('send')}
           </button>
         </div>
+      </div>
       </div>
     </div>
   );
