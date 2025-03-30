@@ -77,7 +77,7 @@ const ChatBot = ({ visible, onClose }) => {
   if (!visible) return null;
 
   return (
-    <div className="fixed bottom-20 right-4 w-96 h-[80vh] overflow-y-auto bg-white shadow-2xl rounded-lg overflow-hidden scrollbar-hide animate-fadeIn z-50 flex flex-col justify-between">
+    <div className="z-40 fixed bottom-20 right-4 w-96 h-[80vh] overflow-y-auto bg-white shadow-2xl rounded-lg overflow-hidden scrollbar-hide animate-fadeIn flex flex-col justify-between">
       <div className="sticky top-0 z-50 bg-blue-600 text-white px-4 py-3 animate-slideDown flex flex-row items-center justify-between">
         <h3 className="text-xl font-semibold">{t('chatbot')} <img src="https://cdn-icons-png.flaticon.com/128/6231/6231457.png" alt="chatbot" className="w-6 h-6 inline-block ml-2" /></h3>
         <button onClick={onClose} className="hover:bg-blue-700 rounded-full p-1 transition duration-300">
