@@ -31,19 +31,19 @@ export default function Pricing() {
   const { t } = useTranslation();
 
   return (
-    <section className="pricing py-12 px-6 md:py-24 md:px-12 bg-green-950 text-white">
+    <section className="pricing py-6 px-0  sm:py-12 sm:px-6 bg-green-950 text-white">
       <div className="container mx-auto text-center">
         <h2 className="text-3xl md:text-4xl font-bold mb-12 text-green-200">
           {t('pricingPlans.title')}
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 justify-center">
+        <div className="flex flex-wrap justify-center gap-2">
           {pricingPlans.map((plan, index) => (
             <div
               key={index}
-              className={`relative rounded-lg shadow-lg flex flex-col justify-between w-80 mx-auto transition-transform duration-300 ${
-                index === 1 ? 'transform scale-110' : 'transform scale-95'
+              className={`relative rounded-lg shadow-lg flex flex-col justify-between sm:w-80 sm:px-5 w-full overflow-hidden mx-auto transition-transform duration-300 my-2 ${
+                index === 1 ? 'transform scale-110 order-3 md:order-2 lg:order-1' : 'transform scale-95 order-3 md:order-1'
               }`}
-              style={{ minHeight: '400px' }}
+              style={{ minHeight: '200px'}}
             >
               {index === 1 && (
                 <div className="absolute inset-0 rounded-lg p-1 animate-gradient-border">
