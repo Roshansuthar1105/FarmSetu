@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useAuthContext } from "../context/AuthContext";
@@ -51,14 +51,14 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto flex justify-between items-center" >
         <Link to="/" className="flex items-center justify-center gap-2">
-          <img src={farm} alt="Farmsetu Logo" height={60} width={100} />
-          <img src={setu} alt="Farmsetu Logo" height={60} width={100} style={{ marginLeft: "-10px", height: "45px" }} />
+          <img src={farm} alt="Farmsetu Logo" className="w-16 h-8 sm:w-20 sm:h-12 " />
+          <img src={setu} alt="Farmsetu Logo" className="w-16 h-8 sm:w-20 sm:h-12  ml-[-10px]" />
         </Link>
         <div className="flex items-center gap-3" >
           {/* Profile button */}
           <div className="lg:flex items-center space-x-4">
             {authUser ? (
-              <div className="flex items-center space-x-2 cursor-pointer" onClick={() => setIsProfileOpen(!isprofileOpen)}>
+              <div className="flex items-center space-x-2 cursor-pointer" onClick={() => {setIsProfileOpen(!isprofileOpen);setIsMenuOpen(false);}}>
                 <p className="text-base text-[#053c2f] xl:text-lg font-semibold">
                   {authUser.name.charAt(0).toUpperCase() + authUser.name.slice(1)}
                 </p>
@@ -74,7 +74,7 @@ export default function Navbar() {
                     />
                   </button>
                   {isprofileOpen && (
-                    <div className="absolute right-0 mt-2 w-48 bg-white text-black rounded-lg shadow-lg py-1 cursor-default" onClick={() => { setIsMenuOpen(false); }}>
+                    <div  className="absolute right-0 mt-2 w-48 bg-white text-black rounded-lg shadow-lg py-1 cursor-default z-50" onClick={() => { setIsMenuOpen(false); }}>
                       <div className="px-4 py-3">
                         <p className="text-sm flex flex-row gap-2 align-text-top "><MdEmail className="text-green-700 size-4" /> <span>{t('signed_in_as')}</span> </p>
                         <p className="text-sm font-medium text-[#053c2f]">{authUser.email}</p>
@@ -118,14 +118,14 @@ export default function Navbar() {
                 </div>
               </div>
             ) : (
-              <div className="flex space-x-2 sm:space-x-4">
+              <div className="flex space-x-2 sm:space-x-4 sm:py-0 py-2 ">
                 <Link to="/login">
-                  <button className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm sm:text-base">
+                  <button className="px-1 sm:px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm sm:text-base">
                     {t('login')}
                   </button>
                 </Link>
                 <Link to="/signup">
-                  <button className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 text-sm sm:text-base">
+                  <button className="px-1 sm:px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 text-sm sm:text-base">
                     {t('sign_up')}
                   </button>
                 </Link>
@@ -147,7 +147,7 @@ export default function Navbar() {
     </nav>
     {/* menu  */}
     <div className={`fixed top-16 right-0 z-50 border-l-3 border-green-800 backdrop-blur-md shadow-md px-4 pl-10 py-2 md:w-96 w-screen ${isMenuOpen ? "translate-x-0" : "translate-x-full"} transition-transform duration-300 overflow-y-auto h-full scrollbar-hide `} style={{ background: 'rgba(0, 0, 0, 0.3)' }}>
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-2" onClick={()=>setIsProfileOpen(false)} >
         {links2.map((link, index) => (
           <Link
             key={index}
