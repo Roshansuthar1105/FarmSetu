@@ -110,7 +110,7 @@ const ProductDetail = () => {
     <div className="bg-gray-800 text-gray-100 min-h-screen">
       <div className="container mx-auto px-4 py-8 mt-16">
         <div className="bg-gray-700 rounded-lg shadow-lg overflow-hidden flex flex-col gap-8 md:flex-row">
-          <div className="w-1/4 h-1/1 object-contain">
+          <div className="w-full lg:w-1/2 md:w-2/5 h-1/1 object-contain">
             <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
           </div>
           <div className="p-4">

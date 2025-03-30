@@ -14,7 +14,7 @@ const CourseDetails = () => {
   return (
     <div className="bg-gray-900 text-gray-100 min-h-screen">
        {/* Add the Navbar */}
-      <div className="max-w-3xl mx-auto my-8 p-4 pt-24">
+      <div className="max-w-3xl mx-auto py-8 p-4 pt-24">
         <h1 className="text-4xl font-bold mb-4 text-green-400 transition-transform duration-300 ease-in-out transform hover:scale-105">
           {course.title}
         </h1>
