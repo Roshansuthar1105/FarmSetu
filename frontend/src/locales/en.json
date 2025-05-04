@@ -352,5 +352,15 @@
   "responding": "Responding...",
   "type_a_message": "Type a message...",
   "send": "Send",
-  "error_fetching_response": "Sorry, I am unable to respond at the moment."
+  "error_fetching_response": "Sorry, I am unable to respond at the moment.",
+  "crop_recommendation_description": "Get personalized crop recommendations based on your location and local environmental conditions.",
+  "insurance_schemes_description": "Protect your agricultural investments with these specialized insurance schemes designed for farmers.",
+  "government_schemes_description": "Explore government initiatives designed to support farmers and agricultural development.",
+  "no_messages_yet": "No messages yet. Start a conversation!",
+  "location_details": "Location Details",
+  "recommendations": "Recommendations",
+  "no_results_found": "No results found",
+  "online": "Online",
+  "offline": "Offline",
+  "contact_details": "Contact Details"
 }
