@@ -4,10 +4,12 @@ import { FaTrash, FaEye } from 'react-icons/fa';
 import toast from 'react-hot-toast';
 import { useAuthContext } from '../context/AuthContext';
 import { MdDelete, MdEditSquare, MdRemoveShoppingCart } from 'react-icons/md';
+import { useTranslation } from 'react-i18next';
 
 function Product({ product, removeproduct, removebtn,editbtn ,deletebtn }) {
     const navigate = useNavigate()
     const {BACKEND_URL} = useAuthContext()
+    const { t } = useTranslation();
     const handleProductClick = (id) => {
         navigate(`/product/${id}`);
     };
@@ -33,24 +35,102 @@ function Product({ product, removeproduct, removebtn,editbtn ,deletebtn }) {
     return (
         <div
             key={product._id}
-            className={`bg-gray-700 border border-gray-600 rounded-lg shadow-lg overflow-hidden transform transition duration-500 hover:shadow-2xl hover:scale-105 ${!removebtn ? 'cursor-pointer':'cursor-default'}`}
+            className={`bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300 flex flex-col h-full ${!removebtn ? 'cursor-pointer' : 'cursor-default'}`}
             onClick={() => {
-                !removebtn ?
-                    handleProductClick(product._id) : ''
+                !removebtn && handleProductClick(product._id);
             }}
         >
-            <img src={product.image} alt={product.name} className="w-full h-40 object-cover transition-opacity duration-500 hover:opacity-80" />
-            <div className="p-4 transition-transform transform hover:translate-y-2 font-roboto">
-                <h2 className="text-lg font-semibold mb-2 text-white">{product.name}</h2>
-                <p className="text-gray-400 mb-2">{product.description}</p>
-                <p className="text-xl font-bold mb-2 text-gray-200">{product.price}</p>
-                <div className='flex flex-row gap-4' >
+            <div className="relative h-48 overflow-hidden">
+                <img
+                    src={product.image}
+                    alt={product.name}
+                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                />
+                {product.category && (
+                    <div className="absolute top-0 left-0 m-2">
+                        <span className="inline-block bg-green-600 text-white text-xs px-2 py-1 rounded-full shadow-sm">
+                            {product.category}
+                        </span>
+                    </div>
+                )}
+            </div>
 
-                {editbtn && <button onClick={() => handleUpdateClick(product._id)} className="text-green-500 hover:text-green-700 bg-green-100 p-4 rounded-lg"><MdEditSquare /></button>}
-                {removebtn && !(product.name==="No product !") && <button  onClick={() => handleProductClick(product._id)} className="text-blue-500 hover:text-blue-700 bg-blue-100 p-4 rounded-lg"><FaEye /></button>}
-                {deletebtn && <button onClick={() => deletebtn(product._id)} className="text-red-500 hover:text-red-700 bg-red-100 p-4 rounded-lg"><MdDelete /></button>}
-                {removeproduct && <button onClick={() => removeproduct(product._id)} className="text-red-500 hover:text-red-700 bg-red-100 p-4 rounded-lg"><MdRemoveShoppingCart /></button>}
+            <div className="p-5 flex-grow">
+                <div className="flex justify-between items-start mb-2">
+                    <h2 className="text-xl font-bold text-gray-800">{product.name}</h2>
+                    {product.price && (
+                        <span className="text-lg font-bold text-green-600">{product.price}</span>
+                    )}
                 </div>
+                <p className="text-gray-600 mb-4 line-clamp-2">{product.description}</p>
+            </div>
+
+            <div className="px-5 py-3 bg-gray-50 border-t border-gray-100 flex justify-between items-center">
+                <div className="flex space-x-2">
+                    {editbtn && (
+                        <button
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                handleUpdateClick(product._id);
+                            }}
+                            className="text-gray-500 hover:text-green-600 p-2 rounded-full transition-colors"
+                            title={t('edit_product')}
+                        >
+                            <MdEditSquare className="h-5 w-5" />
+                        </button>
+                    )}
+
+                    {deletebtn && (
+                        <button
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                deletebtn(product._id);
+                            }}
+                            className="text-gray-500 hover:text-red-600 p-2 rounded-full transition-colors"
+                            title={t('delete_product')}
+                        >
+                            <MdDelete className="h-5 w-5" />
+                        </button>
+                    )}
+
+                    {removeproduct && (
+                        <button
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                removeproduct(product._id);
+                            }}
+                            className="text-gray-500 hover:text-red-600 p-2 rounded-full transition-colors"
+                            title={t('remove_from_cart')}
+                        >
+                            <MdRemoveShoppingCart className="h-5 w-5" />
+                        </button>
+                    )}
+                </div>
+
+                {removebtn && !(product.name === "No product !") && (
+                    <button
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            handleProductClick(product._id);
+                        }}
+                        className="text-blue-600 hover:text-blue-800 text-sm font-medium flex items-center"
+                    >
+                        <FaEye className="mr-1 h-4 w-4" />
+                        {t('view_details') || 'View Details'}
+                    </button>
+                )}
+
+                {!removebtn && !editbtn && !deletebtn && (
+                    <button
+                        className="text-green-600 hover:text-green-800 text-sm font-medium"
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            handleProductClick(product._id);
+                        }}
+                    >
+                        {t('view_product') || 'View Product'} →
+                    </button>
+                )}
             </div>
         </div>
     )
