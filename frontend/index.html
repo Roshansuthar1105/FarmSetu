@@ -2,22 +2,43 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <!-- <meta name="robots" content="index, follow" /> -->
+    <meta name="robots" content="index, follow" />
     <meta
       name="description"
       content="Farmसेतु is a platform that connects farmers with buyers and provides them with the best prices for their produce."
     />
     <meta
       name="keywords"
-      content="Farmसेतु, Farmsetu, Farmsetu.com, Farmsetu.in, Farmsetu.org, Farmsetu.net, Farmsetu.co.in, Farmsetu.co, Farmsetu.com.in, Farmsetu.org.in, Farmsetu.net.in, Farmsetu.co.in, Farmsetu.co.com, Farmsetu.co.org, Farmsetu.net.com, Farmsetu.net.org, Farmsetu.org.com, Farmsetu.org.net, Farmsetu.in, Farmsetu.com, Farmsetu.co.in, Farmsetu.org.in, Farmsetu.net.in, Farmsetu.co.com, Farmsetu.co.org, Farmsetu.net.com, Farmsetu.net.org, Farmsetu.org.com, Farmsetu.org.net"
+      content="Farmसेतु, Farmsetu, farming, agriculture, marketplace, crop advice, weather updates"
     />
     <meta name="author" content="Farmसेतु" />
-    <!-- <meta name="theme-color" content="#000000" /> -->
+    <meta name="theme-color" content="#22c55e" />
 
-    <link rel="apple-touch-icon" href="/logo.svg" />
-    <!-- <link rel="manifest" href="/manifest.json" /> -->
+    <!-- PWA Support -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="FarmSetu" />
 
+    <!-- PWA Icons -->
     <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <link rel="apple-touch-icon" href="/Icons/ios/192.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/Icons/ios/152.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/Icons/ios/180.png" />
+    <link rel="apple-touch-icon" sizes="167x167" href="/Icons/ios/167.png" />
+
+    <!-- Splash Screens for iOS - Commented out until splash screens are available
+    <link rel="apple-touch-startup-image" href="/splash/apple-splash-2048-2732.png" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" />
+    <link rel="apple-touch-startup-image" href="/splash/apple-splash-1668-2388.png" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" />
+    <link rel="apple-touch-startup-image" href="/splash/apple-splash-1536-2048.png" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" />
+    <link rel="apple-touch-startup-image" href="/splash/apple-splash-1125-2436.png" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" />
+    <link rel="apple-touch-startup-image" href="/splash/apple-splash-1242-2688.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" />
+    <link rel="apple-touch-startup-image" href="/splash/apple-splash-828-1792.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" />
+    <link rel="apple-touch-startup-image" href="/splash/apple-splash-1242-2208.png" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" />
+    <link rel="apple-touch-startup-image" href="/splash/apple-splash-750-1334.png" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" />
+    <link rel="apple-touch-startup-image" href="/splash/apple-splash-640-1136.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" />
+    -->
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Farmसेतु</title>
     <link
@@ -31,20 +52,27 @@
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-2PM47Z01X7"></script>
     <script>
-
       window.dataLayer = window.dataLayer || [];
       function gtag() {
         dataLayer.push(arguments);
       }
       gtag('js', new Date());
       gtag('config', 'G-2PM47Z01X7');
-
     </script>
 
-
+    <!-- Service Worker Registration -->
+    <script src="/register-sw.js"></script>
   </head>
   <body>
     <div id="root"></div>
+
+    <!-- Install Button (Hidden by default, shown when app can be installed) -->
+    <div id="pwa-install-container" style="display: none; position: fixed; bottom: 20px; right: 20px; z-index: 9999;">
+      <button id="install-button" style="display: none; background-color: #22c55e; color: white; border: none; padding: 12px 20px; border-radius: 8px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+        Install App
+      </button>
+    </div>
+
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

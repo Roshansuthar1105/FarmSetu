@@ -2,6 +2,7 @@ import React, { useState, Suspense, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { useAuthContext } from './context/AuthContext';
+import PWAInstallPrompt from './components/PWAInstallPrompt';
 
 const LazyHome = React.lazy(() => import('./pages/Home'));
 const LazyMarketplace = React.lazy(() => import('./pages/Marketplace'));
@@ -148,6 +149,9 @@ export default function App() {
           <Suspense fallback={<LoadingComponent />}>
             <LazyFooter />
           </Suspense>
+
+          {/* PWA Install Prompt */}
+          <PWAInstallPrompt />
         </ScrollToTop>
       </Router>
     </>

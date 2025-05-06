@@ -470,7 +470,28 @@ If you prefer using Docker:
 
 ### **Mobile Usage**
 
-The platform is fully responsive and can be accessed on mobile devices through the web browser. A dedicated mobile app is planned for future releases.
+The platform is fully responsive and can be accessed on mobile devices through the web browser. Additionally, FarmSetu is available as a Progressive Web App (PWA), which allows users to install it on their devices for an app-like experience.
+
+#### **Installing FarmSetu as a PWA**
+
+**On Android:**
+1. Visit [https://farmsetu.netlify.app](https://farmsetu.netlify.app) in Chrome
+2. Tap the menu button (three dots) in the top-right corner
+3. Select "Install app" or "Add to Home Screen"
+4. Follow the on-screen instructions to complete installation
+
+**On iOS:**
+1. Visit [https://farmsetu.netlify.app](https://farmsetu.netlify.app) in Safari
+2. Tap the Share button at the bottom of the screen
+3. Scroll down and select "Add to Home Screen"
+4. Tap "Add" in the top-right corner
+
+**On Desktop (Chrome, Edge, or other Chromium browsers):**
+1. Visit [https://farmsetu.netlify.app](https://farmsetu.netlify.app)
+2. Look for the install icon (➕) in the address bar
+3. Click on it and select "Install"
+
+Once installed, FarmSetu can be launched from your home screen or app drawer like any other app, and will work even with limited or no internet connectivity for certain features.
 
 ---
 
@@ -537,8 +558,8 @@ Farm Setu is continuously evolving to better serve the farming community. Here's
 
 ### **Short-term Goals (Next 3 Months)**
 
-- **Mobile Application**: Native Android and iOS apps for better mobile experience
-- **Offline Mode**: Basic functionality when internet connectivity is limited
+- ✅ **Progressive Web App (PWA)**: Installable web app with offline capabilities *(Completed)*
+- **Enhanced Offline Mode**: Expanded functionality when internet connectivity is limited
 - **Enhanced Weather Predictions**: Integration with advanced agricultural weather models
 - **Payment Gateway**: Direct in-app payments for marketplace transactions
 - **Voice Search**: Accessibility feature for users with limited literacy
