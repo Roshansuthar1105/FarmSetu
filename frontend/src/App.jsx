@@ -99,14 +99,14 @@ export default function App() {
             <Route path="/farmermarketplace" element={<Suspense fallback={<LoadingComponent />}><LazyMarketplace /></Suspense>} />
             <Route path="/product/:id" element={<Suspense fallback={<LoadingComponent />}><LazyProductDetail /></Suspense>} />
             <Route path="/product/edit/:id" element={<Suspense fallback={<LoadingComponent />}><LazyProductEdit /></Suspense>} />
-            <Route path="/chat" element={<Suspense fallback={<LoadingComponent />}><LazyChat /></Suspense>} />
-            <Route path="/localchat" element={<Suspense fallback={<LoadingComponent />}><LazyChatWithCommunity /></Suspense>} />
+            <Route path="/chat" element={authUser ? <Suspense fallback={<LoadingComponent />}><LazyChat /></Suspense> : <Navigate to='/login' />} />
+            <Route path="/localchat" element={authUser ? <Suspense fallback={<LoadingComponent />}><LazyChatWithCommunity /></Suspense> : <Navigate to='/login' />} />
             <Route path="/news" element={<Suspense fallback={<LoadingComponent />}><LazyNewsFeed /></Suspense>} />
             <Route path="/payment" element={<Suspense fallback={<LoadingComponent />}><LazyPayment /></Suspense>} />
             <Route path="/weather" element={<Suspense fallback={<LoadingComponent />}><LazyWeather /></Suspense>} />
             <Route path="/resources" element={<Suspense fallback={<LoadingComponent />}><LazyResources /></Suspense>} />
             <Route path="/courses/:id" element={<Suspense fallback={<LoadingComponent />}><LazyCourseDetails /></Suspense>} />
-            <Route path="/community" element={<Suspense fallback={<LoadingComponent />}><LazyCommunityForum /></Suspense>} />
+            <Route path="/community" element={authUser ? <Suspense fallback={<LoadingComponent />}><LazyCommunityForum /></Suspense> : <Navigate to='/login' />} />
             <Route path="/realtimemarket" element={<Suspense fallback={<LoadingComponent />}><LazyRealTimeMarket /></Suspense>} />
             <Route path="/login" element={authUser ? <Navigate to='/' /> : <Suspense fallback={<LoadingComponent />}><LazyLogin /></Suspense>} />
             <Route path="/signup" element={authUser ? <Navigate to='/' /> : <Suspense fallback={<LoadingComponent />}><LazySignup /></Suspense>} />
