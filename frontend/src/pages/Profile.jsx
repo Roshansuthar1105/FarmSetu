@@ -144,11 +144,11 @@ const Profile = () => {
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 pt-20">
+        <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 pt-20">
             <div className="container mx-auto px-4 py-8">
                 {/* Profile Header */}
-                <div className="bg-white rounded-xl shadow-sm overflow-hidden mb-6">
-                    <div className="h-40 bg-gradient-to-r from-green-600 to-blue-600 relative profile-header-bg">
+                <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm overflow-hidden mb-6">
+                    <div className="h-40 bg-gradient-to-r from-green-600 to-blue-600 dark:from-green-700 dark:to-blue-700 relative profile-header-bg">
                         <button
                             onClick={() => navigate(`/profile/edit/${authUser?._id}`)}
                             className="absolute top-4 right-4 bg-white/20 hover:bg-white/30 text-white p-2 rounded-full backdrop-blur-sm transition-all"
@@ -215,14 +215,14 @@ const Profile = () => {
                     </div>
 
                     {/* Navigation Tabs */}
-                    <div className="border-t border-gray-200 px-6">
+                    <div className="border-t border-gray-200 dark:border-gray-700 px-6">
                         <div className="flex overflow-x-auto space-x-2 py-2">
                             <button
                                 onClick={() => handleTabChange('overview')}
                                 className={`px-3 py-2 text-xs sm:text-sm font-medium rounded-md whitespace-nowrap transition-colors ${
                                     activeTab === 'overview'
-                                        ? 'bg-green-50 text-green-700'
-                                        : 'text-gray-600 hover:text-gray-900'
+                                        ? 'bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-400'
+                                        : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
                                 }`}
                             >
                                 <MdDashboard className="inline mr-1" /> {t('overview')}
@@ -231,8 +231,8 @@ const Profile = () => {
                                 onClick={() => handleTabChange('personal')}
                                 className={`px-3 py-2 text-xs sm:text-sm font-medium rounded-md whitespace-nowrap transition-colors ${
                                     activeTab === 'personal'
-                                        ? 'bg-green-50 text-green-700'
-                                        : 'text-gray-600 hover:text-gray-900'
+                                        ? 'bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-400'
+                                        : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
                                 }`}
                             >
                                 <GrContactInfo className="inline mr-1" /> {t('personal_information')}
@@ -241,8 +241,8 @@ const Profile = () => {
                                 onClick={() => handleTabChange('activity')}
                                 className={`px-3 py-2 text-xs sm:text-sm font-medium rounded-md whitespace-nowrap transition-colors ${
                                     activeTab === 'activity'
-                                        ? 'bg-green-50 text-green-700'
-                                        : 'text-gray-600 hover:text-gray-900'
+                                        ? 'bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-400'
+                                        : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
                                 }`}
                             >
                                 <MdTrendingUp className="inline mr-1" /> {t('activity')}
@@ -251,8 +251,8 @@ const Profile = () => {
                                 onClick={() => handleTabChange('achievements')}
                                 className={`px-3 py-2 text-xs sm:text-sm font-medium rounded-md whitespace-nowrap transition-colors ${
                                     activeTab === 'achievements'
-                                        ? 'bg-green-50 text-green-700'
-                                        : 'text-gray-600 hover:text-gray-900'
+                                        ? 'bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-400'
+                                        : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
                                 }`}
                             >
                                 <FaAward className="inline mr-1" /> {t('achievements')}
@@ -261,8 +261,8 @@ const Profile = () => {
                                 onClick={() => handleTabChange('stats')}
                                 className={`px-3 py-2 text-xs sm:text-sm font-medium rounded-md whitespace-nowrap transition-colors ${
                                     activeTab === 'stats'
-                                        ? 'bg-green-50 text-green-700'
-                                        : 'text-gray-600 hover:text-gray-900'
+                                        ? 'bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-400'
+                                        : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
                                 }`}
                             >
                                 <IoStatsChart className="inline mr-1" /> {t('statistics')}
@@ -271,8 +271,8 @@ const Profile = () => {
                                 onClick={() => handleTabChange('settings')}
                                 className={`px-3 py-2 text-xs sm:text-sm font-medium rounded-md whitespace-nowrap transition-colors ${
                                     activeTab === 'settings'
-                                        ? 'bg-green-50 text-green-700'
-                                        : 'text-gray-600 hover:text-gray-900'
+                                        ? 'bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-400'
+                                        : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
                                 }`}
                             >
                                 <IoSettingsSharp className="inline mr-1" /> {t('account_settings')}
@@ -286,19 +286,19 @@ const Profile = () => {
                     {/* Left Sidebar - Always visible */}
                     <div className="md:col-span-1">
                         {/* Contact Information */}
-                        <div className="bg-white rounded-xl shadow-sm p-6 mb-6">
-                            <h2 className="text-lg font-semibold text-gray-800 mb-4">{t('contact_information')}</h2>
+                        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 mb-6">
+                            <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">{t('contact_information')}</h2>
                             <div className="space-y-3">
-                                <p className="flex items-center text-gray-600">
-                                    <FaEnvelope className="mr-3 text-green-600" />
+                                <p className="flex items-center text-gray-600 dark:text-gray-300">
+                                    <FaEnvelope className="mr-3 text-green-600 dark:text-green-500" />
                                     <span>{authUser?.email}</span>
                                 </p>
-                                <p className="flex items-center text-gray-600">
-                                    <FaPhone className="mr-3 text-green-600" />
+                                <p className="flex items-center text-gray-600 dark:text-gray-300">
+                                    <FaPhone className="mr-3 text-green-600 dark:text-green-500" />
                                     <span>{authUser?.phone || '+91 98765 43210'}</span>
                                 </p>
-                                <p className="flex items-center text-gray-600">
-                                    <FaMapMarkerAlt className="mr-3 text-green-600" />
+                                <p className="flex items-center text-gray-600 dark:text-gray-300">
+                                    <FaMapMarkerAlt className="mr-3 text-green-600 dark:text-green-500" />
                                     <span>{authUser?.location || 'India'}</span>
                                 </p>
                             </div>
@@ -340,40 +340,40 @@ const Profile = () => {
                         )}
 
                         {/* Quick Actions */}
-                        <div className="bg-white rounded-xl shadow-sm p-6">
-                            <h2 className="text-lg font-semibold text-gray-800 mb-4">{t('quick_actions')}</h2>
+                        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6">
+                            <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">{t('quick_actions')}</h2>
                             <div className="space-y-2">
                                 <button
                                     onClick={() => navigate(`/profile/edit/${authUser?._id}`)}
-                                    className="w-full bg-gray-100 text-gray-700 py-2 px-3 rounded-lg hover:bg-gray-200 transition flex items-center text-sm"
+                                    className="w-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 py-2 px-3 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition flex items-center text-sm"
                                 >
-                                    <BiSolidMessageSquareEdit className="mr-2 text-green-600" /> {t('edit_profile')}
+                                    <BiSolidMessageSquareEdit className="mr-2 text-green-600 dark:text-green-500" /> {t('edit_profile')}
                                 </button>
                                 <button
                                     onClick={() => navigate(`/profile/cart/${authUser?._id}`)}
-                                    className="w-full bg-gray-100 text-gray-700 py-2 px-3 rounded-lg hover:bg-gray-200 transition flex items-center text-sm"
+                                    className="w-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 py-2 px-3 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition flex items-center text-sm"
                                 >
-                                    <FaShoppingCart className="mr-2 text-green-600" /> {t('your_cart')}
+                                    <FaShoppingCart className="mr-2 text-green-600 dark:text-green-500" /> {t('your_cart')}
                                 </button>
                                 <button
                                     onClick={() => navigate(`/profile/posts/${authUser?._id}`)}
-                                    className="w-full bg-gray-100 text-gray-700 py-2 px-3 rounded-lg hover:bg-gray-200 transition flex items-center text-sm"
+                                    className="w-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 py-2 px-3 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition flex items-center text-sm"
                                 >
-                                    <FaMessage className="mr-2 text-green-600" /> {t('your_posts')}
+                                    <FaMessage className="mr-2 text-green-600 dark:text-green-500" /> {t('your_posts')}
                                 </button>
                                 {authUser?.role === 'seller' && (
                                     <button
                                         onClick={() => navigate("/profile/products/add")}
-                                        className="w-full bg-gray-100 text-gray-700 py-2 px-3 rounded-lg hover:bg-gray-200 transition flex items-center text-sm"
+                                        className="w-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 py-2 px-3 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition flex items-center text-sm"
                                     >
-                                        <HiViewGrid className="mr-2 text-green-600" /> {t('add_new_product')}
+                                        <HiViewGrid className="mr-2 text-green-600 dark:text-green-500" /> {t('add_new_product')}
                                     </button>
                                 )}
                                 <button
                                     onClick={() => navigate('/chat')}
-                                    className="w-full bg-gray-100 text-gray-700 py-2 px-3 rounded-lg hover:bg-gray-200 transition flex items-center text-sm"
+                                    className="w-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 py-2 px-3 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition flex items-center text-sm"
                                 >
-                                    <FaUserFriends className="mr-2 text-green-600" /> {t('chat_with_experts')}
+                                    <FaUserFriends className="mr-2 text-green-600 dark:text-green-500" /> {t('chat_with_experts')}
                                 </button>
                             </div>
                         </div>
@@ -382,8 +382,8 @@ const Profile = () => {
                     {/* Main Content Area - Changes based on active tab */}
                     <div className="md:col-span-2">
                         {activeTab === 'overview' && (
-                            <div className="bg-white rounded-xl shadow-sm p-6">
-                                <h2 className="text-xl font-semibold text-gray-800 mb-4">{t('account_overview')}</h2>
+                            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6">
+                                <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-4">{t('account_overview')}</h2>
 
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
                                     <div className="bg-blue-50 rounded-lg p-4">
@@ -489,8 +489,8 @@ const Profile = () => {
                         )}
 
                         {activeTab === 'activity' && (
-                            <div className="bg-white rounded-xl shadow-sm p-6">
-                                <h2 className="text-xl font-semibold text-gray-800 mb-4">{t('activity_history')}</h2>
+                            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6">
+                                <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-4">{t('activity_history')}</h2>
 
                                 {recentActivity.length > 0 ? (
                                     <div className="space-y-4">
@@ -534,8 +534,8 @@ const Profile = () => {
                         )}
 
                         {activeTab === 'achievements' && (
-                            <div className="bg-white rounded-xl shadow-sm p-6">
-                                <h2 className="text-xl font-semibold text-gray-800 mb-6">{t('your_achievements')}</h2>
+                            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6">
+                                <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-6">{t('your_achievements')}</h2>
 
                                 {achievements.length > 0 ? (
                                     <div className="space-y-6">
@@ -575,8 +575,8 @@ const Profile = () => {
                         )}
 
                         {activeTab === 'stats' && (
-                            <div className="bg-white rounded-xl shadow-sm p-6">
-                                <h2 className="text-xl font-semibold text-gray-800 mb-6">{t('statistics_and_analytics')}</h2>
+                            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6">
+                                <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-6">{t('statistics_and_analytics')}</h2>
 
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
                                     <div>

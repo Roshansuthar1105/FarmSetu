@@ -1,0 +1,97 @@
+/* Theme styles for light and dark mode */
+
+/* Light mode variables (default) */
+:root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f9fafb;
+  --bg-tertiary: #f3f4f6;
+
+  --text-primary: #111827;
+  --text-secondary: #4b5563;
+  --text-tertiary: #6b7280;
+
+  --border-color: #e5e7eb;
+  --input-bg: #ffffff;
+  --card-bg: #ffffff;
+
+  --navbar-bg: linear-gradient(to right, #065f46, #1e40af);
+  --navbar-text: #f3f4f6;
+  --navbar-scrolled-bg: #ffffff;
+  --navbar-scrolled-text: #374151;
+
+  --primary-color: #047857;
+  --primary-hover: #065f46;
+  --secondary-color: #1d4ed8;
+  --secondary-hover: #1e40af;
+
+  --success-color: #10b981;
+  --error-color: #ef4444;
+  --warning-color: #f59e0b;
+  --info-color: #3b82f6;
+}
+
+/* Dark mode variables */
+.dark {
+  --bg-primary: #111827;
+  --bg-secondary: #1f2937;
+  --bg-tertiary: #374151;
+
+  --text-primary: #f9fafb;
+  --text-secondary: #e5e7eb;
+  --text-tertiary: #d1d5db;
+
+  --border-color: #374151;
+  --input-bg: #1f2937;
+  --card-bg: #1f2937;
+
+  --navbar-bg: linear-gradient(to right, #064e3b, #1e3a8a);
+  --navbar-text: #f9fafb;
+  --navbar-scrolled-bg: #111827;
+  --navbar-scrolled-text: #f9fafb;
+
+  --primary-color: #10b981;
+  --primary-hover: #059669;
+  --secondary-color: #3b82f6;
+  --secondary-hover: #2563eb;
+
+  --success-color: #059669;
+  --error-color: #dc2626;
+  --warning-color: #d97706;
+  --info-color: #2563eb;
+}
+
+/* Apply variables to elements */
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Basic dark mode overrides using Tailwind's dark mode */
+.dark {
+  color-scheme: dark;
+}
+
+.dark body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+/* We'll rely more on Tailwind's dark: variant for most styling
+   and use these CSS variables as a fallback for non-Tailwind elements */
+
+/* Navbar specific styles */
+.dark .nav-menu nav:not(.scrolled) {
+  background: var(--navbar-bg);
+}
+
+.dark .nav-menu nav.scrolled {
+  background-color: var(--navbar-scrolled-bg);
+}
+
+/* Transition for smooth theme switching */
+* {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}

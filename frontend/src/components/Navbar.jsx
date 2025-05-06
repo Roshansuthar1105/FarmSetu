@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Bars3Icon, XMarkIcon, BellIcon, SunIcon, MoonIcon } from "@heroicons/react/24/outline";
-import { Link, Navigate, useNavigate, useLocation } from "react-router-dom";
+import { Bars3Icon, XMarkIcon, BellIcon } from "@heroicons/react/24/outline";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAuthContext } from "../context/AuthContext";
+import { useTheme } from "../context/ThemeContext";
+import ThemeToggle from "./ThemeToggle";
 import farm from '../assets/farm.svg';
 import setu from '../assets/setu.svg';
 import { IoPerson } from "react-icons/io5";
@@ -9,7 +11,7 @@ import { FaShoppingCart, FaSearch } from "react-icons/fa";
 import { FaMessage } from "react-icons/fa6";
 import { IoLogOut, IoSettingsSharp } from "react-icons/io5";
 import { BiSolidMessageSquareEdit } from "react-icons/bi";
-import { MdEmail, MdLanguage } from "react-icons/md";
+import { MdLanguage } from "react-icons/md";
 import { HiViewGrid } from "react-icons/hi";
 import { useTranslation } from "react-i18next";
 export default function Navbar() {
@@ -21,7 +23,7 @@ export default function Navbar() {
   const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const [darkMode, setDarkMode] = useState(false);
+  const { theme } = useTheme();
   const [scrolled, setScrolled] = useState(false);
   const [notifications, setNotifications] = useState([
     { id: 1, message: "New message from support", read: false, time: "10 min ago" },
@@ -86,12 +88,7 @@ export default function Navbar() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Toggle dark mode
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-    // You would typically add a class to the body or html element here
-    document.documentElement.classList.toggle('dark-mode');
-  };
+  // Dark mode is now handled by ThemeContext
 
   // Handle search submission
   const handleSearch = (e) => {
@@ -146,8 +143,8 @@ export default function Navbar() {
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
-            ? "py-2 bg-white shadow-lg"
-            : "py-3 bg-gradient-to-r from-green-900 to-blue-900"
+            ? "py-2 bg-white dark:bg-gray-900 shadow-lg scrolled"
+            : "py-3 bg-gradient-to-r from-green-900 to-blue-900 dark:from-green-800 dark:to-blue-800"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">
@@ -352,19 +349,16 @@ export default function Navbar() {
             )}
 
             {/* Dark mode toggle - hidden on small screens */}
-            <button
-              onClick={toggleDarkMode}
-              className={`p-1.5 rounded-full hidden sm:block ${
-                scrolled ? "text-gray-700 hover:bg-gray-100" : "text-gray-200 hover:bg-green-800/40"
-              }`}
-              aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
-            >
-              {darkMode ? (
-                <SunIcon className="h-4 w-4" />
-              ) : (
-                <MoonIcon className="h-4 w-4" />
-              )}
-            </button>
+            <div className="hidden sm:block">
+              <ThemeToggle
+                className={scrolled ? "bg-gray-100 text-gray-700 hover:bg-gray-200" : "bg-green-800/40 text-gray-200 hover:bg-green-800/60"}
+              />
+            </div>
+
+            {/* Debug theme state - remove in production */}
+            <div className="hidden">
+              Current theme: {theme}
+            </div>
 
             {/* Profile dropdown */}
             <div ref={profileRef} className="relative">
@@ -591,19 +585,33 @@ export default function Navbar() {
 
           {/* Mobile settings */}
           <div className="border-t py-1">
+            <div className="flex items-center w-full px-3 py-2 text-xs text-gray-700">
+              <ThemeToggle className="mr-2" />
+              <span>{theme === 'dark' ? t('light_mode') : t('dark_mode')}</span>
+            </div>
+
+            {/* Alternative theme toggle button for testing */}
             <button
-              onClick={toggleDarkMode}
+              onClick={() => {
+                const newTheme = theme === 'dark' ? 'light' : 'dark';
+                document.documentElement.classList.toggle('dark');
+                console.log('Manual theme toggle, new theme:', newTheme);
+              }}
               className="flex items-center w-full px-3 py-2 text-xs text-gray-700 hover:bg-gray-100"
             >
-              {darkMode ? (
+              {theme === 'dark' ? (
                 <>
-                  <SunIcon className="h-4 w-4 mr-2 text-yellow-500" />
-                  {t('light_mode')}
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                  </svg>
+                  Manual: {t('light_mode')}
                 </>
               ) : (
                 <>
-                  <MoonIcon className="h-4 w-4 mr-2 text-blue-700" />
-                  {t('dark_mode')}
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2 text-blue-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                  </svg>
+                  Manual: {t('dark_mode')}
                 </>
               )}
             </button>
