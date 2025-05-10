@@ -145,7 +145,7 @@ const ProductDetail = () => {
                   <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 9 4-4-4-4"/>
                 </svg>
                 <a href="/farmermarketplace" className="text-gray-500 hover:text-green-600">
-                  {t('marketplace')}
+                  {t('marketplace.title')}
                 </a>
               </div>
             </li>

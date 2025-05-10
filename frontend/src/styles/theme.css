@@ -1,0 +1,64 @@
+/* Theme variables for light and dark mode */
+
+:root {
+  /* Light mode variables */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f9fafb;
+  --bg-tertiary: #f3f4f6;
+  
+  --text-primary: #111827;
+  --text-secondary: #4b5563;
+  --text-tertiary: #6b7280;
+  
+  --border-color: #e5e7eb;
+  
+  --card-bg: #ffffff;
+  --input-bg: #ffffff;
+  
+  --accent-green: #57d074;
+  --accent-blue: #3b82f6;
+  
+  /* Transition properties */
+  --transition-duration: 0.3s;
+}
+
+.dark {
+  /* Dark mode variables */
+  --bg-primary: #111827;
+  --bg-secondary: #1f2937;
+  --bg-tertiary: #374151;
+  
+  --text-primary: #f9fafb;
+  --text-secondary: #e5e7eb;
+  --text-tertiary: #d1d5db;
+  
+  --border-color: #374151;
+  
+  --card-bg: #1f2937;
+  --input-bg: #374151;
+  
+  --accent-green: #34d399;
+  --accent-blue: #60a5fa;
+  
+  color-scheme: dark;
+}
+
+/* Smooth transitions between themes */
+body, input, textarea, select, button {
+  transition: background-color var(--transition-duration), 
+              color var(--transition-duration), 
+              border-color var(--transition-duration);
+}
+
+/* Basic dark mode overrides using Tailwind's dark mode */
+.dark {
+  color-scheme: dark;
+}
+
+.dark body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+/* We'll rely more on Tailwind's dark: variant for most styling
+   and use these CSS variables as a fallback for non-Tailwind elements */
