@@ -24,20 +24,19 @@ function Home(){
       };
 
     return (
-        <div>
+        <div className="bg-white dark:bg-gray-900 transition-colors duration-300">
             <Hero></Hero>
             <Features></Features>
             <Testimonials></Testimonials>
             <ProductOverview></ProductOverview>
             <Pricing></Pricing>
             <Contact></Contact>
-            
+
           <button
             onClick={toggleChatBot}
-            className={`z-40 fixed bottom-4 right-4 bg-blue-500 text-white w-16 h-16 rounded-full shadow-lg flex items-center justify-center transition-transform duration-1000 hover:rotate-[360deg]`}
+            className={`z-40 fixed bottom-4 right-4 bg-blue-500 hover:bg-blue-600 text-white w-16 h-16 rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110`}
           >
-            {/* <FiMessageSquare size={24} /> */}
-            <img src="https://cdn-icons-png.flaticon.com/128/6231/6231457.png" alt="chatbot" className="w-6 h-6 inline-block ml-2" />
+            <img src="https://cdn-icons-png.flaticon.com/128/6231/6231457.png" alt="chatbot" className="w-6 h-6 inline-block" />
           </button>
           <LazyLanguage />
           {/* ChatBot Component */}

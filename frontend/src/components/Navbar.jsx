@@ -34,7 +34,28 @@ export default function Navbar() {
   const searchRef = useRef(null);
   const notificationsRef = useRef(null);
   const languageRef = useRef(null);
+  const lang = [
+    { name: "English (Default) ", value: "en", img: "" },
+    { name: "Assamese (অসমীয়া)", value: "as", img: "" },
+    { name: "Bengali (বাংলা)", value: "bn", img: "" },
+    { name: "Dogri (डोगरी)", value: "doi", img: "" },
+    { name: "Gujarati (ગુજરાતી)", value: "gu", img: "" },
+    { name: "Hindi (हिन्दी)", value: "hi", img: "" },
+    { name: "Kannada (ಕನ್ನಡ)", value: "kn", img: "" },
+    { name: "Kashmiri (कश्मीरी)", value: "ks", img: "" },
+    { name: "Maithili (मैथिली)", value: "mai", img: "" },
+    { name: "Malayalam (മലയാളം)", value: "ml", img: "" },
+    { name: "Marathi (मराठी)", value: "mr", img: "" },
+    { name: "Odia (ଓଡ଼ିଆ)", value: "or", img: "" },
+    { name: "Punjabi (ਪੰਜਾਬੀ)", value: "pa", img: "" },
+    { name: "Tamil (தமிழ்)", value: "ta", img: "" },
+    { name: "Telugu (తెలుగు)", value: "te", img: "" },
+    { name: "Urdu (اردو)", value: "ur", img: "" },
+    // { name: "Manipuri (মণিপুরী)", value: "mni", img: "" },
+    // { name: "Sindhi (सिंधी)", value: "sd", img: "" },
+    // { name: "Santali (संताली)", value: "sat", img: "" },
 
+]
   const { authUser } = useAuthContext();
   const { t, i18n } = useTranslation();
 
@@ -264,24 +285,18 @@ export default function Navbar() {
               {/* Language dropdown */}
               {isLanguageMenuOpen && (
                 <div className="absolute right-0 top-full mt-1 w-40 bg-white rounded-lg shadow-lg py-1 z-50">
+                  {
+                    lang.map((e)=>{
+                      return(
                   <button
-                    onClick={() => changeLanguage('en')}
+                    onClick={() => changeLanguage(e.value)}
                     className="flex items-center w-full px-3 py-1.5 text-xs text-gray-700 hover:bg-gray-100"
                   >
-                    <span className="mr-2">🇺🇸</span> English
+                    <span className="mr-2">🇺🇸</span> {e.name}
                   </button>
-                  <button
-                    onClick={() => changeLanguage('hi')}
-                    className="flex items-center w-full px-3 py-1.5 text-xs text-gray-700 hover:bg-gray-100"
-                  >
-                    <span className="mr-2">🇮🇳</span> हिन्दी
-                  </button>
-                  <button
-                    onClick={() => changeLanguage('gu')}
-                    className="flex items-center w-full px-3 py-1.5 text-xs text-gray-700 hover:bg-gray-100"
-                  >
-                    <span className="mr-2">🇮🇳</span> ગુજરાતી
-                  </button>
+                      );
+                    })
+                  }
                 </div>
               )}
             </div>
@@ -355,7 +370,7 @@ export default function Navbar() {
             <button
               onClick={toggleDarkMode}
               className={`p-1.5 rounded-full hidden sm:block ${
-                scrolled ? "text-gray-700 hover:bg-gray-100" : "text-gray-200 hover:bg-green-800/40"
+                scrolled ? "text-gray-700 hover:bg-green-300" : "text-gray-200 hover:bg-green-800/40"
               }`}
               aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
             >

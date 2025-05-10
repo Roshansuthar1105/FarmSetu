@@ -202,62 +202,89 @@ const Testimonials = () => {
   const testimonialsPerColumn = 3;
 
   // Split testimonials into columns
-  const columns = Array.from({ length: Math.ceil(testimonials.length / testimonialsPerColumn) }, (_, index) => 
+  const columns = Array.from({ length: Math.ceil(testimonials.length / testimonialsPerColumn) }, (_, index) =>
     testimonials.slice(index * testimonialsPerColumn, index * testimonialsPerColumn + testimonialsPerColumn)
   );
 
   const { t } = useTranslation();
   return (
-    <div className="bg-gray-800 text-white p-8 relative overflow-hidden">
-    <h2 className="text-3xl font-bold mb-4 text-center text-green-300">
-      {t('testimonials_heading')}
-    </h2>
-    <p className="text-center mb-8 text-gray-300">
-      {t('testimonials_subheading')}
-    </p><div className="relative overflow-hidden h-[500px]"> {/* Adjust height as needed */}
-        <motion.div
-          className="absolute top-0 left-0 right-0 grid grid-cols-1 md:grid-cols-3 gap-6"
-          animate={{ y: ['0%', '-100%'] }}
-          transition={{
-            duration: 50, // Adjust animation duration for desired speed
-            repeat: Infinity,
-            ease: 'linear',
-          }}
-        >
-          {columns.map((column, columnIndex) => (
-            <div key={columnIndex} className="space-y-6">
-              {column.map((testimonial, index) => (
-                <div
-                  key={index}
-                  className="bg-gray-900 p-4 rounded-lg shadow-lg"
-                >
-                  <div className="flex items-center mb-4">
-                    <img
-                      className="w-10 h-10 rounded-full mr-4"
-                      src={`https://placehold.co/600/fefefe/285231/png?font=roboto&text=${testimonial.name.charAt(0)}`}
-                      alt={testimonial.name}
-                    />
-                    <div>
-                      <h3 className="text-lg font-bold text-green-400">{testimonial.name}</h3>
-                      <p className="text-sm text-gray-400">{testimonial.handle}</p>
+    <div className="bg-gradient-to-b from-gray-800 to-gray-900 dark:from-gray-700 dark:to-gray-800 text-white py-16 px-6 md:py-24 md:px-12 relative overflow-hidden">
+      <div className="container mx-auto">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-5xl font-bold mb-4">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-300 to-blue-300 dark:from-green-200 dark:to-blue-200">
+              {t('testimonials_heading')}
+            </span>
+          </h2>
+          <p className="text-gray-300 dark:text-gray-200 max-w-2xl mx-auto text-lg">
+            {t('testimonials_subheading')}
+          </p>
+        </div>
+
+        <div className="relative overflow-hidden h-[500px]"> {/* Adjust height as needed */}
+          <motion.div
+            className="absolute top-0 left-0 right-0 grid grid-cols-1 md:grid-cols-3 gap-6"
+            animate={{ y: ['0%', '-100%'] }}
+            transition={{
+              duration: 50, // Adjust animation duration for desired speed
+              repeat: Infinity,
+              ease: 'linear',
+            }}
+          >
+            {columns.map((column, columnIndex) => (
+              <div key={columnIndex} className="space-y-6">
+                {column.map((testimonial, index) => (
+                  <div
+                    key={index}
+                    className="bg-gradient-to-br from-gray-900 to-gray-800 dark:from-gray-800 dark:to-gray-700 p-6 rounded-2xl shadow-xl border border-gray-700/30 dark:border-gray-600/30 backdrop-blur-sm"
+                  >
+                    <div className="flex items-center mb-5">
+                      <div className="relative">
+                        <img
+                          className="w-12 h-12 rounded-full mr-4 border-2 border-green-500/50 dark:border-green-400/50 object-cover"
+                          src={`https://placehold.co/600/fefefe/285231/png?font=roboto&text=${testimonial.name.charAt(0)}`}
+                          alt={testimonial.name}
+                        />
+                        <div className="absolute -bottom-1 -right-1 bg-green-500 dark:bg-green-400 rounded-full w-4 h-4 flex items-center justify-center">
+                          <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                          </svg>
+                        </div>
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-bold text-green-400 dark:text-green-300">{testimonial.name}</h3>
+                        <p className="text-sm text-gray-400 dark:text-gray-300">{testimonial.handle}</p>
+                      </div>
                     </div>
+
+                    <div className="relative mb-5">
+                      <svg className="absolute -top-3 -left-2 w-8 h-8 text-green-500/20 dark:text-green-400/20" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                      </svg>
+                      <p className="text-gray-300 dark:text-gray-200 mb-4 pl-6">{testimonial.text}</p>
+                    </div>
+
+                    {testimonial.link && (
+                      <a
+                        href={`https://${testimonial.link}`}
+                        className="inline-flex items-center text-green-400 dark:text-green-300 hover:underline"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M12.586 4.586a2 2 0 112.828 2.828l-3 3a2 2 0 01-2.828 0 1 1 0 00-1.414 1.414 4 4 0 005.656 0l3-3a4 4 0 00-5.656-5.656l-1.5 1.5a1 1 0 101.414 1.414l1.5-1.5zm-5 5a2 2 0 012.828 0 1 1 0 101.414-1.414 4 4 0 00-5.656 0l-3 3a4 4 0 105.656 5.656l1.5-1.5a1 1 0 10-1.414-1.414l-1.5 1.5a2 2 0 11-2.828-2.828l3-3z" clipRule="evenodd" />
+                        </svg>
+                        {testimonial.link}
+                      </a>
+                    )}
                   </div>
-                  <p className="text-gray-300 mb-4">{testimonial.text}</p>
-                  {testimonial.link && (
-                    <a
-                      href={`https://${testimonial.link}`}
-                      className="text-green-300 hover:underline"
-                    >
-                      {testimonial.link}
-                    </a>
-                  )}
-                </div>
-              ))}
-            </div>
-          ))}
-        </motion.div>
-        <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-gray-800 to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-gray-800 to-transparent" />
+                ))}
+              </div>
+            ))}
+          </motion.div>
+          <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-gray-800 dark:from-gray-700 to-transparent" />
+          <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-gray-800 dark:from-gray-700 to-transparent" />
+        </div>
       </div>
     </div>
   );
