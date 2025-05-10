@@ -49,33 +49,86 @@ const Categories = ({ onCategoryChange }) => {
   const displayedCategories = showAll ? categories : categories.slice(0, 8);
 
   return (
-    <div className="my-8">
-      <h2 className="text-2xl font-bold mb-6">Categories</h2>
-      <div className="flex overflow-x-scroll overflow-y-hidden" style={{ scrollbarWidth: 'thin', scrollbarColor: '#166534 transparent' }}>
+    <div>
+      <div className="flex justify-between items-center mb-6">
+        <h2 className="text-2xl font-bold text-gray-800 dark:text-white">
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-600 to-blue-600 dark:from-green-400 dark:to-blue-400">
+            Categories
+          </span>
+        </h2>
+        {selectedCategory && (
+          <button
+            onClick={() => handleCategoryClick(selectedCategory)}
+            className="text-sm px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors flex items-center"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+            Clear Filter
+          </button>
+        )}
+      </div>
+
+      <div
+        className="flex overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-green-500 scrollbar-track-transparent"
+        style={{ scrollbarWidth: 'thin', scrollbarColor: '#22c55e transparent' }}
+      >
         {categories.map((category, index) => (
           <div
             key={index}
-            className="flex flex-col items-center cursor-pointer hover:scale-105 transition-transform duration-300 mx-4"
+            className="flex-shrink-0 flex flex-col items-center cursor-pointer group mx-3 first:ml-0 last:mr-0"
             onClick={() => handleCategoryClick(category.name)}
           >
-            <div
-              className={`w-10 h-10 sm:w-24 sm:h-24 rounded-full overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 ${
-                selectedCategory === category.name ? 'relative' : ''
-              } sm:w-16 sm:h-16`}
-            >
-              <img
-                src={category.image}
-                alt={category.name}
-                className="w-full h-full object-cover"
-              />
+            <div className="relative">
+              <div
+                className={`w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden shadow-md group-hover:shadow-lg transition-all duration-300 ${
+                  selectedCategory === category.name
+                    ? 'ring-2 ring-offset-2 ring-green-500 dark:ring-green-400'
+                    : 'group-hover:ring-2 group-hover:ring-offset-2 group-hover:ring-green-400/50 dark:group-hover:ring-green-300/50'
+                }`}
+              >
+                <img
+                  src={category.image}
+                  alt={category.name}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+              </div>
+
               {selectedCategory === category.name && (
-                <div className="absolute inset-0 rounded-full sm:border-4 border-2 border-green-500 pointer-events-none z-10"  />
+                <div className="absolute -top-1 -right-1 bg-green-500 dark:bg-green-400 rounded-full w-6 h-6 flex items-center justify-center shadow-md">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
               )}
             </div>
-            <p className="text-center mt-2 sm:text-lg font-semibold text-sm">{category.name}</p>
+
+            <p className={`text-center mt-2 text-sm font-medium transition-colors duration-300 ${
+              selectedCategory === category.name
+                ? 'text-green-600 dark:text-green-400'
+                : 'text-gray-700 dark:text-gray-300 group-hover:text-green-600 dark:group-hover:text-green-400'
+            }`}>
+              {category.name}
+            </p>
           </div>
         ))}
       </div>
+
+      {/* {showAll ? (
+        <button
+          onClick={handleViewMoreClick}
+          className="mt-4 w-full py-2 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition-colors"
+        >
+          Show Less
+        </button>
+      ) : (
+        <button
+          onClick={handleViewMoreClick}
+          className="mt-4 w-full py-2 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition-colors"
+        >
+          View All Categories
+        </button>
+      )} */}
     </div>
   );
 };

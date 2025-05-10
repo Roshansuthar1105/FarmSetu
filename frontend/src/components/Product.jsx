@@ -35,45 +35,64 @@ function Product({ product, removeproduct, removebtn,editbtn ,deletebtn }) {
     return (
         <div
             key={product._id}
-            className={`bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300 flex flex-col h-full ${!removebtn ? 'cursor-pointer' : 'cursor-default'}`}
+            className={`bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden hover:shadow-lg dark:hover:shadow-gray-700/30 transition-all duration-300 flex flex-col h-full transform hover:-translate-y-1 ${
+                !removebtn ? 'cursor-pointer' : 'cursor-default'
+            }`}
             onClick={() => {
                 !removebtn && handleProductClick(product._id);
             }}
         >
-            <div className="relative h-48 overflow-hidden">
+            <div className="relative h-48 overflow-hidden group">
                 <img
                     src={product.image}
                     alt={product.name}
-                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
+                {/* Gradient overlay on hover */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
                 {product.category && (
-                    <div className="absolute top-0 left-0 m-2">
-                        <span className="inline-block bg-green-600 text-white text-xs px-2 py-1 rounded-full shadow-sm">
+                    <div className="absolute top-3 left-3 z-10">
+                        <span className="inline-block bg-green-600 dark:bg-green-500 text-white text-xs px-3 py-1 rounded-full shadow-md">
                             {product.category}
                         </span>
                     </div>
                 )}
+
+                {/* Quick action buttons on hover */}
+                <div className="absolute bottom-3 right-3 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <button
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            handleProductClick(product._id);
+                        }}
+                        className="bg-white dark:bg-gray-800 text-green-600 dark:text-green-400 p-2 rounded-full shadow-md hover:bg-green-50 dark:hover:bg-gray-700 transition-colors"
+                        title={t('quick_view')}
+                    >
+                        <FaEye className="h-4 w-4" />
+                    </button>
+                </div>
             </div>
 
             <div className="p-5 flex-grow">
-                <div className="flex justify-between items-start mb-2">
-                    <h2 className="text-xl font-bold text-gray-800">{product.name}</h2>
+                <div className="flex justify-between items-start mb-3">
+                    <h2 className="text-lg font-bold text-gray-800 dark:text-white line-clamp-1">{product.name}</h2>
                     {product.price && (
-                        <span className="text-lg font-bold text-green-600">{product.price}</span>
+                        <span className="text-lg font-bold text-green-600 dark:text-green-400">{product.price}</span>
                     )}
                 </div>
-                <p className="text-gray-600 mb-4 line-clamp-2">{product.description}</p>
+                <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm line-clamp-2">{product.description}</p>
             </div>
 
-            <div className="px-5 py-3 bg-gray-50 border-t border-gray-100 flex justify-between items-center">
-                <div className="flex space-x-2">
+            <div className="px-5 py-3 bg-gray-50 dark:bg-gray-700/50 border-t border-gray-100 dark:border-gray-700 flex justify-between items-center">
+                <div className="flex space-x-1">
                     {editbtn && (
                         <button
                             onClick={(e) => {
                                 e.stopPropagation();
                                 handleUpdateClick(product._id);
                             }}
-                            className="text-gray-500 hover:text-green-600 p-2 rounded-full transition-colors"
+                            className="text-gray-500 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 p-2 rounded-full transition-colors"
                             title={t('edit_product')}
                         >
                             <MdEditSquare className="h-5 w-5" />
@@ -86,7 +105,7 @@ function Product({ product, removeproduct, removebtn,editbtn ,deletebtn }) {
                                 e.stopPropagation();
                                 deletebtn(product._id);
                             }}
-                            className="text-gray-500 hover:text-red-600 p-2 rounded-full transition-colors"
+                            className="text-gray-500 dark:text-gray-400 hover:text-red-600 dark:hover:text-red-400 p-2 rounded-full transition-colors"
                             title={t('delete_product')}
                         >
                             <MdDelete className="h-5 w-5" />
@@ -99,7 +118,7 @@ function Product({ product, removeproduct, removebtn,editbtn ,deletebtn }) {
                                 e.stopPropagation();
                                 removeproduct(product._id);
                             }}
-                            className="text-gray-500 hover:text-red-600 p-2 rounded-full transition-colors"
+                            className="text-gray-500 dark:text-gray-400 hover:text-red-600 dark:hover:text-red-400 p-2 rounded-full transition-colors"
                             title={t('remove_from_cart')}
                         >
                             <MdRemoveShoppingCart className="h-5 w-5" />
@@ -113,7 +132,7 @@ function Product({ product, removeproduct, removebtn,editbtn ,deletebtn }) {
                             e.stopPropagation();
                             handleProductClick(product._id);
                         }}
-                        className="text-blue-600 hover:text-blue-800 text-sm font-medium flex items-center"
+                        className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 text-sm font-medium flex items-center"
                     >
                         <FaEye className="mr-1 h-4 w-4" />
                         {t('view_details') || 'View Details'}
@@ -122,13 +141,16 @@ function Product({ product, removeproduct, removebtn,editbtn ,deletebtn }) {
 
                 {!removebtn && !editbtn && !deletebtn && (
                     <button
-                        className="text-green-600 hover:text-green-800 text-sm font-medium"
+                        className="text-green-600 dark:text-green-400 hover:text-green-800 dark:hover:text-green-300 text-sm font-medium flex items-center"
                         onClick={(e) => {
                             e.stopPropagation();
                             handleProductClick(product._id);
                         }}
                     >
-                        {t('view_product') || 'View Product'} →
+                        {t('view_product') || 'View Product'}
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
                     </button>
                 )}
             </div>

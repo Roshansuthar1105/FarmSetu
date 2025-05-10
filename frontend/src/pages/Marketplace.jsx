@@ -75,62 +75,127 @@ const Marketplace = () => {
   ];
 
   return (
-    <div className="bg-gray-800 text-gray-100 min-h-screen">
-      <div className="container mx-auto px-4 py-8 mt-16">
-        <Carousel
-          showThumbs={false}
-          autoPlay
-          infiniteLoop
-          interval={3000}
-          transitionTime={500}
-          className="mb-8"
-        >
-          {carouselItems.map((item, index) => (
-            <div key={index} className="carousel-item relative">
-              <img
-                src={item.image}
-                alt={item.title}
-                className="w-full h-80 object-cover rounded-lg shadow-lg transition-transform transform hover:scale-105"
-                style={{ height: '500px', width: '100%' }}
-              />
-              <div className="absolute bottom-0 left-0 right-0 bg-transparent bg-opacity-50 p-4 rounded-b-lg">
-                <h3 className="text-white text-2xl font-bold">{item.title}</h3>
-                <p className="text-white">{item.description}</p>
+    <div className="bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 text-gray-800 dark:text-gray-100 min-h-screen transition-colors duration-300">
+      <div className="container mx-auto px-4 py-8 pt-20">
+        {/* Hero Banner */}
+        <div className="relative overflow-hidden rounded-2xl shadow-xl mb-12">
+          <Carousel
+            showThumbs={false}
+            autoPlay
+            infiniteLoop
+            interval={5000}
+            transitionTime={700}
+            showStatus={false}
+            className="rounded-2xl"
+            renderArrowPrev={(clickHandler, hasPrev) => (
+              <button
+                onClick={clickHandler}
+                className={`absolute left-4 top-1/2 z-10 -translate-y-1/2 bg-white/30 dark:bg-black/30 backdrop-blur-sm p-2 rounded-full hover:bg-white/50 dark:hover:bg-black/50 transition-all duration-300 ${!hasPrev && 'hidden'}`}
+                aria-label="Previous slide"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+            )}
+            renderArrowNext={(clickHandler, hasNext) => (
+              <button
+                onClick={clickHandler}
+                className={`absolute right-4 top-1/2 z-10 -translate-y-1/2 bg-white/30 dark:bg-black/30 backdrop-blur-sm p-2 rounded-full hover:bg-white/50 dark:hover:bg-black/50 transition-all duration-300 ${!hasNext && 'hidden'}`}
+                aria-label="Next slide"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            )}
+          >
+            {carouselItems.map((item, index) => (
+              <div key={index} className="carousel-item relative">
+                <div className="relative h-[400px] md:h-[500px] w-full">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="w-full h-full object-cover"
+                  />
+                  {/* Gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+
+                  <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10 text-left">
+                    <h3 className="text-white text-2xl md:text-4xl font-bold mb-2 md:mb-4">{item.title}</h3>
+                    <p className="text-white text-sm md:text-lg max-w-2xl">{item.description}</p>
+                    <button className="mt-4 px-6 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors duration-300 shadow-lg">
+                      Explore Now
+                    </button>
+                  </div>
+                </div>
               </div>
-            </div>
-          ))}
-        </Carousel>
-        <Categories onCategoryChange={handleCategoryChange} />
-        <h1 className="text-2xl font-bold mb-6 text-green-500">{t('marketplace.title')}</h1>
-        <div className="mb-6 flex flex-row gap-3">
-          <Input
-            clearable
-            underlined
-            fullWidth
-            placeholder={t('marketplace.searchPlaceholder')}
-            value={searchQuery}
-            onChange={handleSearchChange}
-            className="custom-search-input"
-          />
-          <IoSearchSharp className="text-green-800 bg-white h-11 w-11 rounded-lg" />
+            ))}
+          </Carousel>
         </div>
-        {loading && <LoadingComponent />}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {filteredProducts.map((product) => (
-            <Product key={product.id} product={product} />
-          ))}
-          {!loading && filteredProducts.length === 0 && (
-            <div className="bg-gray-700 border border-gray-600 rounded-lg shadow-lg overflow-hidden transform transition duration-500 hover:shadow-2xl hover:scale-105 cursor-pointer">
-              <img
-                src="https://img.freepik.com/free-photo/beautiful-view-field-covered-green-grass-captured-canggu-bali_181624-7666.jpg"
-                alt={t('marketplace.noProductsFound')}
-                className="w-full h-40 object-cover transition-opacity duration-500 hover:opacity-80"
+
+        {/* Categories Section */}
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6 mb-10 transition-colors duration-300">
+          <Categories onCategoryChange={handleCategoryChange} />
+        </div>
+
+        {/* Products Section */}
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6 mb-10 transition-colors duration-300">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
+            <h1 className="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white mb-4 md:mb-0">
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-600 to-blue-600 dark:from-green-400 dark:to-blue-400">
+                {t('marketplace.title')}
+              </span>
+            </h1>
+
+            <div className="w-full md:w-auto flex items-center bg-gray-100 dark:bg-gray-700 rounded-xl p-2 transition-colors duration-300">
+              <Input
+                clearable
+                placeholder={t('marketplace.searchPlaceholder')}
+                value={searchQuery}
+                onChange={handleSearchChange}
+                className="bg-transparent border-none"
+                classNames={{
+                  input: "text-gray-800 dark:text-gray-200",
+                  clearButton: "text-gray-500 dark:text-gray-400"
+                }}
               />
-              <div className="p-4 transition-transform transform hover:translate-y-2 font-roboto">
-                <h2 className="text-xl font-bold mb-2">{t('marketplace.noProductsFound')}</h2>
+              <div className="bg-green-600 dark:bg-green-500 p-2 rounded-lg ml-2 text-white">
+                <IoSearchSharp className="h-5 w-5" />
               </div>
             </div>
-          )}
+          </div>
+
+          {loading && <LoadingComponent />}
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {filteredProducts.map((product) => (
+              <Product key={product.id} product={product} />
+            ))}
+
+            {!loading && filteredProducts.length === 0 && (
+              <div className="col-span-full flex flex-col items-center justify-center py-16 text-center">
+                <img
+                  src="https://img.freepik.com/free-photo/beautiful-view-field-covered-green-grass-captured-canggu-bali_181624-7666.jpg"
+                  alt={t('marketplace.noProductsFound')}
+                  className="w-64 h-64 object-cover rounded-full mb-6 border-4 border-gray-200 dark:border-gray-700"
+                />
+                <h2 className="text-2xl font-bold mb-2 text-gray-800 dark:text-white">{t('marketplace.noProductsFound')}</h2>
+                <p className="text-gray-600 dark:text-gray-400 max-w-md">
+                  Try adjusting your search or filter criteria to find what you're looking for.
+                </p>
+                <button
+                  onClick={() => {
+                    setSearchQuery('');
+                    setSelectedCategory(null);
+                  }}
+                  className="mt-6 px-6 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors duration-300"
+                >
+                  Clear Filters
+                </button>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
@@ -139,7 +204,11 @@ const Marketplace = () => {
 
 const LoadingComponent = () => {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <LoadingDiv />
+      <LoadingDiv />
+      <LoadingDiv />
+      <LoadingDiv />
       <LoadingDiv />
       <LoadingDiv />
       <LoadingDiv />
@@ -150,12 +219,28 @@ const LoadingComponent = () => {
 
 const LoadingDiv = () => {
   return (
-    <div className="bg-gray-700 border border-gray-600 rounded-lg shadow-lg overflow-hidden transform transition duration-500 animate-pulse">
-      <div className="w-full h-40 bg-gray-300"></div>
-      <div className="p-4 transition-transform transform hover:translate-y-2 font-roboto">
-        <div className="h-4 mb-2 bg-gray-200 rounded"></div>
-        <div className="h-4 mb-2 bg-gray-200 rounded"></div>
-        <div className="h-4 mb-2 bg-gray-200 rounded"></div>
+    <div className="bg-white dark:bg-gray-700 rounded-xl shadow-md overflow-hidden animate-pulse transition-all duration-300">
+      <div className="relative h-48">
+        <div className="w-full h-full bg-gray-200 dark:bg-gray-600"></div>
+        <div className="absolute top-3 left-3">
+          <div className="h-6 w-20 bg-gray-300 dark:bg-gray-500 rounded-full"></div>
+        </div>
+      </div>
+      <div className="p-5">
+        <div className="flex justify-between items-start mb-4">
+          <div className="h-6 w-32 bg-gray-300 dark:bg-gray-500 rounded-md"></div>
+          <div className="h-6 w-16 bg-gray-300 dark:bg-gray-500 rounded-md"></div>
+        </div>
+        <div className="space-y-2">
+          <div className="h-4 bg-gray-200 dark:bg-gray-600 rounded-md"></div>
+          <div className="h-4 bg-gray-200 dark:bg-gray-600 rounded-md w-3/4"></div>
+        </div>
+      </div>
+      <div className="px-5 py-3 bg-gray-50 dark:bg-gray-800 border-t border-gray-100 dark:border-gray-700 flex justify-between items-center">
+        <div className="flex space-x-2">
+          <div className="h-8 w-8 bg-gray-200 dark:bg-gray-600 rounded-full"></div>
+        </div>
+        <div className="h-4 w-24 bg-gray-200 dark:bg-gray-600 rounded-md"></div>
       </div>
     </div>
   );
