@@ -16,12 +16,12 @@ function Hero() {
             }}></div>
 
             {/* Green gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-b from-green-900/70 via-green-800/60 to-green-700/50"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-green-900/70 via-green-800/60 to-green-700/50 dark:from-green-800/80 dark:via-green-700/70 dark:to-green-600/60"></div>
 
             {/* Decorative elements */}
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
-                <div className="absolute top-20 left-10 w-64 h-64 bg-green-500/10 rounded-full blur-3xl"></div>
-                <div className="absolute bottom-20 right-10 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl"></div>
+                <div className="absolute top-20 left-10 w-64 h-64 bg-green-500/10 dark:bg-green-400/10 rounded-full blur-3xl"></div>
+                <div className="absolute bottom-20 right-10 w-80 h-80 bg-blue-500/10 dark:bg-blue-400/10 rounded-full blur-3xl"></div>
             </div>
 
             {/* Content container */}
@@ -29,16 +29,13 @@ function Hero() {
                 <div className="max-w-4xl mx-auto text-center">
                     {/* Logo or icon (optional) */}
                     <div className="mb-4 sm:mb-6 inline-block">
-                        <PiPlantFill className='text-green-400 w-12 h-12 sm:w-16 sm:h-16 mx-auto' />
-                        {/* <svg className="w-12 h-12 sm:w-16 sm:h-16 mx-auto text-green-400" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M7,2C3.69,2 1,4.69 1,8C1,11.31 3.69,14 7,14C8.54,14 9.94,13.44 11,12.5C12.06,13.44 13.46,14 15,14C18.31,14 21,11.31 21,8C21,4.69 18.31,2 15,2C13.46,2 12.06,2.56 11,3.5C9.94,2.56 8.54,2 7,2M7,4A4,4 0 0,1 11,8A4,4 0 0,1 7,12A4,4 0 0,1 3,8A4,4 0 0,1 7,4M15,4A4,4 0 0,1 19,8A4,4 0 0,1 15,12A4,4 0 0,1 11,8A4,4 0 0,1 15,4M7,16C3.69,16 1,18.69 1,22H13C13,18.69 10.31,16 7,16M15,16C11.69,16 9,18.69 9,22H23C23,18.69 20.31,16 15,16Z" />
-                        </svg> */}
+                        <PiPlantFill className='text-green-400 dark:text-green-300 w-12 h-12 sm:w-16 sm:h-16 mx-auto' />
                     </div>
 
                     {/* Main heading with typewriter effect */}
                     <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-4 sm:mb-6 tracking-tight">
                         <span className="block">{t('heroTitle')}</span>
-                        <span className="block mt-1 sm:mt-2 text-green-400">
+                        <span className="block mt-1 sm:mt-2 text-green-400 dark:text-green-300">
                             <Typewriter
                                 words={t('heroSubtitles', { returnObjects: true })}
                                 loop={true}
@@ -52,7 +49,7 @@ function Hero() {
                     </h1>
 
                     {/* Description */}
-                    <p className="mt-4 sm:mt-6 text-base sm:text-lg md:text-xl lg:text-2xl text-gray-100 max-w-3xl mx-auto leading-relaxed">
+                    <p className="mt-4 sm:mt-6 text-base sm:text-lg md:text-xl lg:text-2xl text-gray-100 dark:text-gray-50 max-w-3xl mx-auto leading-relaxed">
                         {t('heroDescription')}
                     </p>
 
@@ -63,7 +60,7 @@ function Hero() {
                             <Link to="https://crop-mitra.onrender.com" target='_blank' className="block w-full">
                                 <Button
                                     size="lg"
-                                    className="w-full bg-gradient-to-r from-green-500 to-green-600 text-white font-bold text-base sm:text-lg py-4 sm:py-6 px-6 sm:px-8 rounded-xl shadow-lg hover:shadow-green-500/20 hover:scale-105 transition-all duration-300"
+                                    className="w-full bg-gradient-to-r from-green-500 to-green-600 dark:from-green-600 dark:to-green-700 text-white font-bold text-base sm:text-lg py-4 sm:py-6 px-6 sm:px-8 rounded-xl shadow-lg hover:shadow-green-500/20 dark:hover:shadow-green-400/20 hover:scale-105 transition-all duration-300"
                                 >
                                     {t('freeVirtualSoilCheck')}
                                 </Button>
@@ -75,7 +72,7 @@ function Hero() {
                             <Link to="/resources" className="flex-1">
                                 <Button
                                     size="lg"
-                                    className="w-full bg-white/10 backdrop-blur-sm border border-white/20 text-white font-semibold text-sm sm:text-base py-3 sm:py-4 px-4 sm:px-6 rounded-xl hover:bg-white/20 transition-all duration-300"
+                                    className="w-full bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/20 text-white font-semibold text-sm sm:text-base py-3 sm:py-4 px-4 sm:px-6 rounded-xl hover:bg-white/20 dark:hover:bg-white/10 transition-all duration-300"
                                 >
                                     {t('resources')}
                                 </Button>
@@ -83,7 +80,7 @@ function Hero() {
                             <Link to="/community" className="flex-1">
                                 <Button
                                     size="lg"
-                                    className="w-full bg-white/10 backdrop-blur-sm border border-white/20 text-white font-semibold text-sm sm:text-base py-3 sm:py-4 px-4 sm:px-6 rounded-xl hover:bg-white/20 transition-all duration-300"
+                                    className="w-full bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/20 text-white font-semibold text-sm sm:text-base py-3 sm:py-4 px-4 sm:px-6 rounded-xl hover:bg-white/20 dark:hover:bg-white/10 transition-all duration-300"
                                 >
                                     {t('community')}
                                 </Button>
@@ -92,21 +89,21 @@ function Hero() {
                     </div>
 
                     {/* Social proof - Responsive text size and spacing */}
-                    <div className="mt-6 sm:mt-8 md:mt-10 text-gray-200 text-sm sm:text-base md:text-lg px-4">
+                    <div className="mt-6 sm:mt-8 md:mt-10 text-gray-200 dark:text-gray-300 text-sm sm:text-base md:text-lg px-4">
                         {t('joinThousands')}
                     </div>
                 </div>
 
                 {/* Footer text - Moved outside the main content div and positioned with better spacing */}
                 <div className="absolute bottom-6 sm:bottom-10 left-0 right-0 text-center">
-                    <p className="text-xs sm:text-sm md:text-base text-gray-200 px-4">
+                    <p className="text-xs sm:text-sm md:text-base text-gray-200 dark:text-gray-300 px-4">
                         {t('makingAgricultureSmarter')}
                     </p>
 
                     {/* Scroll indicator - Only visible on larger screens */}
                     <div className="hidden sm:flex mt-3 justify-center">
-                        <div className="w-5 h-8 border-2 border-white/60 rounded-full flex justify-center p-1">
-                            <div className="w-1 h-2 bg-white/80 rounded-full animate-bounce"></div>
+                        <div className="w-5 h-8 border-2 border-white/60 dark:border-white/70 rounded-full flex justify-center p-1">
+                            <div className="w-1 h-2 bg-white/80 dark:bg-white/90 rounded-full animate-bounce"></div>
                         </div>
                     </div>
                 </div>

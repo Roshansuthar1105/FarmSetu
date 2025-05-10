@@ -29,12 +29,18 @@ export default function ProductOverview() {
   const { t } = useTranslation();
 
   return (
-    <section className="product-overview py-12 px-6 md:py-24 md:px-12 bg-green-900">
-      <div className="container mx-auto text-center">
-        <h2 className="text-3xl md:text-4xl font-bold mb-8 text-white">
-          {t('productOverview.title')}
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+    <section className="product-overview py-16 px-6 md:py-24 md:px-12 bg-gradient-to-b from-green-900 to-green-800 dark:from-green-800 dark:to-green-900">
+      <div className="container mx-auto">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-5xl font-bold mb-4 text-white">
+            {t('productOverview.title')}
+          </h2>
+          <p className="text-green-100 dark:text-green-50 max-w-2xl mx-auto text-lg">
+            {t('productOverview.subtitle', 'Explore our comprehensive suite of tools designed to revolutionize your farming experience.')}
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
           {features.map((feature, index) => (
             <FeatureCard key={index} feature={feature} />
           ))}
@@ -49,13 +55,13 @@ function FeatureCard({ feature }) {
 
   return (
     <div
-      className="feature-item bg-green-800 p-6 rounded-lg shadow-md transform transition-transform duration-500 hover:scale-105 hover:shadow-xl hover:rotate-2"
+      className="feature-item bg-gradient-to-br from-green-700 to-green-800 dark:from-green-600 dark:to-green-700 p-8 rounded-2xl shadow-xl border border-green-600/30 dark:border-green-500/30 backdrop-blur-sm transform transition-all duration-500 hover:scale-105 hover:shadow-green-500/20 dark:hover:shadow-green-400/20 hover:-translate-y-1"
     >
-      <div className="icon mb-4">
+      <div className="icon mb-6 bg-green-600/20 dark:bg-green-500/20 p-4 inline-block rounded-xl">
         {feature.icon}
       </div>
-      <h3 className="text-xl font-semibold mb-4 text-white">{t(feature.titleKey)}</h3>
-      <p className="text-green-200">{t(feature.descriptionKey)}</p>
+      <h3 className="text-xl font-bold mb-3 text-white">{t(feature.titleKey)}</h3>
+      <p className="text-green-100 dark:text-green-50 leading-relaxed">{t(feature.descriptionKey)}</p>
     </div>
   );
 }
