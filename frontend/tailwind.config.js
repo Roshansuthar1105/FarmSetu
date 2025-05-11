@@ -39,7 +39,11 @@ module.exports = {
         vortex: 'vortex 10s linear infinite',
         shake: 'shake 0.5s cubic-bezier(.36,.07,.19,.97) both',
         blink: 'blink 1.5s infinite',
-        rotate: 'rotate 1s linear infinite', // Added rotate animation
+        rotate: 'rotate 1s linear infinite',
+        'slow-zoom': 'slow-zoom 20s ease-in-out infinite',
+        'slide-up-1': 'slide-up 1s ease-out forwards',
+        'slide-up-2': 'slide-up 1s ease-out 0.2s forwards',
+        'slide-up-3': 'slide-up 1s ease-out 0.4s forwards',
       },
       fontFamily: {
         roboto: ['Roboto', 'sans-serif'],
@@ -86,9 +90,18 @@ module.exports = {
         blink: {
           '50%': { opacity: '0' },
         },
-        rotate: { // Define the rotate keyframes
+        rotate: {
           '0%': { transform: 'rotate(0deg)' },
           '100%': { transform: 'rotate(180deg)' },
+        },
+        'slow-zoom': {
+          '0%': { transform: 'scale(1)' },
+          '50%': { transform: 'scale(1.05)' },
+          '100%': { transform: 'scale(1)' },
+        },
+        'slide-up': {
+          '0%': { transform: 'translateY(30px)', opacity: '0' },
+          '100%': { transform: 'translateY(0)', opacity: '1' },
         },
       },
       animationDelay: {
@@ -109,7 +122,7 @@ module.exports = {
 function addVariablesForColors({ addBase, theme }) {
   // Flatten the color palette from the theme
   const allColors = flattenColorPalette(theme("colors"));
-  
+
   // Create an object with CSS variable names as keys and corresponding color values
   const newVars = Object.fromEntries(
     Object.entries(allColors).map(([key, val]) => [`--${key}`, val])

@@ -23,6 +23,44 @@ const Profile = () => {
     const [weatherData, setWeatherData] = useState(null);
     const [achievements, setAchievements] = useState([]);
     const [recentActivity, setRecentActivity] = useState([]);
+    const colors = [
+        // Cool & Calm Gradients
+        { from: "#6A11CB", to: "#2575FC" },
+        { from: "#00C6FB", to: "#005BEA" },
+        { from: "#0F2027", to: "#2C5364" },
+        { from: "#11998E", to: "#38EF7D" },
+        { from: "#1CB5E0", to: "#000851" },
+      
+        // Vibrant Gradients
+        { from: "#FF9A8B", to: "#FF6B95" },
+        { from: "#FF6B95", to: "#FF8E53" },
+        { from: "#4FACFE", to: "#00F2FE" },
+        { from: "#A18CD1", to: "#FBC2EB" },
+        { from: "#FFD26F", to: "#FF6B6B" },
+      
+        // Warm & Earthy Gradients
+        { from: "#F46B45", to: "#EEA849" },
+        { from: "#FF7E5F", to: "#FEB47B" },
+        { from: "#C33764", to: "#1D2671" },
+        { from: "#E44D26", to: "#F16529" },
+        { from: "#FF9966", to: "#FF5E62" },
+      
+        // Dark & Moody Gradients
+        { from: "#3A1C71", to: "#D76D77" },
+        { from: "#1F1C2C", to: "#928DAB" },
+        { from: "#16222A", to: "#3A6073" },
+        { from: "#232526", to: "#414345" },
+        { from: "#000000", to: "#434343" },
+      
+        // Pastel Gradients
+        { from: "#A1C4FD", to: "#C2E9FB" },
+        { from: "#FFD1FF", to: "#FAD0C4" },
+        { from: "#D4FC79", to: "#96E6A1" },
+        { from: "#FDCBF1", to: "#E6DEE9" },
+        { from: "#E0C3FC", to: "#8EC5FC" }
+      ];
+    const [colorIndex, setColorIndex] = useState(0);
+    const [iseditbg, setIsEditBg] = useState(false);
     const [stats, setStats] = useState({
         posts: 0,
         cartItems: 0,
@@ -148,44 +186,40 @@ const Profile = () => {
             <div className="container mx-auto px-4 py-8">
                 {/* Profile Header */}
                 <div className="bg-white rounded-xl shadow-sm overflow-hidden mb-6">
-                    <div className="h-40 bg-gradient-to-r from-green-600 to-blue-600 relative profile-header-bg">
+                    <div className={`h-40 bg-gradient-to-r  relative profile-header-bg `}
+                        style={{ background: `linear-gradient(to right,${colors[colorIndex].from},${colors[colorIndex].to})` }}
+                    >
                         <button
-                            onClick={() => navigate(`/profile/edit/${authUser?._id}`)}
-                            className="absolute top-4 right-4 bg-white/20 hover:bg-white/30 text-white p-2 rounded-full backdrop-blur-sm transition-all"
+                            onClick={() => setIsEditBg(!iseditbg)}
+                            className="absolute top-4 right-4 bg-black hover:bg-white/30 text-white p-2 rounded-full backdrop-blur-sm transition-all  "
                             title={t('edit_profile_background')}
                         >
                             <BiEdit className="h-5 w-5" />
                         </button>
-
-                        {/* Background Gradient Selector - Shows when edit button is hovered */}
-                        <div className="absolute top-4 right-16 bg-white/20 backdrop-blur-sm p-2 rounded-lg opacity-0 hover:opacity-100 transition-opacity group-hover:opacity-100">
-                            <div className="flex space-x-2">
-                                <button
-                                    onClick={() => document.querySelector('.profile-header-bg').style.background = 'linear-gradient(to right, #047857, #1d4ed8)'}
-                                    className="w-6 h-6 rounded-full bg-gradient-to-r from-green-600 to-blue-600 border-2 border-white/70"
-                                    title={t('default_gradient')}
-                                />
-                                <button
-                                    onClick={() => document.querySelector('.profile-header-bg').style.background = 'linear-gradient(to right, #7e22ce, #2563eb)'}
-                                    className="w-6 h-6 rounded-full bg-gradient-to-r from-purple-700 to-blue-600 border-2 border-white/70"
-                                    title={t('purple_blue_gradient')}
-                                />
-                                <button
-                                    onClick={() => document.querySelector('.profile-header-bg').style.background = 'linear-gradient(to right, #ea580c, #facc15)'}
-                                    className="w-6 h-6 rounded-full bg-gradient-to-r from-orange-600 to-yellow-400 border-2 border-white/70"
-                                    title={t('sunset_gradient')}
-                                />
-                                <button
-                                    onClick={() => document.querySelector('.profile-header-bg').style.background = 'linear-gradient(to right, #0f766e, #0284c7)'}
-                                    className="w-6 h-6 rounded-full bg-gradient-to-r from-teal-600 to-sky-600 border-2 border-white/70"
-                                    title={t('ocean_gradient')}
-                                />
-                            </div>
-                        </div>
+                        {
+                            iseditbg && (
+                                <div className="absolute top-4 right-16 bg-white/20 backdrop-blur-sm p-2 rounded-lg opacity-100">
+                                    {
+                                        colors.map((color, index) => {
+                                            return (
+                                                <button
+                                                    key={index}
+                                                    onClick={() => {document.querySelector('.profile-header-bg').style.background = `linear-gradient(to right,${color.from},${color.to})`;setIsEditBg(false);setColorIndex(index);} }
+                                                    className={`w-6 h-6 rounded-full bg-gradient-to-r from-${color.from} to-${color.to} border-2 border-white/70`}
+                                                    style={{background : `linear-gradient(to right,${color.from},${color.to} )`}}
+                                                    title={t('default_gradient')}
+                                                />)
+                                        })
+                                    }
+                                </div>
+                            )
+                        }
                     </div>
                     <div className="flex flex-col md:flex-row px-6 py-4 relative">
                         <div className="absolute -top-16 left-6 md:left-6">
-                            <div className="relative group">
+                            <div className="relative group rounded-full "
+                            style={{ background: `linear-gradient(to right,${colors[colorIndex].from},${colors[colorIndex].to})` }}
+                            >
                                 <img
                                     src={authUser?.avatar || "https://cdn-icons-png.flaticon.com/128/1154/1154966.png"}
                                     alt="Profile"
@@ -219,61 +253,55 @@ const Profile = () => {
                         <div className="flex overflow-x-auto space-x-2 py-2">
                             <button
                                 onClick={() => handleTabChange('overview')}
-                                className={`px-3 py-2 text-xs sm:text-sm font-medium rounded-md whitespace-nowrap transition-colors ${
-                                    activeTab === 'overview'
+                                className={`px-3 py-2 text-xs sm:text-sm font-medium rounded-md whitespace-nowrap transition-colors ${activeTab === 'overview'
                                         ? 'bg-green-50 text-green-700'
                                         : 'text-gray-600 hover:text-gray-900'
-                                }`}
+                                    }`}
                             >
                                 <MdDashboard className="inline mr-1" /> {t('overview')}
                             </button>
                             <button
                                 onClick={() => handleTabChange('personal')}
-                                className={`px-3 py-2 text-xs sm:text-sm font-medium rounded-md whitespace-nowrap transition-colors ${
-                                    activeTab === 'personal'
+                                className={`px-3 py-2 text-xs sm:text-sm font-medium rounded-md whitespace-nowrap transition-colors ${activeTab === 'personal'
                                         ? 'bg-green-50 text-green-700'
                                         : 'text-gray-600 hover:text-gray-900'
-                                }`}
+                                    }`}
                             >
                                 <GrContactInfo className="inline mr-1" /> {t('personal_information')}
                             </button>
                             <button
                                 onClick={() => handleTabChange('activity')}
-                                className={`px-3 py-2 text-xs sm:text-sm font-medium rounded-md whitespace-nowrap transition-colors ${
-                                    activeTab === 'activity'
+                                className={`px-3 py-2 text-xs sm:text-sm font-medium rounded-md whitespace-nowrap transition-colors ${activeTab === 'activity'
                                         ? 'bg-green-50 text-green-700'
                                         : 'text-gray-600 hover:text-gray-900'
-                                }`}
+                                    }`}
                             >
                                 <MdTrendingUp className="inline mr-1" /> {t('activity')}
                             </button>
                             <button
                                 onClick={() => handleTabChange('achievements')}
-                                className={`px-3 py-2 text-xs sm:text-sm font-medium rounded-md whitespace-nowrap transition-colors ${
-                                    activeTab === 'achievements'
+                                className={`px-3 py-2 text-xs sm:text-sm font-medium rounded-md whitespace-nowrap transition-colors ${activeTab === 'achievements'
                                         ? 'bg-green-50 text-green-700'
                                         : 'text-gray-600 hover:text-gray-900'
-                                }`}
+                                    }`}
                             >
                                 <FaAward className="inline mr-1" /> {t('achievements')}
                             </button>
                             <button
                                 onClick={() => handleTabChange('stats')}
-                                className={`px-3 py-2 text-xs sm:text-sm font-medium rounded-md whitespace-nowrap transition-colors ${
-                                    activeTab === 'stats'
+                                className={`px-3 py-2 text-xs sm:text-sm font-medium rounded-md whitespace-nowrap transition-colors ${activeTab === 'stats'
                                         ? 'bg-green-50 text-green-700'
                                         : 'text-gray-600 hover:text-gray-900'
-                                }`}
+                                    }`}
                             >
                                 <IoStatsChart className="inline mr-1" /> {t('statistics')}
                             </button>
                             <button
                                 onClick={() => handleTabChange('settings')}
-                                className={`px-3 py-2 text-xs sm:text-sm font-medium rounded-md whitespace-nowrap transition-colors ${
-                                    activeTab === 'settings'
+                                className={`px-3 py-2 text-xs sm:text-sm font-medium rounded-md whitespace-nowrap transition-colors ${activeTab === 'settings'
                                         ? 'bg-green-50 text-green-700'
                                         : 'text-gray-600 hover:text-gray-900'
-                                }`}
+                                    }`}
                             >
                                 <IoSettingsSharp className="inline mr-1" /> {t('account_settings')}
                             </button>
@@ -613,7 +641,7 @@ const Profile = () => {
                                                     <span className="text-sm text-gray-600">{stats.posts}/10</span>
                                                 </div>
                                                 <div className="w-full bg-gray-200 rounded-full h-2">
-                                                    <div className="bg-blue-500 h-2 rounded-full" style={{ width: `${(stats.posts/10)*100}%` }}></div>
+                                                    <div className="bg-blue-500 h-2 rounded-full" style={{ width: `${(stats.posts / 10) * 100}%` }}></div>
                                                 </div>
                                             </div>
 
@@ -623,7 +651,7 @@ const Profile = () => {
                                                     <span className="text-sm text-gray-600">{stats.productsViewed}/50</span>
                                                 </div>
                                                 <div className="w-full bg-gray-200 rounded-full h-2">
-                                                    <div className="bg-green-500 h-2 rounded-full" style={{ width: `${(stats.productsViewed/50)*100}%` }}></div>
+                                                    <div className="bg-green-500 h-2 rounded-full" style={{ width: `${(stats.productsViewed / 50) * 100}%` }}></div>
                                                 </div>
                                             </div>
 
@@ -633,7 +661,7 @@ const Profile = () => {
                                                     <span className="text-sm text-gray-600">{stats.commentsReceived}/20</span>
                                                 </div>
                                                 <div className="w-full bg-gray-200 rounded-full h-2">
-                                                    <div className="bg-purple-500 h-2 rounded-full" style={{ width: `${(stats.commentsReceived/20)*100}%` }}></div>
+                                                    <div className="bg-purple-500 h-2 rounded-full" style={{ width: `${(stats.commentsReceived / 20) * 100}%` }}></div>
                                                 </div>
                                             </div>
                                         </div>
