@@ -245,14 +245,17 @@ const Testimonials = () => {
                           src={`https://placehold.co/600/fefefe/285231/png?font=roboto&text=${testimonial.name.charAt(0)}`}
                           alt={testimonial.name}
                         />
-                        <div className="absolute -bottom-1 -right-1 bg-green-500 dark:bg-green-400 rounded-full w-4 h-4 flex items-center justify-center">
+                        <div className="absolute -bottom-0 right-3 bg-green-500 dark:bg-green-400 rounded-full w-4 h-4 flex items-center justify-center">
                           <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                           </svg>
                         </div>
                       </div>
                       <div>
-                        <h3 className="text-lg font-bold text-green-400 dark:text-green-300">{testimonial.name}</h3>
+                        <h3 className="text-lg font-bold text-green-400 dark:text-green-300">
+                          {testimonial.name}
+                        </h3>
+
                         <p className="text-sm text-gray-400 dark:text-gray-300">{testimonial.handle}</p>
                       </div>
                     </div>
