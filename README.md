@@ -18,7 +18,7 @@ Farm Setu is a revolutionary platform designed to empower farmers by providing e
   - [📊 Real-Time Market Data](#-real-time-market-data)
   - [☁️ Weather Updates](#️-weather-updates)
   - [🤖 Chatbot Assistant](#-chatbot-assistant)
-- [💻 Technologies Used 🛠️](#-technologies-used-)
+- [💻 Technologies Used 🛠️](#-technologies-used)
 - [🖼️ Preview](#️-preview)
 - [📂 Project Structure 🏗️](#-project-structure-)
 - [🚀 Installation Guide ⚙️](#-installation-guide-)
@@ -693,12 +693,16 @@ If you discover a security vulnerability, please send an email to security@farms
 
 ## 👥 **Team (Strikers)** 🌟
 
-- **Ajay Mehta**: Data Scientist
+<!-- - **Ajay Mehta**: Data Scientist
 - **Himanshu Gahlot**: Frontend Developer
 - **Ravi Kant Chaudhary**: App Developer, Data Scientist, UI/UX Designer
 - **Rishab Chaudhary**: Unit Tester
 - **Rishi Soni**: Full Stack Developer, Prompt Engineer
+- **Roshan Suthar**: Full Stack Developer -->
 - **Roshan Suthar**: Full Stack Developer
+- **Himanshu Gahlot**: Frontend Developer
+- **Shreya Kumari**: Frontend/ML Developer
+- **Rupesh Kumar**: Quality Analyst
 
 ---
 
