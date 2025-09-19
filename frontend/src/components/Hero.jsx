@@ -57,7 +57,7 @@ function Hero() {
                     <div className="mt-6 sm:mt-8 md:mt-10 flex flex-col items-center justify-center">
                         {/* Primary CTA */}
                         <div className="w-full max-w-xs sm:max-w-md mb-4">
-                            <Link to="https://crop-mitra.onrender.com" target='_blank' className="block w-full">
+                            <Link to="https://agripredict-fs3w.onrender.com/predict" target='_blank' className="block w-full">
                                 <Button
                                     size="lg"
                                     className="w-full bg-gradient-to-r from-green-500 to-green-600 dark:from-green-600 dark:to-green-700 text-white font-bold text-base sm:text-lg py-4 sm:py-6 px-6 sm:px-8 rounded-xl shadow-lg hover:shadow-green-500/20 dark:hover:shadow-green-400/20 hover:scale-105 transition-all duration-300"
@@ -65,6 +65,14 @@ function Hero() {
                                     {t('freeVirtualSoilCheck')}
                                 </Button>
                             </Link>
+                            {/* <Link to="https://crop-mitra.onrender.com" target='_blank' className="block w-full">
+                                <Button
+                                    size="lg"
+                                    className="w-full bg-gradient-to-r from-green-500 to-green-600 dark:from-green-600 dark:to-green-700 text-white font-bold text-base sm:text-lg py-4 sm:py-6 px-6 sm:px-8 rounded-xl shadow-lg hover:shadow-green-500/20 dark:hover:shadow-green-400/20 hover:scale-105 transition-all duration-300"
+                                >
+                                    {t('freeVirtualSoilCheck')}
+                                </Button>
+                            </Link> */}
                         </div>
 
                         {/* Secondary CTAs */}

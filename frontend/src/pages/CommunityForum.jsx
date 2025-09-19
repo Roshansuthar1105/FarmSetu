@@ -3,6 +3,7 @@ import postsData from '../data/posts.json'; // Import the posts JSON file
 import { Card, CardBody } from '@nextui-org/react';
 import { useAuthContext } from '../context/AuthContext';
 import { useTranslation } from 'react-i18next';
+import toast from 'react-hot-toast';
 
 const CommunityForum = () => {
   const {t}=useTranslation();
@@ -160,7 +161,7 @@ const CommunityForum = () => {
 
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-1">{t('post_title')}</label>
+                  <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-1 ">{t('post_title')}</label>
                   <input
                     type="text"
                     id="title"
@@ -168,7 +169,7 @@ const CommunityForum = () => {
                     value={newPost.title}
                     onChange={handleInputChange}
                     placeholder={t('postTitlePlaceholder')}
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors"
+                    className="w-full p-3 border bg-gray-200 border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors"
                     required
                   />
                 </div>
@@ -181,7 +182,7 @@ const CommunityForum = () => {
                     value={newPost.message}
                     onChange={handleInputChange}
                     placeholder={t('writeYourExperiencePlaceholder')}
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors"
+                    className="w-full p-3 border bg-gray-200 border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors"
                     rows="6"
                     required
                   />
