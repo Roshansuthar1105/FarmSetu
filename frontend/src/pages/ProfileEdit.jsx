@@ -43,9 +43,9 @@ function ProfileEdit() {
   }, [authUser])
   return (
     <>
-      <div className='w-full min-h-screen bg-gray-800 py-20'>
+      <div className='w-full min-h-screen bg-gradient-to-b from-slate-700 to-slate-900 py-20'>
         <h2 className='text-white text-4xl text-center font-semibold'>{t('edit_profile')} </h2>
-        <form onSubmit={(e) => handleSubmit(e)} className="max-w-4xl mx-auto m-10 bg-white p-4 rounded-md ">
+        <form onSubmit={(e) => handleSubmit(e)} className="max-w-4xl mx-auto m-10 bg-gray-800 p-4 rounded-md ">
           <div className="mb-4">
             <Label htmlFor="name">{t('name')}</Label>
             <Input
