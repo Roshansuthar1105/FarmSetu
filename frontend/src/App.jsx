@@ -54,8 +54,8 @@ import i18n from './i18.js';
 
 const LoadingComponent = () => {
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-200 ">
-      <div className="w-16 h-16 border-8 border-t-8 border-green-800 border-t-transparent rounded-full animate-spin"></div>
+    <div className="flex justify-center items-center h-screen bg-gray-900 ">
+      <div className="w-16 h-16 border-8 border-t-8 border-green-600 border-t-transparent rounded-full animate-spin"></div>
     </div>
   );
 };

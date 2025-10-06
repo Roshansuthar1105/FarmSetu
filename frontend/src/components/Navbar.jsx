@@ -289,6 +289,7 @@ export default function Navbar() {
                     lang.map((e)=>{
                       return(
                   <button
+                        key={e.value}
                     onClick={() => changeLanguage(e.value)}
                     className="flex items-center w-full px-3 py-1.5 text-xs text-white hover:bg-gray-500"
                   >

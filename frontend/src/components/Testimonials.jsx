@@ -242,7 +242,7 @@ const Testimonials = () => {
                       <div className="relative">
                         <img
                           className="w-12 h-12 rounded-full mr-4 border-2 border-green-500/50 dark:border-green-400/50 object-cover"
-                          src={`https://placehold.co/600/fefefe/285231/png?font=roboto&text=${testimonial.name.charAt(0)}`}
+                          src={`https://placehold.co/600/374151/14a333/png?font=roboto&text=${testimonial.name.charAt(0)}`}
                           alt={testimonial.name}
                         />
                         <div className="absolute -bottom-0 right-3 bg-green-500 dark:bg-green-400 rounded-full w-4 h-4 flex items-center justify-center">
