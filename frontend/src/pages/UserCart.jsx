@@ -111,15 +111,15 @@ function UserCart() {
                 </div>
 
                 {cart.length === 0 ? (
-                    <div className="bg-white rounded-xl shadow-sm p-8 text-center">
-                        <div className="w-16 h-16 mx-auto mb-4 bg-gray-100 rounded-full flex items-center justify-center">
-                            <IoCartOutline className="h-8 w-8 text-gray-400" />
+                    <div className="bg-slate-700 rounded-xl shadow-sm p-8 text-center">
+                        <div className="w-16 h-16 mx-auto mb-4 bg-gray-600 rounded-full flex items-center justify-center">
+                            <IoCartOutline className="h-8 w-8 text-gray-100" />
                         </div>
                         <h2 className="text-xl font-bold mb-2 text-gray-100">{t('empty_cart')}</h2>
-                        <p className="text-gray-600 mb-6">{t('empty_cart_message')}</p>
+                        <p className="text-gray-300 mb-6">{t('empty_cart_message')}</p>
                         <button
-                            onClick={() => window.location.href = '/marketplace'}
-                            className="inline-flex items-center px-4 py-2 bg-green-600 text-gray-800 rounded-lg hover:bg-green-700 transition-colors"
+                            onClick={() => window.location.href = '/farmermarketplace'}
+                            className="inline-flex items-center px-4 py-2 bg-green-500 text-gray-800 rounded-lg hover:bg-green-700 transition-colors"
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
                                 <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
@@ -141,7 +141,7 @@ function UserCart() {
                                         <div className="absolute top-0 right-0 m-2">
                                             <button
                                                 onClick={() => removeproduct(product._id)}
-                                                className="bg-white/80 hover:bg-white text-red-500 p-2 rounded-full shadow-sm transition-colors"
+                                                className="bg-gray-700 hover:bg-gray-800 text-red-500 p-2 rounded-full shadow-sm transition-colors"
                                                 title={t('remove_from_cart')}
                                             >
                                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
