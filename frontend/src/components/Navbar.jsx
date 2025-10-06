@@ -206,12 +206,12 @@ export default function Navbar() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
                 </svg>
               </button>
-              <div className="absolute right-0 top-full mt-1 w-48 bg-gray-800 rounded-md overflow-hidden shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+              <div className="absolute right-0 top-full mt-1 w-48 bg-gray-700 rounded-md overflow-hidden shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
                 {links2.slice(5).map((link, index) => (
                   <Link
                     key={index}
                     to={link.to}
-                    className={`block px-3 py-1.5 text-xs text-white bg-gray-800 hover:bg-gray-700 ${
+                    className={`block px-3 py-1.5 text-xs text-white bg-gray-700 hover:bg-gray-600 ${
                       isActive(link.to) ? "bg-gray-800" : ""
                     }`}
                   >
