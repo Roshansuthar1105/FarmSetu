@@ -165,8 +165,8 @@ const RealTimeMarket = () => {
 
       // Generate market insights
       generateMarketInsights(selectedTicker);
-
       setIsLoading(false);
+      setActiveTab('charts');
     }, 800);
   };
 
@@ -1124,7 +1124,7 @@ const RealTimeMarket = () => {
                                 key={colIndex}
                                 className="border border-gray-600 p-3"
                               >
-                                {formatValue(item[col.accessor], col.accessor)}
+                                {item[col.accessor]}
                               </td>
                             ))}
                           </tr>
