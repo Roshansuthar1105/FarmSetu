@@ -170,35 +170,35 @@ const Profile = () => {
 
     if (isLoading) {
         return (
-            <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 pt-20 flex items-center justify-center">
+            <div className="min-h-screen bg-gradient-to-b from-slate-800 to-slate-900 pt-20 flex items-center justify-center">
                 <div className="animate-pulse flex flex-col items-center">
-                    <div className="rounded-full bg-gray-300 h-32 w-32 mb-4"></div>
-                    <div className="h-6 bg-gray-300 rounded w-48 mb-2"></div>
-                    <div className="h-4 bg-gray-300 rounded w-64 mb-8"></div>
-                    <div className="h-40 bg-gray-300 rounded w-full max-w-md"></div>
+                    <div className="rounded-full bg-gray-600 h-32 w-32 mb-4"></div>
+                    <div className="h-6 bg-gray-600 rounded w-48 mb-2"></div>
+                    <div className="h-4 bg-gray-600 rounded w-64 mb-8"></div>
+                    <div className="h-40 bg-gray-600 rounded w-full max-w-md"></div>
                 </div>
             </div>
         );
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 pt-20">
+        <div className="min-h-screen bg-gradient-to-b from-slate-800 to-slate-900 pt-20">
             <div className="container mx-auto px-4 py-8">
                 {/* Profile Header */}
-                <div className="bg-white rounded-xl shadow-sm overflow-hidden mb-6">
+                <div className="bg-gray-800 rounded-xl shadow-sm overflow-hidden mb-6">
                     <div className={`h-40 bg-gradient-to-r  relative profile-header-bg `}
                         style={{ background: `linear-gradient(to right,${colors[colorIndex].from},${colors[colorIndex].to})` }}
                     >
                         <button
                             onClick={() => setIsEditBg(!iseditbg)}
-                            className="absolute top-4 right-4 bg-black hover:bg-white/30 text-white p-2 rounded-full backdrop-blur-sm transition-all  "
+                            className="absolute top-4 right-4 bg-black hover:bg-gray-800/30 text-white p-2 rounded-full backdrop-blur-sm transition-all  "
                             title={t('edit_profile_background')}
                         >
                             <BiEdit className="h-5 w-5" />
                         </button>
                         {
                             iseditbg && (
-                                <div className="absolute top-4 right-16 bg-white/20 backdrop-blur-sm p-2 rounded-lg opacity-100">
+                                <div className="absolute top-4 right-16 bg-gray-800/20 backdrop-blur-sm p-2 rounded-lg opacity-100">
                                     {
                                         colors.map((color, index) => {
                                             return (
@@ -223,10 +223,10 @@ const Profile = () => {
                                 <img
                                     src={authUser?.avatar || "https://cdn-icons-png.flaticon.com/128/1154/1154966.png"}
                                     alt="Profile"
-                                    className="w-24 h-24 md:w-32 md:h-32 rounded-full border-4 border-white shadow-md object-cover"
+                                    className="w-24 h-24 md:w-32 md:h-32 rounded-full border-4 border-gray-800 shadow-md object-cover"
                                 />
                                 <button
-                                    className="bg-white text-green-600 p-1.5 rounded-full absolute bottom-1 right-1 opacity-0 group-hover:opacity-100 transition-opacity shadow-sm"
+                                    className="bg-gray-800 text-green-600 p-1.5 rounded-full absolute bottom-1 right-1 opacity-0 group-hover:opacity-100 transition-opacity shadow-sm"
                                     onClick={() => navigate(`/profile/edit/${authUser?._id}`)}
                                 >
                                     <BiEdit className="h-4 w-4" />
@@ -234,14 +234,14 @@ const Profile = () => {
                             </div>
                         </div>
                         <div className="mt-16 md:mt-0 md:ml-36">
-                            <h1 className="text-2xl md:text-3xl font-bold text-gray-800">
+                            <h1 className="text-2xl md:text-3xl font-bold text-gray-100">
                                 {authUser?.name?.charAt(0).toUpperCase() + authUser?.name?.slice(1)}
                             </h1>
-                            <p className="text-gray-500 flex items-center mt-1">
+                            <p className="text-gray-300 flex items-center mt-1">
                                 <FaBriefcase className="mr-2 text-green-600" />
                                 <span className="capitalize">{authUser?.role || 'User'}</span>
                             </p>
-                            <p className="text-gray-500 flex items-center mt-1">
+                            <p className="text-gray-300 flex items-center mt-1">
                                 <FaCalendarDays className="mr-2 text-green-600" />
                                 <span>{t('member_since')}: {formatDate(authUser?.createdAt)}</span>
                             </p>
@@ -249,13 +249,13 @@ const Profile = () => {
                     </div>
 
                     {/* Navigation Tabs */}
-                    <div className="border-t border-gray-200 px-6">
+                    <div className="border-t border-gray-500  px-6">
                         <div className="flex overflow-x-auto space-x-2 py-2">
                             <button
                                 onClick={() => handleTabChange('overview')}
                                 className={`px-3 py-2 text-xs sm:text-sm font-medium rounded-md whitespace-nowrap transition-colors ${activeTab === 'overview'
                                         ? 'bg-green-50 text-green-700'
-                                        : 'text-gray-600 hover:text-gray-900'
+                                        : 'text-gray-300 hover:text-white'
                                     }`}
                             >
                                 <MdDashboard className="inline mr-1" /> {t('overview')}
@@ -264,7 +264,7 @@ const Profile = () => {
                                 onClick={() => handleTabChange('personal')}
                                 className={`px-3 py-2 text-xs sm:text-sm font-medium rounded-md whitespace-nowrap transition-colors ${activeTab === 'personal'
                                         ? 'bg-green-50 text-green-700'
-                                        : 'text-gray-600 hover:text-gray-900'
+                                        : 'text-gray-300 hover:text-white'
                                     }`}
                             >
                                 <GrContactInfo className="inline mr-1" /> {t('personal_information')}
@@ -273,7 +273,7 @@ const Profile = () => {
                                 onClick={() => handleTabChange('activity')}
                                 className={`px-3 py-2 text-xs sm:text-sm font-medium rounded-md whitespace-nowrap transition-colors ${activeTab === 'activity'
                                         ? 'bg-green-50 text-green-700'
-                                        : 'text-gray-600 hover:text-gray-900'
+                                        : 'text-gray-300 hover:text-white'
                                     }`}
                             >
                                 <MdTrendingUp className="inline mr-1" /> {t('activity')}
@@ -282,7 +282,7 @@ const Profile = () => {
                                 onClick={() => handleTabChange('achievements')}
                                 className={`px-3 py-2 text-xs sm:text-sm font-medium rounded-md whitespace-nowrap transition-colors ${activeTab === 'achievements'
                                         ? 'bg-green-50 text-green-700'
-                                        : 'text-gray-600 hover:text-gray-900'
+                                        : 'text-gray-300 hover:text-white'
                                     }`}
                             >
                                 <FaAward className="inline mr-1" /> {t('achievements')}
@@ -291,7 +291,7 @@ const Profile = () => {
                                 onClick={() => handleTabChange('stats')}
                                 className={`px-3 py-2 text-xs sm:text-sm font-medium rounded-md whitespace-nowrap transition-colors ${activeTab === 'stats'
                                         ? 'bg-green-50 text-green-700'
-                                        : 'text-gray-600 hover:text-gray-900'
+                                        : 'text-gray-300 hover:text-white'
                                     }`}
                             >
                                 <IoStatsChart className="inline mr-1" /> {t('statistics')}
@@ -300,7 +300,7 @@ const Profile = () => {
                                 onClick={() => handleTabChange('settings')}
                                 className={`px-3 py-2 text-xs sm:text-sm font-medium rounded-md whitespace-nowrap transition-colors ${activeTab === 'settings'
                                         ? 'bg-green-50 text-green-700'
-                                        : 'text-gray-600 hover:text-gray-900'
+                                        : 'text-gray-300 hover:text-white'
                                     }`}
                             >
                                 <IoSettingsSharp className="inline mr-1" /> {t('account_settings')}
@@ -314,18 +314,18 @@ const Profile = () => {
                     {/* Left Sidebar - Always visible */}
                     <div className="md:col-span-1">
                         {/* Contact Information */}
-                        <div className="bg-white rounded-xl shadow-sm p-6 mb-6">
-                            <h2 className="text-lg font-semibold text-gray-800 mb-4">{t('contact_information')}</h2>
+                        <div className="bg-gray-800 rounded-xl shadow-sm p-6 mb-6">
+                            <h2 className="text-lg font-semibold text-gray-100 mb-4">{t('contact_information')}</h2>
                             <div className="space-y-3">
-                                <p className="flex items-center text-gray-600">
+                                <p className="flex items-center text-gray-300">
                                     <FaEnvelope className="mr-3 text-green-600" />
                                     <span>{authUser?.email}</span>
                                 </p>
-                                <p className="flex items-center text-gray-600">
+                                <p className="flex items-center text-gray-300">
                                     <FaPhone className="mr-3 text-green-600" />
                                     <span>{authUser?.phone || '+91 98765 43210'}</span>
                                 </p>
-                                <p className="flex items-center text-gray-600">
+                                <p className="flex items-center text-gray-300">
                                     <FaMapMarkerAlt className="mr-3 text-green-600" />
                                     <span>{authUser?.location || 'India'}</span>
                                 </p>
@@ -345,22 +345,22 @@ const Profile = () => {
                                     </div>
                                 </div>
                                 <div className="mt-4 grid grid-cols-2 gap-2 text-sm">
-                                    <div className="bg-white/10 rounded-lg p-2 backdrop-blur-sm">
+                                    <div className="bg-gray-800/10 rounded-lg p-2 backdrop-blur-sm">
                                         <p className="text-blue-100">{t('condition')}</p>
                                         <p className="font-medium">{weatherData.condition}</p>
                                     </div>
-                                    <div className="bg-white/10 rounded-lg p-2 backdrop-blur-sm">
+                                    <div className="bg-gray-800/10 rounded-lg p-2 backdrop-blur-sm">
                                         <p className="text-blue-100">{t('humidity')}</p>
                                         <p className="font-medium">{weatherData.humidity}%</p>
                                     </div>
-                                    <div className="bg-white/10 rounded-lg p-2 backdrop-blur-sm col-span-2">
+                                    <div className="bg-gray-800/10 rounded-lg p-2 backdrop-blur-sm col-span-2">
                                         <p className="text-blue-100">{t('wind_speed')}</p>
                                         <p className="font-medium">{weatherData.windSpeed} km/h</p>
                                     </div>
                                 </div>
                                 <button
                                     onClick={() => navigate('/weather')}
-                                    className="mt-4 w-full bg-white/20 hover:bg-white/30 text-white py-2 rounded-lg transition text-sm flex items-center justify-center"
+                                    className="mt-4 w-full bg-gray-800/20 hover:bg-gray-800/30 text-white py-2 rounded-lg transition text-sm flex items-center justify-center"
                                 >
                                     <FaEarthAsia className="mr-2" /> {t('view_detailed_forecast')}
                                 </button>
@@ -368,38 +368,38 @@ const Profile = () => {
                         )}
 
                         {/* Quick Actions */}
-                        <div className="bg-white rounded-xl shadow-sm p-6">
-                            <h2 className="text-lg font-semibold text-gray-800 mb-4">{t('quick_actions')}</h2>
+                        <div className="bg-gray-800 rounded-xl shadow-sm p-6">
+                            <h2 className="text-lg font-semibold text-gray-100 mb-4">{t('quick_actions')}</h2>
                             <div className="space-y-2">
                                 <button
                                     onClick={() => navigate(`/profile/edit/${authUser?._id}`)}
-                                    className="w-full bg-gray-100 text-gray-700 py-2 px-3 rounded-lg hover:bg-gray-200 transition flex items-center text-sm"
+                                    className="w-full bg-gray-700 text-gray-100 py-2 px-3 rounded-lg hover:bg-gray-600 transition flex items-center text-sm"
                                 >
                                     <BiSolidMessageSquareEdit className="mr-2 text-green-600" /> {t('edit_profile')}
                                 </button>
                                 <button
                                     onClick={() => navigate(`/profile/cart/${authUser?._id}`)}
-                                    className="w-full bg-gray-100 text-gray-700 py-2 px-3 rounded-lg hover:bg-gray-200 transition flex items-center text-sm"
+                                    className="w-full bg-gray-700 text-gray-100 py-2 px-3 rounded-lg hover:bg-gray-600 transition flex items-center text-sm"
                                 >
                                     <FaShoppingCart className="mr-2 text-green-600" /> {t('your_cart')}
                                 </button>
                                 <button
                                     onClick={() => navigate(`/profile/posts/${authUser?._id}`)}
-                                    className="w-full bg-gray-100 text-gray-700 py-2 px-3 rounded-lg hover:bg-gray-200 transition flex items-center text-sm"
+                                    className="w-full bg-gray-700 text-gray-100 py-2 px-3 rounded-lg hover:bg-gray-600 transition flex items-center text-sm"
                                 >
                                     <FaMessage className="mr-2 text-green-600" /> {t('your_posts')}
                                 </button>
                                 {authUser?.role === 'seller' && (
                                     <button
                                         onClick={() => navigate("/profile/products/add")}
-                                        className="w-full bg-gray-100 text-gray-700 py-2 px-3 rounded-lg hover:bg-gray-200 transition flex items-center text-sm"
+                                        className="w-full bg-gray-700 text-gray-100 py-2 px-3 rounded-lg hover:bg-gray-600 transition flex items-center text-sm"
                                     >
                                         <HiViewGrid className="mr-2 text-green-600" /> {t('add_new_product')}
                                     </button>
                                 )}
                                 <button
                                     onClick={() => navigate('/chat')}
-                                    className="w-full bg-gray-100 text-gray-700 py-2 px-3 rounded-lg hover:bg-gray-200 transition flex items-center text-sm"
+                                    className="w-full bg-gray-700 text-gray-100 py-2 px-3 rounded-lg hover:bg-gray-600 transition flex items-center text-sm"
                                 >
                                     <FaUserFriends className="mr-2 text-green-600" /> {t('chat_with_experts')}
                                 </button>
@@ -410,54 +410,54 @@ const Profile = () => {
                     {/* Main Content Area - Changes based on active tab */}
                     <div className="md:col-span-2">
                         {activeTab === 'overview' && (
-                            <div className="bg-white rounded-xl shadow-sm p-6">
-                                <h2 className="text-xl font-semibold text-gray-800 mb-4">{t('account_overview')}</h2>
+                            <div className="bg-gray-800 rounded-xl shadow-sm p-6">
+                                <h2 className="text-xl font-semibold text-gray-100 mb-4">{t('account_overview')}</h2>
 
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-                                    <div className="bg-blue-50 rounded-lg p-4">
+                                    <div className="bg-blue-700/20 rounded-lg p-4">
                                         <div className="flex items-center justify-between">
                                             <div>
-                                                <p className="text-blue-700 font-medium">{t('your_posts')}</p>
-                                                <p className="text-2xl font-bold text-gray-800">{stats.posts}</p>
+                                                <p className="text-blue-500 font-medium">{t('your_posts')}</p>
+                                                <p className="text-2xl font-bold text-gray-100">{stats.posts}</p>
                                             </div>
                                             <FaMessage className="text-blue-500 text-3xl" />
                                         </div>
                                     </div>
 
-                                    <div className="bg-green-50 rounded-lg p-4">
+                                    <div className="bg-green-700/20 rounded-lg p-4">
                                         <div className="flex items-center justify-between">
                                             <div>
-                                                <p className="text-green-700 font-medium">{t('cart_items')}</p>
-                                                <p className="text-2xl font-bold text-gray-800">{stats.cartItems}</p>
+                                                <p className="text-green-500 font-medium">{t('cart_items')}</p>
+                                                <p className="text-2xl font-bold text-gray-100">{stats.cartItems}</p>
                                             </div>
                                             <FaShoppingCart className="text-green-500 text-3xl" />
                                         </div>
                                     </div>
 
-                                    <div className="bg-purple-50 rounded-lg p-4">
+                                    <div className="bg-purple-700/20 rounded-lg p-4">
                                         <div className="flex items-center justify-between">
                                             <div>
-                                                <p className="text-purple-700 font-medium">{t('products_viewed')}</p>
-                                                <p className="text-2xl font-bold text-gray-800">{stats.productsViewed}</p>
+                                                <p className="text-purple-500 font-medium">{t('products_viewed')}</p>
+                                                <p className="text-2xl font-bold text-gray-100">{stats.productsViewed}</p>
                                             </div>
                                             <FaClipboardCheck className="text-purple-500 text-3xl" />
                                         </div>
                                     </div>
 
-                                    <div className="bg-yellow-50 rounded-lg p-4">
+                                    <div className="bg-yellow-700/20 rounded-lg p-4">
                                         <div className="flex items-center justify-between">
                                             <div>
-                                                <p className="text-yellow-700 font-medium">{t('comments')}</p>
-                                                <p className="text-2xl font-bold text-gray-800">{stats.commentsReceived}</p>
+                                                <p className="text-yellow-500 font-medium">{t('comments')}</p>
+                                                <p className="text-2xl font-bold text-gray-100">{stats.commentsReceived}</p>
                                             </div>
                                             <FaRegComment className="text-yellow-500 text-3xl" />
                                         </div>
                                     </div>
                                 </div>
 
-                                <div className="border-t border-gray-200 pt-6 mb-6">
+                                <div className="border-t border-gray-500  pt-6 mb-6">
                                     <div className="flex justify-between items-center mb-4">
-                                        <h3 className="text-lg font-semibold text-gray-800">{t('recent_activity')}</h3>
+                                        <h3 className="text-lg font-semibold text-gray-100">{t('recent_activity')}</h3>
                                         <button
                                             onClick={() => handleTabChange('activity')}
                                             className="text-sm text-green-600 hover:text-green-800"
@@ -469,27 +469,27 @@ const Profile = () => {
                                     {recentActivity.length > 0 ? (
                                         <div className="space-y-3">
                                             {recentActivity.slice(0, 3).map(activity => (
-                                                <div key={activity.id} className="bg-gray-50 rounded-lg p-3 flex items-start">
-                                                    <div className="bg-white p-2 rounded-full mr-3">
+                                                <div key={activity.id} className="bg-gray-700/20 rounded-lg p-3 flex items-start">
+                                                    <div className="bg-gray-800 p-2 rounded-full mr-3">
                                                         {activity.icon}
                                                     </div>
                                                     <div>
-                                                        <p className="text-gray-800">{activity.message}</p>
-                                                        <p className="text-xs text-gray-500">{formatRelativeTime(activity.date)}</p>
+                                                        <p className="text-gray-100">{activity.message}</p>
+                                                        <p className="text-xs text-gray-300">{formatRelativeTime(activity.date)}</p>
                                                     </div>
                                                 </div>
                                             ))}
                                         </div>
                                     ) : (
-                                        <div className="bg-gray-50 rounded-lg p-4 text-center text-gray-500">
+                                        <div className="bg-gray-800 rounded-lg p-4 text-center text-gray-200">
                                             {t('no_recent_activity')}
                                         </div>
                                     )}
                                 </div>
 
-                                <div className="border-t border-gray-200 pt-6">
+                                <div className="border-t border-gray-500 pt-6">
                                     <div className="flex justify-between items-center mb-4">
-                                        <h3 className="text-lg font-semibold text-gray-800">{t('achievements')}</h3>
+                                        <h3 className="text-lg font-semibold text-gray-100">{t('achievements')}</h3>
                                         <button
                                             onClick={() => handleTabChange('achievements')}
                                             className="text-sm text-green-600 hover:text-green-800"
@@ -501,14 +501,14 @@ const Profile = () => {
                                     {achievements.length > 0 ? (
                                         <div className="flex flex-wrap gap-2">
                                             {achievements.map(achievement => (
-                                                <div key={achievement.id} className="bg-gray-50 rounded-full px-3 py-1 flex items-center">
+                                                <div key={achievement.id} className="bg-gray-700 rounded-full px-3 py-1 flex items-center">
                                                     <span className="mr-1">{achievement.icon}</span>
                                                     <span className="text-sm font-medium">{achievement.title}</span>
                                                 </div>
                                             ))}
                                         </div>
                                     ) : (
-                                        <div className="bg-gray-50 rounded-lg p-4 text-center text-gray-500">
+                                        <div className="bg-gray-50 rounded-lg p-4 text-center text-gray-300">
                                             {t('no_achievements_yet')}
                                         </div>
                                     )}
@@ -517,19 +517,19 @@ const Profile = () => {
                         )}
 
                         {activeTab === 'activity' && (
-                            <div className="bg-white rounded-xl shadow-sm p-6">
-                                <h2 className="text-xl font-semibold text-gray-800 mb-4">{t('activity_history')}</h2>
+                            <div className="bg-gray-800 rounded-xl shadow-sm p-6">
+                                <h2 className="text-xl font-semibold text-gray-100 mb-4">{t('activity_history')}</h2>
 
                                 {recentActivity.length > 0 ? (
                                     <div className="space-y-4">
                                         {recentActivity.map(activity => (
-                                            <div key={activity.id} className="bg-gray-50 rounded-lg p-4 flex items-start">
-                                                <div className="bg-white p-2 rounded-full mr-4 shadow-sm">
+                                            <div key={activity.id} className="bg-gray-700 rounded-lg p-4 flex items-start">
+                                                <div className="bg-gray-800 p-2 rounded-full mr-4 shadow-sm">
                                                     {activity.icon}
                                                 </div>
                                                 <div className="flex-1">
-                                                    <p className="text-gray-800 font-medium">{activity.message}</p>
-                                                    <p className="text-sm text-gray-500">{formatRelativeTime(activity.date)}</p>
+                                                    <p className="text-gray-100 font-medium">{activity.message}</p>
+                                                    <p className="text-sm text-gray-300">{formatRelativeTime(activity.date)}</p>
                                                 </div>
                                                 <div className="text-xs text-gray-400">
                                                     {new Date(activity.date).toLocaleDateString()}
@@ -538,15 +538,15 @@ const Profile = () => {
                                         ))}
                                     </div>
                                 ) : (
-                                    <div className="bg-gray-50 rounded-lg p-6 text-center">
+                                    <div className="bg-gray-700 rounded-lg p-6 text-center">
                                         <MdNotificationsActive className="mx-auto text-gray-400 text-4xl mb-2" />
                                         <h3 className="text-lg font-medium text-gray-700 mb-1">{t('no_activity_yet')}</h3>
-                                        <p className="text-gray-500">{t('activity_will_appear_here')}</p>
+                                        <p className="text-gray-300">{t('activity_will_appear_here')}</p>
                                     </div>
                                 )}
 
-                                <div className="mt-6 pt-6 border-t border-gray-200">
-                                    <h3 className="text-lg font-semibold text-gray-800 mb-4">{t('weekly_activity')}</h3>
+                                <div className="mt-6 pt-6 border-t border-gray-500 ">
+                                    <h3 className="text-lg font-semibold text-gray-100 mb-4">{t('weekly_activity')}</h3>
                                     <div className="h-64 w-full">
                                         <ResponsiveContainer width="100%" height="100%">
                                             <BarChart data={activityData} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
@@ -562,53 +562,53 @@ const Profile = () => {
                         )}
 
                         {activeTab === 'achievements' && (
-                            <div className="bg-white rounded-xl shadow-sm p-6">
-                                <h2 className="text-xl font-semibold text-gray-800 mb-6">{t('your_achievements')}</h2>
+                            <div className="bg-gray-800 rounded-xl shadow-sm p-6">
+                                <h2 className="text-xl font-semibold text-gray-100 mb-6">{t('your_achievements')}</h2>
 
                                 {achievements.length > 0 ? (
                                     <div className="space-y-6">
                                         {achievements.map(achievement => (
-                                            <div key={achievement.id} className="bg-gray-50 rounded-lg p-4 flex items-center">
-                                                <div className="bg-white p-3 rounded-full mr-4 shadow-sm">
+                                            <div key={achievement.id} className="bg-gray-700 rounded-lg p-4 flex items-center">
+                                                <div className="bg-gray-800 p-3 rounded-full mr-4 shadow-sm">
                                                     <div className="text-2xl">{achievement.icon}</div>
                                                 </div>
                                                 <div className="flex-1">
-                                                    <h3 className="font-medium text-gray-800">{achievement.title}</h3>
-                                                    <p className="text-sm text-gray-600">{achievement.description}</p>
-                                                    <p className="text-xs text-gray-500 mt-1">{t('earned_on')} {formatDate(achievement.date)}</p>
+                                                    <h3 className="font-medium text-gray-100">{achievement.title}</h3>
+                                                    <p className="text-sm text-gray-300">{achievement.description}</p>
+                                                    <p className="text-xs text-gray-300 mt-1">{t('earned_on')} {formatDate(achievement.date)}</p>
                                                 </div>
                                             </div>
                                         ))}
 
-                                        <div className="bg-gray-50 rounded-lg p-4 border border-dashed border-gray-300">
+                                        <div className="bg-gray-700 rounded-lg p-4 border border-dashed border-gray-300">
                                             <div className="flex items-center">
                                                 <div className="bg-gray-200 p-3 rounded-full mr-4">
-                                                    <FaAward className="text-2xl text-gray-400" />
+                                                    <FaAward className="text-2xl text-gray-700" />
                                                 </div>
                                                 <div>
                                                     <h3 className="font-medium text-gray-400">{t('next_achievement')}</h3>
-                                                    <p className="text-sm text-gray-500">{t('keep_using_platform')}</p>
+                                                    <p className="text-sm text-gray-300">{t('keep_using_platform')}</p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 ) : (
-                                    <div className="bg-gray-50 rounded-lg p-6 text-center">
-                                        <FaAward className="mx-auto text-gray-400 text-4xl mb-2" />
-                                        <h3 className="text-lg font-medium text-gray-700 mb-1">{t('no_achievements_yet')}</h3>
-                                        <p className="text-gray-500">{t('achievements_will_appear_here')}</p>
+                                    <div className="bg-gray-700 rounded-lg p-6 text-center">
+                                        <FaAward className="mx-auto text-gray-100 text-4xl mb-2" />
+                                        <h3 className="text-lg font-medium text-gray-100 mb-1">{t('no_achievements_yet')}</h3>
+                                        <p className="text-gray-300">{t('achievements_will_appear_here')}</p>
                                     </div>
                                 )}
                             </div>
                         )}
 
                         {activeTab === 'stats' && (
-                            <div className="bg-white rounded-xl shadow-sm p-6">
-                                <h2 className="text-xl font-semibold text-gray-800 mb-6">{t('statistics_and_analytics')}</h2>
+                            <div className="bg-gray-800 rounded-xl shadow-sm p-6">
+                                <h2 className="text-xl font-semibold text-gray-100 mb-6">{t('statistics_and_analytics')}</h2>
 
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
                                     <div>
-                                        <h3 className="text-lg font-medium text-gray-800 mb-4">{t('crop_distribution')}</h3>
+                                        <h3 className="text-lg font-medium text-gray-100 mb-4">{t('crop_distribution')}</h3>
                                         <div className="h-64">
                                             <ResponsiveContainer width="100%" height="100%">
                                                 <PieChart>
@@ -633,34 +633,34 @@ const Profile = () => {
                                     </div>
 
                                     <div>
-                                        <h3 className="text-lg font-medium text-gray-800 mb-4">{t('activity_summary')}</h3>
+                                        <h3 className="text-lg font-medium text-gray-100 mb-4">{t('activity_summary')}</h3>
                                         <div className="space-y-4">
-                                            <div className="bg-gray-50 rounded-lg p-3">
+                                            <div className="bg-gray-700 rounded-lg p-3">
                                                 <div className="flex justify-between mb-1">
-                                                    <span className="text-sm font-medium text-gray-700">{t('posts')}</span>
-                                                    <span className="text-sm text-gray-600">{stats.posts}/10</span>
+                                                    <span className="text-sm font-medium text-gray-100">{t('posts')}</span>
+                                                    <span className="text-sm text-gray-300">{stats.posts}/10</span>
                                                 </div>
-                                                <div className="w-full bg-gray-200 rounded-full h-2">
+                                                <div className="w-full bg-gray-500 rounded-full h-2">
                                                     <div className="bg-blue-500 h-2 rounded-full" style={{ width: `${(stats.posts / 10) * 100}%` }}></div>
                                                 </div>
                                             </div>
 
-                                            <div className="bg-gray-50 rounded-lg p-3">
+                                            <div className="bg-gray-700 rounded-lg p-3">
                                                 <div className="flex justify-between mb-1">
-                                                    <span className="text-sm font-medium text-gray-700">{t('products_viewed')}</span>
-                                                    <span className="text-sm text-gray-600">{stats.productsViewed}/50</span>
+                                                    <span className="text-sm font-medium text-gray-100">{t('products_viewed')}</span>
+                                                    <span className="text-sm text-gray-300">{stats.productsViewed}/50</span>
                                                 </div>
-                                                <div className="w-full bg-gray-200 rounded-full h-2">
+                                                <div className="w-full bg-gray-500 rounded-full h-2">
                                                     <div className="bg-green-500 h-2 rounded-full" style={{ width: `${(stats.productsViewed / 50) * 100}%` }}></div>
                                                 </div>
                                             </div>
 
-                                            <div className="bg-gray-50 rounded-lg p-3">
+                                            <div className="bg-gray-700 rounded-lg p-3">
                                                 <div className="flex justify-between mb-1">
-                                                    <span className="text-sm font-medium text-gray-700">{t('comments')}</span>
-                                                    <span className="text-sm text-gray-600">{stats.commentsReceived}/20</span>
+                                                    <span className="text-sm font-medium text-gray-100">{t('comments')}</span>
+                                                    <span className="text-sm text-gray-200">{stats.commentsReceived}/20</span>
                                                 </div>
-                                                <div className="w-full bg-gray-200 rounded-full h-2">
+                                                <div className="w-full bg-gray-500 rounded-full h-2">
                                                     <div className="bg-purple-500 h-2 rounded-full" style={{ width: `${(stats.commentsReceived / 20) * 100}%` }}></div>
                                                 </div>
                                             </div>
@@ -668,9 +668,9 @@ const Profile = () => {
                                     </div>
                                 </div>
 
-                                <div className="border-t border-gray-200 pt-6">
-                                    <h3 className="text-lg font-medium text-gray-800 mb-4">{t('usage_tips')}</h3>
-                                    <div className="bg-blue-50 rounded-lg p-4 text-blue-800">
+                                <div className="border-t border-gray-500  pt-6">
+                                    <h3 className="text-lg font-medium text-gray-100 mb-4">{t('usage_tips')}</h3>
+                                    <div className="bg-blue-500/20 rounded-lg p-4 text-blue-300">
                                         <ul className="list-disc list-inside space-y-2 text-sm">
                                             <li>{t('usage_tip_1')}</li>
                                             <li>{t('usage_tip_2')}</li>
@@ -682,29 +682,29 @@ const Profile = () => {
                         )}
 
                         {activeTab === 'personal' && (
-                            <div className="bg-white rounded-xl shadow-sm p-6">
-                                <h2 className="text-xl font-semibold text-gray-800 mb-4">{t('personal_information')}</h2>
+                            <div className="bg-gray-800 rounded-xl shadow-sm p-6">
+                                <h2 className="text-xl font-semibold text-gray-100 mb-4">{t('personal_information')}</h2>
                                 <div className="space-y-4">
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                         <div>
-                                            <p className="text-sm text-gray-500">{t('name')}</p>
-                                            <p className="font-medium text-gray-800">{authUser?.name}</p>
+                                            <p className="text-sm text-gray-300">{t('name')}</p>
+                                            <p className="font-medium text-gray-100">{authUser?.name}</p>
                                         </div>
                                         <div>
-                                            <p className="text-sm text-gray-500">{t('email')}</p>
-                                            <p className="font-medium text-gray-800">{authUser?.email}</p>
+                                            <p className="text-sm text-gray-300">{t('email')}</p>
+                                            <p className="font-medium text-gray-100">{authUser?.email}</p>
                                         </div>
                                         <div>
-                                            <p className="text-sm text-gray-500">{t('role')}</p>
-                                            <p className="font-medium text-gray-800 capitalize">{authUser?.role}</p>
+                                            <p className="text-sm text-gray-300">{t('role')}</p>
+                                            <p className="font-medium text-gray-100 capitalize">{authUser?.role}</p>
                                         </div>
                                         <div>
-                                            <p className="text-sm text-gray-500">{t('member_since')}</p>
-                                            <p className="font-medium text-gray-800">{formatDate(authUser?.createdAt)}</p>
+                                            <p className="text-sm text-gray-300">{t('member_since')}</p>
+                                            <p className="font-medium text-gray-100">{formatDate(authUser?.createdAt)}</p>
                                         </div>
                                     </div>
 
-                                    <div className="mt-6 pt-4 border-t border-gray-200">
+                                    <div className="mt-6 pt-4 border-t border-gray-500 ">
                                         <button
                                             onClick={() => navigate(`/profile/edit/${authUser?._id}`)}
                                             className="bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition flex items-center text-sm"
@@ -717,8 +717,8 @@ const Profile = () => {
                         )}
 
                         {activeTab === 'settings' && (
-                            <div className="bg-white rounded-xl shadow-sm p-6">
-                                <h2 className="text-xl font-semibold text-gray-800 mb-4">{t('account_settings')}</h2>
+                            <div className="bg-gray-800 rounded-xl shadow-sm p-6">
+                                <h2 className="text-xl font-semibold text-gray-100 mb-4">{t('account_settings')}</h2>
 
                                 <div className="space-y-4">
                                     {authUser?.role === 'seller' && (
@@ -732,7 +732,7 @@ const Profile = () => {
 
                                     <button
                                         onClick={() => navigate('/settings')}
-                                        className="w-full bg-gray-100 text-gray-700 py-2 rounded-lg hover:bg-gray-200 transition flex items-center justify-center"
+                                        className="w-full bg-gray-700 text-gray-100 py-2 rounded-lg hover:bg-gray-600 transition flex items-center justify-center"
                                     >
                                         <IoSettingsSharp className="mr-2" /> {t('app_settings')}
                                     </button>
