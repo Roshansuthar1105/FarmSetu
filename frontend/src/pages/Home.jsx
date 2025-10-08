@@ -2,7 +2,7 @@ import Hero from "../components/Hero";
 import Features from "../components/Features";
 import Testimonials from "../components/Testimonials";
 import ProductOverview from "../components/ProductOverview";
-import Pricing from "../components/Pricing";
+// import Pricing from "../components/Pricing";
 import Contact from "../components/Contact";
 import React, { Suspense, useState } from 'react';
 const LazyChatBot = React.lazy(() => import('../components/ChatBot'));
@@ -29,7 +29,7 @@ function Home(){
             <Features></Features>
             <Testimonials></Testimonials>
             <ProductOverview></ProductOverview>
-            <Pricing></Pricing>
+            {/* <Pricing></Pricing> */}
             <Contact></Contact>
 
           <button
