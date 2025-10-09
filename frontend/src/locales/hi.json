@@ -5,9 +5,11 @@
     "सटीक मूल्य रुझान",
     "नवीनतम जानकारी"
   ],
+  "more":"और देखें",
   "heroDescription": "बेहतर सौदों पर बातचीत करने के लिए नवीनतम बाज़ार जानकारी, मूल्य रुझान और टूल तक पहुंच प्राप्त करें।",
   "freeVirtualSoilCheck": "नि:शुल्क आभासी मृदा जांच",
   "resources": "संसाधन",
+  "resources_title": "ज्ञान सेतु",
   "community": "समुदाय",
   "joinThousands": "उन हजारों किसानों से जुड़ें जिन्होंने वास्तविक समय की अंतर्दृष्टि के साथ अपने व्यवसाय को बदल दिया है।",
   "makingAgricultureSmarter": "कृषि को अधिक स्मार्ट बनाना, एक समय में एक अंतर्दृष्टि।",
@@ -100,6 +102,7 @@
       "description": "आधुनिक खेती के लिए आवश्यक उपकरण."
     }
   },
+  "marketplaceTitle":"कृषि बाज़ार",
   "marketplace": {
     "title": "बाजार",
     "searchPlaceholder": "उत्पाद खोजें...",
@@ -218,6 +221,7 @@
   "real_time_market": "वास्तविक समय बाज़ार",
   "news": "समाचार",
   "weather": "मौसम",
+  "weather_title": "मौसम सेतु",
   "government_schemes": "सरकारी योजनाएं",
   "insurance_schemes": "बीमा योजनाएँ",
   "crop_recommendation": "फसल सिफ़ारिश",

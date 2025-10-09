@@ -5,6 +5,7 @@ import ProductOverview from "../components/ProductOverview";
 // import Pricing from "../components/Pricing";
 import Contact from "../components/Contact";
 import React, { Suspense, useState } from 'react';
+import Payment from "./Payment";
 const LazyChatBot = React.lazy(() => import('../components/ChatBot'));
 const LazyLanguage = React.lazy(() => import('../components/LanguageButton'));
 const onSelectPlan = (plan) => {
@@ -33,8 +34,7 @@ function Home(){
             <Features></Features>
             <Testimonials></Testimonials>
             <ProductOverview></ProductOverview>
-            {/* <Pricing></Pricing> */}
-            {/* <Pricing onSelectPlan={onSelectPlan} pricingPlans={pricingPlans} /> */}
+            <Payment/>
             <Contact></Contact>
 
           <button

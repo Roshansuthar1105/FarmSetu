@@ -112,7 +112,7 @@ export default function PaymentSuccess() {
             Payment Successful!
           </h1>
           <p className="text-xl text-green-200 max-w-2xl mx-auto">
-            Welcome to FarmAssist Pro! Your agricultural journey is about to get much smarter.
+            Welcome to FarmSetu ! Your agricultural journey is about to get much smarter.
           </p>
         </div>
 
@@ -282,7 +282,7 @@ export default function PaymentSuccess() {
           <div className="bg-green-700/20 rounded-2xl p-8 border border-green-600/30">
             <h3 className="text-xl font-bold text-white mb-4">Need Help Getting Started?</h3>
             <p className="text-green-200 mb-6 max-w-2xl mx-auto">
-              Our agricultural experts are here to help you make the most of your FarmAssist Pro subscription.
+              Our agricultural experts are here to help you make the most of your FarmSetu subscription.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button className="bg-green-600 hover:bg-green-500 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-200 flex items-center justify-center">

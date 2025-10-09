@@ -209,7 +209,7 @@ export default function Checkout({ plan, onBack }) {
               <span className="text-xs text-white font-bold">QR CODE</span>
             </div>
           </div>
-          <div className="text-xs text-gray-500 mt-3">UPI: farmassist@icici</div>
+          <div className="text-xs text-gray-500 mt-3">UPI: farmsetu@icici</div>
         </div>
       </div>
     </div>
@@ -296,7 +296,7 @@ export default function Checkout({ plan, onBack }) {
               </svg>
             </div>
             <h1 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-yellow-300 to-green-300">
-              FarmAssist Pro
+              FarmSetu Payment Gateway
             </h1>
           </div>
           <p className="text-green-200">Secure Payment Gateway</p>
@@ -333,13 +333,13 @@ export default function Checkout({ plan, onBack }) {
                   <span>₹{plan.pricepermonth}</span>
                 </div>
                 <div className="flex justify-between text-green-200">
-                  <span>GST (18%)</span>
-                  <span>₹{(plan.pricepermonth * 0.18).toFixed(2)}</span>
+                  <span>Platform Fee (1%)</span>
+                  <span>₹{(plan.pricepermonth * 0.01).toFixed(2)}</span>
                 </div>
                 <div className="border-t border-green-600/30 pt-3">
                   <div className="flex justify-between text-lg font-bold text-white">
                     <span>Total Amount</span>
-                    <span>₹{(plan.pricepermonth * 1.18).toFixed(2)}</span>
+                    <span>₹{(plan.pricepermonth * 1.01).toFixed(2)}</span>
                   </div>
                 </div>
               </div>
@@ -468,7 +468,7 @@ export default function Checkout({ plan, onBack }) {
                           Processing Payment...
                         </>
                       ) : (
-                        `Pay ₹${(plan.pricepermonth * 1.18).toFixed(2)}`
+                        `Pay ₹${(plan.pricepermonth * 1.01).toFixed(2)}`
                       )}
                     </button>
                   </div>
