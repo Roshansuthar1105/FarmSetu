@@ -77,7 +77,7 @@ export default function Pricing({ onSelectPlan, pricingPlans = localPricingPlans
   const { t } = useTranslation();
   const navigate = useNavigate();
   
-  console.log('onSelectPlan function in Pricing:', onSelectPlan);
+
   
   const handlePlanSelect = (plan) => {
     console.log('Plan selected:', plan);
