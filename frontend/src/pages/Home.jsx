@@ -7,6 +7,10 @@ import Contact from "../components/Contact";
 import React, { Suspense, useState } from 'react';
 const LazyChatBot = React.lazy(() => import('../components/ChatBot'));
 const LazyLanguage = React.lazy(() => import('../components/LanguageButton'));
+const onSelectPlan = (plan) => {
+  console.log('Plan selected in Payment component:', plan);
+  setSelectedPlan(plan);
+};
 const LoadingComponent = () => {
     return (
       <div className="flex justify-center items-center h-screen bg-gray-200 ">
@@ -30,6 +34,7 @@ function Home(){
             <Testimonials></Testimonials>
             <ProductOverview></ProductOverview>
             {/* <Pricing></Pricing> */}
+            {/* <Pricing onSelectPlan={onSelectPlan} pricingPlans={pricingPlans} /> */}
             <Contact></Contact>
 
           <button
