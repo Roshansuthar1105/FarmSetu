@@ -141,14 +141,14 @@ export default function Navbar() {
   };
   const links2 = [
     { name: t('home'), to: "/" },
-    { name: t('marketPlace'), to: "/farmermarketplace" },
+    { name: t('marketplaceTitle'), to: "/farmermarketplace" },
     { name: t('chat_with_experts'), to: "/chat" },
     { name: t('chat_with_community'), to: "/localchat" },
     { name: t('real_time_market'), to: "/realtimemarket" },
     { name: t('news'), to: "/news" },
-    { name: t('weather'), to: "/weather" },
-    { name: t('resources'), to: "/resources" },
-    { name: t('community'), to: "/community" },
+    { name: t('weather_title'), to: "/weather" },
+    { name: t('resources_title'), to: "/resources" },
+    { name: t('communityForumTitle'), to: "/community" },
     { name: t('government_schemes'), to: "/GovernmentSchemes" },
     { name: t('insurance_schemes'), to: "/InsuranceSchema" },
     { name: t('crop_recommendation'), to: "/crops" },

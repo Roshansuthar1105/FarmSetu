@@ -35,7 +35,7 @@ const Footer = () => {
     { to: '/farmermarketplace', label: t('market_trends') },
     { to: '/weather', label: t('weather_updates') },
     { to: '/chat', label: t('expert_consultation') },
-    { to: '/resources', label: t('resources') },
+    { to: '/resources', label: t('resources_title') },
   ];
 
   const usefulLinks = [

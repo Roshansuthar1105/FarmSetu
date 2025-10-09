@@ -82,7 +82,7 @@ function Hero() {
                                     size="lg"
                                     className="w-full bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/20 text-white font-semibold text-sm sm:text-base py-3 sm:py-4 px-4 sm:px-6 rounded-xl hover:bg-white/20 dark:hover:bg-white/10 transition-all duration-300"
                                 >
-                                    {t('resources')}
+                                    {t('resources_title')}
                                 </Button>
                             </Link>
                             <Link to="/community" className="flex-1">
@@ -90,7 +90,7 @@ function Hero() {
                                     size="lg"
                                     className="w-full bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/20 text-white font-semibold text-sm sm:text-base py-3 sm:py-4 px-4 sm:px-6 rounded-xl hover:bg-white/20 dark:hover:bg-white/10 transition-all duration-300"
                                 >
-                                    {t('community')}
+                                    {t('communityForumTitle')}
                                 </Button>
                             </Link>
                         </div>

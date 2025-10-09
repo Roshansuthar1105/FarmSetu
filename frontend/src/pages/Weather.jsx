@@ -55,7 +55,7 @@ const Weather = () => {
     <div className="bg-gray-900 min-h-screen flex flex-col ">
       <div className={`pt-16 ${!loading ? 'mb-48' : ''}`}>
       <h1 className="text-4xl font-bold my-6 text-center text-green-500 transition duration-500 ease-in-out transform hover:scale-105">
-          Weather
+          {t('weather_title')}
         </h1>
         <div className="max-w-3xl  my-8 p-6 bg-gray-800 shadow-lg rounded-lg relative mx-4 md:mx-auto ">
           <div className=" flex flex-row items-center justify-between">
