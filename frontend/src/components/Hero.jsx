@@ -54,15 +54,23 @@ function Hero() {
                     </p>
 
                     {/* CTA Buttons - Stacked on mobile, side by side on larger screens */}
-                    <div className="mt-6 sm:mt-8 md:mt-10 flex flex-col items-center justify-center">
+                    <div className="mt-6 sm:mt-8 md:mt-10 flex flex-col items-center justify-center ">
                         {/* Primary CTA */}
-                        <div className="w-full max-w-xs sm:max-w-md mb-4">
+                        <div className="flex flex-row gap-4 w-full max-w-xs sm:max-w-md justify-center">
                             <Link to="https://agripredict-fs3w.onrender.com/predict" target='_blank' className="block w-full">
                                 <Button
                                     size="lg"
                                     className="w-full bg-gradient-to-r from-green-500 to-green-600 dark:from-green-600 dark:to-green-700 text-white font-bold text-base sm:text-lg py-4 sm:py-6 px-6 sm:px-8 rounded-xl shadow-lg hover:shadow-green-500/20 dark:hover:shadow-green-400/20 hover:scale-105 transition-all duration-300"
                                 >
                                     {t('freeVirtualSoilCheck')}
+                                </Button>
+                            </Link>
+                            <Link to="https://rainfall-model.onrender.com/" target='_blank' className="block w-full">
+                                <Button
+                                    size="lg"
+                                    className="w-full bg-gradient-to-r from-green-500 to-green-600 dark:from-green-600 dark:to-green-700 text-white font-bold text-base sm:text-lg py-4 sm:py-6 px-6 sm:px-8 rounded-xl shadow-lg hover:shadow-green-500/20 dark:hover:shadow-green-400/20 hover:scale-105 transition-all duration-300"
+                                >
+                                    {t('Rainfall Model')}
                                 </Button>
                             </Link>
                             {/* <Link to="https://crop-mitra.onrender.com" target='_blank' className="block w-full">
@@ -76,7 +84,7 @@ function Hero() {
                         </div>
 
                         {/* Secondary CTAs */}
-                        <div className="flex flex-row gap-4 w-full max-w-xs sm:max-w-md justify-center">
+                        <div className="flex flex-row gap-4 w-full max-w-xs sm:max-w-md justify-center mt-3">
                             <Link to="/resources" className="flex-1">
                                 <Button
                                     size="lg"
