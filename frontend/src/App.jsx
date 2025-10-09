@@ -39,6 +39,7 @@ const LazyChatWithCommunity = React.lazy(() => import('./pages/ChatWithCommunity
 const LazyUserPosts = React.lazy(() => import('./pages/UserPosts.jsx'));
 const LazyUserCart = React.lazy(() => import('./pages/UserCart.jsx'));
 const LazyPayment = React.lazy(() => import('./pages/Payment.jsx'));
+const LazyPaymentSuccess = React.lazy(() => import('./components/PaymentSuccess.jsx'));
 const LazyGovernmentSchemes = React.lazy(() => import('./pages/GovernmentSchemes.jsx'));
 const LazyInsuranceSchema = React.lazy(() => import('./pages/InsuranceSchema.jsx'));
 const LazyProfileEdit = React.lazy(() => import('./pages/ProfileEdit.jsx'));
@@ -106,6 +107,7 @@ export default function App() {
             <Route path="/localchat" element={authUser ? <Suspense fallback={<LoadingComponent />}><LazyChatWithCommunity /></Suspense> : <Navigate to='/login' />} />
             <Route path="/news" element={<Suspense fallback={<LoadingComponent />}><LazyNewsFeed /></Suspense>} />
             <Route path="/payment" element={<Suspense fallback={<LoadingComponent />}><LazyPayment /></Suspense>} />
+            <Route path="/payment-success" element={<Suspense fallback={<LoadingComponent />}><LazyPaymentSuccess /></Suspense>} />
             <Route path="/weather" element={<Suspense fallback={<LoadingComponent />}><LazyWeather /></Suspense>} />
             <Route path="/resources" element={<Suspense fallback={<LoadingComponent />}><LazyResources /></Suspense>} />
             <Route path="/courses/:id" element={<Suspense fallback={<LoadingComponent />}><LazyCourseDetails /></Suspense>} />

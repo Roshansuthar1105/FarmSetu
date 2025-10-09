@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import Pricing from "../components/Pricing";
 import Checkout from "../components/Checkout";
-import PaymentSuccess from "../components/PaymentSuccess.jsx";
+import PaymentSuccess from "../components/PaymentSuccess";
 const pricingPlans = [
   {
     title: 'Basic Plan',
@@ -98,9 +98,10 @@ const pricingPlans = [
 
 export default function Payment() {
   const [selectedPlan, setSelectedPlan] = useState(null);
+  const [paymentCompleted, setPaymentCompleted] = useState(false);
+  const [paymentData, setPaymentData] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
-
   // Check if a plan was passed via navigation state
   React.useEffect(() => {
     if (location.state?.selectedPlan) {
@@ -118,10 +119,23 @@ export default function Payment() {
     setSelectedPlan(null);
   };
 
+  const handlePaymentSuccess = (paymentData) => {
+    setPaymentCompleted(true);
+    setPaymentData(paymentData);
+  };
+
+  // If payment is completed, show success page
+  if (paymentCompleted && paymentData) {
+    return <PaymentSuccess />;
+  }
   return (
     <section className="pricing py-12 px-6 md:py-24 md:px-12 bg-gradient-to-b from-slate-700 to-slate-900 text-white min-h-screen flex items-center justify-center">
       {selectedPlan ? (
-        <Checkout plan={selectedPlan} onBack={handleBackToPlans} />
+        <Checkout
+          plan={selectedPlan}
+          onBack={handleBackToPlans}
+          onPaymentSuccess={handlePaymentSuccess} // Add this prop
+        />
       ) : (
         <div className="w-full">
           <Pricing onSelectPlan={onSelectPlan} pricingPlans={pricingPlans} />

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function Checkout({ plan, onBack }) {
+export default function Checkout({ plan, onBack, onPaymentSuccess }) {
   const [activePaymentMethod, setActivePaymentMethod] = useState('card');
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -98,17 +98,23 @@ export default function Checkout({ plan, onBack }) {
       ...formData
     });
 
+    // Around line 95-105, replace the navigation code:
     try {
       await new Promise(resolve => setTimeout(resolve, 3000));
-      
+
       // Simulate successful payment
-      navigate('/payment-success', { 
-        state: { 
-          plan: plan,
-          amount: plan.pricepermonth,
-          method: activePaymentMethod
-        }
-      });
+      const paymentData = {
+        plan: plan,
+        amount: plan.pricepermonth,
+        method: activePaymentMethod
+      };
+
+      // Use the callback if provided, otherwise navigate directly
+      if (onPaymentSuccess) {
+        onPaymentSuccess(paymentData);
+      } else {
+        navigate('/payment-success', { state: paymentData });
+      }
     } catch (error) {
       console.error("Payment failed:", error);
       alert("Payment failed. Please try again.");
@@ -418,16 +424,14 @@ export default function Checkout({ plan, onBack }) {
                       key={method.id}
                       type="button"
                       onClick={() => setActivePaymentMethod(method.id)}
-                      className={`p-3 rounded-xl border-2 transition-all duration-200 ${
-                        activePaymentMethod === method.id
-                          ? 'border-yellow-400 bg-yellow-400/20 text-yellow-300'
-                          : 'border-green-600/30 bg-green-700/30 text-green-200 hover:border-yellow-400/50'
-                      }`}
+                      className={`p-3 rounded-xl border-2 transition-all duration-200 ${activePaymentMethod === method.id
+                        ? 'border-yellow-400 bg-yellow-400/20 text-yellow-300'
+                        : 'border-green-600/30 bg-green-700/30 text-green-200 hover:border-yellow-400/50'
+                        }`}
                     >
                       <div className="flex flex-col items-center">
-                        <div className={`mb-2 ${
-                          activePaymentMethod === method.id ? 'text-yellow-400' : 'text-green-300'
-                        }`}>
+                        <div className={`mb-2 ${activePaymentMethod === method.id ? 'text-yellow-400' : 'text-green-300'
+                          }`}>
                           {method.icon}
                         </div>
                         <span className="text-xs font-semibold text-center">{method.name}</span>
