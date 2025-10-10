@@ -70,7 +70,15 @@ function Hero() {
                                     size="lg"
                                     className="w-full bg-gradient-to-r from-green-500 to-green-600 dark:from-green-600 dark:to-green-700 text-white font-bold text-base sm:text-lg py-4 sm:py-6 px-6 sm:px-8 rounded-xl shadow-lg hover:shadow-green-500/20 dark:hover:shadow-green-400/20 hover:scale-105 transition-all duration-300"
                                 >
-                                    {t('Rainfall Model')}
+                                    {t('Smart Irrigation System')}
+                                </Button>
+                            </Link>
+                            <Link to="https://plant-disease-kmdp.onrender.com" target='_blank' className="block w-full">
+                                <Button
+                                    size="lg"
+                                    className="w-full bg-gradient-to-r from-green-500 to-green-600 dark:from-green-600 dark:to-green-700 text-white font-bold text-base sm:text-lg py-4 sm:py-6 px-6 sm:px-8 rounded-xl shadow-lg hover:shadow-green-500/20 dark:hover:shadow-green-400/20 hover:scale-105 transition-all duration-300"
+                                >
+                                    {t('Plant Diseases Detection')}
                                 </Button>
                             </Link>
                             {/* <Link to="https://crop-mitra.onrender.com" target='_blank' className="block w-full">
