@@ -32,7 +32,7 @@ function Hero() {
                     <img 
                         src="./qr.jpeg" 
                         alt="QR Code" 
-                        className="w-48 h-48 mx-auto"
+                        className="w-24 h-24 mx-auto"
                     />
                     <p className="text-xs text-gray-600 dark:text-gray-300 mt-1 font-medium">
                         Scan to download
