@@ -35,7 +35,7 @@ function Hero() {
                         className="w-24 h-24 mx-auto"
                     />
                     <p className="text-xs text-gray-600 dark:text-gray-300 mt-1 font-medium">
-                        Scan to download
+                        Scan to Visit👩‍🌾 
                     </p>
                 </div>
             </div>
@@ -89,7 +89,10 @@ function Hero() {
                                     {t('Smart Irrigation System')}
                                 </Button>
                             </Link>
-                            <Link to="https://plant-disease-kmdp.onrender.com" target='_blank' className="block w-full">
+                            
+                        </div>
+                        <div className="flex flex-row gap-4 w-full max-w-xs sm:max-w-md justify-center pt-2">
+                        <Link to="https://plant-disease-kmdp.onrender.com" target='_blank' className="block w-full">
                                 <Button
                                     size="lg"
                                     className="w-full bg-gradient-to-r from-green-500 to-green-600 dark:from-green-600 dark:to-green-700 text-white font-bold text-base sm:text-lg py-4 sm:py-6 px-6 sm:px-8 rounded-xl shadow-lg hover:shadow-green-500/20 dark:hover:shadow-green-400/20 hover:scale-105 transition-all duration-300"
@@ -121,22 +124,22 @@ function Hero() {
                     </div>
 
                     {/* Social proof - Responsive text size and spacing */}
-                    <div className="mt-6 sm:mt-8 md:mt-10 text-gray-200 dark:text-gray-300 text-sm sm:text-base md:text-lg px-4">
+                    <div className="mx-6 sm:mt-10 md:mt-12 text-gray-200 dark:text-gray-300 text-sm sm:text-base md:text-lg px-4">
                         {t('joinThousands')}
                     </div>
                 </div>
 
                 {/* Footer text - Moved outside the main content div and positioned with better spacing */}
-                <div className="absolute bottom-6 sm:bottom-10 left-0 right-0 text-center">
-                    <p className="text-xs sm:text-sm md:text-base text-gray-200 dark:text-gray-300 px-4">
+                <div className="absolute bottom-2 sm:bottom-10 left-0 right-0 text-center">
+                    {/* <p className="text-xs sm:text-sm md:text-base text-gray-200 dark:text-gray-300 px-4">
                         {t('makingAgricultureSmarter')}
-                    </p>
+                    </p> */}
 
                     {/* Scroll indicator - Only visible on larger screens */}
                     <div className="hidden sm:flex mt-3 justify-center">
-                        <div className="w-5 h-8 border-2 border-white/60 dark:border-white/70 rounded-full flex justify-center p-1">
-                            <div className="w-1 h-2 bg-white/80 dark:bg-white/90 rounded-full animate-bounce"></div>
-                        </div>
+                        {/* <div className="w-5 h-8 border-2 border-white/60 dark:border-white/70 rounded-full flex justify-center p-1"> */}
+                            {/* <div className="w-1 h-2 bg-white/80 dark:bg-white/90 rounded-full animate-bounce"></div> */}
+                        {/* </div> */}
                     </div>
                 </div>
             </div>
