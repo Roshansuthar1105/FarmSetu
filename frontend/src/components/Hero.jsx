@@ -4,11 +4,13 @@ import { Typewriter } from 'react-simple-typewriter';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { PiPlantFill } from "react-icons/pi";
+
 function Hero() {
     const { t } = useTranslation();
 
     return (
         <section className="relative h-screen overflow-hidden">
+            
             {/* Background with overlay */}
             <div className="absolute inset-0 bg-cover bg-center" style={{
                 backgroundImage: "url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1932&q=80')",
@@ -22,6 +24,20 @@ function Hero() {
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
                 <div className="absolute top-20 left-10 w-64 h-64 bg-green-500/10 dark:bg-green-400/10 rounded-full blur-3xl"></div>
                 <div className="absolute bottom-20 right-10 w-80 h-80 bg-blue-500/10 dark:bg-blue-400/10 rounded-full blur-3xl"></div>
+            </div>
+
+            {/* QR Code - Bottom Left Corner */}
+            <div className="absolute bottom-12 left-12 z-20 backdrop-blur-sm rounded-lg p-2 shadow-lg border border-white/20">
+                <div className="text-center">
+                    <img 
+                        src="./qr.jpeg" 
+                        alt="QR Code" 
+                        className="w-48 h-48 mx-auto"
+                    />
+                    <p className="text-xs text-gray-600 dark:text-gray-300 mt-1 font-medium">
+                        Scan to download
+                    </p>
+                </div>
             </div>
 
             {/* Content container */}
@@ -81,14 +97,6 @@ function Hero() {
                                     {t('Plant Diseases Detection')}
                                 </Button>
                             </Link>
-                            {/* <Link to="https://crop-mitra.onrender.com" target='_blank' className="block w-full">
-                                <Button
-                                    size="lg"
-                                    className="w-full bg-gradient-to-r from-green-500 to-green-600 dark:from-green-600 dark:to-green-700 text-white font-bold text-base sm:text-lg py-4 sm:py-6 px-6 sm:px-8 rounded-xl shadow-lg hover:shadow-green-500/20 dark:hover:shadow-green-400/20 hover:scale-105 transition-all duration-300"
-                                >
-                                    {t('freeVirtualSoilCheck')}
-                                </Button>
-                            </Link> */}
                         </div>
 
                         {/* Secondary CTAs */}
