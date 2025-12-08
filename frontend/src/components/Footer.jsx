@@ -15,8 +15,7 @@ import {
   FaSeedling,
   FaChevronRight
 } from 'react-icons/fa';
-import farm from '../assets/farm.svg';
-import setu from '../assets/setu.svg';
+import farmsetulogo from '../../public/farmsetu-logo.png';
 
 const Footer = () => {
   const { t } = useTranslation();
@@ -68,9 +67,8 @@ const Footer = () => {
         {/* Top section with logo and newsletter */}
         <div className="flex flex-col md:flex-row justify-between items-center mb-10 gap-6">
           <div className="flex flex-col items-center md:items-start mb-6 md:mb-0">
-            <div className="flex items-center mb-4 bg-white rounded p-2 w-48">
-              <img src={farm} alt="Farm" className="h-10 w-auto" />
-              <img src={setu} alt="Setu" className="h-10 w-auto ml-[-10px]" />
+            <div className="flex items-center mb-4">
+              <img src={farmsetulogo} alt="Farm Setu" className="h-12 w-full drop-shadow-2xl" />
             </div>
             <p className="text-gray-300 max-w-md text-center md:text-left text-sm">
               Empowering farmers with technology, connecting communities, and promoting sustainable agriculture for a better future.

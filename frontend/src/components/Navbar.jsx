@@ -2,8 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Bars3Icon, XMarkIcon, BellIcon, SunIcon, MoonIcon } from "@heroicons/react/24/outline";
 import { Link, Navigate, useNavigate, useLocation } from "react-router-dom";
 import { useAuthContext } from "../context/AuthContext";
-import farm from '../assets/farm.svg';
-import setu from '../assets/setu.svg';
+import farmsetulogo from '../../public/farmsetu-logo.png';
 import { IoPerson } from "react-icons/io5";
 import { FaShoppingCart, FaSearch } from "react-icons/fa";
 import { FaMessage } from "react-icons/fa6";
@@ -174,9 +173,8 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">
           {/* Logo */}
           <Link to="/" className="flex items-center justify-center">
-            <div className="bg-white px-1.5 py-1 rounded-lg flex items-center gap-2 sm:gap-3  ">
-              <img src={farm} alt="Farm" className="h-6 w-auto sm:h-7" />
-              <img src={setu} alt="Setu" className="h-6 w-auto sm:h-7 mr-[-50px]" />
+            <div className="px-1.5 py-1 rounded-lg flex items-center">
+              <img src={farmsetulogo} alt="Farm Setu" className="h-10 w-full drop-shadow-2xl" />
             </div>
           </Link>
 
