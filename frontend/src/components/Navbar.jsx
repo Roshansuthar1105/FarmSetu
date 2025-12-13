@@ -151,9 +151,9 @@ export default function Navbar() {
     { name: t('government_schemes'), to: "/GovernmentSchemes" },
     { name: t('insurance_schemes'), to: "/InsuranceSchema" },
     { name: t('crop_recommendation'), to: "/crops" },
-    { name: t('crop_predict'), to: "/croppredict" },
-    { name: t('disease_detection'), to: "/disease" },
-    { name: t('rainfall_predict'), to: "/rainfall" },
+    { name: t('freeVirtualSoilCheck'), to: "/croppredict" },
+    { name: t('Plant Diseases Detection'), to: "/disease" },
+    { name: t('Smart Irrigation System'), to: "/rainfall" },
     { name: t('digital_parchi'), to: "/digital-parchi" },
   ];
   const handleEditProfile = async () => {
@@ -428,7 +428,14 @@ export default function Navbar() {
                           <IoPerson className="mr-2 h-4 w-4 text-green-600" />
                           {t('profile')}
                         </Link>
-
+                        {authUser.role==='admin' && <Link
+                          to="/admin"
+                          className="flex items-center px-3 py-2 text-xs text-white hover:bg-gray-600"
+                          onClick={() => setIsProfileOpen(false)}
+                        >
+                          <IoPerson className="mr-2 h-4 w-4 text-green-600" />
+                          {t('admin')}
+                        </Link>}
                         <button
                           onClick={() => {
                             handleViewCart();
