@@ -75,8 +75,9 @@ except Exception as e:
 # 4. Crop Yield Prediction (NEW REGRESSION MODEL from raj.ipynb)
 try:
     # Ensure this file is inside your models folder
-    with open('models/crop_yield_model.pkl', 'rb') as f:  # <--- 'rb' is CRITICAL
-        yield_model = pickle.load(f)
+    # with open('models/crop_yield_model.pkl', 'rb') as f:  # <--- 'rb' is CRITICAL
+    #     yield_model = pickle.load(f)
+    yield_model = joblib.load('models/crop_yield_model.pkl')
     print("✅ Crop Yield Prediction Model Loaded")
 except Exception as e:
     print(f"❌ Error loading Yield Model: {e}")
@@ -219,6 +220,7 @@ def predict_yield():
             "Crop_Year": int(data['Crop_Year']),
             "Season": str(data['Season']),
             "State": str(data['State']),
+            "Area": float(data['Area']), # Added Area field
             "Annual_Rainfall": float(data['Annual_Rainfall']),
             "Fertilizer": float(data['Fertilizer']),
             "Pesticide": float(data['Pesticide'])
