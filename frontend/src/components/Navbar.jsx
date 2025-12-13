@@ -154,6 +154,7 @@ export default function Navbar() {
     { name: t('crop_predict'), to: "/croppredict" },
     { name: t('disease_detection'), to: "/disease" },
     { name: t('rainfall_predict'), to: "/rainfall" },
+    { name: t('digital_parchi'), to: "/digital-parchi" },
   ];
   const handleEditProfile = async () => {
     navigate(`/profile/edit/${authUser._id}`)
