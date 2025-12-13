@@ -428,7 +428,14 @@ export default function Navbar() {
                           <IoPerson className="mr-2 h-4 w-4 text-green-600" />
                           {t('profile')}
                         </Link>
-
+                        {authUser.role==='admin' && <Link
+                          to="/admin"
+                          className="flex items-center px-3 py-2 text-xs text-white hover:bg-gray-600"
+                          onClick={() => setIsProfileOpen(false)}
+                        >
+                          <IoPerson className="mr-2 h-4 w-4 text-green-600" />
+                          {t('admin')}
+                        </Link>}
                         <button
                           onClick={() => {
                             handleViewCart();
