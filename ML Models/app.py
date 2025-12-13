@@ -5,9 +5,8 @@ import numpy as np
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
-import joblib  # Added for the new model
-import pandas as pd # Added for DataFrame creation
-# --- Import ML Libraries ---
+import joblib  
+import pandas as pd
 # 1. Rainfall Logic
 try:
     from utils.rainfall_model import RainfallPredictor
@@ -198,7 +197,6 @@ def predict_crop():
         prediction = crop_model.predict(features)
         crop_name = prediction[0]
         crop_info = crop_details_data.get('crops', {}).get(crop_name, {})
-
         return jsonify({
             "predicted_crop": crop_name,
             "details": crop_info
