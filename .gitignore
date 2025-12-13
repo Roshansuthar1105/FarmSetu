@@ -26,3 +26,42 @@ dist-ssr
 yt.js
 a.html
 news.js
+
+# for ml models 
+# --- General Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.log
+
+# --- Virtual Environments ---
+venv/
+env/
+.env
+
+# --- Flask & Web ---
+instance/
+.webassets-cache
+static/uploads/*
+!static/uploads/.gitkeep
+
+# --- IDE Settings (VS Code, Pycharm, etc) ---
+.idea/
+.vscode/
+*.swp
+.DS_Store
+
+# --- Machine Learning Models (Optional) ---
+# If your models are larger than 100MB, GitHub will reject them.
+# Uncomment the lines below if you want to exclude heavy models.
+# *.keras
+# *.pkl
+# models/*.h5
+
+# --- Data Files ---
+# Ignore raw training data CSVs if you don't want them in the repo
+# historical.csv
+# district.csv
+
+# Keep JSON data files
+!data/*.json

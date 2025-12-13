@@ -1,0 +1,1485 @@
+{
+  "crops": {
+    "apple": {
+      "name": "Apple",
+      "best_grown_in": "Mountainous regions, Cool Climate",
+      "growing_time": "2-3 years (tree), 4-6 months (fruit)",
+      "best_season": "Winter Planting, Harvest in Autumn",
+      "ideal_temperature": "5-20°C",
+      "soil_type": "Loamy, pH 6.0-7.0",
+      "steps": [
+        "Plant saplings in well-drained soil",
+        "Provide proper spacing",
+        "Use fertilizers rich in phosphorus",
+        "Protect from frost damage",
+        "Prune trees to maintain growth",
+        "Harvest when apples turn red and firm"
+      ],
+      "expected_yield": "10-15 tons per hectare",
+      "market_price": "₹80-150 per kg",
+      "problems_and_solutions": {
+        "Fungal diseases": "Use Bordeaux mixture",
+        "Fruit dropping": "Maintain proper watering schedule"
+      },
+      "tools_needed": ["Pruning Shears", "Sprayer", "Harvesting Basket"]
+    },
+    "arecanut": {
+      "name": "Arecanut",
+      "best_grown_in": "Tropical, Humid Climate",
+      "growing_time": "5-7 years (tree), 6-8 months (nut maturity)",
+      "best_season": "Year-round",
+      "ideal_temperature": "20-35°C",
+      "soil_type": "Laterite/Red Loam, pH 5.0-7.0",
+      "steps": [
+        "Plant seedlings in pits with compost",
+        "Provide partial shade in early stages",
+        "Irrigate regularly but avoid waterlogging",
+        "Apply organic manure annually",
+        "Harvest when nuts turn orange-yellow"
+      ],
+      "expected_yield": "1,000-2,000 nuts per tree/year",
+      "market_price": "₹10-20 per nut",
+      "problems_and_solutions": {
+        "Bud rot": "Spray Bordeaux mixture",
+        "Nut cracking": "Maintain consistent soil moisture"
+      },
+      "tools_needed": ["Machete", "Sprayer", "Harvesting Pole"]
+    },
+    "banana": {
+      "name": "Banana",
+      "best_grown_in": "Warm, Humid Climate",
+      "growing_time": "9-12 months",
+      "best_season": "Throughout the year",
+      "ideal_temperature": "25-35°C",
+      "soil_type": "Fertile Loamy, pH 5.5-7.5",
+      "steps": [
+        "Plant suckers or tissue-cultured plants",
+        "Provide regular irrigation",
+        "Apply balanced fertilizers",
+        "Protect from banana wilt",
+        "Harvest when fruits turn yellow-green"
+      ],
+      "expected_yield": "50-60 tons per hectare",
+      "market_price": "₹30-50 per dozen",
+      "problems_and_solutions": {
+        "Banana Wilt": "Use disease-free plants",
+        "Overwatering": "Ensure proper drainage"
+      },
+      "tools_needed": ["Irrigation System", "Pruning Knife", "Mulching Material"]
+    },
+    "barley": {
+      "name": "Barley",
+      "best_grown_in": "Cool Climate, Well-drained soil",
+      "growing_time": "3-4 months",
+      "best_season": "Rabi (Winter)",
+      "ideal_temperature": "12-25°C",
+      "soil_type": "Loamy, pH 6.0-8.0",
+      "steps": [
+        "Sow seeds in rows",
+        "Apply nitrogen fertilizers",
+        "Control aphids and rust",
+        "Harvest when grains harden"
+      ],
+      "expected_yield": "2-3 tons per hectare",
+      "market_price": "₹1,500-2,500 per quintal",
+      "problems_and_solutions": {
+        "Aphids": "Spray neem oil",
+        "Rust": "Use resistant varieties"
+      },
+      "tools_needed": ["Seed Drill", "Sprayer", "Harvester"]
+    },
+    "ber": {
+      "name": "Ber (Indian Plum)",
+      "best_grown_in": "Arid & Semi-arid Regions",
+      "growing_time": "3-4 years (tree), 6-8 months (fruit)",
+      "best_season": "Summer",
+      "ideal_temperature": "25-35°C",
+      "soil_type": "Sandy-Loamy, pH 6.5-7.5",
+      "steps": [
+        "Plant grafted saplings",
+        "Irrigate sparingly (drought-resistant)",
+        "Prune annually",
+        "Harvest when fruits turn yellow"
+      ],
+      "expected_yield": "80-100 kg per tree",
+      "market_price": "₹40-80 per kg",
+      "problems_and_solutions": {
+        "Fruit fly": "Use pheromone traps",
+        "Powdery mildew": "Spray sulfur"
+      },
+      "tools_needed": ["Pruning Shears", "Sprayer", "Harvesting Basket"]
+    },
+    "betelleaf": {
+      "name": "Betel Leaf",
+      "best_grown_in": "Shaded, Humid Climate",
+      "growing_time": "6-8 months",
+      "best_season": "Year-round",
+      "ideal_temperature": "20-30°C",
+      "soil_type": "Loamy, pH 6.0-7.0",
+      "steps": [
+        "Plant cuttings in shaded beds",
+        "Maintain high humidity",
+        "Use organic manure",
+        "Harvest mature leaves"
+      ],
+      "expected_yield": "10-15 lakh leaves/acre/year",
+      "market_price": "₹200-500 per 100 leaves",
+      "problems_and_solutions": {
+        "Leaf rot": "Improve air circulation",
+        "Mites": "Spray neem oil"
+      },
+      "tools_needed": ["Shade Net", "Sprayer", "Harvesting Knife"]
+    },
+    "bittergourd": {
+      "name": "Bitter Gourd",
+      "best_grown_in": "Warm Climate, Well-drained soil",
+      "growing_time": "2-3 months",
+      "best_season": "Summer & Monsoon",
+      "ideal_temperature": "25-35°C",
+      "soil_type": "Sandy-Loamy, pH 6.0-7.0",
+      "steps": [
+        "Sow seeds 1-2 cm deep in raised beds",
+        "Provide trellis for vine support",
+        "Water moderately (avoid overwatering)",
+        "Apply organic fertilizers",
+        "Harvest when fruits are green and firm"
+      ],
+      "expected_yield": "8-12 tons per hectare",
+      "market_price": "₹20-40 per kg",
+      "problems_and_solutions": {
+        "Fruit flies": "Use neem oil traps",
+        "Powdery mildew": "Spray sulfur-based fungicides"
+      },
+      "tools_needed": ["Trellis", "Sprayer", "Pruning Shears"]
+    },
+    "blackgram": {
+      "name": "Black Gram",
+      "best_grown_in": "Loamy soil, Humid Climate",
+      "growing_time": "3-4 months",
+      "best_season": "Kharif & Rabi",
+      "ideal_temperature": "25-35°C",
+      "soil_type": "Loamy, pH 6.0-7.5",
+      "steps": [
+        "Plow land and remove weeds",
+        "Sow seeds 3-4 cm deep",
+        "Water regularly but avoid excess moisture",
+        "Apply balanced fertilizers",
+        "Control pest attacks",
+        "Harvest when pods mature"
+      ],
+      "expected_yield": "1.2-1.5 tons per hectare",
+      "market_price": "₹70-90 per kg",
+      "problems_and_solutions": {
+        "Wilt Disease": "Use resistant varieties",
+        "Pod Borer": "Use pheromone traps"
+      },
+      "tools_needed": ["Seeder", "Sprayer", "Sickle"]
+    },
+    "bottlegourd": {
+      "name": "Bottle Gourd",
+      "best_grown_in": "Warm Climate, Well-drained soil",
+      "growing_time": "3-4 months",
+      "best_season": "Summer & Monsoon",
+      "ideal_temperature": "25-35°C",
+      "soil_type": "Loamy, pH 6.0-7.0",
+      "steps": [
+        "Sow seeds in pits or trellises",
+        "Provide support for vines",
+        "Water moderately",
+        "Harvest when fruits are tender"
+      ],
+      "expected_yield": "15-20 tons per hectare",
+      "market_price": "₹15-30 per kg",
+      "problems_and_solutions": {
+        "Fruit rot": "Avoid waterlogging",
+        "Aphids": "Spray soap solution"
+      },
+      "tools_needed": ["Trellis", "Sprayer", "Pruning Knife"]
+    },
+    "brinjal": {
+      "name": "Brinjal (Eggplant)",
+      "best_grown_in": "Warm Climate, Fertile soil",
+      "growing_time": "3-4 months",
+      "best_season": "Year-round (avoid frost)",
+      "ideal_temperature": "20-30°C",
+      "soil_type": "Loamy, pH 5.5-6.5",
+      "steps": [
+        "Sow seeds in nursery, transplant later",
+        "Apply compost and fertilizers",
+        "Stake plants for support",
+        "Harvest when fruits are glossy"
+      ],
+      "expected_yield": "20-30 tons per hectare",
+      "market_price": "₹20-50 per kg",
+      "problems_and_solutions": {
+        "Fruit borer": "Use neem oil",
+        "Wilt": "Crop rotation"
+      },
+      "tools_needed": ["Transplanter", "Sprayer", "Pruning Shears"]
+    },
+    "cabbage": {
+      "name": "Cabbage",
+      "best_grown_in": "Cool Climate, Fertile soil",
+      "growing_time": "3-4 months",
+      "best_season": "Winter",
+      "ideal_temperature": "15-20°C",
+      "soil_type": "Loamy, pH 6.0-6.5",
+      "steps": [
+        "Transplant seedlings",
+        "Apply nitrogen-rich fertilizers",
+        "Protect from caterpillars",
+        "Harvest when heads are firm"
+      ],
+      "expected_yield": "30-50 tons per hectare",
+      "market_price": "₹15-40 per kg",
+      "problems_and_solutions": {
+        "Diamondback moth": "Use Bt spray",
+        "Black rot": "Avoid waterlogging"
+      },
+      "tools_needed": ["Transplanter", "Sprayer", "Harvesting Knife"]
+    },
+    "castorseed": {
+      "name": "Castor Seed",
+      "best_grown_in": "Arid/Semi-arid, Well-drained soil",
+      "growing_time": "4-6 months",
+      "best_season": "Kharif",
+      "ideal_temperature": "20-35°C",
+      "soil_type": "Sandy-Loamy, pH 5.0-6.5",
+      "steps": [
+        "Sow seeds in rows",
+        "Apply phosphorus fertilizers",
+        "Control pests manually",
+        "Harvest when capsules dry"
+      ],
+      "expected_yield": "1-1.5 tons per hectare",
+      "market_price": "₹5,000-7,000 per quintal",
+      "problems_and_solutions": {
+        "Capsule borer": "Use neem oil",
+        "Fusarium wilt": "Crop rotation"
+      },
+      "tools_needed": ["Seed Drill", "Sprayer", "Sickle"]
+    },
+    "cauliflower": {
+      "name": "Cauliflower",
+      "best_grown_in": "Cool Climate, Fertile soil",
+      "growing_time": "3-4 months",
+      "best_season": "Winter",
+      "ideal_temperature": "15-22°C",
+      "soil_type": "Loamy, pH 6.0-7.0",
+      "steps": [
+        "Transplant seedlings",
+        "Maintain consistent moisture",
+        "Blanch heads by tying leaves",
+        "Harvest when curds are compact"
+      ],
+      "expected_yield": "20-25 tons per hectare",
+      "market_price": "₹20-60 per kg",
+      "problems_and_solutions": {
+        "Black rot": "Use disease-free seeds",
+        "Aphids": "Spray imidacloprid"
+      },
+      "tools_needed": ["Transplanter", "Sprayer", "Harvesting Knife"]
+    },
+    "chickpea": {
+      "name": "Chickpea",
+      "best_grown_in": "Loamy soil, Moderate Climate",
+      "growing_time": "4-6 months",
+      "best_season": "Rabi (Winter)",
+      "ideal_temperature": "10-25°C",
+      "soil_type": "Well-drained, pH 6.5-7.5",
+      "steps": [
+        "Plow land and remove weeds",
+        "Use quality seeds",
+        "Sow 2-3 cm deep",
+        "Provide minimal irrigation",
+        "Use organic manure",
+        "Protect from fungal diseases",
+        "Harvest when pods turn yellow"
+      ],
+      "expected_yield": "1.5-2 tons per hectare",
+      "market_price": "₹50-70 per kg",
+      "problems_and_solutions": {
+        "Root rot": "Use well-drained soil",
+        "Low yield": "Apply balanced fertilizers"
+      },
+      "tools_needed": ["Plow", "Sprayer", "Sickle"]
+    },
+    "coconut": {
+      "name": "Coconut",
+      "best_grown_in": "Coastal Regions, Tropical Climate",
+      "growing_time": "4-6 years (tree), 6-12 months (fruit)",
+      "best_season": "Year-round",
+      "ideal_temperature": "25-35°C",
+      "soil_type": "Sandy-Loamy, pH 5.5-7.5",
+      "steps": [
+        "Prepare land with compost",
+        "Plant seedlings 6-8 meters apart",
+        "Ensure regular watering",
+        "Use potassium-rich fertilizers",
+        "Protect from root wilt disease",
+        "Harvest mature coconuts every 3-4 months"
+      ],
+      "expected_yield": "70-150 nuts per tree per year",
+      "market_price": "₹30-50 per nut",
+      "problems_and_solutions": {
+        "Coconut mite attack": "Use sulfur-based sprays",
+        "Yellowing leaves": "Apply balanced fertilizers"
+      },
+      "tools_needed": ["Machete", "Climbing Equipment", "Basket"]
+    },
+    "coffee": {
+      "name": "Coffee",
+      "best_grown_in": "Hilly Regions, Cool Climate",
+      "growing_time": "3-4 years",
+      "best_season": "Winter Planting",
+      "ideal_temperature": "15-25°C",
+      "soil_type": "Well-drained, pH 6.0-6.5",
+      "steps": [
+        "Prepare land with compost",
+        "Plant saplings at 3 feet distance",
+        "Provide shade with taller plants",
+        "Water regularly but avoid flooding",
+        "Use organic fertilizers",
+        "Protect from leaf rust",
+        "Harvest ripe cherries manually"
+      ],
+      "expected_yield": "1.5-2 tons per hectare",
+      "market_price": "₹250-400 per kg",
+      "problems_and_solutions": {
+        "Leaf rust": "Spray Bordeaux mixture",
+        "Low yield": "Prune plants annually"
+      },
+      "tools_needed": ["Pruning Shears", "Basket", "Coffee Pulper"]
+    },
+    "coriander": {
+      "name": "Coriander",
+      "best_grown_in": "Cool Climate, Well-drained soil",
+      "growing_time": "3-4 months",
+      "best_season": "Winter",
+      "ideal_temperature": "15-25°C",
+      "soil_type": "Loamy, pH 6.0-7.0",
+      "steps": [
+        "Sow seeds directly in field",
+        "Thin seedlings for spacing",
+        "Water lightly",
+        "Harvest leaves or seeds"
+      ],
+      "expected_yield": "5-8 tons per hectare (leaves)",
+      "market_price": "₹60-100 per kg (seeds)",
+      "problems_and_solutions": {
+        "Powdery mildew": "Spray sulfur",
+        "Aphids": "Use neem oil"
+      },
+      "tools_needed": ["Seeder", "Sprayer", "Sickle"]
+    },
+    "cotton": {
+      "name": "Cotton",
+      "best_grown_in": "Black soil, Warm Climate",
+      "growing_time": "5-6 months",
+      "best_season": "Kharif",
+      "ideal_temperature": "25-35°C",
+      "soil_type": "Black Soil, pH 6.0-7.5",
+      "steps": [
+        "Sow seeds at 3-5 cm depth",
+        "Water regularly in early stages",
+        "Use fertilizers rich in nitrogen",
+        "Protect from bollworms",
+        "Harvest when bolls open"
+      ],
+      "expected_yield": "1.5-2 tons per hectare",
+      "market_price": "₹5,000-7,000 per quintal",
+      "problems_and_solutions": {
+        "Bollworm Infestation": "Use pheromone traps",
+        "Drought": "Use drip irrigation"
+      },
+      "tools_needed": ["Seed Drill", "Sprayer", "Cotton Picker"]
+    },
+    "cowpea": {
+      "name": "Cowpea",
+      "best_grown_in": "Warm Climate, Drought-prone areas",
+      "growing_time": "2-3 months",
+      "best_season": "Kharif",
+      "ideal_temperature": "25-35°C",
+      "soil_type": "Sandy-Loamy, pH 5.5-7.0",
+      "steps": [
+        "Sow seeds directly",
+        "Water sparingly",
+        "Harvest when pods dry"
+      ],
+      "expected_yield": "1-1.5 tons per hectare",
+      "market_price": "₹40-60 per kg",
+      "problems_and_solutions": {
+        "Aphids": "Spray neem oil",
+        "Root rot": "Avoid waterlogging"
+      },
+      "tools_needed": ["Seeder", "Sprayer", "Sickle"]
+    },
+    "cumin": {
+      "name": "Cumin",
+      "best_grown_in": "Arid/Semi-arid, Well-drained soil",
+      "growing_time": "3-4 months",
+      "best_season": "Rabi",
+      "ideal_temperature": "20-30°C",
+      "soil_type": "Sandy-Loamy, pH 6.0-7.5",
+      "steps": [
+        "Sow seeds in rows",
+        "Avoid overwatering",
+        "Harvest when seeds turn brown"
+      ],
+      "expected_yield": "0.5-1 ton per hectare",
+      "market_price": "₹200-300 per kg",
+      "problems_and_solutions": {
+        "Wilt": "Use resistant varieties",
+        "Powdery mildew": "Spray sulfur"
+      },
+      "tools_needed": ["Seeder", "Sprayer", "Sickle"]
+    },
+    "custardapple": {
+      "name": "Custard Apple",
+      "best_grown_in": "Tropical, Well-drained soil",
+      "growing_time": "3-4 years (tree), 5-6 months (fruit)",
+      "best_season": "Monsoon Planting",
+      "ideal_temperature": "25-35°C",
+      "soil_type": "Loamy, pH 6.5-7.5",
+      "steps": [
+        "Plant grafted saplings",
+        "Mulch to retain moisture",
+        "Harvest when fruits soften"
+      ],
+      "expected_yield": "50-100 fruits per tree",
+      "market_price": "₹60-120 per kg",
+      "problems_and_solutions": {
+        "Fruit borer": "Bag fruits",
+        "Anthracnose": "Prune infected branches"
+      },
+      "tools_needed": ["Pruning Shears", "Mulching Material", "Harvesting Basket"]
+    },
+    "fenugreek": {
+      "name": "Fenugreek",
+      "best_grown_in": "Cool Climate, Well-drained soil",
+      "growing_time": "2-3 months",
+      "best_season": "Winter",
+      "ideal_temperature": "10-25°C",
+      "soil_type": "Loamy, pH 6.0-7.0",
+      "steps": [
+        "Sow seeds densely",
+        "Water lightly",
+        "Harvest leaves or seeds"
+      ],
+      "expected_yield": "8-10 tons per hectare (leaves)",
+      "market_price": "₹80-120 per kg (seeds)",
+      "problems_and_solutions": {
+        "Powdery mildew": "Improve air circulation",
+        "Aphids": "Spray neem oil"
+      },
+      "tools_needed": ["Broadcast Seeder", "Sprayer", "Sickle"]
+    },
+    "fieldpea": {
+      "name": "Field Pea",
+      "best_grown_in": "Cool Climate, Well-drained soil",
+      "growing_time": "3-4 months",
+      "best_season": "Rabi",
+      "ideal_temperature": "10-20°C",
+      "soil_type": "Loamy, pH 6.0-7.5",
+      "steps": [
+        "Sow seeds in rows",
+        "Support vines with trellis",
+        "Harvest when pods plump"
+      ],
+      "expected_yield": "1.5-2 tons per hectare",
+      "market_price": "₹40-60 per kg",
+      "problems_and_solutions": {
+        "Powdery mildew": "Spray sulfur",
+        "Aphids": "Use neem oil"
+      },
+      "tools_needed": ["Seeder", "Trellis", "Sickle"]
+    },
+    "fingermillet": {
+      "name": "Finger Millet (Ragi)",
+      "best_grown_in": "Dryland, Well-drained soil",
+      "growing_time": "3-5 months",
+      "best_season": "Kharif",
+      "ideal_temperature": "20-30°C",
+      "soil_type": "Red Loamy, pH 5.5-7.0",
+      "steps": [
+        "Broadcast seeds",
+        "Weed manually",
+        "Harvest when grains harden"
+      ],
+      "expected_yield": "1-1.5 tons per hectare",
+      "market_price": "₹30-50 per kg",
+      "problems_and_solutions": {
+        "Blast disease": "Use resistant varieties",
+        "Birds": "Use nets"
+      },
+      "tools_needed": ["Broadcast Seeder", "Sickle", "Thresher"]
+    },
+    "flax": {
+      "name": "Flax (Linseed)",
+      "best_grown_in": "Cool Climate, Well-drained soil",
+      "growing_time": "3-4 months",
+      "best_season": "Rabi",
+      "ideal_temperature": "10-25°C",
+      "soil_type": "Loamy, pH 6.0-7.0",
+      "steps": [
+        "Sow seeds in rows",
+        "Harvest when capsules turn brown"
+      ],
+      "expected_yield": "0.8-1.2 tons per hectare",
+      "market_price": "₹4,000-6,000 per quintal",
+      "problems_and_solutions": {
+        "Rust": "Use resistant varieties",
+        "Aphids": "Spray neem oil"
+      },
+      "tools_needed": ["Seed Drill", "Sprayer", "Sickle"]
+    },
+    "foxtailmillet": {
+      "name": "Foxtail Millet",
+      "best_grown_in": "Dryland, Well-drained soil",
+      "growing_time": "2-3 months",
+      "best_season": "Kharif",
+      "ideal_temperature": "20-35°C",
+      "soil_type": "Sandy-Loamy, pH 5.5-7.5",
+      "steps": [
+        "Broadcast seeds",
+        "Weed manually",
+        "Harvest when panicles dry"
+      ],
+      "expected_yield": "1-1.5 tons per hectare",
+      "market_price": "₹40-60 per kg",
+      "problems_and_solutions": {
+        "Downy mildew": "Use resistant varieties",
+        "Birds": "Use scarecrows"
+      },
+      "tools_needed": ["Broadcast Seeder", "Sickle", "Thresher"]
+    },
+    "garlic": {
+      "name": "Garlic",
+      "best_grown_in": "Cool Climate, Well-drained soil",
+      "growing_time": "4-5 months",
+      "best_season": "Rabi",
+      "ideal_temperature": "15-25°C",
+      "soil_type": "Loamy, pH 6.0-7.0",
+      "steps": [
+        "Plant cloves 2-3 cm deep",
+        "Mulch to retain moisture",
+        "Harvest when leaves yellow"
+      ],
+      "expected_yield": "5-8 tons per hectare",
+      "market_price": "₹80-150 per kg",
+      "problems_and_solutions": {
+        "White rot": "Crop rotation",
+        "Thrips": "Spray neem oil"
+      },
+      "tools_needed": ["Planter", "Mulching Material", "Harvesting Fork"]
+    },
+    "ginger": {
+      "name": "Ginger",
+      "best_grown_in": "Tropical, Humid Climate",
+      "growing_time": "8-10 months",
+      "best_season": "Monsoon (Planting), Winter (Harvest)",
+      "ideal_temperature": "20-30°C",
+      "soil_type": "Loamy, pH 5.5-6.5",
+      "steps": [
+        "Plant rhizomes in beds",
+        "Mulch heavily",
+        "Harvest when leaves yellow"
+      ],
+      "expected_yield": "15-20 tons per hectare",
+      "market_price": "₹60-100 per kg",
+      "problems_and_solutions": {
+        "Rhizome rot": "Use Trichoderma",
+        "Shoot borer": "Spray carbaryl"
+      },
+      "tools_needed": ["Hoe", "Mulching Material", "Harvesting Fork"]
+    },
+    "grapes": {
+      "name": "Grapes",
+      "best_grown_in": "Well-drained soil, Warm Climate",
+      "growing_time": "6-8 months",
+      "best_season": "Winter & Summer",
+      "ideal_temperature": "15-35°C",
+      "soil_type": "Loamy, pH 5.5-7.0",
+      "steps": [
+        "Prepare soil with organic manure",
+        "Plant cuttings with proper spacing",
+        "Provide regular irrigation",
+        "Train vines on trellis system",
+        "Use fertilizers rich in potassium",
+        "Protect from fungal diseases",
+        "Harvest when grapes are fully ripened"
+      ],
+      "expected_yield": "10-25 tons per hectare",
+      "market_price": "₹50-100 per kg",
+      "problems_and_solutions": {
+        "Fungal infections": "Use copper-based fungicides",
+        "Bird attack": "Use protective nets"
+      },
+      "tools_needed": ["Pruning Shears", "Trellis System", "Sprayer"]
+    },
+    "greengram": {
+      "name": "Green Gram (Moong)",
+      "best_grown_in": "Well-drained soil, Warm Climate",
+      "growing_time": "2.5-3 months",
+      "best_season": "Kharif & Rabi",
+      "ideal_temperature": "20-30°C",
+      "soil_type": "Loamy, pH 6.0-7.5",
+      "steps": [
+        "Plow land and remove weeds",
+        "Sow seeds at 3 cm depth",
+        "Water moderately",
+        "Apply nitrogen-based fertilizers",
+        "Protect from yellow mosaic virus",
+        "Harvest when pods dry"
+      ],
+      "expected_yield": "1-1.5 tons per hectare",
+      "market_price": "₹60-80 per kg",
+      "problems_and_solutions": {
+        "Yellow Mosaic Virus": "Use resistant varieties",
+        "Pest attack": "Apply neem oil"
+      },
+      "tools_needed": ["Seeder", "Hoe", "Sprayer"]
+    },
+    "groundnut": {
+      "name": "Groundnut (Peanut)",
+      "best_grown_in": "Sandy soil, Warm Climate",
+      "growing_time": "4-5 months",
+      "best_season": "Kharif",
+      "ideal_temperature": "25-35°C",
+      "soil_type": "Sandy-Loamy, pH 5.5-7.0",
+      "steps": [
+        "Sow seeds 5 cm deep",
+        "Apply calcium-rich fertilizers",
+        "Harvest when leaves yellow"
+      ],
+      "expected_yield": "2-3 tons per hectare",
+      "market_price": "₹50-80 per kg",
+      "problems_and_solutions": {
+        "Leaf spot": "Use fungicides",
+        "Termites": "Apply neem cake"
+      },
+      "tools_needed": ["Seed Drill", "Sprayer", "Harvester"]
+    },
+    "guava": {
+      "name": "Guava",
+      "best_grown_in": "Tropical & Subtropical",
+      "growing_time": "2-3 years (tree), 4-6 months (fruit)",
+      "best_season": "Year-round (Peak in Monsoon)",
+      "ideal_temperature": "20-30°C",
+      "soil_type": "Well-drained, pH 5.5-7.5",
+      "steps": [
+        "Plant grafted saplings",
+        "Prune annually",
+        "Harvest when fruits soften"
+      ],
+      "expected_yield": "20-25 tons per hectare",
+      "market_price": "₹40-80 per kg",
+      "problems_and_solutions": {
+        "Fruit fly": "Use bait traps",
+        "Wilt": "Use resistant varieties"
+      },
+      "tools_needed": ["Pruning Shears", "Sprayer", "Harvesting Basket"]
+    },
+    "hemp": {
+      "name": "Hemp",
+      "best_grown_in": "Temperate, Well-drained soil",
+      "growing_time": "3-4 months",
+      "best_season": "Summer",
+      "ideal_temperature": "15-25°C",
+      "soil_type": "Loamy, pH 6.0-7.5",
+      "steps": [
+        "Sow seeds in rows",
+        "Harvest when fibers mature"
+      ],
+      "expected_yield": "2-3 tons per hectare (fiber)",
+      "market_price": "₹200-400 per kg (seeds)",
+      "problems_and_solutions": {
+        "Mites": "Spray sulfur",
+        "Overwatering": "Improve drainage"
+      },
+      "tools_needed": ["Seeder", "Harvester", "Retting Tank"]
+    },
+    "horsegram": {
+      "name": "Horse Gram",
+      "best_grown_in": "Dryland, Drought-prone areas",
+      "growing_time": "3-4 months",
+      "best_season": "Rabi",
+      "ideal_temperature": "20-30°C",
+      "soil_type": "Sandy-Loamy, pH 5.5-7.0",
+      "steps": [
+        "Sow seeds in rows",
+        "Harvest when pods dry"
+      ],
+      "expected_yield": "0.8-1.2 tons per hectare",
+      "market_price": "₹60-100 per kg",
+      "problems_and_solutions": {
+        "Pod borer": "Use neem oil",
+        "Low yield": "Apply phosphorus"
+      },
+      "tools_needed": ["Seeder", "Sprayer", "Sickle"]
+    },
+    "jackfruit": {
+      "name": "Jackfruit",
+      "best_grown_in": "Tropical, Humid Climate",
+      "growing_time": "5-7 years (tree), 3-6 months (fruit)",
+      "best_season": "Monsoon Planting",
+      "ideal_temperature": "25-35°C",
+      "soil_type": "Deep Loamy, pH 6.0-7.5",
+      "steps": [
+        "Plant grafted saplings",
+        "Mulch heavily",
+        "Harvest when fruit emits aroma"
+      ],
+      "expected_yield": "50-100 fruits per tree/year",
+      "market_price": "₹30-80 per kg",
+      "problems_and_solutions": {
+        "Fruit borer": "Bag young fruits",
+        "Root rot": "Improve drainage"
+      },
+      "tools_needed": ["Pruning Saw", "Mulching Material", "Harvesting Knife"]
+    },
+    "jute": {
+      "name": "Jute",
+      "best_grown_in": "Sandy Loam, High Humidity",
+      "growing_time": "4-5 months",
+      "best_season": "Monsoon",
+      "ideal_temperature": "20-40°C",
+      "soil_type": "Sandy-Loamy, pH 6.0-7.0",
+      "steps": [
+        "Prepare soil with compost",
+        "Sow seeds in shallow furrows",
+        "Water regularly",
+        "Apply NPK fertilizers",
+        "Protect from stem rot",
+        "Harvest when stems turn yellow"
+      ],
+      "expected_yield": "2.5-3.5 tons per hectare",
+      "market_price": "₹3,000-5,000 per quintal",
+      "problems_and_solutions": {
+        "Stem rot": "Use proper drainage system",
+        "Pest attacks": "Apply neem-based pesticides"
+      },
+      "tools_needed": ["Plow", "Sickle", "Watering Can"]
+    },
+    "kidneybeans": {
+      "name": "Kidney Beans",
+      "best_grown_in": "Loamy soil, Cool Climate",
+      "growing_time": "3-4 months",
+      "best_season": "Rabi",
+      "ideal_temperature": "15-25°C",
+      "soil_type": "Well-drained, pH 6.0-7.0",
+      "steps": [
+        "Prepare land with organic manure",
+        "Sow seeds 3 cm deep",
+        "Provide moderate irrigation",
+        "Apply organic compost",
+        "Protect from fungal infections",
+        "Harvest when pods are dry"
+      ],
+      "expected_yield": "2-2.5 tons per hectare",
+      "market_price": "₹80-100 per kg",
+      "problems_and_solutions": {
+        "Pest attack": "Use neem oil spray",
+        "Root rot": "Ensure proper drainage"
+      },
+      "tools_needed": ["Hand Hoe", "Sprayer", "Sickle"]
+    },
+    "kodomillet": {
+      "name": "Kodo Millet",
+      "best_grown_in": "Dryland, Well-drained soil",
+      "growing_time": "3-4 months",
+      "best_season": "Kharif",
+      "ideal_temperature": "20-35°C",
+      "soil_type": "Sandy-Loamy, pH 5.5-7.0",
+      "steps": [
+        "Broadcast seeds",
+        "Weed manually",
+        "Harvest when grains harden"
+      ],
+      "expected_yield": "1-1.5 tons per hectare",
+      "market_price": "₹50-80 per kg",
+      "problems_and_solutions": {
+        "Smut disease": "Use treated seeds",
+        "Birds": "Use nets"
+      },
+      "tools_needed": ["Broadcast Seeder", "Sickle", "Thresher"]
+    },
+    "lentil": {
+      "name": "Lentil",
+      "best_grown_in": "Cool Climate, Well-drained soil",
+      "growing_time": "4-5 months",
+      "best_season": "Rabi (Winter)",
+      "ideal_temperature": "10-25°C",
+      "soil_type": "Loamy, pH 6.0-7.0",
+      "steps": [
+        "Prepare land with organic matter",
+        "Sow seeds 2 cm deep",
+        "Water regularly but avoid waterlogging",
+        "Apply phosphorus fertilizers",
+        "Protect from rust disease",
+        "Harvest when pods dry"
+      ],
+      "expected_yield": "1-1.5 tons per hectare",
+      "market_price": "₹80-100 per kg",
+      "problems_and_solutions": {
+        "Rust Disease": "Use fungicide spray",
+        "Water stress": "Ensure consistent irrigation"
+      },
+      "tools_needed": ["Seeder", "Sprayer", "Sickle"]
+    },
+    "littlemillet": {
+      "name": "Little Millet",
+      "best_grown_in": "Dryland, Well-drained soil",
+      "growing_time": "2-3 months",
+      "best_season": "Kharif",
+      "ideal_temperature": "20-35°C",
+      "soil_type": "Sandy-Loamy, pH 5.5-7.0",
+      "steps": [
+        "Broadcast seeds",
+        "Weed manually",
+        "Harvest when panicles dry"
+      ],
+      "expected_yield": "1-1.5 tons per hectare",
+      "market_price": "₹40-60 per kg",
+      "problems_and_solutions": {
+        "Downy mildew": "Use resistant varieties",
+        "Birds": "Use scarecrows"
+      },
+      "tools_needed": ["Broadcast Seeder", "Sickle", "Thresher"]
+    },
+    "lychee": {
+      "name": "Lychee",
+      "best_grown_in": "Subtropical, Humid Climate",
+      "growing_time": "5-6 years (tree), 3-4 months (fruit)",
+      "best_season": "Summer",
+      "ideal_temperature": "20-30°C",
+      "soil_type": "Well-drained, pH 5.5-7.0",
+      "steps": [
+        "Plant grafted saplings",
+        "Prune for shape",
+        "Harvest when fruits turn pink"
+      ],
+      "expected_yield": "80-100 kg per tree",
+      "market_price": "₹200-400 per kg",
+      "problems_and_solutions": {
+        "Fruit borer": "Bag fruits",
+        "Anthracnose": "Spray copper fungicides"
+      },
+      "tools_needed": ["Pruning Shears", "Sprayer", "Harvesting Basket"]
+    },
+    "maize": {
+      "name": "Maize",
+      "best_grown_in": "Well-drained soil, Warm Climate",
+      "growing_time": "3-4 months",
+      "best_season": "Kharif & Rabi",
+      "ideal_temperature": "18-27°C",
+      "soil_type": "Loamy, pH 5.5-7.5",
+      "steps": [
+        "Prepare soil by plowing and adding manure",
+        "Sow seeds at a depth of 3-5 cm",
+        "Water regularly but avoid waterlogging",
+        "Use Nitrogen, Phosphorus, and Potassium fertilizers",
+        "Protect from pests like Fall Armyworm",
+        "Harvest when kernels harden"
+      ],
+      "expected_yield": "3-5 tons per hectare",
+      "market_price": "₹15-20 per kg",
+      "problems_and_solutions": {
+        "Drought": "Use drought-resistant varieties",
+        "Pest attack": "Use biopesticides or controlled irrigation"
+      },
+      "tools_needed": ["Seeder", "Sprayer", "Harvester"]
+    },
+    "mango": {
+      "name": "Mango",
+      "best_grown_in": "Tropical & Subtropical Regions",
+      "growing_time": "5-6 years (fruiting)",
+      "best_season": "Spring Planting",
+      "ideal_temperature": "25-35°C",
+      "soil_type": "Well-drained, pH 5.5-7.5",
+      "steps": [
+        "Plant saplings in deep soil",
+        "Water deeply once a week",
+        "Apply potassium-based fertilizers",
+        "Prune annually for better yield",
+        "Harvest when fruit matures"
+      ],
+      "expected_yield": "10-15 tons per hectare",
+      "market_price": "₹50-150 per kg",
+      "problems_and_solutions": {
+        "Mango Hopper": "Use neem oil spray",
+        "Fungal Infection": "Apply copper-based fungicide"
+      },
+      "tools_needed": ["Pruning Shears", "Sprayer", "Harvesting Pole"]
+    },
+    "mothbeans": {
+      "name": "Moth Beans",
+      "best_grown_in": "Sandy soil, Drought-prone regions",
+      "growing_time": "2-3 months",
+      "best_season": "Kharif (Monsoon)",
+      "ideal_temperature": "25-35°C",
+      "soil_type": "Sandy-Loamy, pH 6.0-7.5",
+      "steps": [
+        "Plow land and remove weeds",
+        "Sow seeds 2 cm deep",
+        "Water sparsely as it is drought-resistant",
+        "Apply organic compost",
+        "Protect from fungal infections",
+        "Harvest when pods dry"
+      ],
+      "expected_yield": "1.2-1.5 tons per hectare",
+      "market_price": "₹40-50 per kg",
+      "problems_and_solutions": {
+        "Weeds": "Use manual weeding",
+        "Root rot": "Ensure well-drained soil"
+      },
+      "tools_needed": ["Plow", "Sprayer", "Sickle"]
+    },
+    "mungbean": {
+      "name": "Mung Bean",
+      "best_grown_in": "Well-drained soil, Warm Climate",
+      "growing_time": "2.5-3 months",
+      "best_season": "Kharif & Rabi",
+      "ideal_temperature": "20-30°C",
+      "soil_type": "Loamy, pH 6.0-7.5",
+      "steps": [
+        "Plow land and remove weeds",
+        "Sow seeds at 3 cm depth",
+        "Water moderately",
+        "Apply nitrogen-based fertilizers",
+        "Protect from yellow mosaic virus",
+        "Harvest when pods dry"
+      ],
+      "expected_yield": "1-1.5 tons per hectare",
+      "market_price": "₹60-80 per kg",
+      "problems_and_solutions": {
+        "Yellow Mosaic Virus": "Use resistant varieties",
+        "Pest attack": "Apply neem oil"
+      },
+      "tools_needed": ["Seeder", "Hoe", "Sprayer"]
+    },
+    "muskmelon": {
+      "name": "Muskmelon",
+      "best_grown_in": "Sandy soil, Warm Climate",
+      "growing_time": "3-4 months",
+      "best_season": "Summer",
+      "ideal_temperature": "25-35°C",
+      "soil_type": "Sandy-Loamy, pH 5.5-7.0",
+      "steps": [
+        "Prepare land with organic manure",
+        "Sow seeds at 1-inch depth",
+        "Water regularly but avoid waterlogging",
+        "Use fertilizers rich in potassium",
+        "Protect from fungal diseases",
+        "Harvest when fruits are fragrant and firm"
+      ],
+      "expected_yield": "15-25 tons per hectare",
+      "market_price": "₹30-50 per kg",
+      "problems_and_solutions": {
+        "Aphid attack": "Use neem-based insecticides",
+        "Rotting fruit": "Improve soil drainage"
+      },
+      "tools_needed": ["Hoe", "Irrigation System", "Sprayer"]
+    },
+    "mustard": {
+      "name": "Mustard",
+      "best_grown_in": "Cool Climate, Well-drained soil",
+      "growing_time": "3-4 months",
+      "best_season": "Rabi (Winter)",
+      "ideal_temperature": "10-25°C",
+      "soil_type": "Loamy, pH 6.0-7.5",
+      "steps": [
+        "Sow seeds in rows",
+        "Control aphids",
+        "Harvest when pods turn yellow"
+      ],
+      "expected_yield": "1-1.5 tons per hectare",
+      "market_price": "₹4,000-6,000 per quintal",
+      "problems_and_solutions": {
+        "Aphids": "Spray imidacloprid",
+        "White rust": "Use resistant varieties"
+      },
+      "tools_needed": ["Seed Drill", "Sprayer", "Sickle"]
+    },
+    "okra": {
+      "name": "Okra (Lady's Finger)",
+      "best_grown_in": "Warm Climate, Well-drained soil",
+      "growing_time": "2-3 months",
+      "best_season": "Summer & Monsoon",
+      "ideal_temperature": "25-35°C",
+      "soil_type": "Loamy, pH 6.0-7.0",
+      "steps": [
+        "Sow seeds 1 cm deep",
+        "Water regularly",
+        "Harvest tender pods"
+      ],
+      "expected_yield": "10-15 tons per hectare",
+      "market_price": "₹30-60 per kg",
+      "problems_and_solutions": {
+        "Yellow vein mosaic": "Use resistant varieties",
+        "Fruit borer": "Spray neem oil"
+      },
+      "tools_needed": ["Seeder", "Sprayer", "Pruning Shears"]
+    },
+    "onion": {
+      "name": "Onion",
+      "best_grown_in": "Cool Climate, Well-drained soil",
+      "growing_time": "4-5 months",
+      "best_season": "Rabi",
+      "ideal_temperature": "15-25°C",
+      "soil_type": "Loamy, pH 6.0-7.0",
+      "steps": [
+        "Transplant seedlings",
+        "Apply sulfur fertilizers",
+        "Harvest when tops fall over"
+      ],
+      "expected_yield": "20-25 tons per hectare",
+      "market_price": "₹20-50 per kg",
+      "problems_and_solutions": {
+        "Thrips": "Spray imidacloprid",
+        "Purple blotch": "Use fungicides"
+      },
+      "tools_needed": ["Transplanter", "Sprayer", "Harvesting Fork"]
+    },
+    "orange": {
+      "name": "Orange",
+      "best_grown_in": "Well-drained soil, Tropical Climate",
+      "growing_time": "3-4 years (tree), 6-8 months (fruit)",
+      "best_season": "Winter",
+      "ideal_temperature": "15-30°C",
+      "soil_type": "Loamy, pH 6.0-7.5",
+      "steps": [
+        "Prepare land with compost",
+        "Plant saplings with proper spacing",
+        "Provide deep irrigation",
+        "Use balanced fertilizers",
+        "Protect from citrus greening disease",
+        "Harvest when oranges are fully ripened"
+      ],
+      "expected_yield": "10-20 tons per hectare",
+      "market_price": "₹40-80 per kg",
+      "problems_and_solutions": {
+        "Citrus canker": "Use copper-based fungicides",
+        "Fruit splitting": "Ensure consistent watering"
+      },
+      "tools_needed": ["Pruning Shears", "Sprayer", "Harvesting Basket"]
+    },
+    "papaya": {
+      "name": "Papaya",
+      "best_grown_in": "Loamy soil, Warm Climate",
+      "growing_time": "6-9 months",
+      "best_season": "Year-round (Best in Summer & Monsoon)",
+      "ideal_temperature": "22-32°C",
+      "soil_type": "Well-drained, pH 6.0-7.5",
+      "steps": [
+        "Prepare soil with compost",
+        "Plant seedlings 2 meters apart",
+        "Water regularly but avoid stagnation",
+        "Apply organic fertilizers",
+        "Protect from viral infections",
+        "Harvest when papayas turn yellowish"
+      ],
+      "expected_yield": "40-60 tons per hectare",
+      "market_price": "₹30-50 per kg",
+      "problems_and_solutions": {
+        "Papaya ringspot virus": "Use resistant varieties",
+        "Stem rot": "Ensure good drainage"
+      },
+      "tools_needed": ["Hoe", "Sprayer", "Pruning Shears"]
+    },
+    "pearlmillet": {
+      "name": "Pearl Millet (Bajra)",
+      "best_grown_in": "Arid/Semi-arid, Well-drained soil",
+      "growing_time": "3-4 months",
+      "best_season": "Kharif",
+      "ideal_temperature": "25-35°C",
+      "soil_type": "Sandy-Loamy, pH 6.0-7.5",
+      "steps": [
+        "Sow seeds in rows",
+        "Drought-tolerant (minimal irrigation)",
+        "Harvest when grains harden"
+      ],
+      "expected_yield": "1.5-2 tons per hectare",
+      "market_price": "₹20-40 per kg",
+      "problems_and_solutions": {
+        "Downy mildew": "Use resistant varieties",
+        "Birds": "Use nets"
+      },
+      "tools_needed": ["Seed Drill", "Sickle", "Thresher"]
+    },
+    "pigeonpeas": {
+      "name": "Pigeon Peas",
+      "best_grown_in": "Well-drained soil, Warm Climate",
+      "growing_time": "5-6 months",
+      "best_season": "Kharif",
+      "ideal_temperature": "18-30°C",
+      "soil_type": "Loamy, pH 5.5-7.0",
+      "steps": [
+        "Plow land and remove weeds",
+        "Sow seeds at 5 cm depth",
+        "Water regularly but avoid waterlogging",
+        "Use organic fertilizers",
+        "Protect from pod borers",
+        "Harvest when pods dry up"
+      ],
+      "expected_yield": "1-1.5 tons per hectare",
+      "market_price": "₹50-60 per kg",
+      "problems_and_solutions": {
+        "Pod borer attack": "Use pheromone traps",
+        "Drought stress": "Mulching helps retain moisture"
+      },
+      "tools_needed": ["Seeder", "Hoe", "Sickle"]
+    },
+    "pineapple": {
+      "name": "Pineapple",
+      "best_grown_in": "Tropical, Humid Climate",
+      "growing_time": "18-24 months",
+      "best_season": "Year-round",
+      "ideal_temperature": "20-30°C",
+      "soil_type": "Sandy-Loamy, pH 4.5-6.5",
+      "steps": [
+        "Plant suckers or crowns",
+        "Mulch to retain moisture",
+        "Harvest when base turns yellow"
+      ],
+      "expected_yield": "50-80 tons per hectare",
+      "market_price": "₹30-60 per kg",
+      "problems_and_solutions": {
+        "Mealybugs": "Spray soap solution",
+        "Heart rot": "Improve drainage"
+      },
+      "tools_needed": ["Planting Stick", "Mulching Material", "Harvesting Knife"]
+    },
+    "pomegranate": {
+      "name": "Pomegranate",
+      "best_grown_in": "Arid & Semi-Arid Regions",
+      "growing_time": "5-6 months (fruiting)",
+      "best_season": "Summer & Winter",
+      "ideal_temperature": "25-35°C",
+      "soil_type": "Loamy, pH 6.0-7.5",
+      "steps": [
+        "Plant saplings in well-drained soil",
+        "Water deeply but infrequently",
+        "Apply potassium-rich fertilizers",
+        "Protect from fruit borers",
+        "Harvest when skin turns red"
+      ],
+      "expected_yield": "15-20 tons per hectare",
+      "market_price": "₹80-150 per kg",
+      "problems_and_solutions": {
+        "Fruit Cracking": "Maintain soil moisture",
+        "Pests": "Use organic insecticides"
+      },
+      "tools_needed": ["Pruning Shears", "Drip Irrigation", "Sprayer"]
+    },
+    "potato": {
+      "name": "Potato",
+      "best_grown_in": "Cool Climate, Well-drained soil",
+      "growing_time": "3-4 months",
+      "best_season": "Rabi",
+      "ideal_temperature": "15-20°C",
+      "soil_type": "Loamy, pH 5.0-6.5",
+      "steps": [
+        "Plant seed tubers in ridges",
+        "Earthing up after 30 days",
+        "Harvest when leaves yellow"
+      ],
+      "expected_yield": "20-30 tons per hectare",
+      "market_price": "₹15-30 per kg",
+      "problems_and_solutions": {
+        "Late blight": "Spray mancozeb",
+        "Potato tuber moth": "Store tubers properly"
+      },
+      "tools_needed": ["Planter", "Ridger", "Harvester"]
+    },
+    "prosomillet": {
+      "name": "Proso Millet",
+      "best_grown_in": "Dryland, Well-drained soil",
+      "growing_time": "2-3 months",
+      "best_season": "Kharif",
+      "ideal_temperature": "20-35°C",
+      "soil_type": "Sandy-Loamy, pH 5.5-7.0",
+      "steps": [
+        "Broadcast seeds",
+        "Weed manually",
+        "Harvest when panicles dry"
+      ],
+      "expected_yield": "1-1.5 tons per hectare",
+      "market_price": "₹50-80 per kg",
+      "problems_and_solutions": {
+        "Smut disease": "Use treated seeds",
+        "Birds": "Use nets"
+      },
+      "tools_needed": ["Broadcast Seeder", "Sickle", "Thresher"]
+    },
+    "rajma": {
+      "name": "Rajma (Kidney Beans)",
+      "best_grown_in": "Cool Climate, Well-drained soil",
+      "growing_time": "3-4 months",
+      "best_season": "Rabi",
+      "ideal_temperature": "15-25°C",
+      "soil_type": "Loamy, pH 6.0-7.0",
+      "steps": [
+        "Sow seeds in rows",
+        "Support vines with trellis",
+        "Harvest when pods dry"
+      ],
+      "expected_yield": "1.5-2 tons per hectare",
+      "market_price": "₹80-120 per kg",
+      "problems_and_solutions": {
+        "Anthracnose": "Use disease-free seeds",
+        "Aphids": "Spray neem oil"
+      },
+      "tools_needed": ["Seeder", "Trellis", "Sickle"]
+    },
+    "rice": {
+      "name": "Rice",
+      "best_grown_in": "Clayey soil, Warm & Humid Climate",
+      "growing_time": "3-6 months",
+      "best_season": "Kharif (Monsoon)",
+      "ideal_temperature": "20-35°C",
+      "soil_type": "Clayey, pH 5.5-6.5",
+      "steps": [
+        "Prepare soil with good irrigation",
+        "Use high-yielding seeds",
+        "Sow in a flooded field",
+        "Provide consistent water supply",
+        "Apply fertilizers like Urea and DAP",
+        "Control pests with organic pesticides",
+        "Harvest when grains turn golden"
+      ],
+      "expected_yield": "2.5-3 tons per hectare",
+      "market_price": "₹18-22 per kg",
+      "problems_and_solutions": {
+        "Weeds": "Use manual or chemical weeding",
+        "Pest attack": "Apply neem oil or pesticides",
+        "Water shortage": "Ensure proper irrigation"
+      },
+      "tools_needed": ["Plow", "Irrigation System", "Sickle"]
+    },
+    "rubber": {
+      "name": "Rubber",
+      "best_grown_in": "Tropical, Humid Climate",
+      "growing_time": "6-7 years (tapping)",
+      "best_season": "Year-round",
+      "ideal_temperature": "25-35°C",
+      "soil_type": "Well-drained, pH 5.0-6.0",
+      "steps": [
+        "Plant grafted saplings",
+        "Prune for shape",
+        "Start tapping after 6 years"
+      ],
+      "expected_yield": "1,500-2,000 kg latex/hectare/year",
+      "market_price": "₹120-150 per kg (latex)",
+      "problems_and_solutions": {
+        "Leaf fall": "Apply micronutrients",
+        "Tapping panel dryness": "Reduce tapping frequency"
+      },
+      "tools_needed": ["Tapping Knife", "Collection Cups", "Pruning Shears"]
+    },
+    "sapota": {
+      "name": "Sapota (Chikoo)",
+      "best_grown_in": "Tropical, Well-drained soil",
+      "growing_time": "3-4 years (tree), 6-8 months (fruit)",
+      "best_season": "Year-round",
+      "ideal_temperature": "25-35°C",
+      "soil_type": "Loamy, pH 6.0-7.5",
+      "steps": [
+        "Plant grafted saplings",
+        "Mulch to retain moisture",
+        "Harvest when fruits soften"
+      ],
+      "expected_yield": "15-20 tons per hectare",
+      "market_price": "₹40-80 per kg",
+      "problems_and_solutions": {
+        "Fruit borer": "Bag fruits",
+        "Leaf spot": "Spray copper fungicides"
+      },
+      "tools_needed": ["Pruning Shears", "Mulching Material", "Harvesting Basket"]
+    },
+    "sesame": {
+      "name": "Sesame",
+      "best_grown_in": "Arid/Semi-arid, Well-drained soil",
+      "growing_time": "3-4 months",
+      "best_season": "Kharif",
+      "ideal_temperature": "25-35°C",
+      "soil_type": "Sandy-Loamy, pH 5.5-7.0",
+      "steps": [
+        "Sow seeds in rows",
+        "Avoid waterlogging",
+        "Harvest when capsules split"
+      ],
+      "expected_yield": "0.5-1 ton per hectare",
+      "market_price": "₹8,000-12,000 per quintal",
+      "problems_and_solutions": {
+        "Leaf roller": "Spray neem oil",
+        "Wilt": "Crop rotation"
+      },
+      "tools_needed": ["Seed Drill", "Sprayer", "Sickle"]
+    },
+    "sorghum": {
+      "name": "Sorghum (Jowar)",
+      "best_grown_in": "Dryland, Well-drained soil",
+      "growing_time": "3-4 months",
+      "best_season": "Kharif",
+      "ideal_temperature": "25-35°C",
+      "soil_type": "Loamy, pH 6.0-7.5",
+      "steps": [
+        "Sow seeds in rows",
+        "Drought-tolerant (minimal irrigation)",
+        "Harvest when grains harden"
+      ],
+      "expected_yield": "2-3 tons per hectare",
+      "market_price": "₹20-40 per kg",
+      "problems_and_solutions": {
+        "Shoot fly": "Use resistant varieties",
+        "Grain mold": "Harvest early"
+      },
+      "tools_needed": ["Seed Drill", "Sickle", "Thresher"]
+    },
+    "spinach": {
+      "name": "Spinach",
+      "best_grown_in": "Cool Climate, Fertile soil",
+      "growing_time": "4-6 weeks",
+      "best_season": "Winter",
+      "ideal_temperature": "15-25°C",
+      "soil_type": "Loamy, pH 6.0-7.0",
+      "steps": [
+        "Sow seeds densely",
+        "Harvest leaves when tender"
+      ],
+      "expected_yield": "10-15 tons per hectare",
+      "market_price": "₹30-60 per kg",
+      "problems_and_solutions": {
+        "Downy mildew": "Improve air circulation",
+        "Leaf miners": "Use neem oil"
+      },
+      "tools_needed": ["Broadcast Seeder", "Sprayer", "Harvesting Knife"]
+    },
+    "sunflower": {
+      "name": "Sunflower",
+      "best_grown_in": "Well-drained soil, Warm Climate",
+      "growing_time": "3-4 months",
+      "best_season": "Kharif",
+      "ideal_temperature": "20-30°C",
+      "soil_type": "Loamy, pH 6.0-7.5",
+      "steps": [
+        "Sow seeds in rows",
+        "Support tall varieties with stakes",
+        "Harvest when back of head turns yellow"
+      ],
+      "expected_yield": "1-1.5 tons per hectare (seeds)",
+      "market_price": "₹5,000-7,000 per quintal",
+      "problems_and_solutions": {
+        "Head rot": "Avoid waterlogging",
+        "Birds": "Use nets"
+      },
+      "tools_needed": ["Seed Drill", "Sprayer", "Sickle"]
+    },
+    "tomato": {
+      "name": "Tomato",
+      "best_grown_in": "Warm Climate, Well-drained soil",
+      "growing_time": "3-4 months",
+      "best_season": "Year-round (avoid frost)",
+      "ideal_temperature": "20-30°C",
+      "soil_type": "Loamy, pH 6.0-7.0",
+      "steps": [
+        "Transplant seedlings",
+        "Stake plants for support",
+        "Harvest when fruits are firm"
+      ],
+      "expected_yield": "30-50 tons per hectare",
+      "market_price": "₹20-60 per kg",
+      "problems_and_solutions": {
+        "Fruit borer": "Use neem oil",
+        "Blight": "Spray copper fungicides"
+      },
+      "tools_needed": ["Transplanter", "Sprayer", "Pruning Shears"]
+    },
+    "tur": {
+      "name": "Tur (Pigeon Peas)",
+      "best_grown_in": "Well-drained soil, Warm Climate",
+      "growing_time": "5-6 months",
+      "best_season": "Kharif",
+      "ideal_temperature": "18-30°C",
+      "soil_type": "Loamy, pH 5.5-7.0",
+      "steps": [
+        "Sow seeds in rows",
+        "Support with stakes if needed",
+        "Harvest when pods dry"
+      ],
+      "expected_yield": "1-1.5 tons per hectare",
+      "market_price": "₹50-70 per kg",
+      "problems_and_solutions": {
+        "Pod borer": "Use pheromone traps",
+        "Wilt": "Use resistant varieties"
+      },
+      "tools_needed": ["Seeder", "Sprayer", "Sickle"]
+    },
+    "turmeric": {
+      "name": "Turmeric",
+      "best_grown_in": "Tropical, Moist Climate",
+      "growing_time": "7-9 months",
+      "best_season": "Monsoon (Planting), Winter (Harvest)",
+      "ideal_temperature": "20-35°C",
+      "soil_type": "Loamy, pH 5.5-7.5",
+      "steps": [
+        "Plant rhizomes in well-drained soil",
+        "Mulch to retain moisture",
+        "Apply compost and nitrogen fertilizers",
+        "Protect from rhizome rot",
+        "Harvest when leaves turn yellow"
+      ],
+      "expected_yield": "20-25 tons per hectare",
+      "market_price": "₹60-100 per kg",
+      "problems_and_solutions": {
+        "Rhizome rot": "Use Trichoderma biofungicides",
+        "Leaf blotch": "Spray mancozeb"
+      },
+      "tools_needed": ["Hoe", "Mulching Material", "Sprayer"]
+    },
+    "watermelon": {
+      "name": "Watermelon",
+      "best_grown_in": "Sandy soil, Warm Climate",
+      "growing_time": "3-4 months",
+      "best_season": "Summer",
+      "ideal_temperature": "25-35°C",
+      "soil_type": "Sandy-Loamy, pH 6.0-7.5",
+      "steps": [
+        "Plow land and remove weeds",
+        "Sow seeds at 1-inch depth",
+        "Ensure proper irrigation",
+        "Apply fertilizers with nitrogen",
+        "Protect from pests like aphids",
+        "Harvest when rind is firm and dull"
+      ],
+      "expected_yield": "20-30 tons per hectare",
+      "market_price": "₹10-20 per kg",
+      "problems_and_solutions": {
+        "Powdery mildew": "Use sulfur-based sprays",
+        "Cracked fruit": "Maintain consistent watering"
+      },
+      "tools_needed": ["Hoe", "Drip Irrigation System", "Sprayer"]
+    },
+    "wheat": {
+      "name": "Wheat",
+      "best_grown_in": "Cool Climate, Well-drained soil",
+      "growing_time": "3-4 months",
+      "best_season": "Rabi (Winter)",
+      "ideal_temperature": "10-25°C",
+      "soil_type": "Loamy, pH 6.0-7.5",
+      "steps": [
+        "Sow seeds in rows",
+        "Apply nitrogen fertilizers",
+        "Harvest when grains harden"
+      ],
+      "expected_yield": "3-5 tons per hectare",
+      "market_price": "₹2,000-2,500 per quintal",
+      "problems_and_solutions": {
+        "Rust": "Use resistant varieties",
+        "Termites": "Apply neem cake"
+      },
+      "tools_needed": ["Seed Drill", "Sprayer", "Combine Harvester"]
+    }
+  }
+}
