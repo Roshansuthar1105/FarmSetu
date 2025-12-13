@@ -151,6 +151,9 @@ export default function Navbar() {
     { name: t('government_schemes'), to: "/GovernmentSchemes" },
     { name: t('insurance_schemes'), to: "/InsuranceSchema" },
     { name: t('crop_recommendation'), to: "/crops" },
+    { name: t('crop_predict'), to: "/croppredict" },
+    { name: t('disease_detection'), to: "/disease" },
+    { name: t('rainfall_predict'), to: "/rainfall" },
   ];
   const handleEditProfile = async () => {
     navigate(`/profile/edit/${authUser._id}`)

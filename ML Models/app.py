@@ -8,7 +8,15 @@ from werkzeug.utils import secure_filename
 
 # --- Import ML Libraries ---
 # 1. Rainfall Logic
-from utils.rainfall_model import RainfallPredictor
+try:
+    from utils.rainfall_model import RainfallPredictor
+except ImportError:
+    # Handle case where file might be named rainfall_predict inside utils
+    try:
+        from utils.rainfall_predict import RainfallPredictor
+    except:
+        print("❌ Could not import RainfallPredictor. Check file naming.")
+
 # 2. Plant Disease Logic
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
@@ -87,18 +95,35 @@ def predict_rainfall():
 
     try:
         data = request.json
+        print(f"📥 Received Rainfall Request: {data}")
+        
+        city = data.get('city', '')
+        state = data.get('state', '')
+        try:
+            current_temp = float(data.get('current_temp', 0))
+            current_humidity = float(data.get('current_humidity', 0))
+        except (ValueError, TypeError):
+            return jsonify({'error': 'Temperature and Humidity must be numbers'}), 400
+            
+        current_month = data.get('current_month')
+
+        if not city or not state:
+            return jsonify({'error': 'City and State are required'}), 400
+
         result = rainfall_system.predict_rainfall(
-            city=data.get('city'),
-            state=data.get('state'),
-            current_temp=float(data.get('current_temp')),
-            current_humidity=float(data.get('current_humidity')),
-            current_month=data.get('current_month')
+            city=city,
+            state=state,
+            current_temp=current_temp,
+            current_humidity=current_humidity,
+            current_month=current_month
         )
+        
+        print(f"📤 Sending Result: {result}")
         return jsonify(result)
+
     except Exception as e:
-        return jsonify({'error': f"Rainfall Prediction Failed: {str(e)}"}), 500
-
-
+        print(f"🔥 API Error: {str(e)}")
+        return jsonify({'error': f"Server Error: {str(e)}"}), 500
 # --- 2. DISEASE ENDPOINT ---
 @app.route('/api/predict/disease', methods=['POST'])
 def predict_disease():
@@ -173,5 +198,5 @@ def predict_crop():
         return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 5000))
+    port = int(os.environ.get("PORT", 5050))
     app.run(host='0.0.0.0', port=port)

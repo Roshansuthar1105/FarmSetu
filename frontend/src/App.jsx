@@ -47,6 +47,9 @@ const LazyProductEdit = React.lazy(() => import('./pages/ProductEdit.jsx'));
 const LazySellerProduct = React.lazy(() => import('./pages/SellerProduct.jsx'));
 const LazySellerProductEdit = React.lazy(() => import('./pages/SellerProductEdit.jsx'));
 const LazyCropRecommendation = React.lazy(() => import('./pages/CropRecommendation.jsx'));
+const LazyCropRecommendationML = React.lazy(() => import('./pages/CropRecommendationML.jsx'));
+const LazyRainfallPrediction = React.lazy(() => import('./pages/RainfallPrediction.jsx'));
+const LazyDiseaseDetection = React.lazy(() => import('./pages/DiseaseDetection.jsx'));
 const LazyChatBot = React.lazy(() => import('./components/ChatBot'));
 const LazyLanguage = React.lazy(() => import('./components/LanguageButton.jsx'));
 import './i18.js';
@@ -126,6 +129,9 @@ export default function App() {
             <Route path="/profile/products/add" element={<Suspense fallback={<LoadingComponent />}><LazySellerProductEdit /></Suspense>} />
             <Route path="/GovernmentSchemes" element={<Suspense fallback={<LoadingComponent />}><LazyGovernmentSchemes /> </Suspense>} />
             <Route path="/InsuranceSchema" element={<Suspense fallback={<LoadingComponent />}><LazyInsuranceSchema /> </Suspense>} />
+            <Route path="/croppredict" element={<Suspense fallback={<LoadingComponent />}><LazyCropRecommendationML /> </Suspense>} />
+            <Route path="/disease" element={<Suspense fallback={<LoadingComponent />}><LazyDiseaseDetection /> </Suspense>} />
+            <Route path="/rainfall" element={<Suspense fallback={<LoadingComponent />}><LazyRainfallPrediction /> </Suspense>} />
             <Route path="/crops" element={<Suspense fallback={<LoadingComponent />}><LazyCropRecommendation /> </Suspense>} />
             <Route path="/about" element={<Suspense fallback={<LoadingComponent />}><LazyAbout /> </Suspense>} />
             <Route path="/mission" element={<Suspense fallback={<LoadingComponent />}><LazyMission /> </Suspense>} />
