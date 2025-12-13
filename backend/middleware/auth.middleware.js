@@ -2,43 +2,49 @@ import jwt from 'jsonwebtoken';
 import User from '../models/user.model.js';
 
 export const protect = async (req, res, next) => {
-    const token = req.body.token;
-    // console.log("object pre...........................")
-        // 1. Read token safely
-    // if (req.cookies && req.cookies.jwt) {
-    //     token = req.cookies.jwt;
-    // }
-    // console.log(req.body.token);
+    let token;
+
+    // 1. Check Authorization Header (Standard for Bearer tokens)
+    if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
+        try {
+            token = req.headers.authorization.split(' ')[1]; // Get token after "Bearer"
+        } catch (error) {
+            console.error("Token extraction error:", error);
+        }
+    }
+    // 2. Fallback: Check Cookies
+    else if (req.cookies && req.cookies.jwt) {
+        token = req.cookies.jwt;
+    }
+
     if (token) {
         try {
             const decoded = jwt.verify(token, process.env.JWT_SECRET);
             
-            // 2. Fetch user and CHECK if it exists
+            // 3. Get User from Token
             req.user = await User.findById(decoded.userId).select('-password');
             
-            
             if (!req.user) {
-                // IMPORTANT: Use return to stop execution
                 return res.status(401).json({ error: 'Not authorized, user not found' });
             }
 
-            // 3. Proceed to controller
-            next();
-            
+            next(); // Proceed to controller
         } catch (error) {
             console.error("Token verification failed:", error);
-            // IMPORTANT: Check if headers are already sent to prevent crash
+            // Check headersSent to avoid "Cannot set headers after they are sent" error
             if (!res.headersSent) {
                 return res.status(401).json({ error: 'Not authorized, token failed' });
             }
         }
     } else {
-        return res.status(401).json({ error: 'Not authorized, no token' });
+        if (!res.headersSent) {
+            return res.status(401).json({ error: 'Not authorized, no token' });
+        }
     }
 };
 
-// ... keep admin middleware as is ...
 export const admin = (req, res, next) => {
+    console.log(req.user,req.body);
     if (req.user && req.user.role === 'admin') {
         next();
     } else {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useAuthContext } from '../../context/AuthContext';
-import { FaCogs, FaCalendarCheck, FaSeedling } from 'react-icons/fa';
+import { FaCogs, FaCalendarCheck } from 'react-icons/fa';
 import toast from 'react-hot-toast';
 
 const ParchiManager = () => {
@@ -19,11 +19,24 @@ const ParchiManager = () => {
 
         setLoading(true);
         try {
+            // --- FIX START: Correct Token Extraction ---
+            const userStr = localStorage.getItem("user");
+            let token = null;
+            if (userStr) {
+                token = JSON.parse(userStr).token;
+            }
+            console.log(userStr,token)
+            if (!token) {
+                toast.error("Admin token missing. Please login again.");
+                return;
+            }
+            // --- FIX END ---
+
             const res = await fetch(`${BACKEND_URL}/api/parchi/generate`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${localStorage.getItem('token')}` // Ensure admin token is sent
+                    'Authorization': `Bearer ${token}` // Use the extracted token
                 },
                 body: JSON.stringify({ waterSourceId: sourceId, startDate })
             });
@@ -56,7 +69,7 @@ const ParchiManager = () => {
                 <h3 className="text-lg font-semibold text-white mb-4 border-b border-gray-700 pb-2">Generate Roster</h3>
                 <form onSubmit={handleGenerate} className="grid grid-cols-1 md:grid-cols-3 gap-6 items-end">
                     
-                    {/* Input: Water Source ID (In real app, make this a dropdown) */}
+                    {/* Input: Water Source ID */}
                     <div>
                         <label className="block text-sm font-medium text-gray-300 mb-1">Water Source ID (DB ID)</label>
                         <div className="relative">

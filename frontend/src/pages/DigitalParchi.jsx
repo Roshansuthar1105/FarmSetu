@@ -21,7 +21,7 @@ const DigitalParchi = () => {
   const [myTurns, setMyTurns] = useState([]);
   const [liveStatus, setLiveStatus] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [serverError, setServerError] = useState(false); // To handle connection refused errors
+  const [serverError, setServerError] = useState(false); 
 
   // Modal & Form State
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -35,29 +35,43 @@ const DigitalParchi = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Reset error state on new attempt
         setServerError(false);
 
-        const token = localStorage.getItem("token");
+        // --- FIX START: Correctly extract token ---
+        // 1. Get the entire user object string
+        const userStr = localStorage.getItem("user");
+        let token = null;
+        
+        // 2. Parse it to JSON
+        if (userStr) {
+            const userData = JSON.parse(userStr);
+            token = userData.token;
+        }
+
+        // 3. Fallback to authUser context if local storage fails
+        if (!token && authUser && authUser.token) {
+            token = authUser.token;
+        }
+
+        if (!token) {
+            console.warn("No token found. User needs to login again.");
+            // Optional: Redirect to login if critical
+            return; 
+        }
+        // --- FIX END ---
+
         const headers = { Authorization: `Bearer ${token}` };
 
         // 1. Get My Turns
         const turnsRes = await fetch(`${BACKEND_URL}/api/parchi/my-turns`, {
           headers,
-        //   body:{
-        //     token
-        //   }
         });
 
         // 2. Get Live Status
         const liveRes = await fetch(`${BACKEND_URL}/api/parchi/live`, {
           headers,
-        //   body:{
-        //     token
-        //   }
         });
 
-        // Check for Server Errors (500)
         if (turnsRes.status === 500 || liveRes.status === 500) {
           throw new Error("Internal Server Error");
         }
@@ -73,45 +87,49 @@ const DigitalParchi = () => {
         }
       } catch (error) {
         console.error("Error fetching parchi data:", error);
-        setServerError(true); // Triggers the error UI
-        // We do NOT toast here to avoid spamming the user on every poll
+        setServerError(true); 
       } finally {
         setLoading(false);
       }
     };
 
     fetchData();
-    const interval = setInterval(fetchData, 60000); // Poll every minute
+    const interval = setInterval(fetchData, 60000); 
     return () => clearInterval(interval);
-  }, [BACKEND_URL]);
+  }, [BACKEND_URL, authUser]); // Added authUser dependency
 
   // --- Handle Application Submission ---
   const handleApply = async (e) => {
     e.preventDefault();
     try {
-      // Placeholder source ID (In real app, select from dropdown)
       const waterSourceId = liveStatus?.source?._id || "672b85b4fdf5feff81934a5a";
 
-      // Prepare farmer data from authUser (Context/Local Storage)
+      // --- FIX START: Correct Token Extraction for POST request ---
+      const userStr = localStorage.getItem("user");
+      let token = null;
+      if (userStr) {
+          token = JSON.parse(userStr).token;
+      }
+      // --- FIX END ---
+
       const farmerPayload = {
         farmerId: authUser?._id,
         farmerName: authUser?.name,
         farmerEmail: authUser?.email,
-        token: authUser?.token,
       };
 
       const res = await fetch(`${BACKEND_URL}/api/parchi/apply`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Authorization: `Bearer ${token}`, // Use the corrected token variable
         },
         body: JSON.stringify({
           waterSourceId,
           preferredDate: requestData.date,
           durationMinutes: requestData.duration,
           reason: requestData.reason,
-          ...farmerPayload, // Explicitly sending farmer data
+          ...farmerPayload,
         }),
       });
 
@@ -129,8 +147,6 @@ const DigitalParchi = () => {
     }
   };
 
-  // --- UI States ---
-
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-900 flex justify-center items-center">
@@ -139,7 +155,6 @@ const DigitalParchi = () => {
     );
   }
 
-  // Connection Error UI
   if (serverError) {
     return (
       <div className="min-h-screen bg-gray-900 pt-20 flex flex-col justify-center items-center text-white p-4">
@@ -147,8 +162,7 @@ const DigitalParchi = () => {
           <FaWifi className="text-6xl text-red-500 mx-auto mb-6 opacity-80" />
           <h2 className="text-2xl font-bold mb-3">Connection Failed</h2>
           <p className="text-gray-400 mb-6">
-            We couldn't reach the FarmSetu server. Please check your internet
-            connection or try again later.
+            We couldn't reach the FarmSetu server. Please check your internet connection or try again later.
           </p>
           <button
             onClick={() => window.location.reload()}
