@@ -151,9 +151,9 @@ export default function Navbar() {
     { name: t('government_schemes'), to: "/GovernmentSchemes" },
     { name: t('insurance_schemes'), to: "/InsuranceSchema" },
     { name: t('crop_recommendation'), to: "/crops" },
-    { name: t('crop_predict'), to: "/croppredict" },
-    { name: t('disease_detection'), to: "/disease" },
-    { name: t('rainfall_predict'), to: "/rainfall" },
+    { name: t('freeVirtualSoilCheck'), to: "/croppredict" },
+    { name: t('Plant Diseases Detection'), to: "/disease" },
+    { name: t('Smart Irrigation System'), to: "/rainfall" },
     { name: t('digital_parchi'), to: "/digital-parchi" },
   ];
   const handleEditProfile = async () => {

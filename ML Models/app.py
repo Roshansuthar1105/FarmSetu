@@ -5,7 +5,8 @@ import numpy as np
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
-
+import joblib  # Added for the new model
+import pandas as pd # Added for DataFrame creation
 # --- Import ML Libraries ---
 # 1. Rainfall Logic
 try:
@@ -72,7 +73,15 @@ try:
 except Exception as e:
     print(f"❌ Error loading Crop Model: {e}")
     crop_model = None
-
+# 4. Crop Yield Prediction (NEW REGRESSION MODEL from raj.ipynb)
+try:
+    # Ensure this file is inside your models folder
+    with open('models/crop_yield_model.pkl', 'rb') as f:  # <--- 'rb' is CRITICAL
+        yield_model = pickle.load(f)
+    print("✅ Crop Yield Prediction Model Loaded")
+except Exception as e:
+    print(f"❌ Error loading Yield Model: {e}")
+    yield_model = None
 
 # --- ROUTES ---
 
@@ -196,7 +205,38 @@ def predict_crop():
         })
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+# 5 crop prediction
+@app.route('/api/predict/yield', methods=['POST'])
+def predict_yield():
+    if not yield_model:
+        return jsonify({'error': 'Yield model unavailable'}), 503
 
+    try:
+        data = request.json
+        
+        # The pipeline in raj.ipynb expects a DataFrame with specific column names
+        # and correct data types (int/float/object)
+        input_data = pd.DataFrame([{
+            "Crop": str(data['Crop']),
+            "Crop_Year": int(data['Crop_Year']),
+            "Season": str(data['Season']),
+            "State": str(data['State']),
+            "Annual_Rainfall": float(data['Annual_Rainfall']),
+            "Fertilizer": float(data['Fertilizer']),
+            "Pesticide": float(data['Pesticide'])
+        }])
+
+        prediction = yield_model.predict(input_data)
+        predicted_value = prediction[0]
+
+        return jsonify({
+            "predicted_yield": round(predicted_value, 2),
+            "unit": "Production (Tonnes/Bales based on crop)" 
+        })
+    except KeyError as e:
+        return jsonify({'error': f"Missing field: {str(e)}"}), 400
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5050))
     app.run(host='0.0.0.0', port=port)

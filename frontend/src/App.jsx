@@ -51,6 +51,7 @@ const LazyCropRecommendationML = React.lazy(() => import('./pages/CropRecommenda
 const LazyRainfallPrediction = React.lazy(() => import('./pages/RainfallPrediction.jsx'));
 const LazyDiseaseDetection = React.lazy(() => import('./pages/DiseaseDetection.jsx'));
 const LazyDigitalParchi = React.lazy(() => import('./pages/DigitalParchi'));
+const LazyYieldPrediction = React.lazy(() => import('./pages/YieldPrediction.jsx'));
 const LazyChatBot = React.lazy(() => import('./components/ChatBot'));
 const LazyLanguage = React.lazy(() => import('./components/LanguageButton.jsx'));
 // admin panel 
@@ -165,6 +166,7 @@ export default function App() {
             <Route path="/team" element={<Suspense fallback={<LoadingComponent />}><LazyTeam /> </Suspense>} />
             <Route path="/careers" element={<Suspense fallback={<LoadingComponent />}><LazyCareers /> </Suspense>} />
             <Route path="/press" element={<Suspense fallback={<LoadingComponent />}><LazyPress /> </Suspense>} />
+            <Route path="/yield" element={<Suspense fallback={<LoadingComponent />}><LazyYieldPrediction /> </Suspense>} />
             <Route path="/payment-processing" element={<Suspense fallback={<LoadingComponent />}><LazyWorkInProgress /> </Suspense>} />
             <Route path="/digital-parchi" element={
     authUser ? <Suspense fallback={<LoadingComponent />}><LazyDigitalParchi /></Suspense> 
