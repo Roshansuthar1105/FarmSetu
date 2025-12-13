@@ -131,14 +131,14 @@ export default function App() {
             <Route path="/product/edit/:id" element={<Suspense fallback={<LoadingComponent />}><LazyProductEdit /></Suspense>} />
             <Route path="/chat" element={authUser ? <Suspense fallback={<LoadingComponent />}><LazyChat /></Suspense> : <Navigate to='/login' />} />
             <Route path="/localchat" element={authUser ? <Suspense fallback={<LoadingComponent />}><LazyChatWithCommunity /></Suspense> : <Navigate to='/login' />} />
-            <Route path="/news" element={<Suspense fallback={<LoadingComponent />}><LazyNewsFeed /></Suspense>} />
+            {/* <Route path="/news" element={<Suspense fallback={<LoadingComponent />}><LazyNewsFeed /></Suspense>} /> */}
             <Route path="/payment" element={<Suspense fallback={<LoadingComponent />}><LazyPayment /></Suspense>} />
             <Route path="/payment-success" element={<Suspense fallback={<LoadingComponent />}><LazyPaymentSuccess /></Suspense>} />
-            <Route path="/weather" element={<Suspense fallback={<LoadingComponent />}><LazyWeather /></Suspense>} />
+            {/* <Route path="/weather" element={<Suspense fallback={<LoadingComponent />}><LazyWeather /></Suspense>} /> */}
             <Route path="/resources" element={<Suspense fallback={<LoadingComponent />}><LazyResources /></Suspense>} />
             <Route path="/courses/:id" element={<Suspense fallback={<LoadingComponent />}><LazyCourseDetails /></Suspense>} />
-            <Route path="/community" element={authUser ? <Suspense fallback={<LoadingComponent />}><LazyCommunityForum /></Suspense> : <Navigate to='/login' />} />
-            <Route path="/realtimemarket" element={<Suspense fallback={<LoadingComponent />}><LazyRealTimeMarket /></Suspense>} />
+            {/* <Route path="/community" element={authUser ? <Suspense fallback={<LoadingComponent />}><LazyCommunityForum /></Suspense> : <Navigate to='/login' />} /> */}
+            {/* <Route path="/realtimemarket" element={<Suspense fallback={<LoadingComponent />}><LazyRealTimeMarket /></Suspense>} /> */}
             <Route path="/login" element={authUser ? <Navigate to='/' /> : <Suspense fallback={<LoadingComponent />}><LazyLogin /></Suspense>} />
             <Route path="/signup" element={authUser ? <Navigate to='/' /> : <Suspense fallback={<LoadingComponent />}><LazySignup /></Suspense>} />
             <Route path="/fileupload" element={<Suspense fallback={<LoadingComponent />}><LazyFileUploadPage /></Suspense>} />
@@ -150,8 +150,8 @@ export default function App() {
             <Route path="/profile/cart/:userId" element={<Suspense fallback={<LoadingComponent />}><LazyUserCart /></Suspense>} />
             <Route path="/profile/products/:userId" element={<Suspense fallback={<LoadingComponent />}><LazySellerProduct /></Suspense>} />
             <Route path="/profile/products/add" element={<Suspense fallback={<LoadingComponent />}><LazySellerProductEdit /></Suspense>} />
-            <Route path="/GovernmentSchemes" element={<Suspense fallback={<LoadingComponent />}><LazyGovernmentSchemes /> </Suspense>} />
-            <Route path="/InsuranceSchema" element={<Suspense fallback={<LoadingComponent />}><LazyInsuranceSchema /> </Suspense>} />
+            {/* <Route path="/GovernmentSchemes" element={<Suspense fallback={<LoadingComponent />}><LazyGovernmentSchemes /> </Suspense>} /> */}
+            {/* <Route path="/InsuranceSchema" element={<Suspense fallback={<LoadingComponent />}><LazyInsuranceSchema /> </Suspense>} /> */}
             <Route path="/croppredict" element={<Suspense fallback={<LoadingComponent />}><LazyCropRecommendationML /> </Suspense>} />
             <Route path="/disease" element={<Suspense fallback={<LoadingComponent />}><LazyDiseaseDetection /> </Suspense>} />
             <Route path="/rainfall" element={<Suspense fallback={<LoadingComponent />}><LazyRainfallPrediction /> </Suspense>} />
