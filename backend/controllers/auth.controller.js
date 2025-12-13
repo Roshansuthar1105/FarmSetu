@@ -13,13 +13,14 @@ export const login= async(req, res)=>{
         if(!isPasswordCorrect){
             return res.status(400).json({error:'Invalid Password or email'});
         }
-        generateTokenAndSetCookie(user._id, res);
+        const token=generateTokenAndSetCookie(user._id, res);
         res.status(201).json({
             _id:user._id,
             name:user.name,
             email:user.email,
             avatar:user.avatar,
             role:user.role,
+            token:token
         });
 
     }
@@ -51,9 +52,9 @@ export const signup= async(req, res)=>{
             avatar
         });
         if(newUser){
-            generateTokenAndSetCookie(newUser._id, res);
+            const token = generateTokenAndSetCookie(newUser._id, res);
             await newUser.save();
-        res.status(201).json({_id:newUser._id, name:name, email:email, role:role,avatar:avatar});
+        res.status(201).json({_id:newUser._id, name:name, email:email, role:role,avatar:avatar,token:token});
         }
         else{
             res.status(400).json({error:'Invalid user data'});

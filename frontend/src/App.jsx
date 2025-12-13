@@ -50,6 +50,7 @@ const LazyCropRecommendation = React.lazy(() => import('./pages/CropRecommendati
 const LazyCropRecommendationML = React.lazy(() => import('./pages/CropRecommendationML.jsx'));
 const LazyRainfallPrediction = React.lazy(() => import('./pages/RainfallPrediction.jsx'));
 const LazyDiseaseDetection = React.lazy(() => import('./pages/DiseaseDetection.jsx'));
+const LazyDigitalParchi = React.lazy(() => import('./pages/DigitalParchi'));
 const LazyChatBot = React.lazy(() => import('./components/ChatBot'));
 const LazyLanguage = React.lazy(() => import('./components/LanguageButton.jsx'));
 // admin panel 
@@ -59,6 +60,7 @@ const LazyRegistryHeatmap = React.lazy(() => import('./pages/admin/RegistryHeatm
 const LazySchemeMatcher = React.lazy(() => import('./pages/admin/SchemeMatcher'));
 // Use your existing ManageUsers page or create a new one inside admin
 const LazyManageUsers = React.lazy(() => import('./pages/admin/AdminDashboard'));
+const LazyParchiManager = React.lazy(() => import('./pages/admin/ParchiManager'));
 import './i18.js';
 import { useTranslation } from 'react-i18next';
 import i18n from './i18.js';
@@ -121,6 +123,7 @@ export default function App() {
               <Route path="heatmap" element={<Suspense fallback={<LoadingComponent />}><LazyRegistryHeatmap /></Suspense>} />
               <Route path="schemes" element={<Suspense fallback={<LoadingComponent />}><LazySchemeMatcher /></Suspense>} />
               <Route path="users" element={<Suspense fallback={<LoadingComponent />}><LazyManageUsers /></Suspense>} />
+              <Route path="parchi-manager" element={<Suspense fallback={<LoadingComponent />}><LazyParchiManager /></Suspense>} />
             </Route>
             <Route path="/" element={<Suspense fallback={<LoadingComponent />}><LazyHome /></Suspense>} />
             <Route path="/farmermarketplace" element={<Suspense fallback={<LoadingComponent />}><LazyMarketplace /></Suspense>} />
@@ -163,6 +166,10 @@ export default function App() {
             <Route path="/careers" element={<Suspense fallback={<LoadingComponent />}><LazyCareers /> </Suspense>} />
             <Route path="/press" element={<Suspense fallback={<LoadingComponent />}><LazyPress /> </Suspense>} />
             <Route path="/payment-processing" element={<Suspense fallback={<LoadingComponent />}><LazyWorkInProgress /> </Suspense>} />
+            <Route path="/digital-parchi" element={
+    authUser ? <Suspense fallback={<LoadingComponent />}><LazyDigitalParchi /></Suspense> 
+    : <Navigate to='/login' />
+} />
             <Route path="*" element={<Suspense fallback={<LoadingComponent />}><LazyNotFound /> </Suspense>} />
           </Routes>
           <Toaster />

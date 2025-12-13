@@ -13,6 +13,7 @@ import userCartRoute from './routes/userCartRoute.routes.js';
 import communityRoute from './routes/communityRoute.routes.js';
 import homeRoute from './routes/home.routes.js';
 import mlRoutes from './routes/ml.routes.js';
+import parchiRoutes from './routes/parchi.routes.js';
 import adminRoutes from './routes/admin.routes.js';
 import cookieParser from 'cookie-parser';
 import path from 'path';
@@ -43,6 +44,7 @@ app.use('/api/profile/cart',userCartRoute);
 app.use('/api/community',communityRoute);
 app.use('/api/ml', mlRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/parchi', parchiRoutes);
 // app.use(express.static(path.join(__dirname, '/frontend/dist')));
 // app.get('*', (req, res)=>{
 //     res.sendFile(path.join(__dirname, '/frontend/dist/index.html'));

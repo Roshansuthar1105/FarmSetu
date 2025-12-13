@@ -1,7 +1,7 @@
 import React from 'react';
 import { Outlet, Link, useNavigate } from 'react-router-dom';
 import { useAuthContext } from '../../context/AuthContext';
-import { FaMapMarkedAlt, FaSeedling, FaUsers, FaSignOutAlt, FaChartPie } from 'react-icons/fa';
+import { FaMapMarkedAlt, FaSeedling, FaUsers, FaSignOutAlt, FaChartPie, FaClipboardList } from 'react-icons/fa';
 import { MdDashboard } from "react-icons/md";
 
 const AdminLayout = () => {
@@ -40,6 +40,10 @@ const AdminLayout = () => {
           <Link to="/admin/users" className="flex items-center px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg transition-all group">
             <FaUsers className="mr-3 text-xl group-hover:text-purple-400" /> 
             <span className="font-medium">User Management</span>
+          </Link>
+          <Link to="/admin/parchi-manager" className="flex items-center px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg transition-all group">
+            <FaClipboardList className="mr-3 text-xl group-hover:text-cyan-400" /> 
+            <span className="font-medium">Irrigation Allocator</span>
           </Link>
         </nav>
 
