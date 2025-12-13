@@ -703,6 +703,7 @@ If you discover a security vulnerability, please send an email to security@farms
 - **Himanshu Gahlot**: Frontend Developer
 - **Shreya Kumari**: Frontend/ML Developer
 - **Rupesh Kumar**: Quality Analyst
+- **Ravi Kant Chaudhary**: AI/ML Engineer, Data Scientist
 
 ---
 
