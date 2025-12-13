@@ -179,3 +179,80 @@ export const getMyRequests = async (req, res) => {
         res.status(500).json({ error: "Error fetching requests." });
     }
 };
+// --- NEW: 6. ADMIN ADDS WATER SOURCE ---
+export const createWaterSource = async (req, res) => {
+    try {
+        const { sourceId, village, capacityLPH, startHour, endHour } = req.body;
+        
+        const newSource = new WaterSource({
+            sourceId,
+            village,
+            capacityLPH,
+            manager: req.user._id,
+            operationalHours: { start: startHour, end: endHour }
+        });
+
+        await newSource.save();
+        res.status(201).json({ message: "Water Source Added Successfully", source: newSource });
+    } catch (error) {
+        console.error("Create Source Error:", error);
+        res.status(500).json({ error: "Failed to add water source" });
+    }
+};
+
+// --- NEW: 7. GET ALL WATER SOURCES (For Admin & Farmer selection) ---
+export const getAllSources = async (req, res) => {
+    try {
+        // Optional: Filter by village if query param exists
+        const filter = req.query.village ? { village: { $regex: req.query.village, $options: 'i' } } : {};
+        const sources = await WaterSource.find(filter);
+        res.json(sources);
+    } catch (error) {
+        res.status(500).json({ error: "Error fetching sources" });
+    }
+};
+
+// --- NEW: 8. ADMIN GETS PENDING REQUESTS ---
+export const getAllPendingRequests = async (req, res) => {
+    try {
+        const requests = await WaterRequest.find({ status: 'pending' })
+            .populate('farmer', 'name email')
+            .populate('waterSource', 'sourceId village')
+            .sort({ preferredDate: 1 });
+        res.json(requests);
+    } catch (error) {
+        res.status(500).json({ error: "Error fetching requests" });
+    }
+};
+
+// --- NEW: 9. ADMIN APPROVES/REJECTS REQUEST ---
+export const updateRequestStatus = async (req, res) => {
+    try {
+        const { requestId, status } = req.body; // status: 'approved' or 'rejected'
+        
+        const request = await WaterRequest.findById(requestId);
+        if (!request) return res.status(404).json({ error: "Request not found" });
+
+        request.status = status;
+        await request.save();
+
+        if (status === 'approved') {
+            // Create the actual Allocation slot
+            const endTime = new Date(new Date(request.preferredDate).getTime() + request.durationMinutes * 60000);
+            
+            await Allocation.create({
+                farmer: request.farmer,
+                waterSource: request.waterSource,
+                startTime: request.preferredDate,
+                endTime: endTime,
+                durationMinutes: request.durationMinutes,
+                status: 'scheduled'
+            });
+        }
+
+        res.json({ message: `Request ${status} successfully` });
+    } catch (error) {
+        console.error("Update Status Error:", error);
+        res.status(500).json({ error: "Failed to update status" });
+    }
+};
