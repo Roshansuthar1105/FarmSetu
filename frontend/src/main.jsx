@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
 import './styles/theme.css'
+import 'leaflet/dist/leaflet.css';
 import { AuthContextProvider } from './context/AuthContext.jsx'
 // G-2PM47Z01X7
 // const GA_TRACKING_ID = 'G-2PM47Z01X7'; // Replace with your tracking ID

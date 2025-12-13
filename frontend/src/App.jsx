@@ -52,6 +52,13 @@ const LazyRainfallPrediction = React.lazy(() => import('./pages/RainfallPredicti
 const LazyDiseaseDetection = React.lazy(() => import('./pages/DiseaseDetection.jsx'));
 const LazyChatBot = React.lazy(() => import('./components/ChatBot'));
 const LazyLanguage = React.lazy(() => import('./components/LanguageButton.jsx'));
+// admin panel 
+const LazyAdminLayout = React.lazy(() => import('./pages/admin/AdminLayout'));
+const LazyAdminDashboard = React.lazy(() => import('./pages/admin/AdminDashboard'));
+const LazyRegistryHeatmap = React.lazy(() => import('./pages/admin/RegistryHeatmap'));
+const LazySchemeMatcher = React.lazy(() => import('./pages/admin/SchemeMatcher'));
+// Use your existing ManageUsers page or create a new one inside admin
+const LazyManageUsers = React.lazy(() => import('./pages/admin/AdminDashboard'));
 import './i18.js';
 import { useTranslation } from 'react-i18next';
 import i18n from './i18.js';
@@ -85,6 +92,8 @@ export default function App() {
       i18n.changeLanguage(localStorage.getItem('language'));
     }
   }, [])
+  // Hide Navbar/Footer for Admin Routes
+  const isAdminRoute = location.pathname.startsWith('/admin');
   const { authUser } = useAuthContext();
   const [chatBotVisible, setChatBotVisible] = useState(false);
   const [isRotating, setIsRotating] = useState(false);
@@ -97,11 +106,22 @@ export default function App() {
     <>
       <Router>
         <ScrollToTop>
-          <Suspense fallback={<LoadingComponent />}>
-            {/* <LazyMyNavbar /> */}
-            <Navbar />
-          </Suspense>
+        <Suspense fallback={<LoadingComponent />}>
+          {!isAdminRoute && <Navbar />}
+        </Suspense>
           <Routes>
+            <Route path="/admin" element={
+              authUser && authUser.role === 'admin' ? (
+                <Suspense fallback={<LoadingComponent />}><LazyAdminLayout /></Suspense>
+              ) : (
+                <Navigate to="/login" />
+              )
+            }>
+              <Route index element={<Suspense fallback={<LoadingComponent />}><LazyAdminDashboard /></Suspense>} />
+              <Route path="heatmap" element={<Suspense fallback={<LoadingComponent />}><LazyRegistryHeatmap /></Suspense>} />
+              <Route path="schemes" element={<Suspense fallback={<LoadingComponent />}><LazySchemeMatcher /></Suspense>} />
+              <Route path="users" element={<Suspense fallback={<LoadingComponent />}><LazyManageUsers /></Suspense>} />
+            </Route>
             <Route path="/" element={<Suspense fallback={<LoadingComponent />}><LazyHome /></Suspense>} />
             <Route path="/farmermarketplace" element={<Suspense fallback={<LoadingComponent />}><LazyMarketplace /></Suspense>} />
             <Route path="/product/:id" element={<Suspense fallback={<LoadingComponent />}><LazyProductDetail /></Suspense>} />
