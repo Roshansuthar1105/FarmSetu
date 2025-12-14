@@ -18,6 +18,7 @@ const AdminUserList = () => {
             try {
                 // 1. Check if token exists BEFORE fetching
                 const token = authUser?.token;
+                console.log("token at admin user list", token)
                 if (!token) return; // Stop if no token
 
                 const res = await fetch(`${BACKEND_URL}/api/admin/users`, {

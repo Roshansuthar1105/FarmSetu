@@ -9,7 +9,6 @@ const AdminDashboard = () => {
     const navigate = useNavigate(); // <--- Initialize hook
     const [stats, setStats] = useState({ totalUsers: 0, farmers: 0, sellers: 0, products: 0 });
     const [chartData, setChartData] = useState([]);
-
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -18,7 +17,7 @@ const AdminDashboard = () => {
                     headers: { 'Authorization': `Bearer ${authUser?.token}` }
                 });
                 const users = await userRes.json();
-                
+                console.log(authUser,`Bearer ${authUser?.token}`,userRes);
                 // If users is array, calculate stats. If error, users might be {error: ...}
                 if(Array.isArray(users)) {
                     const farmers = users.filter(u => u.role === 'farmer').length;
