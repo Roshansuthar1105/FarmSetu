@@ -155,6 +155,7 @@ export default function Navbar() {
     { name: t('Plant Diseases Detection'), to: "/disease" },
     { name: t('Smart Irrigation System'), to: "/rainfall" },
     { name: t('digital_parchi'), to: "/digital-parchi" },
+    { name: t('Yield prediction'), to: "/yield" },
   ];
   const handleEditProfile = async () => {
     navigate(`/profile/edit/${authUser._id}`)
@@ -434,7 +435,7 @@ export default function Navbar() {
                           onClick={() => setIsProfileOpen(false)}
                         >
                           <IoPerson className="mr-2 h-4 w-4 text-green-600" />
-                          {t('admin')}
+                          {t('Admin')}
                         </Link>}
                         <button
                           onClick={() => {
