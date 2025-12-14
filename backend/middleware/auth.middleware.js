@@ -4,10 +4,10 @@ import User from '../models/user.model.js';
 export const protect = async (req, res, next) => {
     let token;
 
-    // 1. Check Authorization Header (Standard for Bearer tokens)
+    // 1. Check Authorization Header
     if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
         try {
-            token = req.headers.authorization.split(' ')[1]; // Get token after "Bearer"
+            token = req.headers.authorization.split(' ')[1];
         } catch (error) {
             console.error("Token extraction error:", error);
         }
@@ -17,21 +17,24 @@ export const protect = async (req, res, next) => {
         token = req.cookies.jwt;
     }
 
+    // --- FIX: Check if token is the literal string "undefined" or "null" ---
+    if (token === 'undefined' || token === 'null') {
+        token = null; 
+    }
+
     if (token) {
         try {
             const decoded = jwt.verify(token, process.env.JWT_SECRET);
             
-            // 3. Get User from Token
             req.user = await User.findById(decoded.userId).select('-password');
             
             if (!req.user) {
                 return res.status(401).json({ error: 'Not authorized, user not found' });
             }
 
-            next(); // Proceed to controller
+            next();
         } catch (error) {
             console.error("Token verification failed:", error);
-            // Check headersSent to avoid "Cannot set headers after they are sent" error
             if (!res.headersSent) {
                 return res.status(401).json({ error: 'Not authorized, token failed' });
             }
@@ -44,7 +47,6 @@ export const protect = async (req, res, next) => {
 };
 
 export const admin = (req, res, next) => {
-    console.log(req.user,req.body);
     if (req.user && req.user.role === 'admin') {
         next();
     } else {
