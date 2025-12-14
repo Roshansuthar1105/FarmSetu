@@ -3,7 +3,7 @@ import { protect } from '../middleware/auth.middleware.js';
 import { 
     getUserProfile, 
     updateUserProfile, 
-    getUserById,       // <--- Added this back for your old functionality
+    getUserById,
     addFarm, 
     updateFarm, 
     deleteFarm 
