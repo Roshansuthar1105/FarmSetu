@@ -59,7 +59,8 @@ const LazyAdminLayout = React.lazy(() => import('./pages/admin/AdminLayout'));
 const LazyAdminDashboard = React.lazy(() => import('./pages/admin/AdminDashboard'));
 const LazyRegistryHeatmap = React.lazy(() => import('./pages/admin/RegistryHeatmap'));
 const LazySchemeMatcher = React.lazy(() => import('./pages/admin/SchemeMatcher'));
-// Use your existing ManageUsers page or create a new one inside admin
+const LazyMLActivityLog = React.lazy(() => import('./pages/admin/MLActivityLog'));
+const LazyMLReportDetail = React.lazy(() => import('./pages/admin/MLReportDetail'));
 const LazyManageUsers = React.lazy(() => import('./pages/admin/AdminDashboard'));
 const LazyParchiManager = React.lazy(() => import('./pages/admin/ParchiManager'));
 import './i18.js';
@@ -133,7 +134,8 @@ export default function App() {
               <Route path="user/:id" element={<Suspense fallback={<LoadingComponent />}><AdminUserDetails /></Suspense>} />
               <Route path="heatmap" element={<Suspense fallback={<LoadingComponent />}><FarmRegistryMap /></Suspense>} />
               <Route path="schemes" element={<Suspense fallback={<LoadingComponent />}><SchemeMatcher /></Suspense>} />
-
+              <Route path="ml-reports" element={<Suspense fallback={<LoadingComponent />}><LazyMLActivityLog /></Suspense>} />
+              <Route path="ml-report/:id" element={<Suspense fallback={<LoadingComponent />}><LazyMLReportDetail /></Suspense>} />
             </Route>
             <Route path="/" element={<Suspense fallback={<LoadingComponent />}><LazyHome /></Suspense>} />
             <Route path="/farmermarketplace" element={<Suspense fallback={<LoadingComponent />}><LazyMarketplace /></Suspense>} />

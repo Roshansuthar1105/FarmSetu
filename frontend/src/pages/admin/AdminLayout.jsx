@@ -3,7 +3,7 @@ import { Outlet, Link, useNavigate } from 'react-router-dom';
 import { useAuthContext } from '../../context/AuthContext';
 import { FaMapMarkedAlt, FaSeedling, FaUsers, FaSignOutAlt, FaChartPie, FaClipboardList } from 'react-icons/fa';
 import { MdDashboard } from "react-icons/md";
-
+import { FaRobot } from 'react-icons/fa';
 const AdminLayout = () => {
   const { setAuthUser } = useAuthContext();
   const navigate = useNavigate();
@@ -44,6 +44,10 @@ const AdminLayout = () => {
           <Link to="/admin/parchi-manager" className="flex items-center px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg transition-all group">
             <FaClipboardList className="mr-3 text-xl group-hover:text-cyan-400" /> 
             <span className="font-medium">Irrigation Allocator</span>
+          </Link>
+          <Link to="/admin/ml-reports" className="flex items-center px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg transition-all group">
+            <FaRobot className="mr-3 text-xl group-hover:text-pink-400" /> 
+            <span className="font-medium">AI & ML Registry</span>
           </Link>
         </nav>
 

@@ -1,5 +1,6 @@
 import User from '../models/user.model.js';
-
+import MLHistory from '../models/MLHistory.model.js';
+// import LandRecords from '../models/LandRecord.model.js'
 // GET /api/admin/users
 // View all users (with filtering)
 export const getAllUsers = async (req, res) => {
@@ -89,5 +90,33 @@ export const matchSchemeBeneficiaries = async (req, res) => {
     } catch (error) {
         console.error("Scheme Match Error:", error);
         res.status(500).json({ error: "Error matching schemes" });
+    }
+};
+// GET /api/admin/ml-reports
+// Fetch all ML predictions for the admin panel
+export const getMLActivityLog = async (req, res) => {
+    try {
+        // const logs = await LandRecords.find()
+        const logs = await MLHistory.find()
+            .populate('user', 'name email avatar') // Get farmer details
+            .sort({ createdAt: -1 }); // Newest first
+        res.json(logs);
+    } catch (error) {
+        console.error("Error fetching ML logs:", error);
+        res.status(500).json({ error: "Failed to fetch ML reports" });
+    }
+};
+
+// GET /api/admin/ml-report/:id
+// Fetch single report details
+export const getMLReportById = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const log = await MLHistory.findById(id).populate('user', 'name email mobileNumber address avatar');
+        // const log = await LandRecords.findById(id).populate('user', 'name email mobileNumber address');
+        if (!log) return res.status(404).json({ error: "Report not found" });
+        res.json(log);
+    } catch (error) {
+        res.status(500).json({ error: "Error fetching report details" });
     }
 };

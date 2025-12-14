@@ -6,6 +6,6 @@ const router = express.Router();
 
 // Apply 'protect' so req.user is available
 router.post('/log', protect, logPrediction);
-router.get('/history', protect, getUserHistory);
+router.get('/history', protect, getUserHistory); 
 
 export default router;

@@ -25,6 +25,22 @@ export const logPrediction = async (req, res) => {
             updateData['soilDetails.phosphorus'] = inputData.phosphorus;
             updateData['soilDetails.potassium'] = inputData.potassium;
             updateData['soilDetails.ph'] = inputData.ph;
+            // Parse coordinates to ensure they are numbers
+            let lng = parseFloat(inputData.longitude);
+            let lat = parseFloat(inputData.latitude);
+
+            // Check if valid numbers. If not, default to [0,0] to satisfy MongoDB Index
+            if (isNaN(lng) || isNaN(lat)) {
+                // Default to [0,0] or a generic centralized location (e.g., India center) 
+                // to prevent "Point must only contain numeric elements" error.
+                lng = 78.9629; 
+                lat = 20.5937;
+            }
+
+            updateData.location = { 
+                type: 'Point', 
+                coordinates: [lng, lat] 
+            };
             // Use user's current location if provided, else default to Jaipur for demo
             if (inputData.latitude && inputData.longitude) {
                  updateData.location = { type: 'Point', coordinates: [inputData.longitude, inputData.latitude] };
@@ -52,7 +68,7 @@ export const logPrediction = async (req, res) => {
         console.error("Error logging ML data:", error);
         res.status(500).json({ error: "Failed to log data" });
     }
-};
+}; 
 
 export const getUserHistory = async (req, res) => {
     try {

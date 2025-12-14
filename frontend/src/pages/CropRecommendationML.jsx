@@ -228,7 +228,36 @@ const CropRecommendationML = () => {
             }
         }
     };
+    // --- NEW: Function to Log Data to Backend ---
+    const logMLData = async (predictionResult) => {
+        try {
+            // Ensure user is logged in before logging
+            if (!authUser || !authUser.token) return;
 
+            await fetch(`${BACKEND_URL}/api/ml/log`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${authUser.token}` // Important for 'protect' middleware
+                },
+                body: JSON.stringify({
+                    type: 'crop_recommendation',
+                    inputData: {
+                        ...formData,
+                        // Add lat/lng if you are capturing them, otherwise they are optional
+                        latitude: 26.9, 
+                        longitude: 75.8 
+                    },
+                    predictionResult: predictionResult 
+                })
+            });
+            console.log("ML Prediction logged successfully");
+        } catch (error) {
+            console.error("Failed to log ML data:", error);
+            // We don't show an error toast here to avoid disrupting the user experience
+            // since seeing the result is more important than logging history.
+        }
+    };
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
@@ -242,11 +271,13 @@ const CropRecommendationML = () => {
                 body: JSON.stringify(formData)
             });
             const data = await response.json();
-            
+            console.log(data);
             if (response.ok) {
                 setResult(data);
                 toast.success(t('crop_predicted_success') || 'Crop recommendation ready!');
-
+                // --- 2. LOG DATA TO BACKEND (NEW) ---
+                // We call this immediately after success. No await needed if we don't want to block UI.
+                logMLData(data);
                 // 2. If an existing farm was selected, update its soil data in the backend
                 if (selectedFarm !== "new") {
                     updateFarmData(selectedFarm);
