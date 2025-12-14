@@ -1,27 +1,65 @@
-import LandRecord from '../models/LandRecord.model.js';
 import User from '../models/user.model.js';
 
+// GET /api/admin/users
+// View all users (with filtering)
+export const getAllUsers = async (req, res) => {
+    try {
+        const { role, city } = req.query;
+        
+        let query = {};
+        if (role) query.role = role;
+        if (city) query['address.city'] = { $regex: city, $options: 'i' }; // Case insensitive search
+
+        const users = await User.find(query).select('-password');
+        res.json(users);
+    } catch (error) {
+        res.status(500).json({ error: 'Error fetching users' });
+    }
+};
+
+// PATCH /api/admin/user/:id
+// Admin can force update a user (e.g., ban them, change role)
+export const adminUpdateUser = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const updatedUser = await User.findByIdAndUpdate(id, req.body, { new: true }).select('-password');
+        res.json(updatedUser);
+    } catch (error) {
+        res.status(500).json({ error: 'Error updating user' });
+    }
+};
+
 // GET /api/admin/heatmap
+// Updated to pull data from User.farms instead of old LandRecord
 export const getHeatmapData = async (req, res) => {
     try {
-        const { parameter } = req.query; // e.g., 'soilDetails.ph' or 'activeDiseases'
+        const { parameter } = req.query; // e.g., 'ph', 'nitrogen'
         
-        const records = await LandRecord.find({ 'location.coordinates': { $exists: true } })
-                                        .select('location soilDetails activeDiseases');
+        // Find only users who are farmers and have farms
+        const farmers = await User.find({ 
+            role: 'farmer', 
+            'farms.0': { $exists: true } 
+        }).select('farms');
 
-        const heatmapPoints = records.map(record => {
-            let weight = 1; // Default weight
+        let heatmapPoints = [];
 
-            // Adjust weight based on parameter intensity
-            if (parameter === 'ph') weight = record.soilDetails?.ph || 0;
-            if (parameter === 'nitrogen') weight = record.soilDetails?.nitrogen || 0;
-            if (parameter === 'disease' && record.activeDiseases.length > 0) weight = 10; // High intensity for infected areas
+        farmers.forEach(farmer => {
+            farmer.farms.forEach(farm => {
+                if (farm.location && farm.location.coordinates) {
+                    let weight = 1;
 
-            return {
-                lat: record.location.coordinates[1],
-                lng: record.location.coordinates[0],
-                weight: weight
-            };
+                    // Adjust weight based on soil parameter
+                    if (parameter === 'ph') weight = farm.soilHealth?.phLevel || 0;
+                    if (parameter === 'nitrogen') weight = farm.soilHealth?.nitrogen || 0;
+                    if (parameter === 'phosphorus') weight = farm.soilHealth?.phosphorus || 0;
+
+                    heatmapPoints.push({
+                        lat: farm.location.coordinates[1], // Latitude is index 1
+                        lng: farm.location.coordinates[0], // Longitude is index 0
+                        weight: weight
+                    });
+                }
+            });
         });
 
         res.json(heatmapPoints);
@@ -32,24 +70,24 @@ export const getHeatmapData = async (req, res) => {
 };
 
 // POST /api/admin/schemes/match
+// Match schemes based on User Farm Data
 export const matchSchemeBeneficiaries = async (req, res) => {
     try {
-        const { criteria } = req.body; // e.g., { minPh: 0, maxPh: 5.5 }
-        
-        const query = {};
-        
-        if (criteria.maxPh) {
-            query['soilDetails.ph'] = { $lt: criteria.maxPh };
-        }
-        if (criteria.targetDisease) {
-            query['activeDiseases.diseaseName'] = criteria.targetDisease;
-        }
+        const { criteria } = req.body; 
+        // e.g., { maxPh: 5.5, city: 'Jaipur' }
 
-        // Find matching land records and populate farmer details
-        const eligibleFarmers = await LandRecord.find(query).populate('farmer', 'name email role');
-        
+        // MongoDB Aggregation to filter inside the farms array
+        const eligibleFarmers = await User.find({
+            role: 'farmer',
+            $and: [
+                { 'farms.soilHealth.phLevel': { $lt: criteria.maxPh || 14 } }, // Default max pH
+                { 'address.city': criteria.city ? { $regex: criteria.city, $options: 'i' } : { $exists: true } }
+            ]
+        }).select('name email mobileNumber farms');
+
         res.json(eligibleFarmers);
     } catch (error) {
+        console.error("Scheme Match Error:", error);
         res.status(500).json({ error: "Error matching schemes" });
     }
 };
