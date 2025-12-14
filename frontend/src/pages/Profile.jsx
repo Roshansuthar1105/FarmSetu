@@ -1,752 +1,551 @@
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../context/AuthContext";
 import {
-    FaBriefcase, FaEnvelope, FaShoppingCart, FaUser, FaMapMarkerAlt, FaPhone,
-    FaStar, FaLeaf, FaSeedling, FaTractor, FaChartLine, FaClipboardCheck,
-    FaUserFriends, FaRegThumbsUp, FaRegComment, FaShare, FaAward, FaMedal
+    FaEnvelope, FaMapMarkerAlt, FaPhone,
+    FaTractor, FaPlus, FaLeaf, FaTrash, FaTimes, FaSave
 } from "react-icons/fa";
-import { FaCalendarDays, FaMessage, FaEarthAsia } from "react-icons/fa6";
-import { BiEdit, BiSolidMessageSquareEdit } from "react-icons/bi";
-import { HiViewGrid } from "react-icons/hi";
-import { IoLogOut, IoSettingsSharp, IoStatsChart } from "react-icons/io5";
+import { BiEdit } from "react-icons/bi";
+import { IoLogOut, IoSettingsSharp } from "react-icons/io5";
 import { GrContactInfo } from "react-icons/gr";
-import { MdDashboard, MdOutlineVerified, MdTrendingUp, MdNotificationsActive } from "react-icons/md";
+import { MdDashboard, MdTrendingUp, MdOutlineVerified } from "react-icons/md";
 import { useTranslation } from 'react-i18next';
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
+import toast from "react-hot-toast";
+
+// --- MAP IMPORTS ---
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
+
+// Fix for default Leaflet marker icons
+import icon from 'leaflet/dist/images/marker-icon.png';
+import iconShadow from 'leaflet/dist/images/marker-shadow.png';
+
+let DefaultIcon = L.icon({
+    iconUrl: icon,
+    shadowUrl: iconShadow,
+    iconSize: [25, 41],
+    iconAnchor: [12, 41]
+});
+L.Marker.prototype.options.icon = DefaultIcon;
+
 const Profile = () => {
     const navigate = useNavigate();
-    const { authUser } = useAuthContext();
+    const { authUser, setAuthUser, BACKEND_URL } = useAuthContext();
     const { t } = useTranslation();
     const [activeTab, setActiveTab] = useState('overview');
     const [isLoading, setIsLoading] = useState(true);
-    const [weatherData, setWeatherData] = useState(null);
-    const [achievements, setAchievements] = useState([]);
-    const [recentActivity, setRecentActivity] = useState([]);
-    const colors = [
-        // Cool & Calm Gradients
-        { from: "#6A11CB", to: "#2575FC" },
-        { from: "#00C6FB", to: "#005BEA" },
-        { from: "#0F2027", to: "#2C5364" },
-        { from: "#11998E", to: "#38EF7D" },
-        { from: "#1CB5E0", to: "#000851" },
-      
-        // Vibrant Gradients
-        { from: "#FF9A8B", to: "#FF6B95" },
-        { from: "#FF6B95", to: "#FF8E53" },
-        { from: "#4FACFE", to: "#00F2FE" },
-        { from: "#A18CD1", to: "#FBC2EB" },
-        { from: "#FFD26F", to: "#FF6B6B" },
-      
-        // Warm & Earthy Gradients
-        { from: "#F46B45", to: "#EEA849" },
-        { from: "#FF7E5F", to: "#FEB47B" },
-        { from: "#C33764", to: "#1D2671" },
-        { from: "#E44D26", to: "#F16529" },
-        { from: "#FF9966", to: "#FF5E62" },
-      
-        // Dark & Moody Gradients
-        { from: "#3A1C71", to: "#D76D77" },
-        { from: "#1F1C2C", to: "#928DAB" },
-        { from: "#16222A", to: "#3A6073" },
-        { from: "#232526", to: "#414345" },
-        { from: "#000000", to: "#434343" },
-      
-        // Pastel Gradients
-        { from: "#A1C4FD", to: "#C2E9FB" },
-        { from: "#FFD1FF", to: "#FAD0C4" },
-        { from: "#D4FC79", to: "#96E6A1" },
-        { from: "#FDCBF1", to: "#E6DEE9" },
-        { from: "#E0C3FC", to: "#8EC5FC" }
-      ];
-    const [colorIndex, setColorIndex] = useState(0);
-    const [iseditbg, setIsEditBg] = useState(false);
-    const [stats, setStats] = useState({
-        posts: 0,
-        cartItems: 0,
-        productsViewed: 42,
-        commentsReceived: 8
-    });
+    
+    // --- Farm Management State ---
+    const [showAddFarm, setShowAddFarm] = useState(false);
+    const [editingFarm, setEditingFarm] = useState(null); // Stores the farm object being edited
+    
+    // Initial State for Forms
+    const initialFarmState = {
+        farmName: '', 
+        area: '', 
+        areaUnit: 'acre', 
+        coordinates: [75.7873, 26.9124], // Default Jaipur
+        soilHealth: { nitrogen: 0, phosphorus: 0, potassium: 0, phLevel: 7 }
+    };
+    
+    const [formData, setFormData] = useState(initialFarmState);
 
-    // Sample data for charts
+    // --- Helper Component: Map Marker ---
+    // Handles drag events to update parent state
+    const LocationMarker = ({ position, setPosition }) => {
+        const markerRef = useRef(null)
+        const eventHandlers = useMemo(
+            () => ({
+                dragend() {
+                    const marker = markerRef.current;
+                    if (marker != null) {
+                        const { lat, lng } = marker.getLatLng();
+                        setPosition([lng, lat]); // Store as [Lng, Lat] for GeoJSON
+                    }
+                },
+            }),
+            [setPosition],
+        )
+
+        return (
+            <Marker
+                draggable={true}
+                eventHandlers={eventHandlers}
+                position={[position[1], position[0]]} // Leaflet takes [Lat, Lng]
+                ref={markerRef}>
+                <Popup>Farm Location</Popup>
+            </Marker>
+        )
+    }
+
+    // --- Existing Dummy Data for Charts ---
     const cropData = [
-        { name: 'Wheat', value: 35 },
-        { name: 'Rice', value: 25 },
-        { name: 'Corn', value: 20 },
-        { name: 'Soybeans', value: 15 },
+        { name: 'Wheat', value: 35 }, { name: 'Rice', value: 25 },
+        { name: 'Corn', value: 20 }, { name: 'Soybeans', value: 15 },
         { name: 'Other', value: 5 },
     ];
-
     const activityData = [
-        { name: 'Mon', value: 4 },
-        { name: 'Tue', value: 3 },
-        { name: 'Wed', value: 7 },
-        { name: 'Thu', value: 2 },
-        { name: 'Fri', value: 5 },
-        { name: 'Sat', value: 8 },
+        { name: 'Mon', value: 4 }, { name: 'Tue', value: 3 },
+        { name: 'Wed', value: 7 }, { name: 'Thu', value: 2 },
+        { name: 'Fri', value: 5 }, { name: 'Sat', value: 8 },
         { name: 'Sun', value: 6 },
     ];
-
     const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884d8'];
 
-    // Simulate loading state
     useEffect(() => {
-        const timer = setTimeout(() => {
-            setIsLoading(false);
-        }, 800);
+        const timer = setTimeout(() => setIsLoading(false), 800);
         return () => clearTimeout(timer);
     }, []);
 
-    // Simulate fetching user data
-    useEffect(() => {
-        // Simulate achievements data
-        setAchievements([
-            { id: 1, title: t('early_adopter'), description: t('early_adopter_desc'), icon: <FaMedal className="text-yellow-500" />, date: '2023-01-15' },
-            { id: 2, title: t('first_post'), description: t('first_post_desc'), icon: <FaMessage className="text-blue-500" />, date: '2023-02-10' },
-            { id: 3, title: t('verified_user'), description: t('verified_user_desc'), icon: <MdOutlineVerified className="text-green-500" />, date: '2023-03-22' },
-        ]);
+    // --- HANDLERS ---
 
-        // Simulate recent activity data
-        setRecentActivity([
-            { id: 1, type: 'post', message: t('created_post'), date: '2023-05-15T10:30:00', icon: <FaMessage className="text-blue-500" /> },
-            { id: 2, type: 'product', message: t('viewed_product'), date: '2023-05-14T15:45:00', icon: <FaShoppingCart className="text-green-500" /> },
-            { id: 3, type: 'comment', message: t('commented_post'), date: '2023-05-13T09:20:00', icon: <FaRegComment className="text-purple-500" /> },
-            { id: 4, type: 'like', message: t('liked_post'), date: '2023-05-12T14:10:00', icon: <FaRegThumbsUp className="text-red-500" /> },
-        ]);
+    // 1. Open "Add Farm" Form
+    const openAddMode = () => {
+        setFormData(initialFarmState);
+        setEditingFarm(null);
+        setShowAddFarm(true);
+    };
 
-        // Simulate weather data
-        setWeatherData({
-            location: 'New Delhi, India',
-            temperature: 28,
-            condition: 'Sunny',
-            humidity: 65,
-            windSpeed: 12,
+    // 2. Open "Edit Farm" Form
+    const openEditMode = (farm) => {
+        setEditingFarm(farm);
+        setFormData({
+            farmName: farm.farmName,
+            area: farm.area,
+            areaUnit: farm.areaUnit,
+            // Ensure coordinates exist, else default
+            coordinates: farm.location?.coordinates || initialFarmState.coordinates,
+            soilHealth: { 
+                nitrogen: farm.soilHealth?.nitrogen || 0, 
+                phosphorus: farm.soilHealth?.phosphorus || 0, 
+                potassium: farm.soilHealth?.potassium || 0, 
+                phLevel: farm.soilHealth?.phLevel || 7 
+            }
         });
+        setShowAddFarm(true); // Reuse the same modal/form area
+    };
 
-        // Simulate stats
-        if (authUser) {
-            // In a real app, you would fetch this data from your API
-            setStats({
-                posts: Math.floor(Math.random() * 10),
-                cartItems: Math.floor(Math.random() * 5),
-                productsViewed: Math.floor(Math.random() * 50) + 10,
-                commentsReceived: Math.floor(Math.random() * 20),
+    // 3. Submit (Add or Update)
+    const handleSubmitFarm = async (e) => {
+        e.preventDefault();
+        
+        const endpoint = editingFarm 
+            ? `${BACKEND_URL}/api/user/farm/${editingFarm._id}` 
+            : `${BACKEND_URL}/api/user/add-farm`;
+            
+        const method = editingFarm ? 'PATCH' : 'POST';
+
+        try {
+            const res = await fetch(endpoint, {
+                method: method,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${authUser.token}` 
+                },
+                body: JSON.stringify(formData)
             });
-        }
-    }, [authUser, t]);
+            
+            const data = await res.json();
+            
+            if(res.ok) {
+                toast.success(editingFarm ? "Farm Updated!" : "Farm Added!");
+                
+                // Update Local State
+                // The backend usually returns the updated 'user' or 'farms' array.
+                // Assuming backend returns { message, farm } or { message, farms }
+                // For simplicity, let's assume it returns the updated farms list or we manually update it.
+                
+                let updatedFarms;
+                if (editingFarm) {
+                    // Replace the edited farm in the list
+                    updatedFarms = authUser.farms.map(f => f._id === editingFarm._id ? data.farm : f);
+                } else {
+                    // Add new farm
+                    updatedFarms = data.farms; 
+                }
 
-    // Format date for better display
-    const formatDate = (dateString) => {
-        const options = { year: 'numeric', month: 'long', day: 'numeric' };
-        return new Date(dateString || Date.now()).toLocaleDateString(undefined, options);
+                const updatedUser = { ...authUser, farms: updatedFarms };
+                setAuthUser(updatedUser);
+                localStorage.setItem('user', JSON.stringify(updatedUser));
+                
+                setShowAddFarm(false);
+                setEditingFarm(null);
+            } else {
+                toast.error(data.error || "Operation failed");
+            }
+        } catch (error) {
+            console.error(error);
+            toast.error("Network Error");
+        }
     };
 
-    // Format relative time
-    const formatRelativeTime = (dateString) => {
-        const date = new Date(dateString);
-        const now = new Date();
-        const diffInSeconds = Math.floor((now - date) / 1000);
+    // 4. Delete Farm
+    const handleDeleteFarm = async (farmId) => {
+        if(!window.confirm("Are you sure you want to delete this farm record?")) return;
 
-        if (diffInSeconds < 60) {
-            return t('just_now');
-        } else if (diffInSeconds < 3600) {
-            const minutes = Math.floor(diffInSeconds / 60);
-            return `${minutes} ${minutes === 1 ? t('minute_ago') : t('minutes_ago')}`;
-        } else if (diffInSeconds < 86400) {
-            const hours = Math.floor(diffInSeconds / 3600);
-            return `${hours} ${hours === 1 ? t('hour_ago') : t('hours_ago')}`;
-        } else if (diffInSeconds < 604800) {
-            const days = Math.floor(diffInSeconds / 86400);
-            return `${days} ${days === 1 ? t('day_ago') : t('days_ago')}`;
-        } else {
-            return formatDate(dateString);
+        try {
+            const res = await fetch(`${BACKEND_URL}/api/user/farm/${farmId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': `Bearer ${authUser.token}` 
+                }
+            });
+            const data = await res.json();
+            
+            if(res.ok) {
+                toast.success("Farm Deleted");
+                const updatedFarms = authUser.farms.filter(f => f._id !== farmId);
+                const updatedUser = { ...authUser, farms: updatedFarms };
+                setAuthUser(updatedUser);
+                localStorage.setItem('user', JSON.stringify(updatedUser));
+            } else {
+                toast.error(data.error);
+            }
+        } catch (error) {
+            toast.error("Failed to delete");
         }
-    };
-
-    // Handle tab change
-    const handleTabChange = (tab) => {
-        setActiveTab(tab);
     };
 
     if (isLoading) {
-        return (
-            <div className="min-h-screen bg-gradient-to-b from-slate-800 to-slate-900 pt-20 flex items-center justify-center">
-                <div className="animate-pulse flex flex-col items-center">
-                    <div className="rounded-full bg-gray-600 h-32 w-32 mb-4"></div>
-                    <div className="h-6 bg-gray-600 rounded w-48 mb-2"></div>
-                    <div className="h-4 bg-gray-600 rounded w-64 mb-8"></div>
-                    <div className="h-40 bg-gray-600 rounded w-full max-w-md"></div>
-                </div>
-            </div>
-        );
+        return <div className="min-h-screen bg-gray-900 flex items-center justify-center text-white">
+            <div className="animate-pulse">Loading Profile...</div>
+        </div>;
     }
 
     return (
         <div className="min-h-screen bg-gradient-to-b from-slate-800 to-slate-900 pt-20">
             <div className="container mx-auto px-4 py-8">
-                {/* Profile Header */}
+                {/* --- Profile Header --- */}
                 <div className="bg-gray-800 rounded-xl shadow-sm overflow-hidden mb-6">
-                    <div className={`h-40 bg-gradient-to-r  relative profile-header-bg `}
-                        style={{ background: `linear-gradient(to right,${colors[colorIndex].from},${colors[colorIndex].to})` }}
-                    >
-                        <button
-                            onClick={() => setIsEditBg(!iseditbg)}
-                            className="absolute top-4 right-4 bg-black hover:bg-gray-800/30 text-white p-2 rounded-full backdrop-blur-sm transition-all  "
-                            title={t('edit_profile_background')}
-                        >
-                            <BiEdit className="h-5 w-5" />
-                        </button>
-                        {
-                            iseditbg && (
-                                <div className="absolute top-4 right-16 bg-gray-800/20 backdrop-blur-sm p-2 rounded-lg opacity-100">
-                                    {
-                                        colors.map((color, index) => {
-                                            return (
-                                                <button
-                                                    key={index}
-                                                    onClick={() => {document.querySelector('.profile-header-bg').style.background = `linear-gradient(to right,${color.from},${color.to})`;setIsEditBg(false);setColorIndex(index);} }
-                                                    className={`w-6 h-6 rounded-full bg-gradient-to-r from-${color.from} to-${color.to} border-2 border-white/70`}
-                                                    style={{background : `linear-gradient(to right,${color.from},${color.to} )`}}
-                                                    title={t('default_gradient')}
-                                                />)
-                                        })
-                                    }
-                                </div>
-                            )
-                        }
-                    </div>
+                    <div className="h-40 bg-gradient-to-r from-green-600 to-blue-600 relative"></div>
                     <div className="flex flex-col md:flex-row px-6 py-4 relative">
-                        <div className="absolute -top-16 left-6 md:left-6">
-                            <div className="relative group rounded-full "
-                            style={{ background: `linear-gradient(to right,${colors[colorIndex].from},${colors[colorIndex].to})` }}
-                            >
-                                <img
-                                    src={authUser?.avatar || "https://cdn-icons-png.flaticon.com/128/1154/1154966.png"}
-                                    alt="Profile"
-                                    className="w-24 h-24 md:w-32 md:h-32 rounded-full border-4 border-gray-800 shadow-md object-cover"
-                                />
-                                <button
-                                    className="bg-gray-800 text-green-600 p-1.5 rounded-full absolute bottom-1 right-1 opacity-0 group-hover:opacity-100 transition-opacity shadow-sm"
-                                    onClick={() => navigate(`/profile/edit/${authUser?._id}`)}
-                                >
-                                    <BiEdit className="h-4 w-4" />
-                                </button>
-                            </div>
+                        <div className="absolute -top-16 left-6">
+                            <img 
+                                src={authUser?.avatar} 
+                                alt="Profile" 
+                                className="w-24 h-24 md:w-32 md:h-32 rounded-full border-4 border-gray-800 object-cover shadow-lg" 
+                            />
                         </div>
-                        <div className="mt-16 md:mt-0 md:ml-36">
-                            <h1 className="text-2xl md:text-3xl font-bold text-gray-100">
-                                {authUser?.name?.charAt(0).toUpperCase() + authUser?.name?.slice(1)}
+                        <div className="mt-16 md:mt-0 md:ml-36 text-white">
+                            <h1 className="text-2xl font-bold flex items-center gap-2">
+                                {authUser?.name} <MdOutlineVerified className="text-blue-400" />
                             </h1>
-                            <p className="text-gray-300 flex items-center mt-1">
-                                <FaBriefcase className="mr-2 text-green-600" />
-                                <span className="capitalize">{authUser?.role || 'User'}</span>
-                            </p>
-                            <p className="text-gray-300 flex items-center mt-1">
-                                <FaCalendarDays className="mr-2 text-green-600" />
-                                <span>{t('member_since')}: {formatDate(authUser?.createdAt)}</span>
+                            <p className="text-gray-300 flex items-center text-sm mt-1">
+                                <FaMapMarkerAlt className="mr-2 text-red-400"/> 
+                                {authUser?.address?.city || 'India'}, {authUser?.address?.state}
                             </p>
                         </div>
                     </div>
 
-                    {/* Navigation Tabs */}
-                    <div className="border-t border-gray-500  px-6">
-                        <div className="flex overflow-x-auto space-x-2 py-2">
-                            <button
-                                onClick={() => handleTabChange('overview')}
-                                className={`px-3 py-2 text-xs sm:text-sm font-medium rounded-md whitespace-nowrap transition-colors ${activeTab === 'overview'
-                                        ? 'bg-green-50 text-green-700'
-                                        : 'text-gray-300 hover:text-white'
+                    {/* --- Tabs --- */}
+                    <div className="border-t border-gray-700 px-6 overflow-x-auto">
+                        <div className="flex space-x-1 py-3">
+                            {[
+                                { id: 'overview', icon: <MdDashboard/>, label: 'Overview' },
+                                { id: 'farms', icon: <FaTractor/>, label: 'My Farms' }, 
+                                { id: 'personal', icon: <GrContactInfo/>, label: 'Personal Info' },
+                                { id: 'activity', icon: <MdTrendingUp/>, label: 'Activity' },
+                                { id: 'settings', icon: <IoSettingsSharp/>, label: 'Settings' }
+                            ].map(tab => (
+                                <button 
+                                    key={tab.id}
+                                    onClick={() => setActiveTab(tab.id)}
+                                    className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                                        activeTab === tab.id ? 'bg-green-600 text-white shadow-md' : 'text-gray-400 hover:bg-gray-700 hover:text-white'
                                     }`}
-                            >
-                                <MdDashboard className="inline mr-1" /> {t('overview')}
-                            </button>
-                            <button
-                                onClick={() => handleTabChange('personal')}
-                                className={`px-3 py-2 text-xs sm:text-sm font-medium rounded-md whitespace-nowrap transition-colors ${activeTab === 'personal'
-                                        ? 'bg-green-50 text-green-700'
-                                        : 'text-gray-300 hover:text-white'
-                                    }`}
-                            >
-                                <GrContactInfo className="inline mr-1" /> {t('personal_information')}
-                            </button>
-                            <button
-                                onClick={() => handleTabChange('activity')}
-                                className={`px-3 py-2 text-xs sm:text-sm font-medium rounded-md whitespace-nowrap transition-colors ${activeTab === 'activity'
-                                        ? 'bg-green-50 text-green-700'
-                                        : 'text-gray-300 hover:text-white'
-                                    }`}
-                            >
-                                <MdTrendingUp className="inline mr-1" /> {t('activity')}
-                            </button>
-                            <button
-                                onClick={() => handleTabChange('achievements')}
-                                className={`px-3 py-2 text-xs sm:text-sm font-medium rounded-md whitespace-nowrap transition-colors ${activeTab === 'achievements'
-                                        ? 'bg-green-50 text-green-700'
-                                        : 'text-gray-300 hover:text-white'
-                                    }`}
-                            >
-                                <FaAward className="inline mr-1" /> {t('achievements')}
-                            </button>
-                            <button
-                                onClick={() => handleTabChange('stats')}
-                                className={`px-3 py-2 text-xs sm:text-sm font-medium rounded-md whitespace-nowrap transition-colors ${activeTab === 'stats'
-                                        ? 'bg-green-50 text-green-700'
-                                        : 'text-gray-300 hover:text-white'
-                                    }`}
-                            >
-                                <IoStatsChart className="inline mr-1" /> {t('statistics')}
-                            </button>
-                            <button
-                                onClick={() => handleTabChange('settings')}
-                                className={`px-3 py-2 text-xs sm:text-sm font-medium rounded-md whitespace-nowrap transition-colors ${activeTab === 'settings'
-                                        ? 'bg-green-50 text-green-700'
-                                        : 'text-gray-300 hover:text-white'
-                                    }`}
-                            >
-                                <IoSettingsSharp className="inline mr-1" /> {t('account_settings')}
-                            </button>
+                                >
+                                    {tab.icon} {tab.label}
+                                </button>
+                            ))}
                         </div>
                     </div>
                 </div>
 
-                {/* Tab Content */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    {/* Left Sidebar - Always visible */}
-                    <div className="md:col-span-1">
-                        {/* Contact Information */}
-                        <div className="bg-gray-800 rounded-xl shadow-sm p-6 mb-6">
-                            <h2 className="text-lg font-semibold text-gray-100 mb-4">{t('contact_information')}</h2>
-                            <div className="space-y-3">
-                                <p className="flex items-center text-gray-300">
-                                    <FaEnvelope className="mr-3 text-green-600" />
+                    {/* --- Left Sidebar --- */}
+                    <div className="md:col-span-1 space-y-6">
+                        <div className="bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-700">
+                            <h3 className="text-white font-bold mb-4 border-b border-gray-700 pb-2">Contact Details</h3>
+                            <div className="space-y-4 text-gray-300 text-sm">
+                                <div className="flex items-center">
+                                    <div className="bg-gray-700 p-2 rounded-full mr-3"><FaEnvelope className="text-green-500"/></div>
                                     <span>{authUser?.email}</span>
-                                </p>
-                                <p className="flex items-center text-gray-300">
-                                    <FaPhone className="mr-3 text-green-600" />
-                                    <span>{authUser?.phone || '+91 98765 43210'}</span>
-                                </p>
-                                <p className="flex items-center text-gray-300">
-                                    <FaMapMarkerAlt className="mr-3 text-green-600" />
-                                    <span>{authUser?.location || 'India'}</span>
-                                </p>
-                            </div>
-                        </div>
-
-                        {/* Weather Widget */}
-                        {weatherData && (
-                            <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl shadow-sm p-6 text-white mb-6">
-                                <div className="flex justify-between items-start">
-                                    <div>
-                                        <h2 className="text-lg font-semibold mb-1">{t('local_weather')}</h2>
-                                        <p className="text-sm text-blue-100">{weatherData.location}</p>
-                                    </div>
-                                    <div className="text-3xl font-bold">
-                                        {weatherData.temperature}°C
-                                    </div>
                                 </div>
-                                <div className="mt-4 grid grid-cols-2 gap-2 text-sm">
-                                    <div className="bg-gray-800/10 rounded-lg p-2 backdrop-blur-sm">
-                                        <p className="text-blue-100">{t('condition')}</p>
-                                        <p className="font-medium">{weatherData.condition}</p>
-                                    </div>
-                                    <div className="bg-gray-800/10 rounded-lg p-2 backdrop-blur-sm">
-                                        <p className="text-blue-100">{t('humidity')}</p>
-                                        <p className="font-medium">{weatherData.humidity}%</p>
-                                    </div>
-                                    <div className="bg-gray-800/10 rounded-lg p-2 backdrop-blur-sm col-span-2">
-                                        <p className="text-blue-100">{t('wind_speed')}</p>
-                                        <p className="font-medium">{weatherData.windSpeed} km/h</p>
-                                    </div>
+                                <div className="flex items-center">
+                                    <div className="bg-gray-700 p-2 rounded-full mr-3"><FaPhone className="text-blue-500"/></div>
+                                    <span>{authUser?.mobileNumber || 'Not provided'}</span>
                                 </div>
-                                <button
-                                    onClick={() => navigate('/weather')}
-                                    className="mt-4 w-full bg-gray-800/20 hover:bg-gray-800/30 text-white py-2 rounded-lg transition text-sm flex items-center justify-center"
-                                >
-                                    <FaEarthAsia className="mr-2" /> {t('view_detailed_forecast')}
-                                </button>
+                                <div className="flex items-center">
+                                    <div className="bg-gray-700 p-2 rounded-full mr-3"><FaMapMarkerAlt className="text-red-500"/></div>
+                                    <span>{authUser?.address?.village ? `${authUser.address.village}, ${authUser.address.district}` : 'Address not updated'}</span>
+                                </div>
                             </div>
-                        )}
-
-                        {/* Quick Actions */}
-                        <div className="bg-gray-800 rounded-xl shadow-sm p-6">
-                            <h2 className="text-lg font-semibold text-gray-100 mb-4">{t('quick_actions')}</h2>
-                            <div className="space-y-2">
-                                <button
-                                    onClick={() => navigate(`/profile/edit/${authUser?._id}`)}
-                                    className="w-full bg-gray-700 text-gray-100 py-2 px-3 rounded-lg hover:bg-gray-600 transition flex items-center text-sm"
-                                >
-                                    <BiSolidMessageSquareEdit className="mr-2 text-green-600" /> {t('edit_profile')}
-                                </button>
-                                <button
-                                    onClick={() => navigate(`/profile/cart/${authUser?._id}`)}
-                                    className="w-full bg-gray-700 text-gray-100 py-2 px-3 rounded-lg hover:bg-gray-600 transition flex items-center text-sm"
-                                >
-                                    <FaShoppingCart className="mr-2 text-green-600" /> {t('your_cart')}
-                                </button>
-                                <button
-                                    onClick={() => navigate(`/profile/posts/${authUser?._id}`)}
-                                    className="w-full bg-gray-700 text-gray-100 py-2 px-3 rounded-lg hover:bg-gray-600 transition flex items-center text-sm"
-                                >
-                                    <FaMessage className="mr-2 text-green-600" /> {t('your_posts')}
-                                </button>
-                                {authUser?.role === 'seller' && (
-                                    <button
-                                        onClick={() => navigate("/profile/products/add")}
-                                        className="w-full bg-gray-700 text-gray-100 py-2 px-3 rounded-lg hover:bg-gray-600 transition flex items-center text-sm"
-                                    >
-                                        <HiViewGrid className="mr-2 text-green-600" /> {t('add_new_product')}
-                                    </button>
-                                )}
-                                <button
-                                    onClick={() => navigate('/chat')}
-                                    className="w-full bg-gray-700 text-gray-100 py-2 px-3 rounded-lg hover:bg-gray-600 transition flex items-center text-sm"
-                                >
-                                    <FaUserFriends className="mr-2 text-green-600" /> {t('chat_with_experts')}
-                                </button>
-                            </div>
+                            <button 
+                                onClick={() => navigate(`/profile/edit/${authUser?._id}`)}
+                                className="w-full mt-6 bg-gray-700 hover:bg-gray-600 text-white py-2 rounded-lg transition text-sm flex items-center justify-center gap-2"
+                            >
+                                <BiEdit /> Edit Profile
+                            </button>
                         </div>
                     </div>
 
-                    {/* Main Content Area - Changes based on active tab */}
+                    {/* --- Main Content --- */}
                     <div className="md:col-span-2">
+                        
+                        {/* 1. OVERVIEW */}
                         {activeTab === 'overview' && (
-                            <div className="bg-gray-800 rounded-xl shadow-sm p-6">
-                                <h2 className="text-xl font-semibold text-gray-100 mb-4">{t('account_overview')}</h2>
-
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-                                    <div className="bg-blue-700/20 rounded-lg p-4">
-                                        <div className="flex items-center justify-between">
-                                            <div>
-                                                <p className="text-blue-500 font-medium">{t('your_posts')}</p>
-                                                <p className="text-2xl font-bold text-gray-100">{stats.posts}</p>
-                                            </div>
-                                            <FaMessage className="text-blue-500 text-3xl" />
-                                        </div>
-                                    </div>
-
-                                    <div className="bg-green-700/20 rounded-lg p-4">
-                                        <div className="flex items-center justify-between">
-                                            <div>
-                                                <p className="text-green-500 font-medium">{t('cart_items')}</p>
-                                                <p className="text-2xl font-bold text-gray-100">{stats.cartItems}</p>
-                                            </div>
-                                            <FaShoppingCart className="text-green-500 text-3xl" />
-                                        </div>
-                                    </div>
-
-                                    <div className="bg-purple-700/20 rounded-lg p-4">
-                                        <div className="flex items-center justify-between">
-                                            <div>
-                                                <p className="text-purple-500 font-medium">{t('products_viewed')}</p>
-                                                <p className="text-2xl font-bold text-gray-100">{stats.productsViewed}</p>
-                                            </div>
-                                            <FaClipboardCheck className="text-purple-500 text-3xl" />
-                                        </div>
-                                    </div>
-
-                                    <div className="bg-yellow-700/20 rounded-lg p-4">
-                                        <div className="flex items-center justify-between">
-                                            <div>
-                                                <p className="text-yellow-500 font-medium">{t('comments')}</p>
-                                                <p className="text-2xl font-bold text-gray-100">{stats.commentsReceived}</p>
-                                            </div>
-                                            <FaRegComment className="text-yellow-500 text-3xl" />
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="border-t border-gray-500  pt-6 mb-6">
-                                    <div className="flex justify-between items-center mb-4">
-                                        <h3 className="text-lg font-semibold text-gray-100">{t('recent_activity')}</h3>
-                                        <button
-                                            onClick={() => handleTabChange('activity')}
-                                            className="text-sm text-green-600 hover:text-green-800"
-                                        >
-                                            {t('view_all')}
-                                        </button>
-                                    </div>
-
-                                    {recentActivity.length > 0 ? (
-                                        <div className="space-y-3">
-                                            {recentActivity.slice(0, 3).map(activity => (
-                                                <div key={activity.id} className="bg-gray-700/20 rounded-lg p-3 flex items-start">
-                                                    <div className="bg-gray-800 p-2 rounded-full mr-3">
-                                                        {activity.icon}
-                                                    </div>
-                                                    <div>
-                                                        <p className="text-gray-100">{activity.message}</p>
-                                                        <p className="text-xs text-gray-300">{formatRelativeTime(activity.date)}</p>
-                                                    </div>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    ) : (
-                                        <div className="bg-gray-800 rounded-lg p-4 text-center text-gray-200">
-                                            {t('no_recent_activity')}
-                                        </div>
-                                    )}
-                                </div>
-
-                                <div className="border-t border-gray-500 pt-6">
-                                    <div className="flex justify-between items-center mb-4">
-                                        <h3 className="text-lg font-semibold text-gray-100">{t('achievements')}</h3>
-                                        <button
-                                            onClick={() => handleTabChange('achievements')}
-                                            className="text-sm text-green-600 hover:text-green-800"
-                                        >
-                                            {t('view_all')}
-                                        </button>
-                                    </div>
-
-                                    {achievements.length > 0 ? (
-                                        <div className="flex flex-wrap gap-2">
-                                            {achievements.map(achievement => (
-                                                <div key={achievement.id} className="bg-gray-700 rounded-full px-3 py-1 flex items-center">
-                                                    <span className="mr-1">{achievement.icon}</span>
-                                                    <span className="text-sm font-medium">{achievement.title}</span>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    ) : (
-                                        <div className="bg-gray-50 rounded-lg p-4 text-center text-gray-300">
-                                            {t('no_achievements_yet')}
-                                        </div>
-                                    )}
-                                </div>
-                            </div>
-                        )}
-
-                        {activeTab === 'activity' && (
-                            <div className="bg-gray-800 rounded-xl shadow-sm p-6">
-                                <h2 className="text-xl font-semibold text-gray-100 mb-4">{t('activity_history')}</h2>
-
-                                {recentActivity.length > 0 ? (
-                                    <div className="space-y-4">
-                                        {recentActivity.map(activity => (
-                                            <div key={activity.id} className="bg-gray-700 rounded-lg p-4 flex items-start">
-                                                <div className="bg-gray-800 p-2 rounded-full mr-4 shadow-sm">
-                                                    {activity.icon}
-                                                </div>
-                                                <div className="flex-1">
-                                                    <p className="text-gray-100 font-medium">{activity.message}</p>
-                                                    <p className="text-sm text-gray-300">{formatRelativeTime(activity.date)}</p>
-                                                </div>
-                                                <div className="text-xs text-gray-400">
-                                                    {new Date(activity.date).toLocaleDateString()}
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                ) : (
-                                    <div className="bg-gray-700 rounded-lg p-6 text-center">
-                                        <MdNotificationsActive className="mx-auto text-gray-400 text-4xl mb-2" />
-                                        <h3 className="text-lg font-medium text-gray-700 mb-1">{t('no_activity_yet')}</h3>
-                                        <p className="text-gray-300">{t('activity_will_appear_here')}</p>
-                                    </div>
-                                )}
-
-                                <div className="mt-6 pt-6 border-t border-gray-500 ">
-                                    <h3 className="text-lg font-semibold text-gray-100 mb-4">{t('weekly_activity')}</h3>
-                                    <div className="h-64 w-full">
-                                        <ResponsiveContainer width="100%" height="100%">
-                                            <BarChart data={activityData} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
-                                                <XAxis dataKey="name" />
-                                                <YAxis />
-                                                <Tooltip />
-                                                <Bar dataKey="value" fill="#10B981" radius={[4, 4, 0, 0]} />
-                                            </BarChart>
-                                        </ResponsiveContainer>
-                                    </div>
-                                </div>
-                            </div>
-                        )}
-
-                        {activeTab === 'achievements' && (
-                            <div className="bg-gray-800 rounded-xl shadow-sm p-6">
-                                <h2 className="text-xl font-semibold text-gray-100 mb-6">{t('your_achievements')}</h2>
-
-                                {achievements.length > 0 ? (
-                                    <div className="space-y-6">
-                                        {achievements.map(achievement => (
-                                            <div key={achievement.id} className="bg-gray-700 rounded-lg p-4 flex items-center">
-                                                <div className="bg-gray-800 p-3 rounded-full mr-4 shadow-sm">
-                                                    <div className="text-2xl">{achievement.icon}</div>
-                                                </div>
-                                                <div className="flex-1">
-                                                    <h3 className="font-medium text-gray-100">{achievement.title}</h3>
-                                                    <p className="text-sm text-gray-300">{achievement.description}</p>
-                                                    <p className="text-xs text-gray-300 mt-1">{t('earned_on')} {formatDate(achievement.date)}</p>
-                                                </div>
-                                            </div>
-                                        ))}
-
-                                        <div className="bg-gray-700 rounded-lg p-4 border border-dashed border-gray-300">
-                                            <div className="flex items-center">
-                                                <div className="bg-gray-200 p-3 rounded-full mr-4">
-                                                    <FaAward className="text-2xl text-gray-700" />
-                                                </div>
-                                                <div>
-                                                    <h3 className="font-medium text-gray-400">{t('next_achievement')}</h3>
-                                                    <p className="text-sm text-gray-300">{t('keep_using_platform')}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                ) : (
-                                    <div className="bg-gray-700 rounded-lg p-6 text-center">
-                                        <FaAward className="mx-auto text-gray-100 text-4xl mb-2" />
-                                        <h3 className="text-lg font-medium text-gray-100 mb-1">{t('no_achievements_yet')}</h3>
-                                        <p className="text-gray-300">{t('achievements_will_appear_here')}</p>
-                                    </div>
-                                )}
-                            </div>
-                        )}
-
-                        {activeTab === 'stats' && (
-                            <div className="bg-gray-800 rounded-xl shadow-sm p-6">
-                                <h2 className="text-xl font-semibold text-gray-100 mb-6">{t('statistics_and_analytics')}</h2>
-
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
-                                    <div>
-                                        <h3 className="text-lg font-medium text-gray-100 mb-4">{t('crop_distribution')}</h3>
+                            <div className="space-y-6">
+                                <div className="bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-700">
+                                    <h2 className="text-xl font-bold text-white mb-6">Farm Analytics</h2>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                         <div className="h-64">
+                                            <h4 className="text-gray-400 text-sm mb-4 text-center">Crop Distribution</h4>
                                             <ResponsiveContainer width="100%" height="100%">
                                                 <PieChart>
-                                                    <Pie
-                                                        data={cropData}
-                                                        cx="50%"
-                                                        cy="50%"
-                                                        labelLine={false}
-                                                        outerRadius={80}
-                                                        fill="#8884d8"
-                                                        dataKey="value"
-                                                        label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
-                                                    >
-                                                        {cropData.map((entry, index) => (
-                                                            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                                                        ))}
+                                                    <Pie data={cropData} cx="50%" cy="50%" outerRadius={80} fill="#8884d8" dataKey="value" label>
+                                                        {cropData.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)}
                                                     </Pie>
-                                                    <Tooltip />
+                                                    <Tooltip contentStyle={{backgroundColor: '#1f2937', border: 'none', color: 'white'}}/>
                                                 </PieChart>
                                             </ResponsiveContainer>
                                         </div>
+                                        <div className="h-64">
+                                            <h4 className="text-gray-400 text-sm mb-4 text-center">Weekly Activity</h4>
+                                            <ResponsiveContainer width="100%" height="100%">
+                                                <BarChart data={activityData}>
+                                                    <XAxis dataKey="name" stroke="#9CA3AF" fontSize={12}/>
+                                                    <YAxis stroke="#9CA3AF" fontSize={12}/>
+                                                    <Tooltip cursor={{fill: '#374151'}} contentStyle={{backgroundColor: '#1f2937', border: 'none', color: 'white'}}/>
+                                                    <Bar dataKey="value" fill="#10B981" radius={[4, 4, 0, 0]} />
+                                                </BarChart>
+                                            </ResponsiveContainer>
+                                        </div>
                                     </div>
+                                </div>
+                            </div>
+                        )}
 
+                        {/* 2. MY FARMS (Add / Edit / View / Delete) */}
+                        {activeTab === 'farms' && (
+                            <div className="space-y-6">
+                                <div className="flex justify-between items-center">
                                     <div>
-                                        <h3 className="text-lg font-medium text-gray-100 mb-4">{t('activity_summary')}</h3>
-                                        <div className="space-y-4">
-                                            <div className="bg-gray-700 rounded-lg p-3">
-                                                <div className="flex justify-between mb-1">
-                                                    <span className="text-sm font-medium text-gray-100">{t('posts')}</span>
-                                                    <span className="text-sm text-gray-300">{stats.posts}/10</span>
-                                                </div>
-                                                <div className="w-full bg-gray-500 rounded-full h-2">
-                                                    <div className="bg-blue-500 h-2 rounded-full" style={{ width: `${(stats.posts / 10) * 100}%` }}></div>
-                                                </div>
-                                            </div>
-
-                                            <div className="bg-gray-700 rounded-lg p-3">
-                                                <div className="flex justify-between mb-1">
-                                                    <span className="text-sm font-medium text-gray-100">{t('products_viewed')}</span>
-                                                    <span className="text-sm text-gray-300">{stats.productsViewed}/50</span>
-                                                </div>
-                                                <div className="w-full bg-gray-500 rounded-full h-2">
-                                                    <div className="bg-green-500 h-2 rounded-full" style={{ width: `${(stats.productsViewed / 50) * 100}%` }}></div>
-                                                </div>
-                                            </div>
-
-                                            <div className="bg-gray-700 rounded-lg p-3">
-                                                <div className="flex justify-between mb-1">
-                                                    <span className="text-sm font-medium text-gray-100">{t('comments')}</span>
-                                                    <span className="text-sm text-gray-200">{stats.commentsReceived}/20</span>
-                                                </div>
-                                                <div className="w-full bg-gray-500 rounded-full h-2">
-                                                    <div className="bg-purple-500 h-2 rounded-full" style={{ width: `${(stats.commentsReceived / 20) * 100}%` }}></div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <h2 className="text-2xl font-bold text-white">Land Records</h2>
+                                        <p className="text-gray-400 text-sm">Manage your plots and soil data</p>
                                     </div>
-                                </div>
-
-                                <div className="border-t border-gray-500  pt-6">
-                                    <h3 className="text-lg font-medium text-gray-100 mb-4">{t('usage_tips')}</h3>
-                                    <div className="bg-blue-500/20 rounded-lg p-4 text-blue-300">
-                                        <ul className="list-disc list-inside space-y-2 text-sm">
-                                            <li>{t('usage_tip_1')}</li>
-                                            <li>{t('usage_tip_2')}</li>
-                                            <li>{t('usage_tip_3')}</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        )}
-
-                        {activeTab === 'personal' && (
-                            <div className="bg-gray-800 rounded-xl shadow-sm p-6">
-                                <h2 className="text-xl font-semibold text-gray-100 mb-4">{t('personal_information')}</h2>
-                                <div className="space-y-4">
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                        <div>
-                                            <p className="text-sm text-gray-300">{t('name')}</p>
-                                            <p className="font-medium text-gray-100">{authUser?.name}</p>
-                                        </div>
-                                        <div>
-                                            <p className="text-sm text-gray-300">{t('email')}</p>
-                                            <p className="font-medium text-gray-100">{authUser?.email}</p>
-                                        </div>
-                                        <div>
-                                            <p className="text-sm text-gray-300">{t('role')}</p>
-                                            <p className="font-medium text-gray-100 capitalize">{authUser?.role}</p>
-                                        </div>
-                                        <div>
-                                            <p className="text-sm text-gray-300">{t('member_since')}</p>
-                                            <p className="font-medium text-gray-100">{formatDate(authUser?.createdAt)}</p>
-                                        </div>
-                                    </div>
-
-                                    <div className="mt-6 pt-4 border-t border-gray-500 ">
-                                        <button
-                                            onClick={() => navigate(`/profile/edit/${authUser?._id}`)}
-                                            className="bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition flex items-center text-sm"
+                                    {!showAddFarm && (
+                                        <button 
+                                            onClick={openAddMode}
+                                            className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg flex items-center transition shadow-lg"
                                         >
-                                            <BiEdit className="mr-2" /> {t('edit_information')}
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        )}
-
-                        {activeTab === 'settings' && (
-                            <div className="bg-gray-800 rounded-xl shadow-sm p-6">
-                                <h2 className="text-xl font-semibold text-gray-100 mb-4">{t('account_settings')}</h2>
-
-                                <div className="space-y-4">
-                                    {authUser?.role === 'seller' && (
-                                        <button
-                                            onClick={() => navigate("/profile/products/add")}
-                                            className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition flex items-center justify-center"
-                                        >
-                                            <HiViewGrid className="mr-2" /> {t('add_new_product')}
+                                            <FaPlus className="mr-2"/> Add New Plot
                                         </button>
                                     )}
-
-                                    <button
-                                        onClick={() => navigate('/settings')}
-                                        className="w-full bg-gray-700 text-gray-100 py-2 rounded-lg hover:bg-gray-600 transition flex items-center justify-center"
-                                    >
-                                        <IoSettingsSharp className="mr-2" /> {t('app_settings')}
-                                    </button>
-
-                                    <button
-                                        onClick={() => {
-                                            localStorage.removeItem('user');
-                                            window.location.href = '/';
-                                        }}
-                                        className="w-full bg-red-50 text-red-600 py-2 rounded-lg hover:bg-red-100 transition flex items-center justify-center"
-                                    >
-                                        <IoLogOut className="mr-2" /> {t('logout')}
-                                    </button>
                                 </div>
+
+                                {/* --- Farm Form (Reused for Add & Edit) --- */}
+                                {showAddFarm && (
+                                    <div className="bg-gray-800 p-6 rounded-xl border border-blue-500/50 shadow-xl animate-fade-in-down">
+                                        <div className="flex justify-between items-center mb-4 border-b border-gray-700 pb-2">
+                                            <h3 className="text-lg font-bold text-white">
+                                                {editingFarm ? `Edit Farm: ${editingFarm.farmName}` : "Register New Land"}
+                                            </h3>
+                                            <button onClick={() => setShowAddFarm(false)} className="text-gray-400 hover:text-white">
+                                                <FaTimes size={20}/>
+                                            </button>
+                                        </div>
+                                        
+                                        <form onSubmit={handleSubmitFarm} className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                            {/* Left: Inputs */}
+                                            <div className="space-y-4">
+                                                <div>
+                                                    <label className="text-gray-400 text-xs uppercase">Farm Name</label>
+                                                    <input className="w-full bg-gray-700 text-white p-2 rounded mt-1 focus:ring-2 focus:ring-green-500 outline-none" placeholder="e.g. North Field" value={formData.farmName} onChange={e => setFormData({...formData, farmName: e.target.value})} required />
+                                                </div>
+                                                <div className="flex gap-2">
+                                                    <div className="flex-1">
+                                                        <label className="text-gray-400 text-xs uppercase">Area Size</label>
+                                                        <input className="w-full bg-gray-700 text-white p-2 rounded mt-1 focus:ring-2 focus:ring-green-500 outline-none" type="number" placeholder="0" value={formData.area} onChange={e => setFormData({...formData, area: e.target.value})} required />
+                                                    </div>
+                                                    <div className="w-1/3">
+                                                        <label className="text-gray-400 text-xs uppercase">Unit</label>
+                                                        <select className="w-full bg-gray-700 text-white p-2 rounded mt-1 outline-none" value={formData.areaUnit} onChange={e => setFormData({...formData, areaUnit: e.target.value})}>
+                                                            <option value="acre">Acre</option>
+                                                            <option value="hectare">Hectare</option>
+                                                            <option value="bigha">Bigha</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <label className="text-gray-400 text-xs uppercase">Location</label>
+                                                    <div className="flex gap-2 mt-1">
+                                                        <input disabled className="w-1/2 bg-gray-900 text-gray-500 p-2 rounded border border-gray-700" value={formData.coordinates[1].toFixed(4)} placeholder="Latitude" />
+                                                        <input disabled className="w-1/2 bg-gray-900 text-gray-500 p-2 rounded border border-gray-700" value={formData.coordinates[0].toFixed(4)} placeholder="Longitude" />
+                                                    </div>
+                                                    <p className="text-xs text-blue-400 mt-1">*Drag the blue pin on map to update</p>
+                                                </div>
+                                            </div>
+
+                                            {/* Right: Map */}
+                                            <div className="h-64 rounded-lg overflow-hidden border border-gray-600 relative z-0">
+                                                <MapContainer 
+                                                    center={[formData.coordinates[1], formData.coordinates[0]]} 
+                                                    zoom={13} 
+                                                    style={{ height: '100%', width: '100%' }}
+                                                >
+                                                    <TileLayer
+                                                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                                                        attribution='&copy; OpenStreetMap'
+                                                    />
+                                                    <LocationMarker 
+                                                        position={formData.coordinates} 
+                                                        setPosition={(coords) => setFormData(prev => ({...prev, coordinates: coords}))} 
+                                                    />
+                                                </MapContainer>
+                                            </div>
+
+                                            {/* Bottom: Soil */}
+                                            <div className="col-span-2 bg-gray-700/50 p-4 rounded-lg mt-2">
+                                                <p className="text-sm text-green-400 mb-3 font-semibold">Soil Nutrition Data</p>
+                                                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                                                    <div>
+                                                        <label className="text-gray-400 text-xs">pH Level</label>
+                                                        <input className="w-full bg-gray-700 text-white p-2 rounded mt-1" type="number" step="0.1" value={formData.soilHealth.phLevel} onChange={e => setFormData({...formData, soilHealth: {...formData.soilHealth, phLevel: e.target.value}})} />
+                                                    </div>
+                                                    <div>
+                                                        <label className="text-gray-400 text-xs">Nitrogen (N)</label>
+                                                        <input className="w-full bg-gray-700 text-white p-2 rounded mt-1" type="number" value={formData.soilHealth.nitrogen} onChange={e => setFormData({...formData, soilHealth: {...formData.soilHealth, nitrogen: e.target.value}})} />
+                                                    </div>
+                                                    <div>
+                                                        <label className="text-gray-400 text-xs">Phosphorus (P)</label>
+                                                        <input className="w-full bg-gray-700 text-white p-2 rounded mt-1" type="number" value={formData.soilHealth.phosphorus} onChange={e => setFormData({...formData, soilHealth: {...formData.soilHealth, phosphorus: e.target.value}})} />
+                                                    </div>
+                                                    <div>
+                                                        <label className="text-gray-400 text-xs">Potassium (K)</label>
+                                                        <input className="w-full bg-gray-700 text-white p-2 rounded mt-1" type="number" value={formData.soilHealth.potassium} onChange={e => setFormData({...formData, soilHealth: {...formData.soilHealth, potassium: e.target.value}})} />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div className="col-span-2 flex justify-end gap-2 mt-2">
+                                                <button type="button" onClick={() => setShowAddFarm(false)} className="px-4 py-2 text-gray-400 hover:text-white">Cancel</button>
+                                                <button type="submit" className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 font-medium flex items-center gap-2">
+                                                    <FaSave /> {editingFarm ? "Update Record" : "Save Record"}
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                )}
+
+                                {/* --- Farm List Display --- */}
+                                {authUser?.farms?.length > 0 ? (
+                                    <div className="grid grid-cols-1 gap-4">
+                                        {authUser.farms.map((farm, index) => (
+                                            <div key={index} className="bg-gray-800 p-5 rounded-xl flex flex-col md:flex-row justify-between items-center shadow-md border-l-4 border-green-500 hover:bg-gray-750 transition group">
+                                                <div className="flex items-start gap-4 flex-1 cursor-pointer" onClick={() => openEditMode(farm)} title="Click to View/Edit Details">
+                                                    <div className="bg-green-900/30 p-3 rounded-lg">
+                                                        <FaTractor className="text-2xl text-green-400"/>
+                                                    </div>
+                                                    <div>
+                                                        <h3 className="text-xl font-semibold text-white group-hover:text-green-400 transition">{farm.farmName}</h3>
+                                                        <p className="text-gray-400 text-sm flex items-center gap-2 mt-1">
+                                                            <FaLeaf className="text-green-600"/> {farm.area} {farm.areaUnit} 
+                                                            <span className="text-gray-600">|</span> 
+                                                            <FaMapMarkerAlt className="text-gray-500"/> 
+                                                            {farm.location?.coordinates 
+                                                                ? `${farm.location.coordinates[1].toFixed(2)}, ${farm.location.coordinates[0].toFixed(2)}`
+                                                                : 'Location not mapped'}
+                                                        </p>
+                                                        <div className="flex gap-2 mt-3 flex-wrap">
+                                                            <span className={`px-2 py-0.5 rounded text-xs font-mono ${farm.soilHealth?.phLevel < 6 ? 'bg-yellow-900 text-yellow-300' : 'bg-green-900 text-green-300'}`}>
+                                                                pH: {farm.soilHealth?.phLevel}
+                                                            </span>
+                                                            <span className="bg-gray-700 px-2 py-0.5 rounded text-xs text-gray-300">
+                                                                N: {farm.soilHealth?.nitrogen}
+                                                            </span>
+                                                            <span className="bg-gray-700 px-2 py-0.5 rounded text-xs text-gray-300">
+                                                                P: {farm.soilHealth?.phosphorus}
+                                                            </span>
+                                                            <span className="bg-gray-700 px-2 py-0.5 rounded text-xs text-gray-300">
+                                                                K: {farm.soilHealth?.potassium}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                {/* Action Buttons */}
+                                                <div className="mt-4 md:mt-0 flex gap-3">
+                                                    <button 
+                                                        onClick={() => openEditMode(farm)} 
+                                                        className="p-2 bg-blue-600/20 text-blue-400 rounded-lg hover:bg-blue-600 hover:text-white transition"
+                                                        title="Edit Farm"
+                                                    >
+                                                        <BiEdit size={20} />
+                                                    </button>
+                                                    <button 
+                                                        onClick={() => handleDeleteFarm(farm._id)} 
+                                                        className="p-2 bg-red-600/20 text-red-400 rounded-lg hover:bg-red-600 hover:text-white transition"
+                                                        title="Delete Farm"
+                                                    >
+                                                        <FaTrash size={18} />
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                ) : (
+                                    <div className="flex flex-col items-center justify-center py-16 bg-gray-800/50 rounded-xl border border-dashed border-gray-700">
+                                        <FaTractor className="text-5xl text-gray-600 mb-4"/>
+                                        <h3 className="text-xl text-gray-400 font-semibold">No Land Records Found</h3>
+                                        <p className="text-gray-500 text-sm mt-2 max-w-md text-center">Add your farm details to get AI-based crop recommendations and soil health analysis.</p>
+                                        <button onClick={openAddMode} className="mt-6 text-green-400 hover:text-green-300 font-medium">Register your first plot &rarr;</button>
+                                    </div>
+                                )}
+                            </div>
+                        )}
+
+                        {/* 3. PERSONAL INFO */}
+                        {activeTab === 'personal' && (
+                            <div className="bg-gray-800 rounded-xl p-6 text-white shadow-lg border border-gray-700">
+                                <div className="flex justify-between items-center mb-6">
+                                    <h2 className="text-xl font-bold">Personal Information</h2>
+                                    <button onClick={() => navigate(`/profile/edit/${authUser._id}`)} className="text-green-400 hover:text-green-300 bg-green-400/10 p-2 rounded-lg transition"><BiEdit size={20}/></button>
+                                </div>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-y-6 gap-x-12">
+                                    <InfoItem label="Full Name" value={authUser?.name} />
+                                    <InfoItem label="Email Address" value={authUser?.email} />
+                                    <InfoItem label="Role" value={authUser?.role} capitalize />
+                                    <InfoItem label="Mobile Number" value={authUser?.mobileNumber || 'N/A'} />
+                                    <InfoItem label="Village" value={authUser?.address?.village || 'N/A'} />
+                                    <InfoItem label="City / Tehsil" value={authUser?.address?.city || 'N/A'} />
+                                    <InfoItem label="District" value={authUser?.address?.district || 'N/A'} />
+                                    <InfoItem label="State" value={authUser?.address?.state || 'N/A'} />
+                                </div>
+                            </div>
+                        )}
+
+                        {/* 4. SETTINGS & ACTIVITY */}
+                        {activeTab === 'activity' && (
+                            <div className="bg-gray-800 p-8 rounded-xl text-center text-gray-400">
+                                <MdTrendingUp className="text-4xl mx-auto mb-4"/>
+                                <p>Activity History Coming Soon</p>
+                            </div>
+                        )}
+                         {activeTab === 'settings' && (
+                            <div className="bg-gray-800 p-8 rounded-xl text-center text-gray-400">
+                                <IoSettingsSharp className="text-4xl mx-auto mb-4"/>
+                                <button 
+                                    onClick={() => {
+                                        localStorage.removeItem('user');
+                                        setAuthUser(null);
+                                        navigate('/login');
+                                    }}
+                                    className="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-lg flex items-center gap-2 mx-auto"
+                                >
+                                    <IoLogOut /> Logout
+                                </button>
                             </div>
                         )}
                     </div>
@@ -754,6 +553,14 @@ const Profile = () => {
             </div>
         </div>
     );
-}
+};
+
+// Sub-component for info display
+const InfoItem = ({ label, value, capitalize }) => (
+    <div className="border-b border-gray-700 pb-2">
+        <p className="text-gray-400 text-xs uppercase tracking-wide mb-1">{label}</p>
+        <p className={`font-medium text-lg ${capitalize ? 'capitalize' : ''}`}>{value}</p>
+    </div>
+);
 
 export default Profile;

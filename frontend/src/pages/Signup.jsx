@@ -3,232 +3,224 @@ import React, { useState } from "react";
 import { Label } from '../components/ui/Label';
 import { Input } from '../components/ui/Input';
 import { cn } from '../lib/util';
-import { IconBrandGoogle, IconEye, IconEyeOff } from "@tabler/icons-react";
-import { Button, Radio, RadioGroup } from "@nextui-org/react";
+import { IconEye, IconEyeOff } from "@tabler/icons-react";
+import { Radio, RadioGroup } from "@nextui-org/react";
 import useSignup from "../hooks/useSignup";
 import avatar from "../data/avatar.json";
 import { FaLocationArrow } from "react-icons/fa";
-import { useTranslation } from 'react-i18next'; // Import useTranslation hook
+import { useTranslation } from 'react-i18next';
+import { Link } from "react-router-dom";
+
 export default function Signup() {
-  const { t } = useTranslation(); // Initialize useTranslation hook
+  const { t } = useTranslation();
+  
+  // State for all form fields including nested address
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     password: '',
     confirmPassword: '',
-    selectedAvatar:'',
-    role: 'farmer' // Set the default role to 'farmer'
+    selectedAvatar: '',
+    role: 'farmer',
+    mobileNumber: '',
+    address: {
+        village: '',
+        city: '',
+        district: '',
+        state: 'Rajasthan', 
+        pincode: ''
+    }
   });
-  const {loading, signup}= useSignup();
+
+  const { loading, signup } = useSignup();
   const [error, setError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [ showAvatarContainer , setShowAvatarContainer] =useState();
+  const [showAvatarContainer, setShowAvatarContainer] = useState(false);
 
+  // Handle top-level input changes
   const handleChange = (e) => {
     const { id, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [id]: value
+    setFormData((prev) => ({ ...prev, [id]: value }));
+  };
+
+  // Handle nested address input changes
+  const handleAddressChange = (e) => {
+    const { id, value } = e.target;
+    setFormData((prev) => ({
+        ...prev,
+        address: { ...prev.address, [id]: value }
     }));
   };
 
   const handleRoleChange = (value) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      role: value // Update role in form data
-    }));
+    setFormData((prev) => ({ ...prev, role: value }));
   };
-  const handleAvatar = (avatar) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      selectedAvatar: avatar // Update selectedAvatar in form data
-    }));
-    setShowAvatarContainer(!showAvatarContainer);
+
+  const handleAvatar = (avatarUrl) => {
+    setFormData((prev) => ({ ...prev, selectedAvatar: avatarUrl }));
+    setShowAvatarContainer(false);
   };
-  const handleSubmit = async(e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (formData.password !== formData.confirmPassword) {
-      setError(t('password_mismatch')); // Use t function for error message
-      return;
+        setError(t('password_mismatch'));
+        return;
     }
     setError("");
-    // console.log("Form submitted", formData);
     await signup(formData);
   };
 
   return (
-    <div className="bg-gradient-to-b from-gray-800 via-gray-900 to-gray-950 py-20">
-    <h1 className="font-bold text-green-500 text-3xl text-center my-10 " > {t('welcome_farmsetu')}</h1>
+    <div className="bg-gradient-to-b from-gray-800 via-gray-900 to-gray-950 py-20 min-h-screen">
+      <h1 className="font-bold text-green-500 text-3xl text-center my-10 ">{t('welcome_farmsetu')}</h1>
    
-      <div className="max-w-md w-full relative mx-auto overflow-hidden rounded-md md:rounded-2xl p-4 md:p-8 shadow-input bg-gray-100 dark:bg-black">
+      <div className="max-w-2xl w-full relative mx-auto overflow-hidden rounded-md md:rounded-2xl p-4 md:p-8 shadow-input bg-gray-100 dark:bg-black">
         <h2 className="font-bold text-xl text-green-800 dark:text-neutral-200">
-          {t('welcome_farmsetu')}
+          {t('sign_up')}
         </h2>
-        { 
-          formData.selectedAvatar && (
-            <img className="absolute top-3 right-3 h-12 w-12 rounded-full border-3 border-green-700 " src={formData.selectedAvatar} alt={t('selected_avatar')} onClick={()=>setShowAvatarContainer(true)} />
-          )
-        }
-        <form className="my-8 " onSubmit={handleSubmit}>
-          <LabelInputContainer className="mb-4">
-            <Label htmlFor="name">{t('name')}</Label>
-            <Input
-              id="name"
-              placeholder={t('name_placeholder')}
-              type="text"
-              value={formData.name}
-              onChange={handleChange}
+        
+        {/* Selected Avatar Preview */}
+        {formData.selectedAvatar && (
+            <img 
+                className="absolute top-6 right-6 h-16 w-16 rounded-full border-4 border-green-600 cursor-pointer hover:opacity-80 transition" 
+                src={formData.selectedAvatar} 
+                alt="Selected" 
+                onClick={() => setShowAvatarContainer(!showAvatarContainer)} 
             />
-          </LabelInputContainer>
+        )}
+        
+        <form className="my-8" onSubmit={handleSubmit}>
+          {/* --- Personal Details --- */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <LabelInputContainer>
+                <Label htmlFor="name">{t('name')}</Label>
+                <Input id="name" placeholder="John Doe" type="text" value={formData.name} onChange={handleChange} />
+            </LabelInputContainer>
+            
+            <LabelInputContainer>
+                <Label htmlFor="mobileNumber">Mobile Number</Label>
+                <Input id="mobileNumber" placeholder="9876543210" type="text" value={formData.mobileNumber} onChange={handleChange} />
+            </LabelInputContainer>
+          </div>
 
           <LabelInputContainer className="mb-4">
             <Label htmlFor="email">{t('email_address')}</Label>
-            <Input
-              id="email"
-              placeholder={t('email_placeholder')}
-              type="email"
-              value={formData.email}
-              onChange={handleChange}
-            />
+            <Input id="email" placeholder="example@gmail.com" type="email" value={formData.email} onChange={handleChange} />
           </LabelInputContainer>
 
-          {/* Radio Group for Role Selection */}
-          <LabelInputContainer className="mb-4">
+          {/* --- Address Section (NEW) --- */}
+          <h3 className="text-gray-400 text-sm font-semibold mb-2 mt-6 uppercase tracking-wider">Location Details</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-2">
+            <LabelInputContainer>
+                <Label htmlFor="village">Village</Label>
+                <Input id="village" placeholder="Village Name" value={formData.address.village} onChange={handleAddressChange} />
+            </LabelInputContainer>
+            <LabelInputContainer>
+                <Label htmlFor="city">City/Tehsil</Label>
+                <Input id="city" placeholder="City" value={formData.address.city} onChange={handleAddressChange} />
+            </LabelInputContainer>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+            <LabelInputContainer>
+                <Label htmlFor="district">District</Label>
+                <Input id="district" placeholder="District" value={formData.address.district} onChange={handleAddressChange} />
+            </LabelInputContainer>
+            <LabelInputContainer>
+                <Label htmlFor="state">State</Label>
+                <Input id="state" placeholder="State" value={formData.address.state} onChange={handleAddressChange} />
+            </LabelInputContainer>
+            <LabelInputContainer>
+                <Label htmlFor="pincode">Pincode</Label>
+                <Input id="pincode" placeholder="302001" value={formData.address.pincode} onChange={handleAddressChange} />
+            </LabelInputContainer>
+          </div>
+
+          {/* --- Role Selection --- */}
+          <LabelInputContainer className="mb-6">
             <Label>{t('role')}</Label>
-            <RadioGroup
-              orientation="horizontal" // Change to vertical if preferred
-              aria-label={t('role')}
-              value={formData.role}
-              onValueChange={handleRoleChange} // Use onValueChange for NextUI's RadioGroup
-            >
+            <RadioGroup orientation="horizontal" value={formData.role} onValueChange={handleRoleChange}>
               <Radio value="farmer">{t('farmer')}</Radio>
               <Radio value="seller">{t('seller')}</Radio>
               <Radio value="cooperative">{t('cooperative')}</Radio>
             </RadioGroup>
           </LabelInputContainer>
-          <LabelInputContainer className="mb-4">
-            {/* <Button onClick={() => setShowAvatarContainer(true)} >Select Avatar</Button> */}
-          
-                <Label>{t('select_avatar')}</Label>
-                <div className="grid grid-cols-5 gap-4 h-16 overflow-y-scroll">
-                  {avatar.map((avatar) => (
-                    <div className={`rounded-full overflow-hidden ${formData.selectedAvatar===avatar.avatar ? 'border-green-700 border-3':'border-slate-0' }  border-3 h-12 w-12`} >
+
+          {/* --- Avatar Selection --- */}
+          <LabelInputContainer className="mb-6">
+             <Label>{t('select_avatar')}</Label>
+             <div className={`grid grid-cols-5 gap-3 max-h-32 overflow-y-auto p-2 border border-gray-700 rounded-lg ${showAvatarContainer ? 'block' : ''}`}>
+                {avatar.map((av) => (
+                  <div key={av.id} className={`rounded-full p-1 cursor-pointer transition-all ${formData.selectedAvatar === av.avatar ? 'bg-green-500 scale-110' : 'hover:bg-gray-700'}`}>
                     <img
-                      key={avatar.id}
-                      src={avatar.avatar}
-                      alt={`Avatar ${avatar.id}`}
-                      className={`w-full h-auto rounded-lg cursor-pointer ${formData.selectedAvatar===avatar.avatar ? 'bg-green-200':'' } `}
-                      onClick={() => handleAvatar(avatar.avatar)}
-                      style={{height:"50px",width:"50px"}}
-                      />
-                      </div>
-                  ))}
-                </div>
-          </LabelInputContainer>
-          <LabelInputContainer className="mb-4 relative">
-            <Label htmlFor="password">{t('password')}</Label>
-            <Input
-              id="password"
-              placeholder="••••••••"
-              type={showPassword ? "text" : "password"}
-              value={formData.password}
-              onChange={handleChange}
-            />
-            <TogglePasswordButton
-              isVisible={showPassword}
-              
-              onClick={() => setShowPassword(!showPassword)}
-            />
-          </LabelInputContainer>
-          <LabelInputContainer className="mb-8 relative">
-            <Label htmlFor="confirmPassword">{t('confirm_password')}</Label>
-            <Input
-              id="confirmPassword"
-              placeholder="••••••••"
-              type={showPassword ? "text" : "password"}
-              value={formData.confirmPassword}
-              onChange={handleChange}
-            />
-            <TogglePasswordButton
-              isVisible={showPassword}
-              onClick={() => setShowPassword(!showPassword)}
-            />
+                      src={av.avatar}
+                      alt="avatar"
+                      className="w-10 h-10 rounded-full"
+                      onClick={() => handleAvatar(av.avatar)}
+                    />
+                  </div>
+                ))}
+             </div>
           </LabelInputContainer>
 
-          {error && <p className="text-red-500 mb-4">{error}</p>}
+          {/* --- Password Fields --- */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+            <LabelInputContainer className="relative">
+                <Label htmlFor="password">{t('password')}</Label>
+                <Input id="password" type={showPassword ? "text" : "password"} value={formData.password} onChange={handleChange} placeholder="••••••••" />
+                <TogglePasswordButton isVisible={showPassword} onClick={() => setShowPassword(!showPassword)} />
+            </LabelInputContainer>
+            <LabelInputContainer className="relative">
+                <Label htmlFor="confirmPassword">{t('confirm_password')}</Label>
+                <Input id="confirmPassword" type={showPassword ? "text" : "password"} value={formData.confirmPassword} onChange={handleChange} placeholder="••••••••" />
+            </LabelInputContainer>
+          </div>
+
+          {error && <p className="text-red-500 mb-4 text-center">{error}</p>}
 
           <button
-            className="bg-gradient-to-br relative group/btn from-green-500 dark:from-zinc-900 dark:to-zinc-900 to-green-900 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
+            className="bg-gradient-to-br relative group/btn from-green-600 to-green-800 w-full text-white rounded-md h-12 font-bold shadow-lg hover:from-green-500 hover:to-green-700 transition-all"
             type="submit"
             disabled={loading}
-          >{loading ? (
-            <span className="flex justify-center items-center">
-                {/* Spinner SVG or other spinner */}
-                <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 1 1 16 0A8 8 0 0 1 4 12z"></path>
-                </svg>
-            </span>
-        ) : (
-            <>
-            <span className="flex gap-2 justify-center items-center ">
-                <span>
-                {t('sign_up')}
+          >
+            {loading ? (
+                 <span className="flex justify-center items-center gap-2">Processing...</span>
+            ) : (
+                <span className="flex gap-2 justify-center items-center">
+                    {t('sign_up')} <FaLocationArrow />
                 </span>
-                <FaLocationArrow />
-            </span>
-            </>
-        )}
+            )}
             <BottomGradient />
           </button>
 
-          <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent my-8 h-[1px] w-full" />
-
-          {/* <div className="flex flex-col space-y-4">
-            <button
-              className="relative group/btn flex space-x-2 items-center justify-start px-4 w-full text-black rounded-md h-10 font-medium shadow-input bg-gray-50 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
-              type="button"
-            >
-              <IconBrandGoogle className="h-4 w-4 text-neutral-800 dark:text-neutral-300" />
-              <span className="text-neutral-700 dark:text-neutral-300 text-sm">
-                Google
+          <div className="text-center mt-4">
+              <span className="text-neutral-600 dark:text-neutral-400">
+                  {t('already_have_account')} 
               </span>
-              <BottomGradient />
-            </button>
-          </div> */}
+              <Link to="/login" className="text-blue-500 hover:underline hover:text-green-700 ml-2">
+                  {t('login')}
+              </Link>
+          </div>
         </form>
       </div>
-      
     </div>
   );
 }
 
+// Sub-components
 const TogglePasswordButton = ({ isVisible, onClick }) => (
-  <span
-    onClick={onClick}
-    className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
-  >
-    {isVisible ? (
-      <IconEyeOff className="h-5 w-5 text-green-500 dark:text-green-400" />
-    ) : (
-      <IconEye className="h-5 w-5 text-green-500 dark:text-green-400" />
-    )}
+  <span onClick={onClick} className="absolute right-3 top-9 cursor-pointer z-10 p-1">
+    {isVisible ? <IconEyeOff className="h-5 w-5 text-gray-400" /> : <IconEye className="h-5 w-5 text-gray-400" />}
   </span>
 );
 
-const BottomGradient = () => {
-  return (
-    <>
-      <span className="group-hover/btn:opacity-100 block transition duration-500 opacity-0 absolute h-px w-full -bottom-px inset-x-0 bg-gradient-to-r from-transparent via-cyan-500 to-transparent" />
-      <span className="group-hover/btn:opacity-100 blur-sm block transition duration-500 opacity-0 absolute h-px w-1/2 mx-auto -bottom-px inset-x-10 bg-gradient-to-r from-transparent via-indigo-500 to-transparent" />
-    </>
-  );
-};
+const BottomGradient = () => (
+  <>
+    <span className="group-hover/btn:opacity-100 block transition duration-500 opacity-0 absolute h-px w-full -bottom-px inset-x-0 bg-gradient-to-r from-transparent via-cyan-500 to-transparent" />
+    <span className="group-hover/btn:opacity-100 blur-sm block transition duration-500 opacity-0 absolute h-px w-1/2 mx-auto -bottom-px inset-x-10 bg-gradient-to-r from-transparent via-indigo-500 to-transparent" />
+  </>
+);
 
-const LabelInputContainer = ({ children, className }) => {
-  return (
-    <div className={cn("flex flex-col space-y-2 w-full", className)}>
-      {children}
-    </div>
-  );
-};
+const LabelInputContainer = ({ children, className }) => (
+  <div className={cn("flex flex-col space-y-2 w-full", className)}>{children}</div>
+);
