@@ -317,8 +317,8 @@ const Press = () => {
                     <FaEnvelope className="text-green-500 mt-1 mr-3" />
                     <div>
                       <h4 className="text-base font-medium text-gray-200 mb-1">Email</h4>
-                      <a href="mailto:press@farmsetu.com" className="text-green-400 hover:text-green-300 text-sm">
-                        press@farmsetu.com
+                      <a href="mailto:Roshansuthar2023@gmail.com" className="text-green-400 hover:text-green-300 text-sm">
+                        Roshansuthar2023@gmail.com
                       </a>
                     </div>
                   </div>
@@ -327,7 +327,7 @@ const Press = () => {
                     <FaPhone className="text-green-500 mt-1 mr-3" />
                     <div>
                       <h4 className="text-base font-medium text-gray-200 mb-1">Phone</h4>
-                      <p className="text-gray-300 text-sm">+91 98765 43210</p>
+                      <p className="text-gray-300 text-sm">+91 78789 52931</p>
                     </div>
                   </div>
                 </div>

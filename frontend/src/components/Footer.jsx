@@ -13,7 +13,9 @@ import {
   FaEnvelope,
   FaFax,
   FaSeedling,
-  FaChevronRight
+  FaChevronRight,
+  FaWhatsapp,
+  FaGithub
 } from 'react-icons/fa';
 import farmsetulogo from '../../public/farmsetu-logo.png';
 
@@ -46,11 +48,11 @@ const Footer = () => {
   ];
 
   const socialLinks = [
-    { icon: <FaFacebook />, url: 'https://facebook.com', label: 'Facebook' },
+    { icon: <FaWhatsapp />, url: 'https://wa.me/917878952931?text=Hello%20there!%20I%20visited%20your%20Project%20Farmsetu.', label: 'Whatsapp' },
     { icon: <FaTwitter />, url: 'https://twitter.com', label: 'Twitter' },
-    { icon: <FaInstagram />, url: 'https://instagram.com', label: 'Instagram' },
-    { icon: <FaLinkedin />, url: 'https://linkedin.com', label: 'LinkedIn' },
-    { icon: <FaYoutube />, url: 'https://youtube.com', label: 'YouTube' },
+    { icon: <FaInstagram />, url: 'https://www.instagram.com/direct/inbox/?follow=Roshansuthar1105&message=Hello%20there!%20I%20visited%20your%20Project%20FarmSetu.', label: 'Instagram' },
+    { icon: <FaLinkedin />, url: 'https://linkedin.com/in/roshansuthar', label: 'LinkedIn' },
+    { icon: <FaGithub />, url: 'https://github.com/roshansuthar1105', label: 'Github' },
   ];
 
   return (
