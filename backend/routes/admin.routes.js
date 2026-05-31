@@ -8,7 +8,7 @@ import {
     getMLReportById
 } from '../controllers/admin.controller.js';
 import { protect, admin } from '../middleware/auth.middleware.js';
-import adminNewsletterRoutes from './adminNewsletter.routes.js';
+import { deleteSubscriber, exportSubscribersCSV, getAllSubscribers, getNewsletterStats, sendBulkEmail, sendTestEmail } from '../controllers/adminNewsletter.controller.js';
 
 const router = express.Router();
 
@@ -25,5 +25,10 @@ router.get('/ml-reports', protect, admin, getMLActivityLog);
 router.get('/ml-report/:id', protect, admin, getMLReportById);
 
 // for newsletter routes
-router.use('/newsletter',adminNewsletterRoutes);
+router.get('/newsletter/subscribers',protect, admin, getAllSubscribers);
+router.get('/newsletter/stats', protect, admin,getNewsletterStats);
+router.post('/newsletter/send-bulk', protect, admin,sendBulkEmail);
+router.post('/newsletter/send-test', protect, admin,sendTestEmail);
+router.delete('/newsletter/subscriber/:id', protect, admin,deleteSubscriber);
+router.get('/newsletter/export-csv', protect, admin,exportSubscribersCSV);
 export default router;

@@ -42,8 +42,13 @@ const AdminNewsletter = () => {
     const fetchSubscribers = async () => {
         setLoading(true);
         try {
+            const token = authUser?.token;
+            if(!token)return;
             const res = await fetch(`${BACKEND_URL}/api/admin/newsletter/subscribers`, {
-                headers: { 'Authorization': `Bearer ${authUser?.token}` }
+                headers: { 
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json' 
+                }
             });
             const data = await res.json();
             if (data.success) {
@@ -61,7 +66,7 @@ const AdminNewsletter = () => {
     const fetchStats = async () => {
         try {
             const res = await fetch(`${BACKEND_URL}/api/admin/newsletter/stats`, {
-                headers: { 'Authorization': `Bearer ${authUser?.token}` }
+                headers: { 'Authorization': `Bearer ${authUser?.token}`,'Content-Type': 'application/json' }
             });
             const data = await res.json();
             if (data.success) {
