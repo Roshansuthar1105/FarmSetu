@@ -30,8 +30,8 @@ const useSignup = () => {
       });
 
       if (response.status === 201) {
-        toast.success('Signup successful!');
         const data = response.data;
+        toast.success(data.message || 'Signup successful!');
         // Save to local storage and context
         localStorage.setItem('user', JSON.stringify(data));
         setAuthUser(data);

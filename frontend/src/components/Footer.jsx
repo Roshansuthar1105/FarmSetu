@@ -1,7 +1,10 @@
 // components/Footer.js
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import axios from 'axios';
+import toast from 'react-hot-toast';
+import { useAuthContext } from '../context/AuthContext'; // Adjust path as needed
 import {
   FaFacebook,
   FaTwitter,
@@ -15,12 +18,34 @@ import {
   FaSeedling,
   FaChevronRight,
   FaWhatsapp,
-  FaGithub
+  FaGithub,
+  FaSpinner
 } from 'react-icons/fa';
 import farmsetulogo from '../../public/farmsetu-logo.png';
 
 const Footer = () => {
   const { t } = useTranslation();
+  const { BACKEND_URL } = useAuthContext();
+  
+  // Get user data from localStorage
+  const userData = localStorage.getItem('user');
+  let userName = '';
+  let userEmail = '';
+  if (userData) {
+    userName = JSON.parse(userData).name;
+    userEmail = JSON.parse(userData).email;
+  }
+  
+  // Newsletter state
+  const [email, setEmail] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  // Auto-fill email if user is logged in
+  useEffect(() => {
+    if (userEmail) {
+      setEmail(userEmail);
+    }
+  }, [userEmail]);
 
   const aboutLinks = [
     { to: '/mission', label: t('our_mission') },
@@ -55,10 +80,60 @@ const Footer = () => {
     { icon: <FaGithub />, url: 'https://github.com/roshansuthar1105', label: 'Github' },
   ];
 
+  // Handle newsletter subscription
+  const handleSubscribe = async (e) => {
+    e.preventDefault();
+    
+    // Validate email
+    if (!email) {
+      toast.error('Please enter your email address');
+      return;
+    }
+    
+    // Email format validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      toast.error('Please enter a valid email address');
+      return;
+    }
+    
+    setLoading(true);
+    
+    // Show loading toast
+    const loadingToast = toast.loading('Subscribing to newsletter...');
+    
+    try {
+      const response = await axios.post(`${BACKEND_URL}/api/newsletter/subscribe`, { 
+        email: email.toLowerCase() 
+      });
+      
+      // Dismiss loading toast
+      toast.dismiss(loadingToast);
+      
+      // Show success message
+      toast.success(response.data.message || 'Successfully subscribed to monthly newsletter! Check your email for confirmation.');
+      
+      // Only clear email if user is not logged in or if it's a different email
+      if (!userEmail || email !== userEmail) {
+        setEmail('');
+      }
+      
+    } catch (error) {
+      // Dismiss loading toast
+      toast.dismiss(loadingToast);
+      
+      // Show error message
+      const errorMessage = error.response?.data?.error || 'Subscription failed. Please try again.';
+      toast.error(errorMessage);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <footer className="bg-gradient-to-b from-gray-900 to-green-900 text-white">
       {/* Top wave separator */}
-      <div className="w-full overflow-hidden ">
+      <div className="w-full overflow-hidden">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100" className="fill-gray-900">
           <path d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"></path>
         </svg>
@@ -78,17 +153,49 @@ const Footer = () => {
           </div>
 
           <div className="w-full sm:w-96 md:w-auto">
-            <h3 className="text-lg font-semibold mb-3 text-green-300 text-center md:text-left">Subscribe to our Newsletter</h3>
-            <div className="flex flex-col sm:flex-row">
+            <h3 className="text-lg font-semibold mb-3 text-green-300 text-center md:text-left">
+              Subscribe to our Monthly Newsletter
+            </h3>
+            
+            <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row">
               <input
                 type="email"
-                placeholder="Enter your email"
-                className="px-4 py-2 rounded-md sm:rounded-r-none bg-gray-800 border border-gray-700 text-white focus:outline-none focus:ring-1 focus:ring-green-500 w-full mb-2 sm:mb-0"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter your email address"
+                disabled={loading}
+                className="px-4 py-2 rounded-md sm:rounded-r-none bg-gray-800 border border-gray-700 text-white focus:outline-none focus:ring-1 focus:ring-green-500 w-full mb-2 sm:mb-0 disabled:opacity-50 disabled:cursor-not-allowed"
               />
-              <button className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md sm:rounded-l-none transition duration-300 whitespace-nowrap">
-                Subscribe
+              <button 
+                type="submit"
+                disabled={loading}
+                className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md sm:rounded-l-none transition duration-300 whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              >
+                {loading ? (
+                  <>
+                    <FaSpinner className="animate-spin" />
+                    <span>Subscribing...</span>
+                  </>
+                ) : (
+                  'Subscribe'
+                )}
               </button>
-            </div>
+            </form>
+            
+            {/* Show different message for logged-in users */}
+            {userEmail ? (
+              <p className="text-xs text-green-400 mt-2 text-center md:text-left">
+                ✓ Using your registered email: {userEmail}
+              </p>
+            ) : (
+              <p className="text-xs text-gray-400 mt-2 text-center md:text-left">
+                🌱 Get monthly updates on market prices, schemes & farming tips
+              </p>
+            )}
+            
+            <p className="text-xs text-gray-500 mt-1 text-center md:text-left">
+              No spam, unsubscribe anytime.
+            </p>
           </div>
         </div>
 
@@ -206,6 +313,21 @@ const Footer = () => {
           </p>
         </div>
       </div>
+
+      {/* Add custom keyframe animation for spinner */}
+      <style jsx>{`
+        @keyframes spin {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+        }
+        .animate-spin {
+          animation: spin 1s linear infinite;
+        }
+      `}</style>
     </footer>
   );
 };

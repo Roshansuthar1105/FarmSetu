@@ -14,6 +14,8 @@ const LazyCourseDetails = React.lazy(() => import('./pages/CourseDetails'));
 const LazyCommunityForum = React.lazy(() => import('./pages/CommunityForum'));
 const LazyRealTimeMarket = React.lazy(() => import('./pages/RealTimeMarket'));
 const LazyLogin = React.lazy(() => import('./pages/Login'));
+const LazyForgotPassword = React.lazy(() => import('./pages/ForgotPassword.jsx'));
+const LazyResetPassword = React.lazy(() => import('./pages/ResetPassword.jsx'));
 const LazySignup = React.lazy(() => import('./pages/Signup'));
 const LazyFileUploadPage = React.lazy(() => import('./pages/FileUploadPage'));
 const LazyForm = React.lazy(() => import('./pages/Form'));
@@ -63,6 +65,7 @@ const LazyMLActivityLog = React.lazy(() => import('./pages/admin/MLActivityLog')
 const LazyMLReportDetail = React.lazy(() => import('./pages/admin/MLReportDetail'));
 const LazyManageUsers = React.lazy(() => import('./pages/admin/AdminDashboard'));
 const LazyParchiManager = React.lazy(() => import('./pages/admin/ParchiManager'));
+const LazyAdminNewsletter = React.lazy(() => import('./pages/admin/AdminNewsletter'));
 import './i18.js';
 import { useTranslation } from 'react-i18next';
 import i18n from './i18.js';
@@ -70,6 +73,7 @@ import AdminUserDetails from './pages/admin/AdminUserDetails.jsx';
 import SchemeMatcher from './pages/admin/SchemeMatcher';
 import FarmRegistryMap from './pages/admin/FarmRegistryMap.jsx';
 import AdminUserList from './pages/admin/AdminUserList.jsx';
+import VerifyEmail from './components/VerifyEmail.jsx';
 
 const LoadingComponent = () => {
   return (
@@ -130,6 +134,7 @@ export default function App() {
               <Route path="schemes1" element={<Suspense fallback={<LoadingComponent />}><LazySchemeMatcher /></Suspense>} />
               <Route path="users" element={<Suspense fallback={<LoadingComponent />}><AdminUserList /></Suspense>} />
               <Route path="parchi-manager" element={<Suspense fallback={<LoadingComponent />}><LazyParchiManager /></Suspense>} />
+              <Route path="newsletter" element={<Suspense fallback={<LoadingComponent />}><LazyAdminNewsletter /></Suspense>} />
 
               <Route path="user/:id" element={<Suspense fallback={<LoadingComponent />}><AdminUserDetails /></Suspense>} />
               <Route path="heatmap" element={<Suspense fallback={<LoadingComponent />}><FarmRegistryMap /></Suspense>} />
@@ -152,6 +157,9 @@ export default function App() {
             <Route path="/community" element={authUser ? <Suspense fallback={<LoadingComponent />}><LazyCommunityForum /></Suspense> : <Navigate to='/login' />} />
             <Route path="/realtimemarket" element={<Suspense fallback={<LoadingComponent />}><LazyRealTimeMarket /></Suspense>} />
             <Route path="/login" element={authUser ? <Navigate to='/' /> : <Suspense fallback={<LoadingComponent />}><LazyLogin /></Suspense>} />
+            <Route path="/forgot-password" element={authUser ? <Navigate to='/' /> : <Suspense fallback={<LoadingComponent />}><LazyForgotPassword /></Suspense>} />
+            <Route path="/reset-password" element={authUser ? <Navigate to='/' /> : <Suspense fallback={<LoadingComponent />}><LazyResetPassword /></Suspense>} />
+            
             <Route path="/signup" element={authUser ? <Navigate to='/' /> : <Suspense fallback={<LoadingComponent />}><LazySignup /></Suspense>} />
             <Route path="/fileupload" element={<Suspense fallback={<LoadingComponent />}><LazyFileUploadPage /></Suspense>} />
             <Route path="/form" element={<Suspense fallback={<LoadingComponent />}><LazyForm /></Suspense>} />
@@ -179,6 +187,7 @@ export default function App() {
             <Route path="/press" element={<Suspense fallback={<LoadingComponent />}><LazyPress /> </Suspense>} />
             <Route path="/yield" element={<Suspense fallback={<LoadingComponent />}><LazyYieldPrediction /> </Suspense>} />
             <Route path="/payment-processing" element={<Suspense fallback={<LoadingComponent />}><LazyWorkInProgress /> </Suspense>} />
+            <Route path="/verify-email" element={<Suspense fallback={<LoadingComponent />}><VerifyEmail /> </Suspense>} />
             <Route path="/digital-parchi" element={
     authUser ? <Suspense fallback={<LoadingComponent />}><LazyDigitalParchi /></Suspense> 
     : <Navigate to='/login' />

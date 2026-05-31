@@ -90,10 +90,22 @@ const userSchema = new mongoose.Schema({
     cart: {
         type: [String], 
     },
+    isVerified:{
+        type:Boolean,
+        default:false
+    },
     createdAt: {
         type: Date,
         default: Date.now, 
     },
+    resetPasswordToken: {
+        type: String,
+        default: null
+    },
+    resetPasswordExpires: {
+        type: Date,
+        default: null
+    }
 });
 
 // Create a geospatial index to allow searching "Farms near me" in the future
