@@ -14,6 +14,8 @@ const LazyCourseDetails = React.lazy(() => import('./pages/CourseDetails'));
 const LazyCommunityForum = React.lazy(() => import('./pages/CommunityForum'));
 const LazyRealTimeMarket = React.lazy(() => import('./pages/RealTimeMarket'));
 const LazyLogin = React.lazy(() => import('./pages/Login'));
+const LazyForgotPassword = React.lazy(() => import('./pages/ForgotPassword.jsx'));
+const LazyResetPassword = React.lazy(() => import('./pages/ResetPassword.jsx'));
 const LazySignup = React.lazy(() => import('./pages/Signup'));
 const LazyFileUploadPage = React.lazy(() => import('./pages/FileUploadPage'));
 const LazyForm = React.lazy(() => import('./pages/Form'));
@@ -155,6 +157,9 @@ export default function App() {
             <Route path="/community" element={authUser ? <Suspense fallback={<LoadingComponent />}><LazyCommunityForum /></Suspense> : <Navigate to='/login' />} />
             <Route path="/realtimemarket" element={<Suspense fallback={<LoadingComponent />}><LazyRealTimeMarket /></Suspense>} />
             <Route path="/login" element={authUser ? <Navigate to='/' /> : <Suspense fallback={<LoadingComponent />}><LazyLogin /></Suspense>} />
+            <Route path="/forgot-password" element={authUser ? <Navigate to='/' /> : <Suspense fallback={<LoadingComponent />}><LazyForgotPassword /></Suspense>} />
+            <Route path="/reset-password" element={authUser ? <Navigate to='/' /> : <Suspense fallback={<LoadingComponent />}><LazyResetPassword /></Suspense>} />
+            
             <Route path="/signup" element={authUser ? <Navigate to='/' /> : <Suspense fallback={<LoadingComponent />}><LazySignup /></Suspense>} />
             <Route path="/fileupload" element={<Suspense fallback={<LoadingComponent />}><LazyFileUploadPage /></Suspense>} />
             <Route path="/form" element={<Suspense fallback={<LoadingComponent />}><LazyForm /></Suspense>} />

@@ -1,66 +1,69 @@
 "use client";
 import React, { useState } from "react";
-import { Label } from '../components/ui/Label';
-import { Input } from '../components/ui/Input';
-import { cn } from '../lib/util';
+import { Label } from "../components/ui/Label";
+import { Input } from "../components/ui/Input";
+import { cn } from "../lib/util";
 import { Link } from "react-router-dom";
 import { IconBrandGoogle, IconEye, IconEyeOff } from "@tabler/icons-react"; // Import eye icons
 import useLogin from "../hooks/useLogin";
 import { FaLocationArrow } from "react-icons/fa";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
 export default function Login() {
-    const { t } = useTranslation();
-    const [passwordVisible, setPasswordVisible] = useState(false); // State to toggle password visibility
-    const [email, setEmail] = useState(""); // State to store email
-    const [password, setPassword] = useState(""); // State to store password
-    const { loading, login } = useLogin();
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        await login(email, password);
-    };
+  const { t } = useTranslation();
+  const [passwordVisible, setPasswordVisible] = useState(false); // State to toggle password visibility
+  const [email, setEmail] = useState(""); // State to store email
+  const [password, setPassword] = useState(""); // State to store password
+  const { loading, login } = useLogin();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await login(email, password);
+  };
 
-    const togglePasswordVisibility = () => {
-        setPasswordVisible(!passwordVisible);
-    };
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(!passwordVisible);
+  };
 
-    return (
-        <div className="bg-gradient-to-b from-gray-800 via-gray-900 to-gray-950 py-20">
-            <h1 className="font-bold text-green-500 text-3xl text-center my-10 " > {t('welcome_farmsetu')} </h1>
-            <div className=" max-w-md w-full mx-auto  rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-gray-100 dark:bg-black">
-                <h2 className="font-bold text-xl text-green-800 dark:text-neutral-200">
-                    {t('welcome_farmsetu')}
-                </h2>
-                <form className="my-8" onSubmit={handleSubmit}>
-                    <LabelInputContainer className="mb-4">
-                        <Label htmlFor="email">{t('email_address')}</Label>
-                        <Input
-                            id="email"
-                            placeholder={t('your_email')}
-                            type="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)} // Update email state
-                        />
-                    </LabelInputContainer>
-                    <LabelInputContainer className="mb-8 relative">
-                        <Label htmlFor="password">{t('password')}</Label>
-                        <Input
-                            id="password"
-                            placeholder="••••••••"
-                            type={passwordVisible ? "text" : "password"}
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)} // Update password state
-                        />
-                        <button
-                            type="button"
-                            onClick={togglePasswordVisibility}
-                            className="absolute right-2 top-1/2 transform -translate-y-1/2 text-green-600 dark:text-neutral-400"
-                        >
-                            {passwordVisible ? <IconEyeOff /> : <IconEye />}
-                        </button>
-                    </LabelInputContainer>
+  return (
+    <div className="bg-gradient-to-b from-gray-800 via-gray-900 to-gray-950 py-20">
+      <h1 className="font-bold text-green-500 text-3xl text-center my-10 ">
+        {" "}
+        {t("welcome_farmsetu")}{" "}
+      </h1>
+      <div className=" max-w-md w-full mx-auto  rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-gray-100 dark:bg-black">
+        <h2 className="font-bold text-xl text-green-800 dark:text-neutral-200">
+          {t("welcome_farmsetu")}
+        </h2>
+        <form className="my-8" onSubmit={handleSubmit}>
+          <LabelInputContainer className="mb-4">
+            <Label htmlFor="email">{t("email_address")}</Label>
+            <Input
+              id="email"
+              placeholder={t("your_email")}
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)} // Update email state
+            />
+          </LabelInputContainer>
+          <LabelInputContainer className="mb-8 relative">
+            <Label htmlFor="password">{t("password")}</Label>
+            <Input
+              id="password"
+              placeholder="••••••••"
+              type={passwordVisible ? "text" : "password"}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)} // Update password state
+            />
+            <button
+              type="button"
+              onClick={togglePasswordVisibility}
+              className="absolute right-2 top-1/2 transform -translate-y-1/2 text-green-600 dark:text-neutral-400"
+            >
+              {passwordVisible ? <IconEyeOff /> : <IconEye />}
+            </button>
+          </LabelInputContainer>
 
-                    {/* <button
+          {/* <button
             className="bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
             type="submit"
             disabled={loading}
@@ -68,36 +71,49 @@ export default function Login() {
             {loading ? <span className="loading loading-spinner"></span> : 'Login &rarr;'}
             <BottomGradient />
           </button> */}
-                    <button
-                        className="bg-gradient-to-br  relative group/btn from-green-600 dark:from-green-700 dark:to-green-900 to-green-800 block dark:bg-green-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--green-800)_inset,0px_-1px_0px_0px_var(--green-800)_inset] hover:from-green-700 hover:to-green-900 dark:hover:from-green-800 dark:hover:to-green-950 transition-all duration-200"
-                        type="submit"
-                        disabled={loading}
-                    >
-                        {loading ? (
-                            <span className="flex justify-center items-center">
-                                {/* Spinner SVG or other spinner */}
-                                <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 1 1 16 0A8 8 0 0 1 4 12z"></path>
-                                </svg>
-                            </span>
-                        ) : (
-                            <>
-                            <span className="flex gap-2 justify-center items-center ">
-                                <span>
-                                {t('login')} 
-                                </span>
-                                <FaLocationArrow />
-                            </span>
-                            </>
-                        )}
-                        <BottomGradient />
-                    </button>
+          <button
+            className="bg-gradient-to-br  relative group/btn from-green-600 dark:from-green-700 dark:to-green-900 to-green-800 block dark:bg-green-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--green-800)_inset,0px_-1px_0px_0px_var(--green-800)_inset] hover:from-green-700 hover:to-green-900 dark:hover:from-green-800 dark:hover:to-green-950 transition-all duration-200"
+            type="submit"
+            disabled={loading}
+          >
+            {loading ? (
+              <span className="flex justify-center items-center">
+                {/* Spinner SVG or other spinner */}
+                <svg
+                  className="animate-spin h-5 w-5 text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 1 1 16 0A8 8 0 0 1 4 12z"
+                  ></path>
+                </svg>
+              </span>
+            ) : (
+              <>
+                <span className="flex gap-2 justify-center items-center ">
+                  <span>{t("login")}</span>
+                  <FaLocationArrow />
+                </span>
+              </>
+            )}
+            <BottomGradient />
+          </button>
 
+          <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent my-8 h-[1px] w-full" />
 
-                    <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent my-8 h-[1px] w-full" />
-
-                    {/* <div className="flex flex-col space-y-4">
+          {/* <div className="flex flex-col space-y-4">
                         <button
                             className="relative group/btn flex space-x-2 items-center justify-start px-4 w-full text-black rounded-md h-10 font-medium shadow-input bg-gray-50 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
                             type="button"
@@ -109,38 +125,44 @@ export default function Login() {
                             <BottomGradient />
                         </button>
                     </div> */}
-                </form>
-
-                <div className="text-center mt-4">
-                    <span className="text-neutral-600 dark:text-neutral-400">
-                        {t('dont_have_account')} 
-                    </span>
-                    <Link
-                        to="/signup"
-                        className="text-blue-500 hover:underline hover:text-green-700 dark:text-blue-400"
-                    >
-                        {t('sign_up')}
-                    </Link>
-                </div>
-            </div>
-            
+        </form>
+        <div className="text-right mt-2">
+          <Link
+            to="/forgot-password"
+            className="text-sm text-blue-500 hover:text-green-700"
+          >
+            Forgot Password?
+          </Link>
         </div>
-    );
+        <div className="text-center mt-4">
+          <span className="text-neutral-600 dark:text-neutral-400">
+            {t("dont_have_account")}
+          </span>
+          <Link
+            to="/signup"
+            className="text-blue-500 hover:underline hover:text-green-700 dark:text-blue-400"
+          >
+            {t("sign_up")}
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 const BottomGradient = () => {
-    return (
-        <>
-            <span className="group-hover/btn:opacity-100 block transition duration-500 opacity-0 absolute h-px w-full -bottom-px inset-x-0 bg-gradient-to-r from-transparent via-cyan-500 to-transparent" />
-            <span className="group-hover/btn:opacity-100 blur-sm block transition duration-500 opacity-0 absolute h-px w-1/2 mx-auto -bottom-px inset-x-10 bg-gradient-to-r from-transparent via-indigo-500 to-transparent" />
-        </>
-    );
+  return (
+    <>
+      <span className="group-hover/btn:opacity-100 block transition duration-500 opacity-0 absolute h-px w-full -bottom-px inset-x-0 bg-gradient-to-r from-transparent via-cyan-500 to-transparent" />
+      <span className="group-hover/btn:opacity-100 blur-sm block transition duration-500 opacity-0 absolute h-px w-1/2 mx-auto -bottom-px inset-x-10 bg-gradient-to-r from-transparent via-indigo-500 to-transparent" />
+    </>
+  );
 };
 
 const LabelInputContainer = ({ children, className }) => {
-    return (
-        <div className={cn("flex flex-col space-y-2 w-full", className)}>
-            {children}
-        </div>
-    );
+  return (
+    <div className={cn("flex flex-col space-y-2 w-full", className)}>
+      {children}
+    </div>
+  );
 };

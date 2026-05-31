@@ -16,6 +16,7 @@ import mlRoutes from './routes/ml.routes.js';
 import parchiRoutes from './routes/parchi.routes.js';
 import adminRoutes from './routes/admin.routes.js';
 import newsletterRoutes from './routes/newsletter.routes.js'
+import passwordResetRoutes from './routes/passwordReset.routes.js';
 import cookieParser from 'cookie-parser';
 import path from 'path';
 dotenv.config();
@@ -34,6 +35,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use('/',homeRoute);
 app.use('/api/auth', authRoutes);
+app.use('/api/password-reset', passwordResetRoutes);
 app.use('/api/news', newsRoutes );
 app.use('/api/marketdata', marketRoutes);
 app.use('/api/contact', contactRoutes);
@@ -47,6 +49,7 @@ app.use('/api/ml', mlRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/parchi', parchiRoutes);
 app.use('/api/newsletter', newsletterRoutes);
+
 // app.use(express.static(path.join(__dirname, '/frontend/dist')));
 // app.get('*', (req, res)=>{
 //     res.sendFile(path.join(__dirname, '/frontend/dist/index.html'));

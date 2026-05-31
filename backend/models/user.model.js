@@ -98,6 +98,14 @@ const userSchema = new mongoose.Schema({
         type: Date,
         default: Date.now, 
     },
+    resetPasswordToken: {
+        type: String,
+        default: null
+    },
+    resetPasswordExpires: {
+        type: Date,
+        default: null
+    }
 });
 
 // Create a geospatial index to allow searching "Farms near me" in the future
