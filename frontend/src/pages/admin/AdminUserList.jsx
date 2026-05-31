@@ -1,201 +1,400 @@
-import React, { useEffect, useState } from 'react';
-import { useAuthContext } from '../../context/AuthContext';
-import { FaSearch, FaEye, FaFilter } from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom';
+// pages/admin/AdminUserList.jsx
+import React, { useEffect, useState } from "react";
+import { useAuthContext } from "../../context/AuthContext";
+import {
+  FaSearch,
+  FaEye,
+  FaFilter,
+  FaToggleOn,
+  FaToggleOff,
+  FaSpinner,
+  FaUserCheck,
+  FaUserTimes,
+  FaTrash,
+  FaEdit,
+  FaChevronLeft,
+  FaChevronRight,
+} from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const AdminUserList = () => {
-    const { BACKEND_URL, authUser } = useAuthContext();
-    const navigate = useNavigate();
-    const [users, setUsers] = useState([]); // Initialize as empty array
-    const [filteredUsers, setFilteredUsers] = useState([]); // Initialize as empty array
-    const [search, setSearch] = useState('');
-    const [roleFilter, setRoleFilter] = useState('all');
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState('');
+  const { BACKEND_URL, authUser } = useAuthContext();
+  const navigate = useNavigate();
+  const [users, setUsers] = useState([]);
+  const [filteredUsers, setFilteredUsers] = useState([]);
+  const [search, setSearch] = useState("");
+  const [roleFilter, setRoleFilter] = useState("all");
+  const [statusFilter, setStatusFilter] = useState("all");
+  const [loading, setLoading] = useState(true);
+  const [updating, setUpdating] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(10);
 
-    useEffect(() => {
-        const fetchUsers = async () => {
-            try {
-                // 1. Check if token exists BEFORE fetching
-                const token = authUser?.token;
-                console.log("token at admin user list", token)
-                if (!token) return; // Stop if no token
+  useEffect(() => {
+    fetchUsers();
+  }, [BACKEND_URL, authUser]);
 
-                const res = await fetch(`${BACKEND_URL}/api/admin/users`, {
-                    headers: { 
-                        'Authorization': `Bearer ${token}`, // Use the variable
-                        'Content-Type': 'application/json'
-                    }
-                });
-                
-                const data = await res.json();
-                if(res.ok && Array.isArray(data)){
-                    setUsers(data);
-                    setFilteredUsers(data);
-                } else {
-                    console.error("Fetch error:", data);
-                }
-            } catch (err) {
-                console.error("Failed to fetch users", err);
-            } finally {
-                setLoading(false);
-            }
-        };
+  const fetchUsers = async () => {
+    try {
+      const token = authUser?.token;
+      if (!token) return;
 
-        // 2. Only run fetch if authUser is actually present
-        if (authUser && authUser.token) {
-            fetchUsers();
+      const res = await fetch(`${BACKEND_URL}/api/admin/users`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      const data = await res.json();
+      if (res.ok && Array.isArray(data)) {
+        const usersWithStatus = data.map((user) => ({
+          ...user,
+          isActive: user.isActive !== undefined ? user.isActive : true,
+        }));
+        setUsers(usersWithStatus);
+        setFilteredUsers(usersWithStatus);
+      }
+    } catch (err) {
+      console.error("Failed to fetch users", err);
+      toast.error("Failed to fetch users");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const toggleUserStatus = async (userId, currentStatus) => {
+    setUpdating(userId);
+    try {
+      const token = authUser?.token;
+      const res = await fetch(
+        `${BACKEND_URL}/api/admin/user/${userId}/toggle-status`,
+        {
+          method: "PATCH",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ isActive: !currentStatus }),
         }
-    }, [BACKEND_URL, authUser]); // Dependency array ensures it runs when authUser loads
+      );
 
-    useEffect(() => {
-        // Ensure users is an array before filtering
-        if (!Array.isArray(users)) return;
+      const data = await res.json();
+      if (res.ok && data.success) {
+        toast.success(data.message);
+        fetchUsers();
+      } else {
+        toast.error(data.error || "Failed to update user status");
+      }
+    } catch (error) {
+      toast.error("Error updating user status");
+    } finally {
+      setUpdating(null);
+    }
+  };
 
-        let result = [...users];
+  // Filter users
+  useEffect(() => {
+    if (!Array.isArray(users)) return;
+    let result = [...users];
 
-        // 1. Filter by Search (Name, Email, City)
-        if (search) {
-            const lowerSearch = search.toLowerCase();
-            result = result.filter(u => 
-                (u.name && u.name.toLowerCase().includes(lowerSearch)) || 
-                (u.email && u.email.toLowerCase().includes(lowerSearch)) ||
-                (u.address?.city && u.address.city.toLowerCase().includes(lowerSearch))
-            );
-        }
+    if (search) {
+      const lowerSearch = search.toLowerCase();
+      result = result.filter(
+        (u) =>
+          u.name?.toLowerCase().includes(lowerSearch) ||
+          u.email?.toLowerCase().includes(lowerSearch) ||
+          u.address?.city?.toLowerCase().includes(lowerSearch)
+      );
+    }
 
-        // 2. Filter by Role
-        if (roleFilter !== 'all') {
-            result = result.filter(u => u.role === roleFilter);
-        }
+    if (roleFilter !== "all") {
+      result = result.filter((u) => u.role === roleFilter);
+    }
 
-        setFilteredUsers(result);
-    }, [search, roleFilter, users]);
+    if (statusFilter !== "all") {
+      const isActive = statusFilter === "active";
+      result = result.filter((u) => u.isActive === isActive);
+    }
 
-    return (
-        <div className="space-y-6 animate-fade-in-up">
-            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-                <div>
-                    <h1 className="text-3xl font-bold text-white">User Management</h1>
-                    <p className="text-gray-400 mt-1">View and manage all registered farmers, sellers, and cooperatives.</p>
-                </div>
-                <div className="bg-blue-600/20 text-blue-400 px-4 py-2 rounded-lg border border-blue-600/50">
-                    Total Users: <span className="font-bold text-white ml-2">{filteredUsers.length}</span>
-                </div>
+    setFilteredUsers(result);
+    setCurrentPage(1);
+  }, [search, roleFilter, statusFilter, users]);
+
+  // Pagination
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentUsers = filteredUsers.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(filteredUsers.length / itemsPerPage);
+
+  const getStatusBadge = (isActive) => {
+    return isActive
+      ? "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400"
+      : "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400";
+  };
+
+  return (
+    <div className="space-y-6">
+      {/* Header */}
+      <div>
+        <h1 className="text-2xl font-bold text-gray-800 dark:text-white">
+          User Management
+        </h1>
+        <p className="text-gray-500 dark:text-gray-400 mt-1">
+          Manage and monitor all platform users
+        </p>
+      </div>
+
+      {/* Stats Summary */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div className="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-4 border border-blue-200 dark:border-blue-800">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm text-blue-600 dark:text-blue-400">
+                Total Users
+              </p>
+              <p className="text-2xl font-bold text-blue-700 dark:text-blue-300">
+                {users.length}
+              </p>
             </div>
-
-            {/* Error Message Display */}
-            {error && (
-                <div className="bg-red-500/10 border border-red-500 text-red-400 p-4 rounded-lg text-center">
-                    {error}
-                </div>
-            )}
-
-            {/* Toolbar */}
-            <div className="bg-gray-800 p-4 rounded-xl shadow-lg border border-gray-700 flex flex-col md:flex-row gap-4">
-                <div className="relative flex-1">
-                    <FaSearch className="absolute left-3 top-3 text-gray-500" />
-                    <input 
-                        type="text" 
-                        placeholder="Search by Name, Email or City..." 
-                        className="w-full bg-gray-900 border border-gray-600 text-white pl-10 p-2.5 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-                        value={search}
-                        onChange={(e) => setSearch(e.target.value)}
-                    />
-                </div>
-                <div className="flex items-center space-x-2">
-                    <FaFilter className="text-gray-400" />
-                    <select 
-                        className="bg-gray-900 border border-gray-600 text-white p-2.5 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-                        value={roleFilter}
-                        onChange={(e) => setRoleFilter(e.target.value)}
-                    >
-                        <option value="all">All Roles</option>
-                        <option value="farmer">Farmers</option>
-                        <option value="seller">Sellers</option>
-                        <option value="cooperative">Cooperatives</option>
-                    </select>
-                </div>
-            </div>
-
-            {/* Table */}
-            <div className="bg-gray-800 rounded-xl shadow-lg border border-gray-700 overflow-hidden">
-                <div className="overflow-x-auto">
-                    <table className="w-full text-left text-gray-300">
-                        <thead className="bg-gray-900 text-xs uppercase font-semibold text-gray-400">
-                            <tr>
-                                <th className="p-4">User</th>
-                                <th className="p-4">Role</th>
-                                <th className="p-4">Location</th>
-                                <th className="p-4">Status / Stats</th>
-                                <th className="p-4 text-center">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody className="divide-y divide-gray-700">
-                            {loading ? (
-                                <tr><td colSpan="5" className="p-8 text-center">Loading users...</td></tr>
-                            ) : filteredUsers.length === 0 ? (
-                                <tr><td colSpan="5" className="p-8 text-center text-gray-500">No users found.</td></tr>
-                            ) : (
-                                filteredUsers.map(user => (
-                                    <tr key={user._id} className="hover:bg-gray-700/50 transition-colors">
-                                        <td className="p-4">
-                                            <div className="flex items-center">
-                                                <img 
-                                                    src={user.avatar || "https://cdn-icons-png.flaticon.com/512/149/149071.png"} 
-                                                    alt="avatar" 
-                                                    className="w-10 h-10 rounded-full border border-gray-600 mr-3" 
-                                                />
-                                                <div>
-                                                    <div className="font-bold text-white">{user.name}</div>
-                                                    <div className="text-xs text-gray-500">{user.email}</div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td className="p-4">
-                                            <span className={`px-3 py-1 rounded-full text-xs font-medium capitalize ${
-                                                user.role === 'farmer' ? 'bg-green-900/50 text-green-400 border border-green-800' :
-                                                user.role === 'seller' ? 'bg-blue-900/50 text-blue-400 border border-blue-800' :
-                                                'bg-purple-900/50 text-purple-400 border border-purple-800'
-                                            }`}>
-                                                {user.role}
-                                            </span>
-                                        </td>
-                                        <td className="p-4 text-sm">
-                                            {user.address?.city ? `${user.address.city}, ${user.address.state}` : <span className="text-gray-600 italic">Not set</span>}
-                                        </td>
-                                        <td className="p-4 text-sm">
-                                            {user.role === 'farmer' && (
-                                                <div className="flex items-center gap-2">
-                                                    <span className="text-gray-400">Farms:</span> 
-                                                    <span className="text-white font-bold">{user.farms?.length || 0}</span>
-                                                </div>
-                                            )}
-                                            {user.role === 'seller' && (
-                                                <div className="flex items-center gap-2">
-                                                    <span className="text-gray-400">Products:</span> 
-                                                    <span className="text-white font-bold">-</span>
-                                                </div>
-                                            )}
-                                        </td>
-                                        <td className="p-4 text-center">
-                                            <button 
-                                                onClick={() => navigate(`/admin/user/${user._id}`)}
-                                                className="bg-gray-700 hover:bg-blue-600 text-white p-2 rounded-lg transition-colors tooltip"
-                                                title="View Details"
-                                            >
-                                                <FaEye />
-                                            </button>
-                                        </td>
-                                    </tr>
-                                ))
-                            )}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+            <FaUserCheck className="text-2xl text-blue-500" />
+          </div>
         </div>
-    );
+        <div className="bg-green-50 dark:bg-green-900/20 rounded-xl p-4 border border-green-200 dark:border-green-800">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm text-green-600 dark:text-green-400">
+                Active Users
+              </p>
+              <p className="text-2xl font-bold text-green-700 dark:text-green-300">
+                {users.filter((u) => u.isActive).length}
+              </p>
+            </div>
+            <FaUserCheck className="text-2xl text-green-500" />
+          </div>
+        </div>
+        <div className="bg-red-50 dark:bg-red-900/20 rounded-xl p-4 border border-red-200 dark:border-red-800">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm text-red-600 dark:text-red-400">
+                Inactive Users
+              </p>
+              <p className="text-2xl font-bold text-red-700 dark:text-red-300">
+                {users.filter((u) => !u.isActive).length}
+              </p>
+            </div>
+            <FaUserTimes className="text-2xl text-red-500" />
+          </div>
+        </div>
+      </div>
+
+      {/* Filters */}
+      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-4 border border-gray-200 dark:border-gray-700">
+        <div className="flex flex-wrap gap-4">
+          <div className="flex-1 min-w-[200px]">
+            <div className="relative">
+              <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm" />
+              <input
+                type="text"
+                placeholder="Search by name, email or city..."
+                className="w-full pl-9 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
+            </div>
+          </div>
+          <select
+            className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500"
+            value={roleFilter}
+            onChange={(e) => setRoleFilter(e.target.value)}
+          >
+            <option value="all">All Roles</option>
+            <option value="farmer">Farmers</option>
+            <option value="seller">Sellers</option>
+            <option value="cooperative">Cooperatives</option>
+            <option value="admin">Admins</option>
+          </select>
+          <select
+            className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500"
+            value={statusFilter}
+            onChange={(e) => setStatusFilter(e.target.value)}
+          >
+            <option value="all">All Status</option>
+            <option value="active">Active Only</option>
+            <option value="inactive">Inactive Only</option>
+          </select>
+        </div>
+      </div>
+
+      {/* Users Table */}
+      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
+        <div className="overflow-x-auto">
+          <table className="w-full">
+            <thead className="bg-gray-50 dark:bg-gray-700/50">
+              <tr>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                  User
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                  Role
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                  Location
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                  Status
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                  Joined
+                </th>
+                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                  Actions
+                </th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+              {loading ? (
+                <tr>
+                  <td colSpan="6" className="px-6 py-12 text-center">
+                    <FaSpinner className="animate-spin text-2xl text-green-500 mx-auto mb-2" />
+                    <p className="text-gray-500 dark:text-gray-400">
+                      Loading users...
+                    </p>
+                  </td>
+                </tr>
+              ) : currentUsers.length === 0 ? (
+                <tr>
+                  <td
+                    colSpan="6"
+                    className="px-6 py-12 text-center text-gray-500 dark:text-gray-400"
+                  >
+                    No users found matching your criteria
+                  </td>
+                </tr>
+              ) : (
+                currentUsers.map((user) => (
+                  <tr
+                    key={user._id}
+                    className="hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
+                  >
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="flex items-center">
+                        <img
+                          src={user.avatar}
+                          alt=""
+                          className="w-8 h-8 rounded-full object-cover"
+                        />
+                        <div className="ml-3">
+                          <p className="text-sm font-medium text-gray-900 dark:text-white">
+                            {user.name}
+                          </p>
+                          <p className="text-xs text-gray-500 dark:text-gray-400">
+                            {user.email}
+                          </p>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <span
+                        className={`px-2 py-1 text-xs font-semibold rounded-full capitalize ${
+                          user.role === "farmer"
+                            ? "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400"
+                            : user.role === "seller"
+                            ? "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400"
+                            : "bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-400"
+                        }`}
+                      >
+                        {user.role}
+                      </span>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+                      {user.address?.city || "N/A"}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <span
+                        className={`px-2 py-1 text-xs font-semibold rounded-full ${getStatusBadge(
+                          user.isActive
+                        )}`}
+                      >
+                        {user.isActive ? "Active" : "Inactive"}
+                      </span>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+                      {new Date(user.createdAt).toLocaleDateString()}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-right">
+                      <div className="flex items-center justify-end gap-2">
+                        <button
+                          onClick={() => navigate(`/admin/user/${user._id}`)}
+                          className="p-1.5 text-gray-500 hover:text-blue-600 rounded-lg transition-colors"
+                          title="View Details"
+                        >
+                          <FaEye size={16} />
+                        </button>
+                        <button
+                          onClick={() =>
+                            toggleUserStatus(user._id, user.isActive)
+                          }
+                          disabled={
+                            updating === user._id || user.role === "admin"
+                          }
+                          className="p-1.5 text-gray-500 hover:text-green-600 rounded-lg transition-colors disabled:opacity-50"
+                          title={
+                            user.isActive ? "Deactivate User" : "Activate User"
+                          }
+                        >
+                          {updating === user._id ? (
+                            <FaSpinner className="animate-spin" size={14} />
+                          ) : user.isActive ? (
+                            <FaToggleOn size={18} />
+                          ) : (
+                            <FaToggleOff size={18} />
+                          )}
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
+
+        {/* Pagination */}
+        {totalPages > 1 && (
+          <div className="px-6 py-4 border-t border-gray-200 dark:border-gray-700 flex justify-between items-center">
+            <p className="text-sm text-gray-500 dark:text-gray-400">
+              Showing {indexOfFirstItem + 1} to{" "}
+              {Math.min(indexOfLastItem, filteredUsers.length)} of{" "}
+              {filteredUsers.length} users
+            </p>
+            <div className="flex gap-2">
+              <button
+                onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+                disabled={currentPage === 1}
+                className="p-2 rounded-lg border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <FaChevronLeft size={14} />
+              </button>
+              <span className="px-3 py-1 text-sm text-gray-600 dark:text-gray-400">
+                Page {currentPage} of {totalPages}
+              </span>
+              <button
+                onClick={() =>
+                  setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+                }
+                disabled={currentPage === totalPages}
+                className="p-2 rounded-lg border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <FaChevronRight size={14} />
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
 };
 
 export default AdminUserList;

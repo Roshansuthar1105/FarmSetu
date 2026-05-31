@@ -122,9 +122,11 @@ export default function App() {
           {!isAdminRoute && <Navbar />}
         </Suspense>
           <Routes>
-            <Route path="/admin" element={
+          <Route path="/admin" element={
               authUser && authUser.role === 'admin' ? (
-                <Suspense fallback={<LoadingComponent />}><LazyAdminLayout /></Suspense>
+                <Suspense fallback={<LoadingComponent />}>
+                  <LazyAdminLayout />
+                </Suspense>
               ) : (
                 <Navigate to="/login" />
               )
