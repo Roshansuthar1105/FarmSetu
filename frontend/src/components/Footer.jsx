@@ -315,7 +315,7 @@ const Footer = () => {
       </div>
 
       {/* Add custom keyframe animation for spinner */}
-      <style jsx>{`
+      <style jsx="true">{`
         @keyframes spin {
           from {
             transform: rotate(0deg);

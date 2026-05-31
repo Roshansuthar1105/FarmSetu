@@ -7,20 +7,19 @@ import { IconEye, IconEyeOff } from "@tabler/icons-react";
 import { Radio, RadioGroup } from "@nextui-org/react";
 import useSignup from "../hooks/useSignup";
 import avatar from "../data/avatar.json";
-import { FaLocationArrow } from "react-icons/fa";
+import { FaLocationArrow, FaSeedling, FaLeaf, FaUserPlus, FaPhone, FaMapMarkerAlt, FaCheckCircle } from "react-icons/fa";
 import { useTranslation } from 'react-i18next';
 import { Link } from "react-router-dom";
 
 export default function Signup() {
   const { t } = useTranslation();
   
-  // State for all form fields including nested address
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     password: '',
     confirmPassword: '',
-    selectedAvatar: '',
+    selectedAvatar: 'https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairTheCaesarSidePart&accessoriesType=Blank&hairColor=Black&facialHairType=BeardLight&facialHairColor=Brown&clotheType=ShirtCrewNeck&clotheColor=Blue02&eyeType=Happy&eyebrowType=RaisedExcited&mouthType=Serious&skinColor=Light',
     role: 'farmer',
     mobileNumber: '',
     address: {
@@ -37,13 +36,11 @@ export default function Signup() {
   const [showPassword, setShowPassword] = useState(false);
   const [showAvatarContainer, setShowAvatarContainer] = useState(false);
 
-  // Handle top-level input changes
   const handleChange = (e) => {
     const { id, value } = e.target;
     setFormData((prev) => ({ ...prev, [id]: value }));
   };
 
-  // Handle nested address input changes
   const handleAddressChange = (e) => {
     const { id, value } = e.target;
     setFormData((prev) => ({
@@ -72,155 +69,362 @@ export default function Signup() {
   };
 
   return (
-    <div className="bg-gradient-to-b from-gray-800 via-gray-900 to-gray-950 py-20 min-h-screen">
-      <h1 className="font-bold text-green-500 text-3xl text-center my-10 ">{t('welcome_farmsetu')}</h1>
-   
-      <div className="max-w-2xl w-full relative mx-auto overflow-hidden rounded-md md:rounded-2xl p-4 md:p-8 shadow-input bg-gray-100 dark:bg-black">
-        <h2 className="font-bold text-xl text-green-800 dark:text-neutral-200">
-          {t('sign_up')}
-        </h2>
-        
-        {/* Selected Avatar Preview */}
-        {formData.selectedAvatar && (
-            <img 
-                className="absolute top-6 right-6 h-16 w-16 rounded-full border-4 border-green-600 cursor-pointer hover:opacity-80 transition" 
-                src={formData.selectedAvatar} 
-                alt="Selected" 
-                onClick={() => setShowAvatarContainer(!showAvatarContainer)} 
-            />
-        )}
-        
-        <form className="my-8" onSubmit={handleSubmit}>
-          {/* --- Personal Details --- */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-            <LabelInputContainer>
-                <Label htmlFor="name">{t('name')}</Label>
-                <Input id="name" placeholder="John Doe" type="text" value={formData.name} onChange={handleChange} />
-            </LabelInputContainer>
-            
-            <LabelInputContainer>
-                <Label htmlFor="mobileNumber">Mobile Number</Label>
-                <Input id="mobileNumber" placeholder="9876543210" type="text" value={formData.mobileNumber} onChange={handleChange} />
-            </LabelInputContainer>
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 py-12 pt-20 px-4">
+      <div className="max-w-4xl mx-auto">
+        {/* Header */}
+        <div className="text-center mb-8">
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-100 dark:bg-green-900/30 mb-4">
+            <FaSeedling className="text-3xl text-green-600 dark:text-green-500" />
+          </div>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+            Create your account
+          </h1>
+          <p className="text-gray-600 dark:text-gray-400">
+            Join FarmSetu and start your farming journey
+          </p>
+        </div>
+
+        {/* Form Card */}
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden">
+          <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+            <div className="flex items-center gap-2">
+              <FaUserPlus className="text-green-600 dark:text-green-500" />
+              <h2 className="text-xl font-semibold text-gray-900 dark:text-white">Sign Up</h2>
+            </div>
           </div>
 
-          <LabelInputContainer className="mb-4">
-            <Label htmlFor="email">{t('email_address')}</Label>
-            <Input id="email" placeholder="example@gmail.com" type="email" value={formData.email} onChange={handleChange} />
-          </LabelInputContainer>
+          <div className="p-6">
+            <form onSubmit={handleSubmit}>
+              {/* Progress indicator */}
+              <div className="mb-8 flex items-center justify-between">
+                <div className="flex-1 h-1 bg-gray-200 dark:bg-gray-700 rounded-full">
+                  <div className="w-1/3 h-full bg-green-600 rounded-full"></div>
+                </div>
+                <div className="flex justify-between px-4 -mt-2">
+                  <span className="text-xs text-green-600 font-medium">Personal</span>
+                  <span className="text-xs text-gray-400 mx-8">Address</span>
+                  <span className="text-xs text-gray-400">Security</span>
+                </div>
+              </div>
 
-          {/* --- Address Section (NEW) --- */}
-          <h3 className="text-gray-400 text-sm font-semibold mb-2 mt-6 uppercase tracking-wider">Location Details</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-2">
-            <LabelInputContainer>
-                <Label htmlFor="village">Village</Label>
-                <Input id="village" placeholder="Village Name" value={formData.address.village} onChange={handleAddressChange} />
-            </LabelInputContainer>
-            <LabelInputContainer>
-                <Label htmlFor="city">City/Tehsil</Label>
-                <Input id="city" placeholder="City" value={formData.address.city} onChange={handleAddressChange} />
-            </LabelInputContainer>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-            <LabelInputContainer>
-                <Label htmlFor="district">District</Label>
-                <Input id="district" placeholder="District" value={formData.address.district} onChange={handleAddressChange} />
-            </LabelInputContainer>
-            <LabelInputContainer>
-                <Label htmlFor="state">State</Label>
-                <Input id="state" placeholder="State" value={formData.address.state} onChange={handleAddressChange} />
-            </LabelInputContainer>
-            <LabelInputContainer>
-                <Label htmlFor="pincode">Pincode</Label>
-                <Input id="pincode" placeholder="302001" value={formData.address.pincode} onChange={handleAddressChange} />
-            </LabelInputContainer>
-          </div>
-
-          {/* --- Role Selection --- */}
-          <LabelInputContainer className="mb-6">
-            <Label>{t('role')}</Label>
-            <RadioGroup orientation="horizontal" value={formData.role} onValueChange={handleRoleChange}>
-              <Radio value="farmer">{t('farmer')}</Radio>
-              <Radio value="seller">{t('seller')}</Radio>
-              <Radio value="cooperative">{t('cooperative')}</Radio>
-            </RadioGroup>
-          </LabelInputContainer>
-
-          {/* --- Avatar Selection --- */}
-          <LabelInputContainer className="mb-6">
-             <Label>{t('select_avatar')}</Label>
-             <div className={`grid grid-cols-5 gap-3 max-h-32 overflow-y-auto p-2 border border-gray-700 rounded-lg ${showAvatarContainer ? 'block' : ''}`}>
-                {avatar.map((av) => (
-                  <div key={av.id} className={`rounded-full p-1 cursor-pointer transition-all ${formData.selectedAvatar === av.avatar ? 'bg-green-500 scale-110' : 'hover:bg-gray-700'}`}>
-                    <img
-                      src={av.avatar}
-                      alt="avatar"
-                      className="w-10 h-10 rounded-full"
-                      onClick={() => handleAvatar(av.avatar)}
+              {/* Personal Details */}
+              <div className="space-y-5">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  <div>
+                    <Label htmlFor="name" className="text-gray-700 dark:text-gray-300 text-sm font-medium mb-1.5 block">
+                      Full Name *
+                    </Label>
+                    <Input 
+                      id="name" 
+                      placeholder="Enter your full name" 
+                      type="text" 
+                      value={formData.name} 
+                      onChange={handleChange}
+                      className="w-full px-4 py-2.5 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500 focus:border-transparent transition"
+                      required
                     />
                   </div>
-                ))}
-             </div>
-          </LabelInputContainer>
+                  
+                  <div>
+                    <Label htmlFor="mobileNumber" className="text-gray-700 dark:text-gray-300 text-sm font-medium mb-1.5 block">
+                      Mobile Number *
+                    </Label>
+                    <div className="relative">
+                      <FaPhone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm" />
+                      <Input 
+                        id="mobileNumber" 
+                        placeholder="9876543210" 
+                        type="tel" 
+                        value={formData.mobileNumber} 
+                        onChange={handleChange}
+                        className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500 focus:border-transparent transition"
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
 
-          {/* --- Password Fields --- */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-            <LabelInputContainer className="relative">
-                <Label htmlFor="password">{t('password')}</Label>
-                <Input id="password" type={showPassword ? "text" : "password"} value={formData.password} onChange={handleChange} placeholder="••••••••" />
-                <TogglePasswordButton isVisible={showPassword} onClick={() => setShowPassword(!showPassword)} />
-            </LabelInputContainer>
-            <LabelInputContainer className="relative">
-                <Label htmlFor="confirmPassword">{t('confirm_password')}</Label>
-                <Input id="confirmPassword" type={showPassword ? "text" : "password"} value={formData.confirmPassword} onChange={handleChange} placeholder="••••••••" />
-            </LabelInputContainer>
+                <div>
+                  <Label htmlFor="email" className="text-gray-700 dark:text-gray-300 text-sm font-medium mb-1.5 block">
+                    Email Address *
+                  </Label>
+                  <Input 
+                    id="email" 
+                    placeholder="you@example.com" 
+                    type="email" 
+                    value={formData.email} 
+                    onChange={handleChange}
+                    className="w-full px-4 py-2.5 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500 focus:border-transparent transition"
+                    required
+                  />
+                </div>
+              </div>
+
+              {/* Address Section */}
+              <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
+                <h3 className="text-md font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                  <FaMapMarkerAlt className="text-green-600 dark:text-green-500 text-sm" />
+                  Location Details
+                </h3>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-4">
+                  <div>
+                    <Label htmlFor="village" className="text-gray-700 dark:text-gray-300 text-sm font-medium mb-1.5 block">
+                      Village / Town
+                    </Label>
+                    <Input 
+                      id="village" 
+                      placeholder="Enter village name" 
+                      value={formData.address.village} 
+                      onChange={handleAddressChange}
+                      className="w-full px-4 py-2.5 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500 focus:border-transparent transition"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="city" className="text-gray-700 dark:text-gray-300 text-sm font-medium mb-1.5 block">
+                      City / Tehsil
+                    </Label>
+                    <Input 
+                      id="city" 
+                      placeholder="Enter city name" 
+                      value={formData.address.city} 
+                      onChange={handleAddressChange}
+                      className="w-full px-4 py-2.5 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500 focus:border-transparent transition"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                  <div>
+                    <Label htmlFor="district" className="text-gray-700 dark:text-gray-300 text-sm font-medium mb-1.5 block">
+                      District
+                    </Label>
+                    <Input 
+                      id="district" 
+                      placeholder="District" 
+                      value={formData.address.district} 
+                      onChange={handleAddressChange}
+                      className="w-full px-4 py-2.5 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500 focus:border-transparent transition"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="state" className="text-gray-700 dark:text-gray-300 text-sm font-medium mb-1.5 block">
+                      State
+                    </Label>
+                    <Input 
+                      id="state" 
+                      placeholder="State" 
+                      value={formData.address.state} 
+                      onChange={handleAddressChange}
+                      className="w-full px-4 py-2.5 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500 focus:border-transparent transition"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="pincode" className="text-gray-700 dark:text-gray-300 text-sm font-medium mb-1.5 block">
+                      Pincode
+                    </Label>
+                    <Input 
+                      id="pincode" 
+                      placeholder="302001" 
+                      value={formData.address.pincode} 
+                      onChange={handleAddressChange}
+                      className="w-full px-4 py-2.5 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500 focus:border-transparent transition"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Role Selection */}
+              <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
+                <Label className="text-gray-700 dark:text-gray-300 text-sm font-medium mb-3 block">
+                  I am a *
+                </Label>
+                <div className="flex flex-wrap gap-4">
+                  {['farmer', 'seller', 'cooperative'].map((role) => (
+                    <label
+                      key={role}
+                      className={`flex items-center gap-2 px-4 py-2 rounded-lg border-2 cursor-pointer transition ${
+                        formData.role === role
+                          ? 'border-green-500 bg-green-50 dark:bg-green-900/20'
+                          : 'border-gray-300 dark:border-gray-600 hover:border-green-300'
+                      }`}
+                    >
+                      <input
+                        type="radio"
+                        name="role"
+                        value={role}
+                        checked={formData.role === role}
+                        onChange={() => handleRoleChange(role)}
+                        className="w-4 h-4 text-green-600 focus:ring-green-500"
+                      />
+                      <span className="capitalize text-gray-900 dark:text-white">
+                        {role === 'cooperative' ? 'Cooperative Society' : role}
+                      </span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              {/* Avatar Selection */}
+              <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
+                <Label className="text-gray-700 dark:text-gray-300 text-sm font-medium mb-3 block">
+                  Choose an Avatar *
+                </Label>
+                
+                {formData.selectedAvatar ? (
+                  <div className="flex items-center gap-4 p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+                    <img 
+                      src={formData.selectedAvatar} 
+                      alt="Selected avatar" 
+                      className="w-16 h-16 rounded-full border-4 border-green-500 object-cover"
+                    />
+                    <div className="flex-1">
+                      <p className="text-sm text-gray-600 dark:text-gray-400">Your selected avatar</p>
+                      <button
+                        type="button"
+                        onClick={() => setShowAvatarContainer(!showAvatarContainer)}
+                        className="text-sm text-green-600 hover:text-green-700 mt-1"
+                      >
+                        {showAvatarContainer ? 'Cancel' : 'Change avatar'}
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => setShowAvatarContainer(true)}
+                    className="w-full py-3 px-4 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg text-gray-600 dark:text-gray-400 hover:border-green-500 hover:text-green-600 transition"
+                  >
+                    + Click to select an avatar
+                  </button>
+                )}
+
+                {showAvatarContainer && (
+                  <div className="mt-4 p-4 bg-gray dark:bg-gray-900 rounded-lg">
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">Choose your avatar:</p>
+                    <div className="grid grid-cols-5 sm:grid-cols-8 gap-3">
+                      {avatar.map((av) => (
+                        <div
+                          key={av.id}
+                          onClick={() => handleAvatar(av.avatar)}
+                          className={`cursor-pointer transition-all transform hover:scale-105 ${
+                            formData.selectedAvatar === av.avatar
+                              ? ''
+                              // 'ring-2 ring-green-500 ring-offset-2 rounded-full'
+                              : ''
+                          }`}
+                        >
+                          <img
+                            src={av.avatar}
+                            alt="avatar option"
+                            className={`w-12 h-12 rounded-full object-cover ring-4 ${formData.selectedAvatar === av.avatar
+                              ? 'ring-green-500'
+                              :''}`}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Password Fields */}
+              <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  <div>
+                    <Label htmlFor="password" className="text-gray-700 dark:text-gray-300 text-sm font-medium mb-1.5 block">
+                      Password *
+                    </Label>
+                    <div className="relative">
+                      <Input 
+                        id="password" 
+                        type={showPassword ? "text" : "password"} 
+                        value={formData.password} 
+                        onChange={handleChange} 
+                        placeholder="Create a password"
+                        className="w-full px-4 py-2.5 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500 focus:border-transparent transition pr-12"
+                        required
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setShowPassword(!showPassword)}
+                        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 dark:text-gray-400"
+                      >
+                        {showPassword ? <IconEyeOff size={18} /> : <IconEye size={18} />}
+                      </button>
+                    </div>
+                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">At least 6 characters</p>
+                  </div>
+                  <div>
+                    <Label htmlFor="confirmPassword" className="text-gray-700 dark:text-gray-300 text-sm font-medium mb-1.5 block">
+                      Confirm Password *
+                    </Label>
+                    <Input 
+                      id="confirmPassword" 
+                      type={showPassword ? "text" : "password"} 
+                      value={formData.confirmPassword} 
+                      onChange={handleChange} 
+                      placeholder="Confirm your password"
+                      className="w-full px-4 py-2.5 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500 focus:border-transparent transition"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {error && (
+                <div className="mt-6 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg text-red-600 dark:text-red-400 text-sm">
+                  {error}
+                </div>
+              )}
+
+              {/* Submit Button */}
+              <button
+                className="w-full mt-8 bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-sm"
+                type="submit"
+                disabled={loading}
+              >
+                {loading ? (
+                  <>
+                    <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 0 1 8-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 0 1 4 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Creating account...
+                  </>
+                ) : (
+                  <>
+                    Create Account <FaLocationArrow className="text-sm" />
+                  </>
+                )}
+              </button>
+
+              {/* Login Link */}
+              <p className="text-center text-sm text-gray-600 dark:text-gray-400 mt-6">
+                Already have an account?{' '}
+                <Link to="/login" className="text-green-600 hover:text-green-700 font-medium">
+                  Sign in
+                </Link>
+              </p>
+            </form>
           </div>
+        </div>
 
-          {error && <p className="text-red-500 mb-4 text-center">{error}</p>}
-
-          <button
-            className="bg-gradient-to-br relative group/btn from-green-600 to-green-800 w-full text-white rounded-md h-12 font-bold shadow-lg hover:from-green-500 hover:to-green-700 transition-all"
-            type="submit"
-            disabled={loading}
-          >
-            {loading ? (
-                 <span className="flex justify-center items-center gap-2">Processing...</span>
-            ) : (
-                <span className="flex gap-2 justify-center items-center">
-                    {t('sign_up')} <FaLocationArrow />
-                </span>
-            )}
-            <BottomGradient />
-          </button>
-
-          <div className="text-center mt-4">
-              <span className="text-neutral-600 dark:text-neutral-400">
-                  {t('already_have_account')} 
-              </span>
-              <Link to="/login" className="text-blue-500 hover:underline hover:text-green-700 ml-2">
-                  {t('login')}
-              </Link>
+        {/* Trust indicators */}
+        <div className="mt-6 text-center">
+          <div className="flex items-center justify-center gap-4 text-sm text-gray-500 dark:text-gray-400">
+            <span className="flex items-center gap-1">
+              <FaCheckCircle className="text-green-500 text-xs" /> Free forever
+            </span>
+            <span className="flex items-center gap-1">
+              <FaCheckCircle className="text-green-500 text-xs" /> No credit card
+            </span>
+            <span className="flex items-center gap-1">
+              <FaCheckCircle className="text-green-500 text-xs" /> 24/7 support
+            </span>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   );
 }
-
-// Sub-components
-const TogglePasswordButton = ({ isVisible, onClick }) => (
-  <span onClick={onClick} className="absolute right-3 top-9 cursor-pointer z-10 p-1">
-    {isVisible ? <IconEyeOff className="h-5 w-5 text-gray-400" /> : <IconEye className="h-5 w-5 text-gray-400" />}
-  </span>
-);
-
-const BottomGradient = () => (
-  <>
-    <span className="group-hover/btn:opacity-100 block transition duration-500 opacity-0 absolute h-px w-full -bottom-px inset-x-0 bg-gradient-to-r from-transparent via-cyan-500 to-transparent" />
-    <span className="group-hover/btn:opacity-100 blur-sm block transition duration-500 opacity-0 absolute h-px w-1/2 mx-auto -bottom-px inset-x-10 bg-gradient-to-r from-transparent via-indigo-500 to-transparent" />
-  </>
-);
-
-const LabelInputContainer = ({ children, className }) => (
-  <div className={cn("flex flex-col space-y-2 w-full", className)}>{children}</div>
-);

@@ -4,17 +4,18 @@ import { Label } from "../components/ui/Label";
 import { Input } from "../components/ui/Input";
 import { cn } from "../lib/util";
 import { Link } from "react-router-dom";
-import { IconBrandGoogle, IconEye, IconEyeOff } from "@tabler/icons-react"; // Import eye icons
+import { IconEye, IconEyeOff } from "@tabler/icons-react";
 import useLogin from "../hooks/useLogin";
-import { FaLocationArrow } from "react-icons/fa";
+import { FaLocationArrow, FaSeedling } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 
 export default function Login() {
   const { t } = useTranslation();
-  const [passwordVisible, setPasswordVisible] = useState(false); // State to toggle password visibility
-  const [email, setEmail] = useState(""); // State to store email
-  const [password, setPassword] = useState(""); // State to store password
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const { loading, login } = useLogin();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     await login(email, password);
@@ -25,144 +26,105 @@ export default function Login() {
   };
 
   return (
-    <div className="bg-gradient-to-b from-gray-800 via-gray-900 to-gray-950 py-20">
-      <h1 className="font-bold text-green-500 text-3xl text-center my-10 ">
-        {" "}
-        {t("welcome_farmsetu")}{" "}
-      </h1>
-      <div className=" max-w-md w-full mx-auto  rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-gray-100 dark:bg-black">
-        <h2 className="font-bold text-xl text-green-800 dark:text-neutral-200">
-          {t("welcome_farmsetu")}
-        </h2>
-        <form className="my-8" onSubmit={handleSubmit}>
-          <LabelInputContainer className="mb-4">
-            <Label htmlFor="email">{t("email_address")}</Label>
-            <Input
-              id="email"
-              placeholder={t("your_email")}
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)} // Update email state
-            />
-          </LabelInputContainer>
-          <LabelInputContainer className="mb-8 relative">
-            <Label htmlFor="password">{t("password")}</Label>
-            <Input
-              id="password"
-              placeholder="••••••••"
-              type={passwordVisible ? "text" : "password"}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)} // Update password state
-            />
-            <button
-              type="button"
-              onClick={togglePasswordVisibility}
-              className="absolute right-2 top-1/2 transform -translate-y-1/2 text-green-600 dark:text-neutral-400"
-            >
-              {passwordVisible ? <IconEyeOff /> : <IconEye />}
-            </button>
-          </LabelInputContainer>
-
-          {/* <button
-            className="bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
-            type="submit"
-            disabled={loading}
-          >
-            {loading ? <span className="loading loading-spinner"></span> : 'Login &rarr;'}
-            <BottomGradient />
-          </button> */}
-          <button
-            className="bg-gradient-to-br  relative group/btn from-green-600 dark:from-green-700 dark:to-green-900 to-green-800 block dark:bg-green-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--green-800)_inset,0px_-1px_0px_0px_var(--green-800)_inset] hover:from-green-700 hover:to-green-900 dark:hover:from-green-800 dark:hover:to-green-950 transition-all duration-200"
-            type="submit"
-            disabled={loading}
-          >
-            {loading ? (
-              <span className="flex justify-center items-center">
-                {/* Spinner SVG or other spinner */}
-                <svg
-                  className="animate-spin h-5 w-5 text-white"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                >
-                  <circle
-                    className="opacity-25"
-                    cx="12"
-                    cy="12"
-                    r="10"
-                    stroke="currentColor"
-                    strokeWidth="4"
-                  ></circle>
-                  <path
-                    className="opacity-75"
-                    fill="currentColor"
-                    d="M4 12a8 8 0 1 1 16 0A8 8 0 0 1 4 12z"
-                  ></path>
-                </svg>
-              </span>
-            ) : (
-              <>
-                <span className="flex gap-2 justify-center items-center ">
-                  <span>{t("login")}</span>
-                  <FaLocationArrow />
-                </span>
-              </>
-            )}
-            <BottomGradient />
-          </button>
-
-          <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent my-8 h-[1px] w-full" />
-
-          {/* <div className="flex flex-col space-y-4">
-                        <button
-                            className="relative group/btn flex space-x-2 items-center justify-start px-4 w-full text-black rounded-md h-10 font-medium shadow-input bg-gray-50 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
-                            type="button"
-                        >
-                            <IconBrandGoogle className="h-4 w-4 text-neutral-800 dark:text-neutral-300" />
-                            <span className="text-neutral-700 dark:text-neutral-300 text-sm">
-                                Google
-                            </span>
-                            <BottomGradient />
-                        </button>
-                    </div> */}
-        </form>
-        <div className="text-right mt-2">
-          <Link
-            to="/forgot-password"
-            className="text-sm text-blue-500 hover:text-green-700"
-          >
-            Forgot Password?
-          </Link>
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 pt-20">
+      <div className="max-w-md mx-auto px-4 py-8">
+        {/* Header */}
+        <div className="text-center mb-8">
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-100 dark:bg-green-900/30 mb-4">
+            <FaSeedling className="text-3xl text-green-600 dark:text-green-500" />
+          </div>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+            {t("welcome_farmsetu")}
+          </h1>
+          <p className="text-gray-600 dark:text-gray-400">
+            Sign in to your account
+          </p>
         </div>
-        <div className="text-center mt-4">
-          <span className="text-neutral-600 dark:text-neutral-400">
-            {t("dont_have_account")}
-          </span>
-          <Link
-            to="/signup"
-            className="text-blue-500 hover:underline hover:text-green-700 dark:text-blue-400"
-          >
-            {t("sign_up")}
-          </Link>
+
+        {/* Form Card */}
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden">
+          <div className="p-6">
+            <form onSubmit={handleSubmit}>
+              <div className="space-y-5">
+                <div>
+                  <Label htmlFor="email" className="text-gray-700 dark:text-gray-300 text-sm font-medium mb-1.5 block">
+                    {t("email_address")}
+                  </Label>
+                  <Input
+                    id="email"
+                    placeholder={t("your_email")}
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full px-4 py-2.5 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500 focus:border-transparent transition"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <Label htmlFor="password" className="text-gray-700 dark:text-gray-300 text-sm font-medium mb-1.5 block">
+                    {t("password")}
+                  </Label>
+                  <div className="relative">
+                    <Input
+                      id="password"
+                      placeholder="••••••••"
+                      type={passwordVisible ? "text" : "password"}
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      className="w-full px-4 py-2.5 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500 focus:border-transparent transition pr-12"
+                      required
+                    />
+                    <button
+                      type="button"
+                      onClick={togglePasswordVisibility}
+                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 dark:text-gray-400"
+                    >
+                      {passwordVisible ? <IconEyeOff size={18} /> : <IconEye size={18} />}
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div className="text-right mt-2">
+                <Link
+                  to="/forgot-password"
+                  className="text-sm text-green-600 hover:text-green-700 dark:text-green-500 font-medium"
+                >
+                  Forgot Password?
+                </Link>
+              </div>
+
+              <button
+                className="w-full mt-6 bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-sm"
+                type="submit"
+                disabled={loading}
+              >
+                {loading ? (
+                  <>
+                    <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 0 1 8-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 0 1 4 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Signing in...
+                  </>
+                ) : (
+                  <>
+                    {t("login")} <FaLocationArrow className="text-sm" />
+                  </>
+                )}
+              </button>
+
+              <p className="text-center text-sm text-gray-600 dark:text-gray-400 mt-6">
+                {t("dont_have_account")}{" "}
+                <Link to="/signup" className="text-green-600 hover:text-green-700 font-medium">
+                  {t("sign_up")}
+                </Link>
+              </p>
+            </form>
+          </div>
         </div>
       </div>
     </div>
   );
 }
-
-const BottomGradient = () => {
-  return (
-    <>
-      <span className="group-hover/btn:opacity-100 block transition duration-500 opacity-0 absolute h-px w-full -bottom-px inset-x-0 bg-gradient-to-r from-transparent via-cyan-500 to-transparent" />
-      <span className="group-hover/btn:opacity-100 blur-sm block transition duration-500 opacity-0 absolute h-px w-1/2 mx-auto -bottom-px inset-x-10 bg-gradient-to-r from-transparent via-indigo-500 to-transparent" />
-    </>
-  );
-};
-
-const LabelInputContainer = ({ children, className }) => {
-  return (
-    <div className={cn("flex flex-col space-y-2 w-full", className)}>
-      {children}
-    </div>
-  );
-};

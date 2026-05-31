@@ -1,11 +1,10 @@
-// pages/ResetPassword.jsx
 "use client";
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Label } from '../components/ui/Label';
 import { Input } from '../components/ui/Input';
 import { cn } from '../lib/util';
-import { FaLocationArrow, FaArrowLeft} from "react-icons/fa";
+import { FaLocationArrow, FaArrowLeft, FaLock, FaCheckCircle } from "react-icons/fa";
 import { HiEye, HiEyeOff } from "react-icons/hi";
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
@@ -28,7 +27,6 @@ export default function ResetPassword() {
     const [resetSuccess, setResetSuccess] = useState(false);
 
     useEffect(() => {
-        // Get token from URL query parameters
         const queryParams = new URLSearchParams(location.search);
         const resetToken = queryParams.get('token');
         
@@ -98,10 +96,10 @@ export default function ResetPassword() {
 
     if (verifying) {
         return (
-            <div className="bg-gradient-to-b from-gray-800 via-gray-900 to-gray-950 py-20 min-h-screen flex items-center justify-center">
+            <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 pt-20 flex items-center justify-center">
                 <div className="text-center">
-                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-500 mx-auto"></div>
-                    <p className="text-white mt-4">Verifying reset link...</p>
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mx-auto"></div>
+                    <p className="text-gray-600 dark:text-gray-400 mt-4">Verifying reset link...</p>
                 </div>
             </div>
         );
@@ -109,25 +107,23 @@ export default function ResetPassword() {
 
     if (resetSuccess) {
         return (
-            <div className="bg-gradient-to-b from-gray-800 via-gray-900 to-gray-950 py-20 min-h-screen">
-                <div className="max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-gray-100 dark:bg-black">
-                    <div className="text-center">
-                        <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg mb-6">
-                            <h3 className="font-bold">✓ Password Reset Successful!</h3>
-                            <p className="text-sm mt-2">
-                                Your password has been changed successfully.
+            <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 pt-20">
+                <div className="max-w-md mx-auto px-4 py-8">
+                    <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden">
+                        <div className="p-6 text-center">
+                            <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-green-100 dark:bg-green-900/30 mb-4">
+                                <FaCheckCircle className="text-4xl text-green-600 dark:text-green-500" />
+                            </div>
+                            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Password Reset Successful!</h2>
+                            <p className="text-gray-600 dark:text-gray-400 text-sm mb-6">
+                                Your password has been changed successfully. You can now log in with your new password.
                             </p>
+                            <Link to="/login">
+                                <button className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200">
+                                    Go to Login
+                                </button>
+                            </Link>
                         </div>
-                        
-                        <p className="text-gray-600 dark:text-gray-400 text-sm mb-6">
-                            You can now log in with your new password.
-                        </p>
-                        
-                        <Link to="/login">
-                            <button className="bg-gradient-to-br from-green-600 to-green-800 w-full text-white rounded-md h-12 font-bold shadow-lg hover:from-green-500 hover:to-green-700 transition-all">
-                                Go to Login
-                            </button>
-                        </Link>
                     </div>
                 </div>
             </div>
@@ -136,21 +132,25 @@ export default function ResetPassword() {
 
     if (!validToken) {
         return (
-            <div className="bg-gradient-to-b from-gray-800 via-gray-900 to-gray-950 py-20 min-h-screen">
-                <div className="max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-gray-100 dark:bg-black">
-                    <div className="text-center">
-                        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg mb-6">
-                            <h3 className="font-bold">Invalid Reset Link</h3>
-                            <p className="text-sm mt-2">
+            <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 pt-20">
+                <div className="max-w-md mx-auto px-4 py-8">
+                    <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden">
+                        <div className="p-6 text-center">
+                            <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-red-100 dark:bg-red-900/30 mb-4">
+                                <svg className="w-10 h-10 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </div>
+                            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Invalid Reset Link</h2>
+                            <p className="text-gray-600 dark:text-gray-400 text-sm mb-6">
                                 This password reset link is invalid or has expired.
                             </p>
+                            <Link to="/forgot-password">
+                                <button className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200">
+                                    Request New Reset Link
+                                </button>
+                            </Link>
                         </div>
-                        
-                        <Link to="/forgot-password">
-                            <button className="bg-gradient-to-br from-green-600 to-green-800 w-full text-white rounded-md h-12 font-bold shadow-lg hover:from-green-500 hover:to-green-700 transition-all">
-                                Request New Reset Link
-                            </button>
-                        </Link>
                     </div>
                 </div>
             </div>
@@ -158,94 +158,97 @@ export default function ResetPassword() {
     }
 
     return (
-        <div className="bg-gradient-to-b from-gray-800 via-gray-900 to-gray-950 py-20 min-h-screen">
-            <div className="max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-gray-100 dark:bg-black">
-                <div className="flex items-center mb-6">
-                    <Link to="/login" className="text-gray-500 hover:text-green-600 mr-4">
-                        <FaArrowLeft />
-                    </Link>
-                    <h2 className="font-bold text-xl text-green-800 dark:text-neutral-200">
-                        Create New Password
-                    </h2>
-                </div>
-                
-                <p className="text-gray-600 dark:text-gray-400 text-sm mb-6">
-                    Please enter your new password below.
-                </p>
-                
-                <form onSubmit={handleSubmit}>
-                    <LabelInputContainer className="mb-4">
-                        <Label htmlFor="password">New Password</Label>
-                        <div className="relative">
-                            <Input
-                                id="password"
-                                type={showPassword ? "text" : "password"}
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                placeholder="••••••••"
-                                required
-                            />
-                            <button
-                                type="button"
-                                onClick={() => setShowPassword(!showPassword)}
-                                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500"
-                            >
-                                {showPassword ? <HiEyeOff  /> : <HiEye />}
-                            </button>
-                        </div>
-                    </LabelInputContainer>
-                    
-                    <LabelInputContainer className="mb-6">
-                        <Label htmlFor="confirmPassword">Confirm New Password</Label>
-                        <div className="relative">
-                            <Input
-                                id="confirmPassword"
-                                type={showPassword ? "text" : "password"}
-                                value={confirmPassword}
-                                onChange={(e) => setConfirmPassword(e.target.value)}
-                                placeholder="••••••••"
-                                required
-                            />
-                        </div>
-                    </LabelInputContainer>
-                    
-                    <div className="mb-4 text-sm text-gray-500">
-                        Password must be at least 6 characters long
+        <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 pt-20">
+            <div className="max-w-md mx-auto px-4 py-8">
+                {/* Header */}
+                <div className="text-center mb-8">
+                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-100 dark:bg-green-900/30 mb-4">
+                        <FaLock className="text-3xl text-green-600 dark:text-green-500" />
                     </div>
-                    
-                    <button
-                        className="bg-gradient-to-br relative group/btn from-green-600 to-green-800 w-full text-white rounded-md h-12 font-bold shadow-lg hover:from-green-500 hover:to-green-700 transition-all"
-                        type="submit"
-                        disabled={loading}
-                    >
-                        {loading ? (
-                            <span className="flex justify-center items-center gap-2">
-                                <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 0 1 8-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 0 1 4 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                </svg>
-                                Resetting...
-                            </span>
-                        ) : (
-                            <span className="flex gap-2 justify-center items-center">
-                                Reset Password <FaLocationArrow />
-                            </span>
-                        )}
-                        <BottomGradient />
-                    </button>
-                </form>
+                    <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+                        Create New Password
+                    </h1>
+                    <p className="text-gray-600 dark:text-gray-400">
+                        Please enter your new password below
+                    </p>
+                </div>
+
+                {/* Form Card */}
+                <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden">
+                    <div className="p-6">
+                        <form onSubmit={handleSubmit}>
+                            <div className="mb-4">
+                                <Label htmlFor="password" className="text-gray-700 dark:text-gray-300 text-sm font-medium mb-1.5 block">
+                                    New Password
+                                </Label>
+                                <div className="relative">
+                                    <Input
+                                        id="password"
+                                        type={showPassword ? "text" : "password"}
+                                        value={password}
+                                        onChange={(e) => setPassword(e.target.value)}
+                                        placeholder="••••••••"
+                                        className="w-full px-4 py-2.5 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500 focus:border-transparent transition pr-12"
+                                        required
+                                    />
+                                    <button
+                                        type="button"
+                                        onClick={() => setShowPassword(!showPassword)}
+                                        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 dark:text-gray-400"
+                                    >
+                                        {showPassword ? <HiEyeOff size={18} /> : <HiEye size={18} />}
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div className="mb-4">
+                                <Label htmlFor="confirmPassword" className="text-gray-700 dark:text-gray-300 text-sm font-medium mb-1.5 block">
+                                    Confirm New Password
+                                </Label>
+                                <Input
+                                    id="confirmPassword"
+                                    type={showPassword ? "text" : "password"}
+                                    value={confirmPassword}
+                                    onChange={(e) => setConfirmPassword(e.target.value)}
+                                    placeholder="••••••••"
+                                    className="w-full px-4 py-2.5 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500 focus:border-transparent transition"
+                                    required
+                                />
+                            </div>
+                            
+                            <div className="mb-6 text-sm text-gray-500 dark:text-gray-400">
+                                Password must be at least 6 characters long
+                            </div>
+                            
+                            <button
+                                className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-sm"
+                                type="submit"
+                                disabled={loading}
+                            >
+                                {loading ? (
+                                    <>
+                                        <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 0 1 8-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 0 1 4 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                        </svg>
+                                        Resetting...
+                                    </>
+                                ) : (
+                                    <>
+                                        Reset Password <FaLocationArrow className="text-sm" />
+                                    </>
+                                )}
+                            </button>
+                        </form>
+                        
+                        <div className="text-center mt-6">
+                            <Link to="/login" className="text-green-600 hover:text-green-700 text-sm font-medium inline-flex items-center gap-1">
+                                <FaArrowLeft className="text-xs" /> Back to Login
+                            </Link>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     );
 }
-
-const BottomGradient = () => (
-    <>
-        <span className="group-hover/btn:opacity-100 block transition duration-500 opacity-0 absolute h-px w-full -bottom-px inset-x-0 bg-gradient-to-r from-transparent via-cyan-500 to-transparent" />
-        <span className="group-hover/btn:opacity-100 blur-sm block transition duration-500 opacity-0 absolute h-px w-1/2 mx-auto -bottom-px inset-x-10 bg-gradient-to-r from-transparent via-indigo-500 to-transparent" />
-    </>
-);
-
-const LabelInputContainer = ({ children, className }) => (
-    <div className={cn("flex flex-col space-y-2 w-full", className)}>{children}</div>
-);
