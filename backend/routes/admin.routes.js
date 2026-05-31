@@ -8,6 +8,7 @@ import {
     getMLReportById
 } from '../controllers/admin.controller.js';
 import { protect, admin } from '../middleware/auth.middleware.js';
+import adminNewsletterRoutes from './adminNewsletter.routes.js';
 
 const router = express.Router();
 
@@ -22,4 +23,7 @@ router.post('/schemes/match', protect, admin, matchSchemeBeneficiaries);
 // ML Reporting Routes (NEW)
 router.get('/ml-reports', protect, admin, getMLActivityLog);
 router.get('/ml-report/:id', protect, admin, getMLReportById);
+
+// for newsletter routes
+router.use('/newsletter',adminNewsletterRoutes);
 export default router;

@@ -63,6 +63,7 @@ const LazyMLActivityLog = React.lazy(() => import('./pages/admin/MLActivityLog')
 const LazyMLReportDetail = React.lazy(() => import('./pages/admin/MLReportDetail'));
 const LazyManageUsers = React.lazy(() => import('./pages/admin/AdminDashboard'));
 const LazyParchiManager = React.lazy(() => import('./pages/admin/ParchiManager'));
+const LazyAdminNewsletter = React.lazy(() => import('./pages/admin/AdminNewsletter'));
 import './i18.js';
 import { useTranslation } from 'react-i18next';
 import i18n from './i18.js';
@@ -131,6 +132,7 @@ export default function App() {
               <Route path="schemes1" element={<Suspense fallback={<LoadingComponent />}><LazySchemeMatcher /></Suspense>} />
               <Route path="users" element={<Suspense fallback={<LoadingComponent />}><AdminUserList /></Suspense>} />
               <Route path="parchi-manager" element={<Suspense fallback={<LoadingComponent />}><LazyParchiManager /></Suspense>} />
+              <Route path="newsletter" element={<Suspense fallback={<LoadingComponent />}><LazyAdminNewsletter /></Suspense>} />
 
               <Route path="user/:id" element={<Suspense fallback={<LoadingComponent />}><AdminUserDetails /></Suspense>} />
               <Route path="heatmap" element={<Suspense fallback={<LoadingComponent />}><FarmRegistryMap /></Suspense>} />
