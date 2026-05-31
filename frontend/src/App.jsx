@@ -70,6 +70,7 @@ import AdminUserDetails from './pages/admin/AdminUserDetails.jsx';
 import SchemeMatcher from './pages/admin/SchemeMatcher';
 import FarmRegistryMap from './pages/admin/FarmRegistryMap.jsx';
 import AdminUserList from './pages/admin/AdminUserList.jsx';
+import VerifyEmail from './components/VerifyEmail.jsx';
 
 const LoadingComponent = () => {
   return (
@@ -179,6 +180,7 @@ export default function App() {
             <Route path="/press" element={<Suspense fallback={<LoadingComponent />}><LazyPress /> </Suspense>} />
             <Route path="/yield" element={<Suspense fallback={<LoadingComponent />}><LazyYieldPrediction /> </Suspense>} />
             <Route path="/payment-processing" element={<Suspense fallback={<LoadingComponent />}><LazyWorkInProgress /> </Suspense>} />
+            <Route path="/verify-email" element={<Suspense fallback={<LoadingComponent />}><VerifyEmail /> </Suspense>} />
             <Route path="/digital-parchi" element={
     authUser ? <Suspense fallback={<LoadingComponent />}><LazyDigitalParchi /></Suspense> 
     : <Navigate to='/login' />

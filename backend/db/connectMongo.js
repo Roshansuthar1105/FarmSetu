@@ -3,7 +3,8 @@ import dotenv from 'dotenv';
 dotenv.config();
 const connectToMongoDb= async ()=>{
     try{
-        const conn= await mongoose.connect(process.env.MONGO_DB_URL);
+        mongoose.set('debug', true);
+        const conn= await mongoose.connect(process.env.MONGO_DB_URL,{ serverSelectionTimeoutMS: 5000});
         console.log(`Connected to database`);
     }
     catch(err){
