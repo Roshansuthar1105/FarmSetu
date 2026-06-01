@@ -5,11 +5,15 @@ import dotenv from 'dotenv';
 dotenv.config();
 // 1. Create the transporter using your SMTP credentials
 const transporter = nodemailer.createTransport({
-  service: 'gmail', // or SendGrid, AWS SES, etc.
+  host: 'smtp.gmail.com',
+  port: 587,
+  secure: false, // false for port 587, true for port 465
   auth: {
     user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS, // Use App Passwords for Gmail
+    pass: process.env.EMAIL_PASS,
   },
+  connectionTimeout: 15000,
+  socketTimeout: 15000,
 });
 
 // 2. Reusable function to send emails
