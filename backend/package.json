@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@getbrevo/brevo": "^5.0.4",
     "axios": "^1.7.3",
     "bcryptjs": "^2.4.3",
     "cheerio": "^1.0.0",
