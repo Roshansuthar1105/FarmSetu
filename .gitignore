@@ -68,3 +68,6 @@ static/uploads/*
 
 # Keep JSON data files
 !data/*.json
+
+
+*.temp
